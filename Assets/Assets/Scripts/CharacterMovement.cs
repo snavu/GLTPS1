@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovment : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
     private CharacterController controller;
     [SerializeField]
@@ -35,7 +35,6 @@ public class PlayerMovment : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //get vertical movement

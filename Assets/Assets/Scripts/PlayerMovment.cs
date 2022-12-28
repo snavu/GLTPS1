@@ -64,9 +64,9 @@ public class PlayerMovment : MonoBehaviour
         controller.Move((moveXZ + moveY) * Time.deltaTime);
 
         //rotate player
-        Quaternion rotationDir = Quaternion.LookRotation(moveXZ, Vector3.up);
         if (Vector3.Magnitude(moveXZ) != 0)
         {
+            Quaternion rotationDir = Quaternion.LookRotation(moveXZ, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
 
         }

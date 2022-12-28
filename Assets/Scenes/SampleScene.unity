@@ -684,40 +684,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chito
       objectReference: {fileID: 0}
-    - target: {fileID: 868928912622174519, guid: ddd881cb275299648b5f60b2524feb2f,
+    - target: {fileID: 6175073168093660120, guid: ddd881cb275299648b5f60b2524feb2f,
         type: 3}
-      propertyPath: m_Height
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 868928912622174519, guid: ddd881cb275299648b5f60b2524feb2f,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 868928912622174519, guid: ddd881cb275299648b5f60b2524feb2f,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2799228037813308980, guid: ddd881cb275299648b5f60b2524feb2f,
-        type: 3}
-      propertyPath: speed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2799228037813308980, guid: ddd881cb275299648b5f60b2524feb2f,
-        type: 3}
-      propertyPath: runSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2799228037813308980, guid: ddd881cb275299648b5f60b2524feb2f,
-        type: 3}
-      propertyPath: walkSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2799228037813308980, guid: ddd881cb275299648b5f60b2524feb2f,
-        type: 3}
-      propertyPath: jumpheight
-      value: 0.25
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddd881cb275299648b5f60b2524feb2f, type: 3}

@@ -212,13 +212,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.6
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!114 &2799228037813308980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,9 +231,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e7cd5556bbd834aa48f4d9f6124dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  jumpheight: 1
+  velocity: {x: 0, y: 0, z: 0}
+  isGrounded: 0
+  walkSpeed: 2
+  runSpeed: 4
+  jumpHeight: 1
   gravity: -9.81
+  rotationSpeed: 600
 --- !u!1 &756401295238146602
 GameObject:
   m_ObjectHideFlags: 0

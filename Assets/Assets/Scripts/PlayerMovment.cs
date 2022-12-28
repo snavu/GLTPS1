@@ -20,15 +20,19 @@ public class PlayerMovment : MonoBehaviour
     private float gravity = -9.81f;
     [SerializeField]
     private float rotationSpeed = 1.0f;
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
+
+    [SerializeField]
 
     private Animator anim;
+
+    [SerializeField]
+    private Transform camera;
+    [SerializeField]
+    private Transform child;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -60,17 +64,27 @@ public class PlayerMovment : MonoBehaviour
             speed = Mathf.Lerp(speed, walkSpeed, 10.0f * Time.deltaTime);
         }
 
-        //move player
+        //move parent
         Vector3 moveXZ = Vector3.ClampMagnitude(new Vector3(velocity.x, 0, velocity.z), 1.0f) * speed;
+        moveXZ = transform.TransformDirection(moveXZ);
         Vector3 moveY = new Vector3(0, velocity.y, 0);
         controller.Move((moveXZ + moveY) * Time.deltaTime);
 
-        //rotate player
+        //rotate child in direction of movement      
         if (Vector3.Magnitude(moveXZ) != 0)
         {
-            Quaternion rotationDir = Quaternion.LookRotation(moveXZ, Vector3.up);
+            Quaternion rotationDir = Quaternion.LookRotation(moveXZ);
+            child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
+        }
+
+        //rotate parent to camera
+        if (Vector3.Magnitude(moveXZ) != 0)
+        {
+            Vector3 cam = new Vector3(camera.TransformDirection(Vector3.forward).x, 0, camera.TransformDirection(Vector3.forward).z);
+            Quaternion rotationDir = Quaternion.LookRotation(cam);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
         }
+
 
         //set movement animation
         movementAnim(moveXZ);

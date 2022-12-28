@@ -67,7 +67,14 @@ public class CharacterMovement : MonoBehaviour
         Vector3 moveXZ = Vector3.ClampMagnitude(new Vector3(velocity.x, 0, velocity.z), 1.0f) * speed;
         moveXZ = transform.TransformDirection(moveXZ);
         Vector3 moveY = new Vector3(0, velocity.y, 0);
+
         controller.Move((moveXZ + moveY) * Time.deltaTime);
+
+        //jump
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+        }
 
         //rotate child in direction of movement      
         if (Vector3.Magnitude(moveXZ) != 0)
@@ -84,15 +91,8 @@ public class CharacterMovement : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
         }
 
-
         //set movement animation
         movementAnim(moveXZ);
-
-        //jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
-        }
     }
 
     /*

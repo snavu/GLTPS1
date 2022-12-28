@@ -23,7 +23,10 @@ public class VechicleMovement : MonoBehaviour
     {
         //get input
         velocity.x = Input.GetAxisRaw("Horizontal");
-        velocity.z = Input.GetAxisRaw("Vertical");
+        velocity.z = Input.GetAxis("Vertical");
+
+        //set movement aniamtion
+        movementAnim();
     }
     void FixedUpdate()
     {
@@ -33,7 +36,7 @@ public class VechicleMovement : MonoBehaviour
             rb.AddForce(velocity.z * transform.forward * force * Time.fixedDeltaTime);
 
             //rotate
-            if (Mathf.Abs(velocity.x) > 0)
+            if (Mathf.Abs(velocity.x) > 0 && Mathf.Abs(velocity.z) >= 0.5f)
             {
                 Quaternion deltaRotation = Quaternion.Euler(velocity.x * eulerAngularVelocity * Time.fixedDeltaTime);
                 rb.MoveRotation(rb.rotation * deltaRotation);
@@ -41,17 +44,16 @@ public class VechicleMovement : MonoBehaviour
         }
         //clamp velocity to max velocity
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
-
-        //set movement aniamtion
-        movementAnim();
-
     }
+
+    /*
+    movement animation is a blendtree with blendParameter binded directly to velocity.z of vertical input,
+    with thresholds -1, 0, and 1 for backward, idle and forward states
+    */
     private void movementAnim()
     {
-        //scale magnitude of rigidbody velocity in forward direction
-        float velocityXZ = rb.velocity.z / maxVelocity;
         //set movement animation
-        anim.SetFloat("velocityXZ", velocityXZ);
+        anim.SetFloat("velocityZ", velocity.z);
     }
 
 }

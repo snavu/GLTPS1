@@ -20,6 +20,8 @@ public class PlayerMovment : MonoBehaviour
     private float gravity = -9.81f;
     [SerializeField]
     private float rotationSpeed = 1.0f;
+    private float yaw = 0.0f;
+    private float pitch = 0.0f;
 
     private Animator anim;
 
@@ -68,7 +70,6 @@ public class PlayerMovment : MonoBehaviour
         {
             Quaternion rotationDir = Quaternion.LookRotation(moveXZ, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
-
         }
 
         //set movement animation

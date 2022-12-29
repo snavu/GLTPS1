@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class CharacterVehicleInteraction : MonoBehaviour
 {
     private CharacterController controller;
     private CharacterMovement movementScript;
     [SerializeField]
-    private Animator anim;
+    private Animator vehicleAnim;
+    [SerializeField]
+    private Animator playerAnim;
 
-    private bool enterKet;
-
+    private float steer;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -20,6 +20,10 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     void Update()
     {
+        
+    }
+
+    void OnCollisionStay(Collision collisionInfo){
         
     }
 }

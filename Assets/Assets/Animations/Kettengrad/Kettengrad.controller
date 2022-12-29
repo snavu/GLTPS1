@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: wheel spin
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -55,7 +55,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: steer handle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -89,7 +89,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: rotation
+  - m_Name: steer
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -260,7 +260,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: velocity
     m_Mirror: 0
-  m_BlendParameter: rotation
+  m_BlendParameter: steer
   m_BlendParameterY: velocity
   m_MinThreshold: 0
   m_MaxThreshold: 1

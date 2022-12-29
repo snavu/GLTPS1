@@ -4,26 +4,29 @@ using UnityEngine;
 
 public class VechicleMovement : MonoBehaviour
 {
+    private InputActions actions;
     private Rigidbody rb;
     [SerializeField]
     private float force;
     [SerializeField]
     private float maxVelocity;
-    private Vector3 velocity;
+    private Vector2 movement;
     [SerializeField]
     private Vector3 eulerAngularVelocity;
     [SerializeField]
     private Animator anim;
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        actions = new InputActions();
+        actions.Player.Drive.Enable();
     }
 
     void Update()
     {
         //get input
-        velocity.x = Input.GetAxisRaw("Horizontal");
-        velocity.z = Input.GetAxis("Vertical");
+        movement = actions.Player.Drive.ReadValue<Vector3>();
 
         //set movement aniamtion
         movementAnim();
@@ -31,14 +34,14 @@ public class VechicleMovement : MonoBehaviour
     void FixedUpdate()
     {
         //move
-        if (Mathf.Abs(velocity.z) > 0)
+        if (Mathf.Abs(movement.y) > 0)
         {
-            rb.AddForce(velocity.z * transform.forward * force * Time.fixedDeltaTime);
+            rb.AddForce(movement.y * transform.forward * force * Time.fixedDeltaTime);
 
             //rotate
-            if (Mathf.Abs(velocity.x) > 0 && Mathf.Abs(velocity.z) >= 0.5f)
+            if (Mathf.Abs(movement.x) > 0 && Mathf.Abs(movement.y) >= 0.5f)
             {
-                Quaternion deltaRotation = Quaternion.Euler(velocity.x * eulerAngularVelocity * Time.fixedDeltaTime);
+                Quaternion deltaRotation = Quaternion.Euler(movement.x * eulerAngularVelocity * Time.fixedDeltaTime);
                 rb.MoveRotation(rb.rotation * deltaRotation);
             }
         }
@@ -53,7 +56,7 @@ public class VechicleMovement : MonoBehaviour
     private void movementAnim()
     {
         //set movement animation
-        anim.SetFloat("velocityZ", velocity.z);
+        anim.SetFloat("velocityZ", movement.y);
     }
 
 }

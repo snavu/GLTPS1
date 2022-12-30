@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class VechicleMovement : MonoBehaviour
 {
-    private InputActions actions;
+    [SerializeField]
+    private PlayerMovement playerMovementScript;
     private Rigidbody rb;
     [SerializeField]
     private float force;
@@ -18,18 +20,15 @@ public class VechicleMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-
-        actions = new InputActions();
-        actions.Player.Drive.Enable();
     }
 
     void Update()
     {
         //get input
-        movement = actions.Player.Drive.ReadValue<Vector3>();
+        movement = playerMovementScript.actions.Vehicle.Drive.ReadValue<Vector3>();
 
         //set movement aniamtion
-        movementAnim();
+        MovementAnim();
     }
     void FixedUpdate()
     {
@@ -53,7 +52,7 @@ public class VechicleMovement : MonoBehaviour
     movement animation is a blendtree with blendParameter binded directly to velocity.z of vertical input,
     with thresholds -1, 0, and 1 for backward, idle and forward states
     */
-    private void movementAnim()
+    private void MovementAnim()
     {
         //set movement animation
         anim.SetFloat("velocityZ", movement.y);

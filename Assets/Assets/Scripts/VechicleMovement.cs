@@ -52,13 +52,16 @@ public class VechicleMovement : MonoBehaviour
     }
 
     /*
-    movement animation is a blendtree with blendParameter binded directly to velocity.z of vertical input,
+    movement animation is a blendtree with blendParameter binded directly to rb.velocity scaled between 0 and 1,
     with thresholds -1, 0, and 1 for backward, idle and forward states
     */
     private void MovementAnim()
     {
+        float scaledVelocityXZ = Vector3.Magnitude(rb.velocity) / maxVelocity;
+        scaledVelocityXZ *= movement.y;
+       
         //set movement animation
-        anim.SetFloat("velocityZ", movement.y);
+        anim.SetFloat("velocityZ", scaledVelocityXZ);
     }
 
 }

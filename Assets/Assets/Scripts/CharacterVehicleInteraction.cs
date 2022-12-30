@@ -30,12 +30,14 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private bool preOrient;
     private Quaternion rotationDir;
     private float maxSpeed = 4.0f;
+
     void Awake()
     {
         controller = GetComponent<CharacterController>();
         agent = GetComponent<NavMeshAgent>();
         playerMovementScript = GetComponent<PlayerMovement>();
         playerMovementScript.actions.Player.Interact.performed += Interact;
+        playerMovementScript.actions.Vehicle.Exit.performed += Exit;
     }
 
     void Update()
@@ -78,7 +80,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     public void Exit(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && playerAnim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer"))
         {
 
         }
@@ -112,7 +114,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
                 child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
             }
 
-            if (other.gameObject.name == "Right" && transform.rotation == rotationDir)
+            if (other.gameObject.name == "Right" && transform.rotation == rotationDir && child.rotation == rotationDir)
             {
                 playerAnim.SetTrigger("ket enter");
                 playerAnim.SetBool("ket right", true);

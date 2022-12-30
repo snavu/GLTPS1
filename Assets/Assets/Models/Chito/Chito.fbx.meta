@@ -29,35 +29,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Chito|Enter_Ket_Back' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Torso' has translation animation
-      that will be discarded.\n\t'Pelvis' has translation animation that will be
-      discarded.\n\t'Pelvis' is inbetween humanoid transforms and has rotation animation
-      that will be discarded.\n\nClip 'Chito|Enter_Ket_Left' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Pelvis' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\nClip 'Chito|Enter_Ket_Right'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Chito|Exit_Ket_Back' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Torso'
-      has translation animation that will be discarded.\n\t'Pelvis' has translation
-      animation that will be discarded.\n\t'Pelvis' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\nClip 'Chito|Exit_Ket_Left'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Chito|Exit_Ket_Right' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Pelvis'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Chito|Walk_1' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Torso'
-      has translation animation that will be discarded.\n\nClip 'Chito|Walk_2' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'Torso' has translation
-      animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -1216,7 +1188,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1

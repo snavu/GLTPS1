@@ -25,6 +25,10 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private float steer;
     [SerializeField]
     private float rotationSpeed = 100.0f;
+    private bool preOrient;
+    private float elapsed = 0f;
+    private Quaternion rotationDir;
+    private float maxSpeed = 4.0f;
     void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -36,8 +40,10 @@ public class CharacterVehicleInteraction : MonoBehaviour
     void Update()
     {
 
-
-        if (playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Front"))
+        if(agent.isActiveAndEnabled){
+            CharacterMovementAnimation.Movement(playerAnim, agent.velocity, maxSpeed); 
+        }
+        if (playerAnim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer"))
         {
             transform.position = vehicleSeat.position;
             transform.rotation = vehicleSeat.rotation;
@@ -82,8 +88,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        //-4.427. 4.338
-        if (other.gameObject.CompareTag("Ket"))
+        
+        if (other.gameObject.CompareTag("Ket") && !preOrient)
         {
             if (agent.isActiveAndEnabled)
             {
@@ -99,21 +105,15 @@ public class CharacterVehicleInteraction : MonoBehaviour
             //orient rotation of partent to enter ket after arriving at destination
             if (!agent.isActiveAndEnabled && !enterable)
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, other.gameObject.transform.rotation, rotationSpeed * Time.deltaTime);
+                rotationDir = other.gameObject.transform.rotation * Quaternion.Euler(0, 90, 0);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
             }
 
-            if (other.gameObject.name == "Right" && transform.rotation ==  other.gameObject.transform.rotation)
+            if (other.gameObject.name == "Right" && transform.rotation == rotationDir)
             {
-                //orient rotation of child to enter ket
-                Quaternion rotationDir = other.gameObject.transform.rotation * Quaternion.Euler(0, 90, 0);
-                child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
-                if (child.rotation == rotationDir)
-                {
-                    playerAnim.SetTrigger("ket enter");
-                    playerAnim.SetTrigger("ket right");
-                    child.rotation = Quaternion.Euler(0,0,0);
-                }
-
+                playerAnim.SetTrigger("ket enter");
+                playerAnim.SetBool("ket right", true);
+                preOrient = true;
             }
             if (other.gameObject.name == "Left")
             {

@@ -9,12 +9,15 @@ public class VechicleMovement : MonoBehaviour
     private PlayerMovement playerMovementScript;
     private Rigidbody rb;
     [SerializeField]
+    private Vector2 movement;
+    [SerializeField]
     private float force;
     [SerializeField]
     private float maxVelocity;
-    private Vector2 movement;
     [SerializeField]
-    private Vector3 eulerAngularVelocity;
+    private float torque;
+    [SerializeField]
+    private float maxAngularVelocity;
     [SerializeField]
     private Animator anim;
     void Awake()
@@ -35,17 +38,17 @@ public class VechicleMovement : MonoBehaviour
         //move
         if (Mathf.Abs(movement.y) > 0)
         {
-            rb.AddForce(movement.y * transform.forward * force * Time.fixedDeltaTime);
+            rb.AddForce(movement.y * transform.forward * force * Time.fixedDeltaTime, ForceMode.Force);
 
             //rotate
             if (Mathf.Abs(movement.x) > 0 && Mathf.Abs(movement.y) >= 0.5f)
             {
-                Quaternion deltaRotation = Quaternion.Euler(movement.x * eulerAngularVelocity * Time.fixedDeltaTime);
-                rb.MoveRotation(rb.rotation * deltaRotation);
+                rb.AddTorque(movement.x * transform.up * torque * Time.fixedDeltaTime, ForceMode.Force);
             }
         }
-        //clamp velocity to max velocity
+        //clamp velocity and angular velocity
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
+        rb.angularVelocity = Vector3.ClampMagnitude(rb.angularVelocity, maxAngularVelocity);
     }
 
     /*

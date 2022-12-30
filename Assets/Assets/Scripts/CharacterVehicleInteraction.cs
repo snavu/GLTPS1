@@ -25,8 +25,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private float steer;
     [SerializeField]
     private float rotationSpeed = 100.0f;
-    private bool preOrient;
     private float elapsed = 0f;
+
+    private bool preOrient;
     private Quaternion rotationDir;
     private float maxSpeed = 4.0f;
     void Awake()
@@ -47,6 +48,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
         {
             transform.position = vehicleSeat.position;
             transform.rotation = vehicleSeat.rotation;
+            playerMovementScript.actions.Vehicle.Enable();
         }
         if (playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Back"))
         {
@@ -102,11 +104,12 @@ public class CharacterVehicleInteraction : MonoBehaviour
                     agent.enabled = false;
                 }
             }
-            //orient rotation of partent to enter ket after arriving at destination
+            //orient rotation to enter ket after arriving at destination
             if (!agent.isActiveAndEnabled && !enterable)
             {
                 rotationDir = other.gameObject.transform.rotation * Quaternion.Euler(0, 90, 0);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
+                child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
             }
 
             if (other.gameObject.name == "Right" && transform.rotation == rotationDir)

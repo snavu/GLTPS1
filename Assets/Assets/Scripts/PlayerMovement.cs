@@ -6,11 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
+    private Animator anim;
     [SerializeField]
     private Transform child;
     [SerializeField]
-    private Animator anim;
-
     private Vector2 horizontalMovement;
     private Vector3 velocityXZ;
     private Vector3 velocityY;
@@ -42,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<CharacterController>();
-
+        anim = GetComponentInChildren<Animator>();
         actions = new InputActions();
         actions.Player.Enable();
         actions.Player.Jump.performed += Jump;
@@ -80,6 +79,9 @@ public class PlayerMovement : MonoBehaviour
 
         //move character based on input
         controller.Move((velocityXZ + velocityY) * Time.deltaTime);
+
+        //pass velocityXZ to drive movement animation
+        CharacterMovementAnimation.Movement(anim, velocityXZ, runSpeed);        
 
         //rotate child in direction of movement      
         if (Vector3.Magnitude(velocityXZ) != 0)

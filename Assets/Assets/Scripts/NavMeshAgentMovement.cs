@@ -13,9 +13,10 @@ public class NavMeshAgentMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.destination = destination.position;
+
     }
     void Update()
     {
-        
+
     }
 }

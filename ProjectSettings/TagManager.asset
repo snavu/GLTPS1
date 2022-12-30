@@ -4,9 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ket Right
-  - Ket Left
-  - Ket Back
+  - Ket
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AI;
 public class CharacterVehicleInteraction : MonoBehaviour
 {
     [SerializeField]
@@ -13,21 +14,28 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private Animator playerAnim;
     private CharacterController controller;
     [SerializeField]
-    private Collider vehicleCollider;
+    private NavMeshAgent agent;
+    [SerializeField]
+    private Transform child;
     [SerializeField]
     private Transform vehicleSeat;
     private Transform vehicleBackSeat;
-    private bool enter;
+    private bool enterable;
     private bool exit;
     private float steer;
+    [SerializeField]
+    private float rotationSpeed = 100.0f;
     void Awake()
     {
         controller = GetComponent<CharacterController>();
+        agent = GetComponent<NavMeshAgent>();
+        playerMovementScript = GetComponent<PlayerMovement>();
         playerMovementScript.actions.Player.Interact.performed += Interact;
     }
 
     void Update()
     {
+
 
         if (playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Front"))
         {
@@ -41,54 +49,86 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     }
 
-    void OnTriggerStay(Collider other)
-    {
-        if (enter && !exit)
-        {
-            if (other.gameObject.CompareTag("Ket Right"))
-            {
-
-            }
-            if (other.gameObject.CompareTag("Ket Left"))
-            {
-
-            }
-            if (other.gameObject.CompareTag("Ket Back"))
-            {
-
-            }
-        }
-
-        enter = false;
-
-    }
-
     public void Interact(InputAction.CallbackContext context)
     {
-        if (context.performed
+        if (context.performed && enterable
             && !playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Front")
             && !playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Back"))
         {
             //ignore collisions between layer 6 (vehicle) and layer 7 (player) 
             Physics.IgnoreLayerCollision(6, 7, true);
-            playerMovementScript.actions.Vehicle.Enable();
-            playerMovementScript.actions.Player.Disable();
-            enter = true;
-            exit = false;
+
+            //disable player movement
+            playerMovementScript.enabled = false;
+            //disable character controller
+            controller.enabled = false;
+            //enable navmesh agent 
+            agent.enabled = true;
         }
+        enterable = false;
     }
 
     public void Exit(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            enter = false;
-            exit = true;
+
         }
     }
 
-    public void EnterSeat()
+    void OnTriggerEnter(Collider other)
     {
-
+        enterable = true;
     }
+    void OnTriggerStay(Collider other)
+    {
+        //-4.427. 4.338
+        if (other.gameObject.CompareTag("Ket"))
+        {
+            if (agent.isActiveAndEnabled)
+            {
+                //set agent destination
+                agent.destination = other.transform.position;
+
+                //record rotation of child and disable navmesh agent when arrived at destination
+                if (transform.position == agent.destination)
+                {
+                    agent.enabled = false;
+                }
+            }
+            //orient rotation of partent to enter ket after arriving at destination
+            if (!agent.isActiveAndEnabled && !enterable)
+            {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, other.gameObject.transform.rotation, rotationSpeed * Time.deltaTime);
+            }
+
+            if (other.gameObject.name == "Right" && transform.rotation ==  other.gameObject.transform.rotation)
+            {
+                //orient rotation of child to enter ket
+                Quaternion rotationDir = other.gameObject.transform.rotation * Quaternion.Euler(0, 90, 0);
+                child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
+                if (child.rotation == rotationDir)
+                {
+                    playerAnim.SetTrigger("ket enter");
+                    playerAnim.SetTrigger("ket right");
+                    child.rotation = Quaternion.Euler(0,0,0);
+                }
+
+            }
+            if (other.gameObject.name == "Left")
+            {
+
+            }
+            if (other.gameObject.name == "Back")
+            {
+
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        enterable = false;
+    }
+
 }

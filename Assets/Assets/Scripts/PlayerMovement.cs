@@ -86,7 +86,6 @@ public class PlayerMovement : MonoBehaviour
         //rotate child in direction of movement      
         if (Vector3.Magnitude(velocityXZ) != 0)
         {
-            Debug.Log("rotate");
             rotationDir = Quaternion.LookRotation(velocityXZ);
             child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
         }

@@ -30,6 +30,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private bool preOrient;
     private Quaternion rotationDir;
     private float maxSpeed = 4.0f;
+    private bool followPosition;
+    private bool followRotation;
 
     void Awake()
     {
@@ -42,16 +44,19 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     void Update()
     {
-
-        if(agent.isActiveAndEnabled){
-            CharacterMovementAnimation.Movement(playerAnim, agent.velocity, maxSpeed); 
+        if (agent.isActiveAndEnabled)
+        {
+            CharacterMovementAnimation.Movement(playerAnim, agent.velocity, maxSpeed);
         }
-        if (playerAnim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer"))
+        if (followPosition)
         {
             transform.position = vehicleSeat.position;
-            transform.rotation = vehicleSeat.rotation;
-            playerMovementScript.actions.Vehicle.Enable();
         }
+        if (followRotation)
+        {
+            transform.rotation = vehicleSeat.rotation;
+        }
+
         if (playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Back"))
         {
 
@@ -82,8 +87,46 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         if (context.performed && playerAnim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer"))
         {
+            //disble vehicle movement
+            playerMovementScript.actions.Vehicle.Disable();
+
+            playerAnim.SetTrigger("ket exit");
 
         }
+    }
+
+    //animation events
+    public void EnableVehicle()
+    {
+        playerMovementScript.actions.Vehicle.Enable();
+    }
+    public void DisableVehicle()
+    {
+        playerMovementScript.actions.Vehicle.Disable();
+
+    }
+    public void SetFollowPositionTrue()
+    {
+        followPosition = true;
+    }
+    public void SetFollowPositionFalse()
+    {
+        followPosition = false;
+    }
+    public void SetFollowRotationTrue()
+    {
+        followRotation = true;
+    }
+    public void SetFollowRotationFalse()
+    {
+        followRotation = false;
+    }
+    public void ExitVehicle()
+    {
+        Physics.IgnoreLayerCollision(6, 7, false);
+        playerMovementScript.enabled = true;
+        controller.enabled = true;
+        preOrient = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -92,7 +135,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        
+
         if (other.gameObject.CompareTag("Ket") && !preOrient)
         {
             if (agent.isActiveAndEnabled)

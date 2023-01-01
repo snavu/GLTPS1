@@ -21,6 +21,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private Transform vehicleSeat;
     private Transform vehicleBackSeat;
     private bool enterable;
+    private bool entered;
     private bool exit;
     private float steer;
     [SerializeField]
@@ -33,7 +34,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private bool followPosition;
     private bool followRotation;
 
-    void Awake()
+    void Start()
     {
         controller = GetComponent<CharacterController>();
         agent = GetComponent<NavMeshAgent>();
@@ -79,6 +80,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             controller.enabled = false;
             //enable navmesh agent 
             agent.enabled = true;
+            preOrient = false;
         }
         enterable = false;
     }
@@ -93,6 +95,59 @@ public class CharacterVehicleInteraction : MonoBehaviour
             playerAnim.SetTrigger("ket exit");
 
         }
+    }
+
+    public void ExitVehicle()
+    {
+        Physics.IgnoreLayerCollision(6, 7, false);
+        playerMovementScript.enabled = true;
+        controller.enabled = true;
+        preOrient = false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        enterable = true;
+    }
+    void OnTriggerStay(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Ket") && !preOrient && !enterable)
+        {
+            //orient position to enter ket
+            if (agent.isActiveAndEnabled)
+            {
+                agent.destination = other.transform.position;
+                if (transform.position == agent.destination)
+                {
+                    //orient rotation to enter ket
+                    rotationDir = other.gameObject.transform.rotation * Quaternion.Euler(0, 90, 0);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
+                    child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
+                    if (other.gameObject.name == "Right" && transform.rotation == rotationDir && child.rotation == rotationDir)
+                    {
+                        agent.enabled = false;
+                        playerAnim.SetTrigger("ket enter");
+                        playerAnim.SetBool("ket right", true);
+                        preOrient = true;
+                    }
+                }
+            }
+
+            if (other.gameObject.name == "Left")
+            {
+
+            }
+            if (other.gameObject.name == "Back")
+            {
+
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        enterable = false;
     }
 
     //animation events
@@ -120,63 +175,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
     public void SetFollowRotationFalse()
     {
         followRotation = false;
-    }
-    public void ExitVehicle()
-    {
-        Physics.IgnoreLayerCollision(6, 7, false);
-        playerMovementScript.enabled = true;
-        controller.enabled = true;
-        preOrient = false;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        enterable = true;
-    }
-    void OnTriggerStay(Collider other)
-    {
-
-        if (other.gameObject.CompareTag("Ket") && !preOrient)
-        {
-            if (agent.isActiveAndEnabled)
-            {
-                //set agent destination
-                agent.destination = other.transform.position;
-
-                //record rotation of child and disable navmesh agent when arrived at destination
-                if (transform.position == agent.destination)
-                {
-                    agent.enabled = false;
-                }
-            }
-            //orient rotation to enter ket after arriving at destination
-            if (!agent.isActiveAndEnabled && !enterable)
-            {
-                rotationDir = other.gameObject.transform.rotation * Quaternion.Euler(0, 90, 0);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
-                child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
-            }
-
-            if (other.gameObject.name == "Right" && transform.rotation == rotationDir && child.rotation == rotationDir)
-            {
-                playerAnim.SetTrigger("ket enter");
-                playerAnim.SetBool("ket right", true);
-                preOrient = true;
-            }
-            if (other.gameObject.name == "Left")
-            {
-
-            }
-            if (other.gameObject.name == "Back")
-            {
-
-            }
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        enterable = false;
     }
 
 }

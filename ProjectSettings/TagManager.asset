@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Ket Front
   - Ket
+  - Wall
   layers:
   - Default
   - TransparentFX

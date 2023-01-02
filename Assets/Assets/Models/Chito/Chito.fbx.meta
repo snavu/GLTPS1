@@ -59,75 +59,75 @@ ModelImporter:
       translation DOF on avatar to improve retargeting quality.\n\t'Torso' has translation
       animation that will be discarded.\n"
     animationRetargetingWarnings: "\nRetargeting quality report for clip 'Chito|Drive':\n\tLeftLowerLeg
-      average position error 5.0 mm and maximum position error 5.0 mm at time 0:
-      0 (0.0%) Frame 0\n\tLeftFoot average position error 4.2 mm and maximum position
-      error 4.2 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position
+      average position error 11.1 mm and maximum position error 11.1 mm at time 0:
+      0 (0.0%) Frame 0\n\tLeftFoot average position error 10.8 mm and maximum position
+      error 10.8 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position
       error 13.1 mm and maximum position error 13.1 mm at time 0: 0 (0.0%) Frame
       0\n\tRightFoot average position error 13.0 mm and maximum position error 13.0
       mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting quality report for clip 'Chito|Drive_Left':\n\tLeftLowerLeg
-      average position error 5.0 mm and maximum position error 5.0 mm at time 0:
-      0 (0.0%) Frame 0\n\tLeftFoot average position error 4.2 mm and maximum position
-      error 4.2 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position
+      average position error 11.1 mm and maximum position error 11.1 mm at time 0:
+      0 (0.0%) Frame 0\n\tLeftFoot average position error 10.8 mm and maximum position
+      error 10.8 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position
       error 13.1 mm and maximum position error 13.1 mm at time 0: 0 (0.0%) Frame
       0\n\tRightFoot average position error 13.0 mm and maximum position error 13.0
       mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting quality report for clip 'Chito|Drive_Left_Hard':\n\tLeftLowerLeg
-      average position error 197.1 mm and maximum position error 197.1 mm at time
-      0: 0 (0.0%) Frame 0\n\tLeftFoot average position error 197.6 mm and maximum
-      position error 197.6 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average
+      average position error 196.3 mm and maximum position error 196.3 mm at time
+      0: 0 (0.0%) Frame 0\n\tLeftFoot average position error 196.7 mm and maximum
+      position error 196.7 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average
       position error 181.5 mm and maximum position error 181.5 mm at time 0: 0 (0.0%)
       Frame 0\n\tRightFoot average position error 180.5 mm and maximum position error
       180.5 mm at time 0: 0 (0.0%) Frame 0\n\tLeftUpperArm average position error
-      189.8 mm and maximum position error 189.8 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm
-      average position error 189.8 mm and maximum position error 189.8 mm at time
-      0: 0 (0.0%) Frame 0\n\tLeftHand average position error 189.8 mm and maximum
-      position error 189.8 mm at time 0: 0 (0.0%) Frame 0\n\tRightUpperArm average
-      position error 189.8 mm and maximum position error 189.8 mm at time 0: 0 (0.0%)
+      189.9 mm and maximum position error 189.9 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm
+      average position error 189.9 mm and maximum position error 189.9 mm at time
+      0: 0 (0.0%) Frame 0\n\tLeftHand average position error 189.9 mm and maximum
+      position error 189.9 mm at time 0: 0 (0.0%) Frame 0\n\tRightUpperArm average
+      position error 189.9 mm and maximum position error 189.9 mm at time 0: 0 (0.0%)
       Frame 0\n\tRightLowerArm average position error 190.0 mm and maximum position
       error 190.0 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand average position error
-      189.8 mm and maximum position error 189.8 mm at time 0: 0 (0.0%) Frame 0\n\tHead
-      average position error 189.8 mm and maximum position error 189.8 mm at time
+      189.9 mm and maximum position error 189.9 mm at time 0: 0 (0.0%) Frame 0\n\tHead
+      average position error 189.9 mm and maximum position error 189.9 mm at time
       0: 0 (0.0%) Frame 0\n\nRetargeting quality report for clip 'Chito|Drive_Right':\n\tLeftLowerLeg
-      average position error 5.0 mm and maximum position error 5.0 mm at time 0:
-      0 (0.0%) Frame 0\n\tLeftFoot average position error 4.2 mm and maximum position
-      error 4.2 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position
+      average position error 11.1 mm and maximum position error 11.1 mm at time 0:
+      0 (0.0%) Frame 0\n\tLeftFoot average position error 10.8 mm and maximum position
+      error 10.8 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position
       error 13.1 mm and maximum position error 13.1 mm at time 0: 0 (0.0%) Frame
       0\n\tRightFoot average position error 13.0 mm and maximum position error 13.0
       mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting quality report for clip 'Chito|Drive_Right_Hard':\n\tLeftLowerLeg
-      average position error 186.1 mm and maximum position error 186.1 mm at time
-      0: 0 (0.0%) Frame 0\n\tLeftFoot average position error 184.9 mm and maximum
-      position error 184.9 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average
-      position error 196.0 mm and maximum position error 196.0 mm at time 0: 0 (0.0%)
+      average position error 183.4 mm and maximum position error 183.4 mm at time
+      0: 0 (0.0%) Frame 0\n\tLeftFoot average position error 182.3 mm and maximum
+      position error 182.3 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average
+      position error 196.1 mm and maximum position error 196.1 mm at time 0: 0 (0.0%)
       Frame 0\n\tRightFoot average position error 196.3 mm and maximum position error
       196.3 mm at time 0: 0 (0.0%) Frame 0\n\tLeftUpperArm average position error
-      189.8 mm and maximum position error 189.8 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm
+      189.9 mm and maximum position error 189.9 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm
       average position error 190.0 mm and maximum position error 190.0 mm at time
-      0: 0 (0.0%) Frame 0\n\tLeftHand average position error 189.8 mm and maximum
-      position error 189.8 mm at time 0: 0 (0.0%) Frame 0\n\tRightUpperArm average
-      position error 189.8 mm and maximum position error 189.8 mm at time 0: 0 (0.0%)
-      Frame 0\n\tRightLowerArm average position error 189.8 mm and maximum position
-      error 189.8 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand average position error
-      189.8 mm and maximum position error 189.8 mm at time 0: 0 (0.0%) Frame 0\n\tHead
-      average position error 189.8 mm and maximum position error 189.8 mm at time
+      0: 0 (0.0%) Frame 0\n\tLeftHand average position error 189.9 mm and maximum
+      position error 189.9 mm at time 0: 0 (0.0%) Frame 0\n\tRightUpperArm average
+      position error 189.9 mm and maximum position error 189.9 mm at time 0: 0 (0.0%)
+      Frame 0\n\tRightLowerArm average position error 189.9 mm and maximum position
+      error 189.9 mm at time 0: 0 (0.0%) Frame 0\n\tRightHand average position error
+      189.9 mm and maximum position error 189.9 mm at time 0: 0 (0.0%) Frame 0\n\tHead
+      average position error 189.9 mm and maximum position error 189.9 mm at time
       0: 0 (0.0%) Frame 0\n\nRetargeting quality report for clip 'Chito|Enter_Ket_Back':\n\tLeftLowerLeg
-      average position error 158.9 mm and maximum position error 305.5 mm at time
-      0:16 (26.7%) Frame 16\n\tLeftFoot average position error 159.0 mm and maximum
-      position error 306.8 mm at time 0:16 (26.7%) Frame 16\n\tRightLowerLeg average
-      position error 170.7 mm and maximum position error 311.4 mm at time 0:16 (26.7%)
-      Frame 16\n\tRightFoot average position error 169.5 mm and maximum position
-      error 312.4 mm at time 0:16 (26.7%) Frame 16\n\tLeftUpperArm average position
+      average position error 158.8 mm and maximum position error 307.3 mm at time
+      0:16 (26.7%) Frame 16\n\tLeftFoot average position error 159.9 mm and maximum
+      position error 308.8 mm at time 0:16 (26.7%) Frame 16\n\tRightLowerLeg average
+      position error 170.8 mm and maximum position error 311.4 mm at time 0:16 (26.7%)
+      Frame 16\n\tRightFoot average position error 169.6 mm and maximum position
+      error 312.5 mm at time 0:16 (26.7%) Frame 16\n\tLeftUpperArm average position
       error 156.1 mm and maximum position error 308.4 mm at time 0:16 (26.7%) Frame
       16\n\tLeftLowerArm average position error 157.6 mm and maximum position error
-      312.2 mm at time 0:16 (26.7%) Frame 16\n\tLeftHand average position error 156.0
-      mm and maximum position error 308.3 mm at time 0:16 (26.7%) Frame 16\n\tRightUpperArm
+      312.3 mm at time 0:16 (26.7%) Frame 16\n\tLeftHand average position error 156.1
+      mm and maximum position error 308.4 mm at time 0:16 (26.7%) Frame 16\n\tRightUpperArm
       average position error 156.1 mm and maximum position error 308.4 mm at time
       0:16 (26.7%) Frame 16\n\tRightLowerArm average position error 156.1 mm and
-      maximum position error 308.4 mm at time 0:16 (26.7%) Frame 16\n\tRightHand
-      average position error 156.0 mm and maximum position error 308.4 mm at time
+      maximum position error 308.5 mm at time 0:16 (26.7%) Frame 16\n\tRightHand
+      average position error 156.1 mm and maximum position error 308.4 mm at time
       0:16 (26.7%) Frame 16\n\tHead average position error 156.1 mm and maximum position
       error 308.4 mm at time 0:16 (26.7%) Frame 16\n\nRetargeting quality report
-      for clip 'Chito|Enter_Ket_Left':\n\tLeftLowerLeg average position error 12.0
-      mm and maximum position error 32.7 mm at time 1:17 (51.3%) Frame 41\n\tLeftFoot
-      average position error 8.8 mm and maximum position error 20.9 mm at time 1:17
+      for clip 'Chito|Enter_Ket_Left':\n\tLeftLowerLeg average position error 14.4
+      mm and maximum position error 31.9 mm at time 1:17 (51.3%) Frame 41\n\tLeftFoot
+      average position error 13.6 mm and maximum position error 22.2 mm at time 1:17
       (51.3%) Frame 41\n\tRightLowerLeg average position error 16.2 mm and maximum
       position error 33.1 mm at time 1:22 (57.5%) Frame 46\n\tRightFoot average position
       error 15.7 mm and maximum position error 25.6 mm at time 1:20 (55.0%) Frame
@@ -135,66 +135,66 @@ ModelImporter:
       5.5 mm at time 1:12 (45.0%) Frame 36\n\tRightLowerArm average position error
       0.6 mm and maximum position error 5.5 mm at time 0:10 (12.5%) Frame 10\n\nRetargeting
       quality report for clip 'Chito|Enter_Ket_Right':\n\tLeftLowerLeg average position
-      error 10.8 mm and maximum position error 29.6 mm at time 1:22 (57.5%) Frame
-      46\n\tLeftFoot average position error 9.6 mm and maximum position error 22.8
+      error 14.2 mm and maximum position error 31.2 mm at time 1:22 (57.5%) Frame
+      46\n\tLeftFoot average position error 13.9 mm and maximum position error 25.0
       mm at time 1: 6 (37.5%) Frame 30\n\tRightLowerLeg average position error 15.7
       mm and maximum position error 37.9 mm at time 1:17 (51.3%) Frame 41\n\tRightFoot
       average position error 14.9 mm and maximum position error 21.9 mm at time 1:18
-      (52.5%) Frame 42\n\tLeftUpperArm average position error 21.0 mm and maximum
-      position error 21.0 mm at time 3: 8 (100.0%) Frame 80\n\tLeftLowerArm average
+      (52.5%) Frame 42\n\tLeftUpperArm average position error 21.1 mm and maximum
+      position error 21.1 mm at time 3: 8 (100.0%) Frame 80\n\tLeftLowerArm average
       position error 21.3 mm and maximum position error 23.1 mm at time 0:18 (22.5%)
       Frame 18\n\tLeftHand average position error 21.0 mm and maximum position error
-      21.0 mm at time 3: 2 (92.5%) Frame 74\n\tRightUpperArm average position error
-      21.0 mm and maximum position error 21.0 mm at time 3: 8 (100.0%) Frame 80\n\tRightLowerArm
+      21.1 mm at time 3: 2 (92.5%) Frame 74\n\tRightUpperArm average position error
+      21.1 mm and maximum position error 21.1 mm at time 3: 8 (100.0%) Frame 80\n\tRightLowerArm
       average position error 21.8 mm and maximum position error 24.1 mm at time 1:
       8 (40.0%) Frame 32\n\tRightHand average position error 21.0 mm and maximum
-      position error 21.0 mm at time 0: 5 (6.3%) Frame 5\n\nRetargeting quality report
-      for clip 'Chito|Exit_Ket_Back':\n\tLeftLowerLeg average position error 158.5
-      mm and maximum position error 305.7 mm at time 1:20 (73.3%) Frame 44\n\tLeftFoot
-      average position error 159.0 mm and maximum position error 307.1 mm at time
+      position error 21.1 mm at time 0: 5 (6.3%) Frame 5\n\nRetargeting quality report
+      for clip 'Chito|Exit_Ket_Back':\n\tLeftLowerLeg average position error 158.4
+      mm and maximum position error 307.6 mm at time 1:20 (73.3%) Frame 44\n\tLeftFoot
+      average position error 159.9 mm and maximum position error 309.1 mm at time
       1:20 (73.3%) Frame 44\n\tRightLowerLeg average position error 170.7 mm and
-      maximum position error 311.0 mm at time 1:18 (70.0%) Frame 42\n\tRightFoot
+      maximum position error 311.1 mm at time 1:18 (70.0%) Frame 42\n\tRightFoot
       average position error 169.5 mm and maximum position error 312.0 mm at time
-      1:20 (73.3%) Frame 44\n\tLeftUpperArm average position error 162.1 mm and maximum
+      1:20 (73.3%) Frame 44\n\tLeftUpperArm average position error 162.2 mm and maximum
       position error 308.4 mm at time 1:20 (73.3%) Frame 44\n\tLeftLowerArm average
-      position error 163.7 mm and maximum position error 312.2 mm at time 1:20 (73.3%)
+      position error 163.7 mm and maximum position error 312.3 mm at time 1:20 (73.3%)
       Frame 44\n\tLeftHand average position error 162.1 mm and maximum position error
-      308.3 mm at time 1:20 (73.3%) Frame 44\n\tRightUpperArm average position error
-      162.1 mm and maximum position error 308.4 mm at time 1:20 (73.3%) Frame 44\n\tRightLowerArm
-      average position error 162.2 mm and maximum position error 308.4 mm at time
-      1:20 (73.3%) Frame 44\n\tRightHand average position error 162.1 mm and maximum
+      308.4 mm at time 1:20 (73.3%) Frame 44\n\tRightUpperArm average position error
+      162.2 mm and maximum position error 308.4 mm at time 1:20 (73.3%) Frame 44\n\tRightLowerArm
+      average position error 162.2 mm and maximum position error 308.5 mm at time
+      1:20 (73.3%) Frame 44\n\tRightHand average position error 162.2 mm and maximum
       position error 308.4 mm at time 1:20 (73.3%) Frame 44\n\tHead average position
-      error 162.1 mm and maximum position error 308.4 mm at time 1:20 (73.3%) Frame
+      error 162.2 mm and maximum position error 308.4 mm at time 1:20 (73.3%) Frame
       44\n\nRetargeting quality report for clip 'Chito|Exit_Ket_Left':\n\tLeftLowerLeg
-      average position error 12.0 mm and maximum position error 32.6 mm at time 1:15
-      (48.7%) Frame 39\n\tLeftFoot average position error 8.7 mm and maximum position
-      error 20.9 mm at time 1:15 (48.7%) Frame 39\n\tRightLowerLeg average position
+      average position error 14.3 mm and maximum position error 31.9 mm at time 1:15
+      (48.7%) Frame 39\n\tLeftFoot average position error 13.5 mm and maximum position
+      error 22.2 mm at time 1:15 (48.7%) Frame 39\n\tRightLowerLeg average position
       error 16.2 mm and maximum position error 33.6 mm at time 1:13 (46.3%) Frame
       37\n\tRightFoot average position error 15.7 mm and maximum position error 27.0
       mm at time 1:13 (46.3%) Frame 37\n\tLeftLowerArm average position error 2.0
       mm and maximum position error 5.5 mm at time 1:20 (55.0%) Frame 44\n\tRightLowerArm
       average position error 0.6 mm and maximum position error 5.5 mm at time 2:22
       (87.5%) Frame 70\n\nRetargeting quality report for clip 'Chito|Exit_Ket_Right':\n\tLeftLowerLeg
-      average position error 10.8 mm and maximum position error 29.7 mm at time 1:10
-      (42.5%) Frame 34\n\tLeftFoot average position error 9.6 mm and maximum position
-      error 22.9 mm at time 2: 2 (62.5%) Frame 50\n\tRightLowerLeg average position
+      average position error 14.2 mm and maximum position error 31.3 mm at time 1:10
+      (42.5%) Frame 34\n\tLeftFoot average position error 13.8 mm and maximum position
+      error 25.1 mm at time 2: 2 (62.5%) Frame 50\n\tRightLowerLeg average position
       error 15.7 mm and maximum position error 37.8 mm at time 1:15 (48.7%) Frame
       39\n\tRightFoot average position error 14.9 mm and maximum position error 21.9
-      mm at time 1:14 (47.5%) Frame 38\n\tLeftUpperArm average position error 21.0
-      mm and maximum position error 21.0 mm at time 1: 0 (30.0%) Frame 24\n\tLeftLowerArm
+      mm at time 1:14 (47.5%) Frame 38\n\tLeftUpperArm average position error 21.1
+      mm and maximum position error 21.1 mm at time 2:15 (78.8%) Frame 63\n\tLeftLowerArm
       average position error 21.3 mm and maximum position error 23.1 mm at time 2:14
       (77.5%) Frame 62\n\tLeftHand average position error 21.0 mm and maximum position
-      error 21.0 mm at time 0:15 (18.8%) Frame 15\n\tRightUpperArm average position
-      error 21.0 mm and maximum position error 21.0 mm at time 3: 5 (96.3%) Frame
-      77\n\tRightLowerArm average position error 21.8 mm and maximum position error
+      error 21.1 mm at time 0:10 (12.5%) Frame 10\n\tRightUpperArm average position
+      error 21.1 mm and maximum position error 21.1 mm at time 2:13 (76.3%) Frame
+      61\n\tRightLowerArm average position error 21.8 mm and maximum position error
       24.1 mm at time 2: 0 (60.0%) Frame 48\n\tRightHand average position error 21.0
-      mm and maximum position error 21.0 mm at time 3: 7 (98.8%) Frame 79\n\nRetargeting
+      mm and maximum position error 21.1 mm at time 3: 7 (98.8%) Frame 79\n\nRetargeting
       quality report for clip 'Chito|Idle':\n\tLeftLowerLeg average position error
-      45.1 mm and maximum position error 45.1 mm at time 0: 0 (0.0%) Frame 0\n\tLeftFoot
-      average position error 42.6 mm and maximum position error 42.6 mm at time 0:
+      40.9 mm and maximum position error 40.9 mm at time 0: 0 (0.0%) Frame 0\n\tLeftFoot
+      average position error 41.5 mm and maximum position error 41.5 mm at time 0:
       0 (0.0%) Frame 0\n\tRightLowerLeg average position error 43.3 mm and maximum
       position error 43.3 mm at time 0: 0 (0.0%) Frame 0\n\tRightFoot average position
-      error 42.2 mm and maximum position error 42.2 mm at time 0: 0 (0.0%) Frame
+      error 42.3 mm and maximum position error 42.3 mm at time 0: 0 (0.0%) Frame
       0\n\tLeftUpperArm average position error 14.7 mm and maximum position error
       14.7 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm average position error
       17.4 mm and maximum position error 17.4 mm at time 0: 0 (0.0%) Frame 0\n\tLeftHand
@@ -205,10 +205,10 @@ ModelImporter:
       Frame 0\n\tRightHand average position error 14.6 mm and maximum position error
       14.6 mm at time 0: 0 (0.0%) Frame 0\n\tHead average position error 6.4 mm and
       maximum position error 6.4 mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting quality
-      report for clip 'Chito|Idle.002':\n\tLeftLowerLeg average position error 16.9
-      mm and maximum position error 16.9 mm at time 1:23 (79.7%) Frame 47\n\tLeftFoot
-      average position error 10.4 mm and maximum position error 10.4 mm at time 0:
-      5 (8.5%) Frame 5\n\tRightLowerLeg average position error 12.6 mm and maximum
+      report for clip 'Chito|Idle.002':\n\tLeftLowerLeg average position error 9.6
+      mm and maximum position error 9.6 mm at time 1: 6 (50.8%) Frame 30\n\tLeftFoot
+      average position error 11.1 mm and maximum position error 11.1 mm at time 0:16
+      (27.1%) Frame 16\n\tRightLowerLeg average position error 12.6 mm and maximum
       position error 12.6 mm at time 1: 6 (50.8%) Frame 30\n\tRightFoot average position
       error 13.0 mm and maximum position error 13.0 mm at time 1: 6 (50.8%) Frame
       30\n\tLeftUpperArm average position error 15.1 mm and maximum position error
@@ -222,28 +222,28 @@ ModelImporter:
       32.0 mm at time 1: 3 (45.8%) Frame 27\n\tHead average position error 3.4 mm
       and maximum position error 6.4 mm at time 0:20 (33.9%) Frame 20\n\nRetargeting
       quality report for clip 'Chito|Idle_1':\n\tLeftLowerLeg average position error
-      16.9 mm and maximum position error 16.9 mm at time 2: 0 (80.0%) Frame 48\n\tLeftFoot
-      average position error 10.4 mm and maximum position error 10.4 mm at time 0:
-      3 (5.0%) Frame 3\n\tRightLowerLeg average position error 12.6 mm and maximum
+      9.6 mm and maximum position error 9.6 mm at time 0:23 (38.3%) Frame 23\n\tLeftFoot
+      average position error 11.1 mm and maximum position error 11.1 mm at time 0:14
+      (23.3%) Frame 14\n\tRightLowerLeg average position error 12.6 mm and maximum
       position error 12.6 mm at time 0:12 (20.0%) Frame 12\n\tRightFoot average position
       error 13.0 mm and maximum position error 13.0 mm at time 0: 4 (6.7%) Frame
       4\n\tLeftUpperArm average position error 14.7 mm and maximum position error
       29.6 mm at time 1: 4 (46.7%) Frame 28\n\tLeftLowerArm average position error
-      14.8 mm and maximum position error 29.6 mm at time 1: 4 (46.7%) Frame 28\n\tLeftHand
+      14.8 mm and maximum position error 29.7 mm at time 1: 4 (46.7%) Frame 28\n\tLeftHand
       average position error 14.7 mm and maximum position error 29.6 mm at time 1:
       4 (46.7%) Frame 28\n\tRightUpperArm average position error 14.7 mm and maximum
       position error 29.6 mm at time 1: 4 (46.7%) Frame 28\n\tRightLowerArm average
-      position error 14.8 mm and maximum position error 29.6 mm at time 1: 4 (46.7%)
+      position error 14.8 mm and maximum position error 29.7 mm at time 1: 4 (46.7%)
       Frame 28\n\tRightHand average position error 14.7 mm and maximum position error
       29.6 mm at time 1: 4 (46.7%) Frame 28\n\tHead average position error 4.0 mm
       and maximum position error 8.2 mm at time 1: 4 (46.7%) Frame 28\n\nRetargeting
       quality report for clip 'Chito|Idle_2':\n\tLeftLowerLeg average position error
-      16.9 mm and maximum position error 16.9 mm at time 2: 0 (80.0%) Frame 48\n\tLeftFoot
-      average position error 10.4 mm and maximum position error 10.4 mm at time 0:
-      3 (5.0%) Frame 3\n\tRightLowerLeg average position error 12.6 mm and maximum
-      position error 12.6 mm at time 2: 0 (80.0%) Frame 48\n\tRightFoot average position
-      error 13.0 mm and maximum position error 13.0 mm at time 2: 0 (80.0%) Frame
-      48\n\tLeftUpperArm average position error 14.7 mm and maximum position error
+      9.6 mm and maximum position error 9.6 mm at time 0:23 (38.3%) Frame 23\n\tLeftFoot
+      average position error 11.1 mm and maximum position error 11.1 mm at time 0:14
+      (23.3%) Frame 14\n\tRightLowerLeg average position error 12.6 mm and maximum
+      position error 12.6 mm at time 0: 4 (6.7%) Frame 4\n\tRightFoot average position
+      error 13.0 mm and maximum position error 13.0 mm at time 0: 4 (6.7%) Frame
+      4\n\tLeftUpperArm average position error 14.7 mm and maximum position error
       29.6 mm at time 1: 4 (46.7%) Frame 28\n\tLeftLowerArm average position error
       17.1 mm and maximum position error 30.7 mm at time 1: 4 (46.7%) Frame 28\n\tLeftHand
       average position error 14.6 mm and maximum position error 29.5 mm at time 1:
@@ -254,8 +254,8 @@ ModelImporter:
       29.5 mm at time 1: 4 (46.7%) Frame 28\n\tHead average position error 4.0 mm
       and maximum position error 8.2 mm at time 1: 4 (46.7%) Frame 28\n\nRetargeting
       quality report for clip 'Chito|Idle_3':\n\tLeftLowerLeg average position error
-      16.9 mm and maximum position error 16.9 mm at time 0:12 (20.0%) Frame 12\n\tLeftFoot
-      average position error 10.4 mm and maximum position error 10.4 mm at time 0:12
+      9.6 mm and maximum position error 9.6 mm at time 0:12 (20.0%) Frame 12\n\tLeftFoot
+      average position error 11.1 mm and maximum position error 11.1 mm at time 0:12
       (20.0%) Frame 12\n\tRightLowerLeg average position error 12.6 mm and maximum
       position error 12.6 mm at time 0:12 (20.0%) Frame 12\n\tRightFoot average position
       error 13.0 mm and maximum position error 13.0 mm at time 0:12 (20.0%) Frame
@@ -270,27 +270,27 @@ ModelImporter:
       29.6 mm at time 1: 4 (46.7%) Frame 28\n\tHead average position error 4.0 mm
       and maximum position error 8.2 mm at time 1: 4 (46.7%) Frame 28\n\nRetargeting
       quality report for clip 'Chito|Idle_3.001':\n\tLeftLowerLeg average position
-      error 16.9 mm and maximum position error 16.9 mm at time 2:10 (96.7%) Frame
-      58\n\tLeftFoot average position error 10.4 mm and maximum position error 10.4
-      mm at time 0: 2 (3.3%) Frame 2\n\tRightLowerLeg average position error 12.6
-      mm and maximum position error 12.6 mm at time 2: 0 (80.0%) Frame 48\n\tRightFoot
-      average position error 13.0 mm and maximum position error 13.0 mm at time 1:
-      7 (51.7%) Frame 31\n\tLeftUpperArm average position error 14.7 mm and maximum
-      position error 29.6 mm at time 1: 4 (46.7%) Frame 28\n\tLeftLowerArm average
+      error 9.6 mm and maximum position error 9.6 mm at time 0:23 (38.3%) Frame 23\n\tLeftFoot
+      average position error 11.1 mm and maximum position error 11.1 mm at time 1:13
+      (61.7%) Frame 37\n\tRightLowerLeg average position error 12.6 mm and maximum
+      position error 12.6 mm at time 0:12 (20.0%) Frame 12\n\tRightFoot average position
+      error 13.0 mm and maximum position error 13.0 mm at time 0: 4 (6.7%) Frame
+      4\n\tLeftUpperArm average position error 14.7 mm and maximum position error
+      29.6 mm at time 1: 4 (46.7%) Frame 28\n\tLeftLowerArm average position error
+      17.1 mm and maximum position error 30.7 mm at time 1: 4 (46.7%) Frame 28\n\tLeftHand
+      average position error 14.6 mm and maximum position error 29.5 mm at time 1:
+      4 (46.7%) Frame 28\n\tRightUpperArm average position error 14.7 mm and maximum
+      position error 29.6 mm at time 1: 4 (46.7%) Frame 28\n\tRightLowerArm average
       position error 17.1 mm and maximum position error 30.7 mm at time 1: 4 (46.7%)
-      Frame 28\n\tLeftHand average position error 14.6 mm and maximum position error
-      29.5 mm at time 1: 4 (46.7%) Frame 28\n\tRightUpperArm average position error
-      14.7 mm and maximum position error 29.6 mm at time 1: 4 (46.7%) Frame 28\n\tRightLowerArm
-      average position error 17.1 mm and maximum position error 30.7 mm at time 1:
-      4 (46.7%) Frame 28\n\tRightHand average position error 14.6 mm and maximum
-      position error 29.5 mm at time 1: 4 (46.7%) Frame 28\n\tHead average position
-      error 4.0 mm and maximum position error 8.2 mm at time 1: 4 (46.7%) Frame 28\n\nRetargeting
+      Frame 28\n\tRightHand average position error 14.6 mm and maximum position error
+      29.5 mm at time 1: 4 (46.7%) Frame 28\n\tHead average position error 4.0 mm
+      and maximum position error 8.2 mm at time 1: 4 (46.7%) Frame 28\n\nRetargeting
       quality report for clip 'Chito|Ket_Left':\n\tLeftLowerLeg average position
-      error 45.1 mm and maximum position error 45.1 mm at time 0: 0 (0.0%) Frame
-      0\n\tLeftFoot average position error 42.6 mm and maximum position error 42.6
+      error 40.9 mm and maximum position error 40.9 mm at time 0: 0 (0.0%) Frame
+      0\n\tLeftFoot average position error 41.5 mm and maximum position error 41.5
       mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position error 43.3
       mm and maximum position error 43.3 mm at time 0: 0 (0.0%) Frame 0\n\tRightFoot
-      average position error 42.2 mm and maximum position error 42.2 mm at time 0:
+      average position error 42.3 mm and maximum position error 42.3 mm at time 0:
       0 (0.0%) Frame 0\n\tLeftUpperArm average position error 14.7 mm and maximum
       position error 14.7 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm average
       position error 17.4 mm and maximum position error 17.4 mm at time 0: 0 (0.0%)
@@ -302,11 +302,11 @@ ModelImporter:
       error 14.6 mm at time 0: 0 (0.0%) Frame 0\n\tHead average position error 6.4
       mm and maximum position error 6.4 mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting
       quality report for clip 'Chito|Ket_Left_Hard':\n\tLeftLowerLeg average position
-      error 45.1 mm and maximum position error 45.1 mm at time 0: 0 (0.0%) Frame
-      0\n\tLeftFoot average position error 42.6 mm and maximum position error 42.6
+      error 40.9 mm and maximum position error 40.9 mm at time 0: 0 (0.0%) Frame
+      0\n\tLeftFoot average position error 41.5 mm and maximum position error 41.5
       mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position error 43.3
       mm and maximum position error 43.3 mm at time 0: 0 (0.0%) Frame 0\n\tRightFoot
-      average position error 42.2 mm and maximum position error 42.2 mm at time 0:
+      average position error 42.3 mm and maximum position error 42.3 mm at time 0:
       0 (0.0%) Frame 0\n\tLeftUpperArm average position error 14.7 mm and maximum
       position error 14.7 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm average
       position error 17.4 mm and maximum position error 17.4 mm at time 0: 0 (0.0%)
@@ -318,11 +318,11 @@ ModelImporter:
       error 14.6 mm at time 0: 0 (0.0%) Frame 0\n\tHead average position error 6.4
       mm and maximum position error 6.4 mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting
       quality report for clip 'Chito|Ket_Right':\n\tLeftLowerLeg average position
-      error 45.1 mm and maximum position error 45.1 mm at time 0: 0 (0.0%) Frame
-      0\n\tLeftFoot average position error 42.6 mm and maximum position error 42.6
+      error 40.9 mm and maximum position error 40.9 mm at time 0: 0 (0.0%) Frame
+      0\n\tLeftFoot average position error 41.5 mm and maximum position error 41.5
       mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position error 43.3
       mm and maximum position error 43.3 mm at time 0: 0 (0.0%) Frame 0\n\tRightFoot
-      average position error 42.2 mm and maximum position error 42.2 mm at time 0:
+      average position error 42.3 mm and maximum position error 42.3 mm at time 0:
       0 (0.0%) Frame 0\n\tLeftUpperArm average position error 14.7 mm and maximum
       position error 14.7 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm average
       position error 17.4 mm and maximum position error 17.4 mm at time 0: 0 (0.0%)
@@ -334,11 +334,11 @@ ModelImporter:
       error 14.6 mm at time 0: 0 (0.0%) Frame 0\n\tHead average position error 6.4
       mm and maximum position error 6.4 mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting
       quality report for clip 'Chito|Ket_Right_Hard':\n\tLeftLowerLeg average position
-      error 45.1 mm and maximum position error 45.1 mm at time 0: 0 (0.0%) Frame
-      0\n\tLeftFoot average position error 42.6 mm and maximum position error 42.6
+      error 40.9 mm and maximum position error 40.9 mm at time 0: 0 (0.0%) Frame
+      0\n\tLeftFoot average position error 41.5 mm and maximum position error 41.5
       mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position error 43.3
       mm and maximum position error 43.3 mm at time 0: 0 (0.0%) Frame 0\n\tRightFoot
-      average position error 42.2 mm and maximum position error 42.2 mm at time 0:
+      average position error 42.3 mm and maximum position error 42.3 mm at time 0:
       0 (0.0%) Frame 0\n\tLeftUpperArm average position error 14.7 mm and maximum
       position error 14.7 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm average
       position error 17.4 mm and maximum position error 17.4 mm at time 0: 0 (0.0%)
@@ -350,11 +350,11 @@ ModelImporter:
       error 14.6 mm at time 0: 0 (0.0%) Frame 0\n\tHead average position error 6.4
       mm and maximum position error 6.4 mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting
       quality report for clip 'Chito|Ket_Straight':\n\tLeftLowerLeg average position
-      error 45.1 mm and maximum position error 45.1 mm at time 0: 0 (0.0%) Frame
-      0\n\tLeftFoot average position error 42.6 mm and maximum position error 42.6
+      error 40.9 mm and maximum position error 40.9 mm at time 0: 0 (0.0%) Frame
+      0\n\tLeftFoot average position error 41.5 mm and maximum position error 41.5
       mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position error 43.3
       mm and maximum position error 43.3 mm at time 0: 0 (0.0%) Frame 0\n\tRightFoot
-      average position error 42.2 mm and maximum position error 42.2 mm at time 0:
+      average position error 42.3 mm and maximum position error 42.3 mm at time 0:
       0 (0.0%) Frame 0\n\tLeftUpperArm average position error 14.7 mm and maximum
       position error 14.7 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm average
       position error 17.4 mm and maximum position error 17.4 mm at time 0: 0 (0.0%)
@@ -366,11 +366,11 @@ ModelImporter:
       error 14.6 mm at time 0: 0 (0.0%) Frame 0\n\tHead average position error 6.4
       mm and maximum position error 6.4 mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting
       quality report for clip 'Chito|PoseLib.001':\n\tLeftLowerLeg average position
-      error 45.1 mm and maximum position error 45.1 mm at time 0: 0 (0.0%) Frame
-      0\n\tLeftFoot average position error 42.6 mm and maximum position error 42.6
+      error 40.9 mm and maximum position error 40.9 mm at time 0: 0 (0.0%) Frame
+      0\n\tLeftFoot average position error 41.5 mm and maximum position error 41.5
       mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position error 43.3
       mm and maximum position error 43.3 mm at time 0: 0 (0.0%) Frame 0\n\tRightFoot
-      average position error 42.2 mm and maximum position error 42.2 mm at time 0:
+      average position error 42.3 mm and maximum position error 42.3 mm at time 0:
       0 (0.0%) Frame 0\n\tLeftUpperArm average position error 14.7 mm and maximum
       position error 14.7 mm at time 0: 0 (0.0%) Frame 0\n\tLeftLowerArm average
       position error 17.4 mm and maximum position error 17.4 mm at time 0: 0 (0.0%)
@@ -382,18 +382,18 @@ ModelImporter:
       error 14.6 mm at time 0: 0 (0.0%) Frame 0\n\tHead average position error 6.4
       mm and maximum position error 6.4 mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting
       quality report for clip 'Chito|Rotate_Right':\n\tLeftLowerLeg average position
-      error 7.6 mm and maximum position error 13.4 mm at time 0: 5 (20.0%) Frame
-      5\n\tLeftFoot average position error 3.7 mm and maximum position error 6.1
-      mm at time 0: 4 (16.0%) Frame 4\n\tRightLowerLeg average position error 12.9
+      error 6.3 mm and maximum position error 10.4 mm at time 0:19 (76.0%) Frame
+      19\n\tLeftFoot average position error 10.1 mm and maximum position error 10.5
+      mm at time 0:17 (68.0%) Frame 17\n\tRightLowerLeg average position error 12.9
       mm and maximum position error 13.2 mm at time 0: 4 (16.0%) Frame 4\n\tRightFoot
       average position error 13.0 mm and maximum position error 13.0 mm at time 0:14
       (56.0%) Frame 14\n\tLeftLowerArm average position error 5.5 mm and maximum
       position error 5.5 mm at time 0: 7 (28.0%) Frame 7\n\tRightLowerArm average
       position error 5.5 mm and maximum position error 5.5 mm at time 1: 0 (96.0%)
       Frame 24\n\nRetargeting quality report for clip 'Chito|Run':\n\tLeftLowerLeg
-      average position error 44.7 mm and maximum position error 47.4 mm at time 0:10
-      (50.0%) Frame 10\n\tLeftFoot average position error 43.5 mm and maximum position
-      error 45.3 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position
+      average position error 41.9 mm and maximum position error 43.4 mm at time 0:10
+      (50.0%) Frame 10\n\tLeftFoot average position error 41.6 mm and maximum position
+      error 42.3 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerLeg average position
       error 42.3 mm and maximum position error 43.5 mm at time 0: 0 (0.0%) Frame
       0\n\tRightFoot average position error 42.2 mm and maximum position error 42.3
       mm at time 0: 7 (35.0%) Frame 7\n\tLeftUpperArm average position error 27.3
@@ -407,25 +407,25 @@ ModelImporter:
       mm and maximum position error 32.6 mm at time 0: 4 (20.0%) Frame 4\n\tHead
       average position error 6.4 mm and maximum position error 11.9 mm at time 0:
       4 (20.0%) Frame 4\n\nRetargeting quality report for clip 'Chito|Sit_Ket_1':\n\tLeftLowerLeg
-      average position error 17.4 mm and maximum position error 17.4 mm at time 2:
-      2 (62.5%) Frame 50\n\tLeftFoot average position error 8.5 mm and maximum position
-      error 8.5 mm at time 1: 3 (33.8%) Frame 27\n\tRightLowerLeg average position
-      error 17.1 mm and maximum position error 17.1 mm at time 2:22 (87.5%) Frame
-      70\n\tRightFoot average position error 13.6 mm and maximum position error 13.6
-      mm at time 0: 6 (7.5%) Frame 6\n\tLeftUpperArm average position error 21.0
-      mm and maximum position error 21.0 mm at time 2: 2 (62.5%) Frame 50\n\tLeftLowerArm
+      average position error 16.3 mm and maximum position error 16.3 mm at time 0:10
+      (12.5%) Frame 10\n\tLeftFoot average position error 12.5 mm and maximum position
+      error 12.5 mm at time 1:11 (43.8%) Frame 35\n\tRightLowerLeg average position
+      error 17.1 mm and maximum position error 17.1 mm at time 1:21 (56.2%) Frame
+      45\n\tRightFoot average position error 13.6 mm and maximum position error 13.6
+      mm at time 0: 6 (7.5%) Frame 6\n\tLeftUpperArm average position error 21.1
+      mm and maximum position error 21.1 mm at time 0:10 (12.5%) Frame 10\n\tLeftLowerArm
       average position error 22.9 mm and maximum position error 24.0 mm at time 2:20
       (85.0%) Frame 68\n\tLeftHand average position error 21.0 mm and maximum position
-      error 21.0 mm at time 0:23 (28.8%) Frame 23\n\tRightUpperArm average position
-      error 21.0 mm and maximum position error 21.0 mm at time 2: 2 (62.5%) Frame
-      50\n\tRightLowerArm average position error 21.1 mm and maximum position error
-      21.1 mm at time 1: 8 (40.0%) Frame 32\n\tRightHand average position error 21.0
-      mm and maximum position error 21.0 mm at time 2: 9 (71.3%) Frame 57\n\nRetargeting
+      error 21.0 mm at time 2: 9 (71.3%) Frame 57\n\tRightUpperArm average position
+      error 21.1 mm and maximum position error 21.1 mm at time 0:16 (20.0%) Frame
+      16\n\tRightLowerArm average position error 21.1 mm and maximum position error
+      21.1 mm at time 3: 0 (90.0%) Frame 72\n\tRightHand average position error 21.1
+      mm and maximum position error 21.1 mm at time 2: 9 (71.3%) Frame 57\n\nRetargeting
       quality report for clip 'Chito|Sit_Ket_2':\n\tLeftLowerLeg average position
-      error 21.0 mm and maximum position error 21.0 mm at time 0:23 (38.3%) Frame
-      23\n\tLeftFoot average position error 10.7 mm and maximum position error 10.7
-      mm at time 0: 2 (3.3%) Frame 2\n\tRightLowerLeg average position error 17.1
-      mm and maximum position error 17.1 mm at time 0: 1 (1.7%) Frame 1\n\tRightFoot
+      error 17.7 mm and maximum position error 17.7 mm at time 1:20 (73.3%) Frame
+      44\n\tLeftFoot average position error 13.1 mm and maximum position error 13.1
+      mm at time 0:10 (16.7%) Frame 10\n\tRightLowerLeg average position error 17.1
+      mm and maximum position error 17.1 mm at time 0:23 (38.3%) Frame 23\n\tRightFoot
       average position error 13.6 mm and maximum position error 13.6 mm at time 0:10
       (16.7%) Frame 10\n\tLeftUpperArm average position error 9.3 mm and maximum
       position error 18.7 mm at time 1: 4 (46.7%) Frame 28\n\tLeftLowerArm average
@@ -436,25 +436,25 @@ ModelImporter:
       average position error 9.3 mm and maximum position error 18.7 mm at time 1:
       4 (46.7%) Frame 28\n\tRightHand average position error 9.3 mm and maximum position
       error 18.7 mm at time 1: 4 (46.7%) Frame 28\n\nRetargeting quality report for
-      clip 'Chito|Walk':\n\tLeftLowerLeg average position error 44.8 mm and maximum
-      position error 47.3 mm at time 0:16 (53.3%) Frame 16\n\tLeftFoot average position
-      error 42.9 mm and maximum position error 44.6 mm at time 0:16 (53.3%) Frame
+      clip 'Chito|Walk':\n\tLeftLowerLeg average position error 41.6 mm and maximum
+      position error 43.2 mm at time 0:15 (50.0%) Frame 15\n\tLeftFoot average position
+      error 41.4 mm and maximum position error 41.9 mm at time 0:16 (53.3%) Frame
       16\n\tRightLowerLeg average position error 42.0 mm and maximum position error
       43.3 mm at time 0: 0 (0.0%) Frame 0\n\tRightFoot average position error 42.2
       mm and maximum position error 42.3 mm at time 0:16 (53.3%) Frame 16\n\tLeftUpperArm
-      average position error 8.2 mm and maximum position error 14.7 mm at time 0:
-      0 (0.0%) Frame 0\n\tLeftLowerArm average position error 8.6 mm and maximum
+      average position error 8.2 mm and maximum position error 14.7 mm at time 0:15
+      (50.0%) Frame 15\n\tLeftLowerArm average position error 8.6 mm and maximum
       position error 17.4 mm at time 0: 0 (0.0%) Frame 0\n\tLeftHand average position
       error 8.1 mm and maximum position error 14.6 mm at time 0: 0 (0.0%) Frame 0\n\tRightUpperArm
-      average position error 8.2 mm and maximum position error 14.7 mm at time 0:
-      0 (0.0%) Frame 0\n\tRightLowerArm average position error 8.6 mm and maximum
+      average position error 8.2 mm and maximum position error 14.7 mm at time 0:15
+      (50.0%) Frame 15\n\tRightLowerArm average position error 8.6 mm and maximum
       position error 17.1 mm at time 0:15 (50.0%) Frame 15\n\tRightHand average position
       error 8.1 mm and maximum position error 14.6 mm at time 0:15 (50.0%) Frame
       15\n\tHead average position error 13.0 mm and maximum position error 20.0 mm
       at time 0: 8 (26.7%) Frame 8\n\nRetargeting quality report for clip 'Chito|Walk2':\n\tLeftLowerLeg
-      average position error 44.8 mm and maximum position error 47.3 mm at time 0:16
-      (53.3%) Frame 16\n\tLeftFoot average position error 42.9 mm and maximum position
-      error 44.6 mm at time 0:16 (53.3%) Frame 16\n\tRightLowerLeg average position
+      average position error 41.6 mm and maximum position error 43.2 mm at time 0:15
+      (50.0%) Frame 15\n\tLeftFoot average position error 41.4 mm and maximum position
+      error 41.9 mm at time 0:16 (53.3%) Frame 16\n\tRightLowerLeg average position
       error 42.0 mm and maximum position error 43.3 mm at time 0: 0 (0.0%) Frame
       0\n\tRightFoot average position error 42.2 mm and maximum position error 42.3
       mm at time 0:18 (60.0%) Frame 18\n\tLeftUpperArm average position error 8.2
@@ -468,24 +468,24 @@ ModelImporter:
       error 14.6 mm at time 0:15 (50.0%) Frame 15\n\tHead average position error
       13.0 mm and maximum position error 20.0 mm at time 0:23 (76.7%) Frame 23\n\nRetargeting
       quality report for clip 'Chito|Walk_1':\n\tLeftLowerLeg average position error
-      13.4 mm and maximum position error 17.4 mm at time 0:22 (73.3%) Frame 22\n\tLeftFoot
-      average position error 8.5 mm and maximum position error 10.7 mm at time 0:22
-      (73.3%) Frame 22\n\tRightLowerLeg average position error 10.4 mm and maximum
+      10.1 mm and maximum position error 10.7 mm at time 0: 7 (23.3%) Frame 7\n\tLeftFoot
+      average position error 11.0 mm and maximum position error 11.4 mm at time 0:14
+      (46.7%) Frame 14\n\tRightLowerLeg average position error 10.4 mm and maximum
       position error 13.4 mm at time 0:22 (73.3%) Frame 22\n\tRightFoot average position
       error 13.0 mm and maximum position error 13.2 mm at time 0:15 (50.0%) Frame
       15\n\tLeftUpperArm average position error 30.9 mm and maximum position error
-      44.7 mm at time 0:22 (73.3%) Frame 22\n\tLeftLowerArm average position error
+      44.8 mm at time 0:22 (73.3%) Frame 22\n\tLeftLowerArm average position error
       31.6 mm and maximum position error 44.8 mm at time 0:22 (73.3%) Frame 22\n\tLeftHand
-      average position error 30.9 mm and maximum position error 44.7 mm at time 0:22
+      average position error 30.9 mm and maximum position error 44.8 mm at time 0:22
       (73.3%) Frame 22\n\tRightUpperArm average position error 30.9 mm and maximum
-      position error 44.7 mm at time 0:22 (73.3%) Frame 22\n\tRightLowerArm average
+      position error 44.8 mm at time 0:22 (73.3%) Frame 22\n\tRightLowerArm average
       position error 31.6 mm and maximum position error 44.8 mm at time 0:22 (73.3%)
       Frame 22\n\tRightHand average position error 30.9 mm and maximum position error
       44.7 mm at time 0:22 (73.3%) Frame 22\n\tHead average position error 10.0 mm
-      and maximum position error 23.9 mm at time 0:22 (73.3%) Frame 22\n\nRetargeting
+      and maximum position error 24.0 mm at time 0:22 (73.3%) Frame 22\n\nRetargeting
       quality report for clip 'Chito|Null':\n\tLeftLowerLeg average position error
-      3.6 mm and maximum position error 3.6 mm at time 0: 0 (0.0%) Frame 0\n\tLeftFoot
-      average position error 4.0 mm and maximum position error 4.0 mm at time 0:
+      9.8 mm and maximum position error 9.8 mm at time 0: 0 (0.0%) Frame 0\n\tLeftFoot
+      average position error 10.1 mm and maximum position error 10.1 mm at time 0:
       0 (0.0%) Frame 0\n\tRightLowerLeg average position error 12.7 mm and maximum
       position error 12.7 mm at time 0: 0 (0.0%) Frame 0\n\tRightFoot average position
       error 13.0 mm and maximum position error 13.0 mm at time 0: 0 (0.0%) Frame
@@ -493,21 +493,21 @@ ModelImporter:
       5.5 mm at time 0: 0 (0.0%) Frame 0\n\tRightLowerArm average position error
       5.5 mm and maximum position error 5.5 mm at time 0: 0 (0.0%) Frame 0\n\nRetargeting
       quality report for clip 'Chito|Walk_2':\n\tLeftLowerLeg average position error
-      13.4 mm and maximum position error 17.4 mm at time 0:22 (73.3%) Frame 22\n\tLeftFoot
-      average position error 8.5 mm and maximum position error 10.7 mm at time 0:22
-      (73.3%) Frame 22\n\tRightLowerLeg average position error 10.4 mm and maximum
+      10.1 mm and maximum position error 10.7 mm at time 0: 7 (23.3%) Frame 7\n\tLeftFoot
+      average position error 11.0 mm and maximum position error 11.4 mm at time 0:14
+      (46.7%) Frame 14\n\tRightLowerLeg average position error 10.4 mm and maximum
       position error 13.4 mm at time 0:22 (73.3%) Frame 22\n\tRightFoot average position
       error 13.0 mm and maximum position error 13.2 mm at time 0:15 (50.0%) Frame
       15\n\tLeftUpperArm average position error 33.0 mm and maximum position error
-      44.7 mm at time 0:22 (73.3%) Frame 22\n\tLeftLowerArm average position error
+      44.8 mm at time 0:22 (73.3%) Frame 22\n\tLeftLowerArm average position error
       35.3 mm and maximum position error 46.8 mm at time 0: 7 (23.3%) Frame 7\n\tLeftHand
       average position error 32.9 mm and maximum position error 44.6 mm at time 0:22
       (73.3%) Frame 22\n\tRightUpperArm average position error 33.0 mm and maximum
-      position error 44.7 mm at time 0: 7 (23.3%) Frame 7\n\tRightLowerArm average
+      position error 44.8 mm at time 0: 7 (23.3%) Frame 7\n\tRightLowerArm average
       position error 35.3 mm and maximum position error 46.8 mm at time 0:22 (73.3%)
       Frame 22\n\tRightHand average position error 32.9 mm and maximum position error
       44.6 mm at time 0: 7 (23.3%) Frame 7\n\tHead average position error 12.1 mm
-      and maximum position error 23.9 mm at time 0:22 (73.3%) Frame 22\n"
+      and maximum position error 24.0 mm at time 0:22 (73.3%) Frame 22\n"
     animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
     importConstraints: 0
@@ -1494,127 +1494,7 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human:
-    - boneName: Root
-      humanName: Hips
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Thigh.L
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: -60, y: -60, z: -90}
-        max: {x: 60, y: 60, z: 50}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 1
-    - boneName: Thigh.R
-      humanName: RightUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Shin.L
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: -90, y: 0, z: -80}
-        max: {x: 90, y: 0, z: 80}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 1
-    - boneName: Shin.R
-      humanName: RightLowerLeg
-      limit:
-        min: {x: -90, y: 0, z: -80}
-        max: {x: 90, y: 0, z: 80}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 1
-    - boneName: Foot.L
-      humanName: LeftFoot
-      limit:
-        min: {x: 0, y: -30, z: -50}
-        max: {x: 0, y: 30, z: 50}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 1
-    - boneName: Foot.R
-      humanName: RightFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Torso
-      humanName: Spine
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Head
-      humanName: Head
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Shoulder.L
-      humanName: LeftUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Shoulder.R
-      humanName: RightUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Forearm.L
-      humanName: LeftLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Forearm.R
-      humanName: RightLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Hand.L
-      humanName: LeftHand
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Hand.R
-      humanName: RightHand
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
+    human: []
     skeleton:
     - name: Chito(Clone)
       parentName: 
@@ -1785,7 +1665,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 3
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1

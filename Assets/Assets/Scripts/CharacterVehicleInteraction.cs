@@ -7,32 +7,42 @@ public class CharacterVehicleInteraction : MonoBehaviour
 {
     [SerializeField]
     private PlayerMovement playerMovementScript;
-    private InputActions actions;
+   
     [SerializeField]
     private Animator vehicleAnim;
     [SerializeField]
     private Animator playerAnim;
-    private CharacterController controller;
+    public CharacterController controller;
     [SerializeField]
     private NavMeshAgent agent;
     [SerializeField]
     private Transform child;
     [SerializeField]
     private Transform vehicleSeat;
-    private Transform vehicleBackSeat;
     private bool enterable;
-    private bool entered;
-    private bool exit;
     private float steer;
     [SerializeField]
     private float rotationSpeed = 100.0f;
-    private float elapsed = 0f;
+    public float elapsed = 0f;
 
-    private bool preOrient;
+    public bool preOrientEnter = false;
+    public bool preOrientExit = false;
     private Quaternion rotationDir;
     private float maxSpeed = 4.0f;
-    private bool followPosition;
-    private bool followRotation;
+    public bool constraint;
+
+    [SerializeField]
+    private Transform vehicleRightExit;
+
+    [SerializeField]
+    private Transform vehicleLeftExit;
+    public bool exitRight;
+    public bool exitLeft;
+    [SerializeField]
+    private float exitDuration = 0.25f;
+    [SerializeField]
+    private float enterDuration = 1.0f;
+
 
     void Start()
     {
@@ -49,20 +59,64 @@ public class CharacterVehicleInteraction : MonoBehaviour
         {
             CharacterMovementAnimation.Movement(playerAnim, agent.velocity, maxSpeed);
         }
-        if (followPosition)
+        if (constraint)
         {
             transform.position = vehicleSeat.position;
-        }
-        if (followRotation)
-        {
             transform.rotation = vehicleSeat.rotation;
+
         }
 
-        if (playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Back"))
+        if (preOrientEnter)
+        {
+            if (transform.position != vehicleSeat.position)
+            {
+                elapsed += Time.deltaTime;
+                transform.position = Vector3.Lerp(transform.position, vehicleSeat.position, elapsed / enterDuration);
+                transform.rotation = vehicleSeat.rotation;
+            }
+            else
+            {
+                preOrientEnter = false;
+                elapsed = 0f;
+            }
+
+        }
+        if (preOrientExit)
         {
 
+            if (transform.position != vehicleRightExit.position && exitRight)
+            {
+                elapsed += Time.deltaTime;
+                transform.position = Vector3.Lerp(vehicleSeat.position, vehicleRightExit.position, elapsed / exitDuration);
+            }
+            else
+            {
+                StartCoroutine(Wait(exitDuration));
+            }
+
+            if (transform.position != vehicleLeftExit.position && exitLeft)
+            {
+                elapsed += Time.deltaTime;
+                transform.position = Vector3.Lerp(vehicleSeat.position, vehicleLeftExit.position, elapsed / exitDuration);
+            }
+            else
+            {
+                StartCoroutine(Wait(exitDuration));
+            }
         }
 
+    }
+
+    IEnumerator Wait(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        Physics.IgnoreLayerCollision(6, 7, false);
+        playerMovementScript.enabled = true;
+        controller.enabled = true;
+        preOrientExit = false;
+        exitLeft = false;
+        exitRight = false;
+        elapsed = 0f;
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -80,7 +134,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             controller.enabled = false;
             //enable navmesh agent 
             agent.enabled = true;
-            preOrient = false;
+            preOrientEnter = false;
         }
         enterable = false;
     }
@@ -97,13 +151,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
         }
     }
 
-    public void ExitVehicle()
-    {
-        Physics.IgnoreLayerCollision(6, 7, false);
-        playerMovementScript.enabled = true;
-        controller.enabled = true;
-        preOrient = false;
-    }
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -111,8 +159,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-
-        if (other.gameObject.CompareTag("Ket") && !preOrient && !enterable)
+        if (other.gameObject.CompareTag("Ket") && !preOrientEnter && !enterable)
         {
             //orient position to enter ket
             if (agent.isActiveAndEnabled)
@@ -121,60 +168,34 @@ public class CharacterVehicleInteraction : MonoBehaviour
                 if (transform.position == agent.destination)
                 {
                     //orient rotation to enter ket
-                    rotationDir = other.gameObject.transform.rotation * Quaternion.Euler(0, 90, 0);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
-                    child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
-                    if (other.gameObject.name == "Right" && transform.rotation == rotationDir && child.rotation == rotationDir)
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, other.gameObject.transform.rotation, rotationSpeed * Time.deltaTime);
+                    child.rotation = Quaternion.RotateTowards(child.rotation, other.gameObject.transform.rotation, rotationSpeed * Time.deltaTime);
+                    if (transform.rotation == other.gameObject.transform.rotation && child.rotation == other.gameObject.transform.rotation)
                     {
+                        if (other.gameObject.name == "Right")
+                        {
+                            playerAnim.SetBool("ket right", true);
+                        }
+                        if (other.gameObject.name == "Left")
+                        {
+                            playerAnim.SetBool("ket left", true);
+                        }
+                        if (other.gameObject.name == "Back")
+                        {
+
+                        }
                         agent.enabled = false;
-                        playerAnim.SetTrigger("ket enter");
-                        playerAnim.SetBool("ket right", true);
-                        preOrient = true;
+                        preOrientEnter = true;
                     }
                 }
             }
-
-            if (other.gameObject.name == "Left")
-            {
-
-            }
-            if (other.gameObject.name == "Back")
-            {
-
-            }
         }
+
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit()
     {
         enterable = false;
-    }
-
-    //animation events
-    public void EnableVehicle()
-    {
-        playerMovementScript.actions.Vehicle.Enable();
-    }
-    public void DisableVehicle()
-    {
-        playerMovementScript.actions.Vehicle.Disable();
-
-    }
-    public void SetFollowPositionTrue()
-    {
-        followPosition = true;
-    }
-    public void SetFollowPositionFalse()
-    {
-        followPosition = false;
-    }
-    public void SetFollowRotationTrue()
-    {
-        followRotation = true;
-    }
-    public void SetFollowRotationFalse()
-    {
-        followRotation = false;
     }
 
 }

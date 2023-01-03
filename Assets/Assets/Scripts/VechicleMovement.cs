@@ -28,7 +28,7 @@ public class VechicleMovement : MonoBehaviour
     void Update()
     {
         //get input
-        movement = playerMovementScript.actions.Vehicle.Drive.ReadValue<Vector3>();
+        movement = playerMovementScript.actions.Vehicle.Drive.ReadValue<Vector2>();
 
         //set movement aniamtion
         MovementAnim();

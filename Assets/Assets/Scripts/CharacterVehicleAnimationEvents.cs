@@ -19,13 +19,12 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     public void DisableVehicle()
     {
         playerMovementScript.actions.Vehicle.Disable();
-
     }
 
     public void ExitVehicle()
     {
         characterVehicleInteractionScript.preOrientExit = true;
-
+        
     }
     public void SetConstraintTrue()
     {
@@ -44,4 +43,5 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     {
         characterVehicleInteractionScript.exitLeft = true;
     }
+
 }

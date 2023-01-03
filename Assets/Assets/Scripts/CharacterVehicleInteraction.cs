@@ -7,7 +7,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
 {
     [SerializeField]
     private PlayerMovement playerMovementScript;
-   
+
     [SerializeField]
     private Animator vehicleAnim;
     [SerializeField]
@@ -21,6 +21,10 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private Transform vehicleSeat;
     private bool enterable;
     private float steer;
+    private float steerSmooth = 0f;
+    [SerializeField]
+    private float smoothInputSpeed = 0.2f;
+    private float smoothInputVelocity = 0f;
     [SerializeField]
     private float rotationSpeed = 100.0f;
     public float elapsed = 0f;
@@ -51,6 +55,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
         playerMovementScript = GetComponent<PlayerMovement>();
         playerMovementScript.actions.Player.Interact.performed += Interact;
         playerMovementScript.actions.Vehicle.Exit.performed += Exit;
+
+
     }
 
     void Update()
@@ -63,7 +69,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
         {
             transform.position = vehicleSeat.position;
             transform.rotation = vehicleSeat.rotation;
-
         }
 
         if (preOrientEnter)
@@ -105,6 +110,14 @@ public class CharacterVehicleInteraction : MonoBehaviour
             }
         }
 
+        if (playerMovementScript.actions.Vehicle.Drive.enabled)
+        {
+            steer = playerMovementScript.actions.Vehicle.Drive.ReadValue<Vector2>().x;
+            steerSmooth = Mathf.SmoothDamp(steerSmooth, steer, ref smoothInputVelocity, smoothInputSpeed);
+            vehicleAnim.SetFloat("steer", steerSmooth);
+            playerAnim.SetFloat("steer", steerSmooth);
+        }
+
     }
 
     IEnumerator Wait(float duration)
@@ -135,6 +148,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             //enable navmesh agent 
             agent.enabled = true;
             preOrientEnter = false;
+
         }
         enterable = false;
     }
@@ -143,11 +157,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         if (context.performed && playerAnim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer"))
         {
-            //disble vehicle movement
-            playerMovementScript.actions.Vehicle.Disable();
-
             playerAnim.SetTrigger("ket exit");
-
         }
     }
 

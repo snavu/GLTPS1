@@ -23,17 +23,26 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
     }
     void Update()
     {
-        if (Vector3.Distance(followPosition.position, transform.position) > radius)
+
+        float distance = Vector3.Distance(followPosition.position, transform.position);
+
+        //set destination position and agent speed to player run speed
+        if (distance > radius)
         {
             destination.transform.position = followPosition.position;
-        }
-        if(Mathf.Approximately(playerMovementScript.speed, playerMovementScript.walkSpeed)){
-            agent.speed = playerMovementScript.walkSpeed;
-        }
-        if(Mathf.Approximately(playerMovementScript.speed, playerMovementScript.runSpeed)){
             agent.speed = playerMovementScript.runSpeed;
         }
+
+        //set agent speed to player walk speed
+        if (Mathf.Approximately(playerMovementScript.speed, playerMovementScript.walkSpeed) && distance < radius)
+        {
+            agent.speed = playerMovementScript.walkSpeed;
+        }
+
+        //set agent 
         agent.destination = destination.transform.position;
+
+        //set movement animation
         CharacterMovementAnimation.Movement(GetComponent<Animator>(), agent.velocity, playerMovementScript.runSpeed);
 
     }

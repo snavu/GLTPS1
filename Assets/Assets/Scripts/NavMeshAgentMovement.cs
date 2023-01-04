@@ -12,11 +12,12 @@ public class NavMeshAgentMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.destination = destination.position;
+
 
     }
     void Update()
     {
-
+        agent.destination = destination.position;
+        CharacterMovementAnimation.Movement(GetComponent<Animator>(), agent.velocity, 4);
     }
 }

@@ -31,7 +31,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     public bool preOrientEnter = false;
     public bool preOrientExit = false;
-    private Quaternion rotationDir;
     private float maxSpeed = 4.0f;
     public bool constraint;
 

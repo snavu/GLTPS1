@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private Transform child;
-    [SerializeField]
+    private Vector2 horizontalInput;
+
     private Vector2 horizontalMovement;
     private Vector3 velocityXZ;
     private Vector3 velocityY;
@@ -34,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Transform camera;
+    private Vector2 smoothMovement;
+    [SerializeField]
+    private float smoothInputSpeed = 0.2f;
 
 
     void Awake()
@@ -48,9 +52,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //get horizontal input
-        horizontalMovement = actions.Player.Move.ReadValue<Vector2>();
+        horizontalInput = actions.Player.Move.ReadValue<Vector2>();
+        horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
 
-        isGrounded = Physics.Raycast(transform.position, new Vector3(0, -1, 0), controller.skinWidth + 0.001f);
+        isGrounded = Physics.Raycast(transform.position, new Vector3(0, -1, 0), controller.skinWidth + 0.01f);
         //apply gravity
         if (isGrounded && verticalMovement < 0)
         {
@@ -79,17 +84,18 @@ public class PlayerMovement : MonoBehaviour
         controller.Move((velocityXZ + velocityY) * Time.deltaTime);
 
         //pass velocityXZ to drive movement animation
-        CharacterMovementAnimation.Movement(anim, velocityXZ, runSpeed);        
-
+        CharacterMovementAnimation.Movement(anim, velocityXZ, runSpeed);
         //rotate child in direction of movement      
-        if (Vector3.Magnitude(velocityXZ) != 0)
+        if (Vector3.Magnitude(velocityXZ) > 0.5f)
         {
+            Debug.Log(velocityXZ);
+
             rotationDir = Quaternion.LookRotation(velocityXZ);
             child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
         }
 
         //rotate parent to camera
-        if (Vector3.Magnitude(velocityXZ) != 0)
+        if (Vector3.Magnitude(velocityXZ) > 0.5f)
         {
             Vector3 cam = new Vector3(camera.TransformDirection(Vector3.forward).x, 0, camera.TransformDirection(Vector3.forward).z);
             Quaternion rotationDir = Quaternion.LookRotation(cam);

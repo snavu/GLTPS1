@@ -26,25 +26,31 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
 
         float distance = Vector3.Distance(followPosition.position, transform.position);
 
-        //set destination position and agent speed to player run speed
-        if (distance > radius)
+        if (agent.isActiveAndEnabled)
         {
-            destination.transform.position = followPosition.position;
-            agent.speed = playerMovementScript.runSpeed;
+            //set destination position 
+            if (distance > radius)
+            {
+                destination.transform.position = followPosition.position;
+            }
+
+            //set agent speed to player walk speed
+            if (Mathf.Approximately(playerMovementScript.speed, playerMovementScript.walkSpeed) && distance < radius)
+            {
+                agent.speed = playerMovementScript.walkSpeed;
+            }
+            //set agent speed to player run speed
+            if (Mathf.Approximately(playerMovementScript.speed, playerMovementScript.runSpeed) || distance > radius + 0.5f)
+            {
+                agent.speed = playerMovementScript.runSpeed;
+            }
+
+            //set agent destination
+            agent.destination = destination.transform.position;
+
+            //set movement animation
+            CharacterMovementAnimation.Movement(GetComponent<Animator>(), agent.velocity, playerMovementScript.runSpeed);
         }
-
-        //set agent speed to player walk speed
-        if (Mathf.Approximately(playerMovementScript.speed, playerMovementScript.walkSpeed) && distance < radius)
-        {
-            agent.speed = playerMovementScript.walkSpeed;
-        }
-
-        //set agent 
-        agent.destination = destination.transform.position;
-
-        //set movement animation
-        CharacterMovementAnimation.Movement(GetComponent<Animator>(), agent.velocity, playerMovementScript.runSpeed);
-
     }
 
     void OnDrawGizmos()

@@ -60,6 +60,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     void Update()
     {
+
         if (agent.isActiveAndEnabled)
         {
             CharacterMovementAnimation.Movement(playerAnim, agent.velocity, maxSpeed);
@@ -174,6 +175,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             if (agent.isActiveAndEnabled)
             {
                 agent.destination = other.transform.position;
+
                 if (transform.position == agent.destination)
                 {
                     //orient rotation to enter ket

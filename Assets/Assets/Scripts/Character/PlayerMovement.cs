@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = actions.Player.Move.ReadValue<Vector2>();
         horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
 
-        isGrounded = Physics.Raycast(transform.position, new Vector3(0, -1, 0), controller.skinWidth + 0.1f);
+        isGrounded = Physics.Raycast(transform.position, new Vector3(0, -1, 0), controller.skinWidth + 0.03f);
         //apply gravity
         if (isGrounded && verticalMovement < 0)
         {

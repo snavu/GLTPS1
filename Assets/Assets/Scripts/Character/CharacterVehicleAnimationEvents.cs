@@ -58,5 +58,9 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     {
         navMeshAgentVehicleInteractionScript.preOrientExit = true;
     }
+    public void AgentRotationConstraint()
+    {
+        navMeshAgentVehicleInteractionScript.rotationConstraint = true;
+    }
 
 }

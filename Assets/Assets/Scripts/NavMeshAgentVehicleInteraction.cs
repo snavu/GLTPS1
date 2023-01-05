@@ -18,7 +18,9 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
     public Animator agentAnim;
     public bool enter;
     public bool exit;
-    private bool constraint;
+    private bool positionConstraint;
+    public bool rotationConstraint;
+
     private bool preOrientEnter;
     public bool preOrientExit;
     [SerializeField]
@@ -69,7 +71,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
             }
             else
             {
-                constraint = true;
+                positionConstraint = true;
                 preOrientEnter = false;
                 elapsed = 0f;
             }
@@ -77,7 +79,8 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
 
         if (exit)
         {
-            constraint = false;
+            positionConstraint = false;
+            rotationConstraint = false;
 
             if (preOrientExit)
             {
@@ -101,9 +104,12 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
 
         }
 
-        if (constraint)
+        if (positionConstraint)
         {
             transform.position = constraintPosition.position;
+        }
+        if (rotationConstraint)
+        {
             transform.rotation = constraintPosition.rotation;
         }
     }

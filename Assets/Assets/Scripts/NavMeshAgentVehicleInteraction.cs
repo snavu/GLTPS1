@@ -40,7 +40,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
     {
         CharacterMovementAnimation.Movement(GetComponent<Animator>(), agent.velocity, playerMovementScript.runSpeed);
 
-        if (enter)
+        if (enter && !preOrientExit)
         {
             navMeshAgentFollowPlayerScript.enabled = false;
             //ignore collisions between layer 6 (vehicle) and layer 8 (AI) 

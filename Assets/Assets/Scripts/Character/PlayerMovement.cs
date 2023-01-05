@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     Quaternion rotationDir;
     public InputActions actions;
+    [SerializeField]
 
     private float jumpHeight = 1.0f;
 
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = actions.Player.Move.ReadValue<Vector2>();
         horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
 
-        isGrounded = Physics.Raycast(transform.position, new Vector3(0, -1, 0), controller.skinWidth + 0.01f);
+        isGrounded = Physics.Raycast(transform.position, new Vector3(0, -1, 0), controller.skinWidth + 0.1f);
         //apply gravity
         if (isGrounded && verticalMovement < 0)
         {

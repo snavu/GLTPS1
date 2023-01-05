@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using Cinemachine;
 public class CharacterVehicleInteraction : MonoBehaviour
 {
+    [SerializeField]
+    private CinemachineFreeLook freelook;
     [SerializeField]
     private PlayerMovement playerMovementScript;
 
@@ -54,17 +57,11 @@ public class CharacterVehicleInteraction : MonoBehaviour
         playerMovementScript = GetComponent<PlayerMovement>();
         playerMovementScript.actions.Player.Interact.performed += Interact;
         playerMovementScript.actions.Vehicle.Exit.performed += Exit;
-
-
     }
 
     void Update()
     {
 
-        if (agent.isActiveAndEnabled)
-        {
-            CharacterMovementAnimation.Movement(playerAnim, agent.velocity, maxSpeed);
-        }
         if (constraint)
         {
             transform.position = vehicleSeat.position;
@@ -78,6 +75,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
                 elapsed += Time.deltaTime;
                 transform.position = Vector3.Lerp(transform.position, vehicleSeat.position, elapsed / enterDuration);
                 transform.rotation = vehicleSeat.rotation;
+
+                LerpCameraRigRadius(6.75f, 8.0f, 5.3f);
+
             }
             else
             {
@@ -93,6 +93,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             {
                 elapsed += Time.deltaTime;
                 transform.position = Vector3.Lerp(vehicleSeat.position, vehicleRightExit.position, elapsed / exitDuration);
+                LerpCameraRigRadius(4.75f, 6.0f, 3.3f);
             }
             else
             {
@@ -103,6 +104,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             {
                 elapsed += Time.deltaTime;
                 transform.position = Vector3.Lerp(vehicleSeat.position, vehicleLeftExit.position, elapsed / exitDuration);
+                LerpCameraRigRadius(4.75f, 6.0f, 3.3f);
             }
             else
             {
@@ -118,6 +120,11 @@ public class CharacterVehicleInteraction : MonoBehaviour
             playerAnim.SetFloat("steer", steerSmooth);
         }
 
+        if (agent.isActiveAndEnabled)
+        {
+            CharacterMovementAnimation.Movement(playerAnim, agent.velocity, maxSpeed);
+        }
+
     }
 
     IEnumerator Wait(float duration)
@@ -130,6 +137,13 @@ public class CharacterVehicleInteraction : MonoBehaviour
         exitLeft = false;
         exitRight = false;
         elapsed = 0f;
+    }
+
+    private void LerpCameraRigRadius(float top, float middle, float bottom)
+    {
+        freelook.m_Orbits[0].m_Radius = Mathf.Lerp(freelook.m_Orbits[0].m_Radius, top, elapsed / enterDuration);
+        freelook.m_Orbits[1].m_Radius = Mathf.Lerp(freelook.m_Orbits[1].m_Radius, middle, elapsed / enterDuration);
+        freelook.m_Orbits[2].m_Radius = Mathf.Lerp(freelook.m_Orbits[2].m_Radius, bottom, elapsed / enterDuration);
     }
 
     public void Interact(InputAction.CallbackContext context)

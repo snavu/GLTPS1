@@ -210,10 +210,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
                         {
                             playerAnim.SetBool("ket left", true);
                         }
-                        if (other.gameObject.name == "Back")
-                        {
-
-                        }
                         agent.enabled = false;
                         preOrientEnter = true;
                     }

@@ -73,7 +73,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             transform.rotation = vehicleSeat.rotation;
             ChangeCameraRigRadius(freelookRadius[0], freelookRadius[1], freelookRadius[2]);
         }
-        else if(freelook.m_Orbits[1].m_Radius != freelookRadius[4])
+        else if (freelook.m_Orbits[1].m_Radius != freelookRadius[4])
         {
             ChangeCameraRigRadius(freelookRadius[3], freelookRadius[4], freelookRadius[5]);
         }
@@ -184,7 +184,10 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        enterable = true;
+        if (other.gameObject.CompareTag("Ket"))
+        {
+            enterable = true;
+        }
     }
     void OnTriggerStay(Collider other)
     {
@@ -219,9 +222,12 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     }
 
-    private void OnTriggerExit()
+    private void OnTriggerExit(Collider other)
     {
-        enterable = false;
+        if (other.gameObject.CompareTag("Ket"))
+        {
+            enterable = false;
+        }
     }
 
 }

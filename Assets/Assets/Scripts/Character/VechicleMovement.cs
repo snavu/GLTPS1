@@ -41,9 +41,16 @@ public class VechicleMovement : MonoBehaviour
             rb.AddForce(movement.y * transform.forward * force * Time.fixedDeltaTime, ForceMode.Force);
 
             //rotate
-            if (Mathf.Abs(movement.x) > 0 && Mathf.Abs(movement.y) >= 0.5f)
+            if (Mathf.Abs(movement.x) > 0)
             {
-                rb.AddTorque(movement.x * transform.up * torque * Time.fixedDeltaTime, ForceMode.Force);
+                if (movement.y >= 0.5f)
+                {
+                    rb.AddTorque(movement.x * transform.up * torque * Time.fixedDeltaTime, ForceMode.Force);
+                }
+                if (movement.y <= -0.5f)
+                {
+                    rb.AddTorque(-movement.x * transform.up * torque * Time.fixedDeltaTime, ForceMode.Force);
+                }
             }
         }
         //clamp velocity and angular velocity
@@ -59,7 +66,7 @@ public class VechicleMovement : MonoBehaviour
     {
         float scaledVelocityXZ = Vector3.Magnitude(rb.velocity) / maxVelocity;
         scaledVelocityXZ *= movement.y;
-       
+
         //set movement animation
         anim.SetFloat("velocityZ", scaledVelocityXZ);
     }

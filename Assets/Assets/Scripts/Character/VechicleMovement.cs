@@ -20,6 +20,11 @@ public class VechicleMovement : MonoBehaviour
     private float maxAngularVelocity;
     [SerializeField]
     private Animator anim;
+
+    [SerializeField]
+    private float angleLimitX;
+    [SerializeField]
+    private float angleLimitZ;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -36,7 +41,7 @@ public class VechicleMovement : MonoBehaviour
     void FixedUpdate()
     {
         //move
-        if (Mathf.Abs(movement.y) > 0)
+        if (Mathf.Abs(movement.y) > 0 && Mathf.Abs(transform.rotation.x) < angleLimitX && Mathf.Abs(transform.rotation.z) < angleLimitZ)
         {
             rb.AddForce(movement.y * transform.forward * force * Time.fixedDeltaTime, ForceMode.Force);
 

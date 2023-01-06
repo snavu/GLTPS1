@@ -7,6 +7,7 @@ TagManager:
   - Ket Front
   - Ket
   - Wall
+  - Out Of Bounds
   layers:
   - Default
   - TransparentFX

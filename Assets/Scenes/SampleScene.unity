@@ -2869,7 +2869,7 @@ GameObject:
   - component: {fileID: 5017717647506263105}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -4145,12 +4145,12 @@ PrefabInstance:
     - target: {fileID: 6548995850731615751, guid: 22a8ad1f385cf5f4d851fc87a18a51ea,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.06393348
+      value: 0.063933484
       objectReference: {fileID: 0}
     - target: {fileID: 6548995850731615751, guid: 22a8ad1f385cf5f4d851fc87a18a51ea,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0028631391
+      value: 0.0028631394
       objectReference: {fileID: 0}
     - target: {fileID: 6548995851050014398, guid: 22a8ad1f385cf5f4d851fc87a18a51ea,
         type: 3}

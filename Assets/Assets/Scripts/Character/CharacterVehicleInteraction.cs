@@ -57,6 +57,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     void Start()
     {
+        Physics.IgnoreLayerCollision(6, 7, true);
+        Physics.IgnoreLayerCollision(6, 8, true);
+
         controller = GetComponent<CharacterController>();
         agent = GetComponent<NavMeshAgent>();
         playerMovementScript = GetComponent<PlayerMovement>();

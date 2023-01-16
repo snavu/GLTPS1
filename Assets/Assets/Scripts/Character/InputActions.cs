@@ -253,7 +253,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Down"",
                     ""id"": ""7070e455-2ff3-4cb4-a3a8-9f8880c4210b"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",

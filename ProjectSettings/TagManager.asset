@@ -8,6 +8,7 @@ TagManager:
   - Ket
   - Wall
   - Out Of Bounds
+  - Port
   layers:
   - Default
   - TransparentFX

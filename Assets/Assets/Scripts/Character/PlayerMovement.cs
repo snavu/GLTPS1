@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField]
     private CharacterController controller;
     private Animator anim;
     [SerializeField]
@@ -40,6 +41,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float smoothInputSpeed = 0.2f;
 
+    [SerializeField]
+    private LayerMask layerMask = 7;
+
 
     void Awake()
     {
@@ -48,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         actions = new InputActions();
         actions.Player.Enable();
         actions.Player.Jump.performed += Jump;
+        
     }
 
     void Update()
@@ -56,7 +61,12 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = actions.Player.Move.ReadValue<Vector2>();
         horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
 
-        isGrounded = Physics.Raycast(transform.position, new Vector3(0, -1, 0), controller.skinWidth + 0.03f);
+        RaycastHit hit;
+        //align spherecast at bottom of collider, minus small constant to extrude vertically down, and scale position inversely proportional to controller skin width 
+        Vector3 sphereCastPosition = new Vector3 (0, controller.radius - controller.skinWidth - 0.01f, 0);
+        //check ground collision
+        isGrounded = Physics.CheckSphere(transform.position + sphereCastPosition, controller.radius, layerMask, QueryTriggerInteraction.Ignore);
+        
         //apply gravity
         if (isGrounded && verticalMovement < 0)
         {
@@ -109,5 +119,11 @@ public class PlayerMovement : MonoBehaviour
         {
             verticalMovement = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, controller.radius - controller.skinWidth - 0.01f, 0), controller.radius);
     }
 }

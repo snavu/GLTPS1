@@ -5,33 +5,31 @@ using UnityEngine;
 public class ProceduralEnvironmentGeneration : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] edge;
+    private GameObject[] edges;
     [SerializeField]
-    private GameObject[] node;
-
-    private GameObject[] port;
+    private GameObject[] nodes;
+    [SerializeField]
+    private Transform[] ports;
 
     void Start()
     {
         //initialize array of ports of the current node
-        var portList = new List<GameObject>();
-        foreach (GameObject port in transform)
+        var portList = new List<Transform>();
+        foreach (Transform port in transform)
         {
-            if (port.CompareTag("port"))
+            if (port.CompareTag("Port"))
             {
                 portList.Add(port);
-
             }
         }
-        port = portList.ToArray();
-    }
-    void Update()
-    {
+        ports = portList.ToArray();
 
+        //generate bridge at first port
+        GenerateSceneGeometry(ports[0]);
     }
 
     //run generate script per NavMeshSceneGeometry gameobject to generate layers of local nodes
-    private void GenerateSceneGeometry(GameObject port)
+    private void GenerateSceneGeometry(Transform port)
     {
         //generate edge
         GameObject edge = GenerateRandomEdge();
@@ -47,7 +45,7 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
 
     private GameObject GenerateRandomEdge()
     {
-        return edge[Random.Range(0, edge.Length)];
+        return edges[Random.Range(0, edges.Length)];
     }
 
     private Vector3 CalculateEdgeEntranceOffsetPosition(GameObject edge)
@@ -63,7 +61,7 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
 
     private GameObject GenerateRandomNode()
     {
-        return node[Random.Range(0, node.Length)];
+        return nodes[Random.Range(0, nodes.Length)];
     }
 
 }

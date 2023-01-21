@@ -40,7 +40,8 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
     {
         //generate edge
         GameObject edge = GenerateRandomEdge();
-        Vector3 edgeEntranceOffsetPos = CalculateEdgeEntranceOffsetPosition(edge);
+        edge.transform.rotation = port.rotation;
+        Vector3 edgeEntranceOffsetPos = CalculateEdgeOffsetPosition(edge);
         GameObject edgeCopy = Instantiate(edge, port.transform.position + edgeEntranceOffsetPos, edge.transform.rotation);
 
         //generate node
@@ -57,11 +58,13 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
         return edges[Random.Range(0, edges.Length)];
     }
 
-    private Vector3 CalculateEdgeEntranceOffsetPosition(GameObject edge)
+    private Vector3 CalculateEdgeOffsetPosition(GameObject edge)
     {
         Transform edgeEntrance = edge.transform.GetChild(0).transform;
-        return (edge.transform.position - edgeEntrance.position);
+        return edge.transform.position - edgeEntrance.position;
     }
+
+
     private Vector3 CalculateNodeEntranceOffsetPosition(GameObject node, int portIndex)
     {
         Transform nodeEntrance = node.GetComponent<ProceduralEnvironmentGeneration>().ports[portIndex];

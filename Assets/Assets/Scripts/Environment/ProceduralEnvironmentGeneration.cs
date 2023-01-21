@@ -42,7 +42,7 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
         GameObject edge = GenerateRandomEdge();
         Vector3 edgeEntranceOffsetPos = CalculateEdgeEntranceOffsetPosition(edge);
         GameObject edgeCopy = Instantiate(edge, port.transform.position + edgeEntranceOffsetPos, edge.transform.rotation);
-        
+
         //generate node
         GameObject node = GenerateRandomNode();
         //calculate node entrance offset position (for first port of next node, hardcoded for now)

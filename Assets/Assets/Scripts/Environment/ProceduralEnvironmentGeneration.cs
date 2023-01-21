@@ -11,6 +11,9 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
     [SerializeField]
     private Transform[] ports;
 
+    [SerializeField]
+    private bool generate = false;
+
     void Start()
     {
         //initialize array of ports of the current node
@@ -23,9 +26,13 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
             }
         }
         ports = portList.ToArray();
+        //test 
+        if (generate)
+        {
+            //generate bridge at first port
+            GenerateSceneGeometry(ports[0]);
+        }
 
-        //generate bridge at first port
-        GenerateSceneGeometry(ports[0]);
     }
 
     //run generate script per NavMeshSceneGeometry gameobject to generate layers of local nodes
@@ -35,11 +42,13 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
         GameObject edge = GenerateRandomEdge();
         Vector3 edgeEntranceOffsetPos = CalculateEdgeEntranceOffsetPosition(edge);
         GameObject edgeCopy = Instantiate(edge, port.transform.position + edgeEntranceOffsetPos, edge.transform.rotation);
-
+        
         //generate node
         GameObject node = GenerateRandomNode();
-        Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffsetPosition(node);
-        GameObject nodeCopy = Instantiate(node, node.transform.position + nodeEntranceOffsetPos, node.transform.rotation);
+        //calculate node entrance offset position (for first port of next node, hardcoded for now)
+        Vector3 edgeExit = edgeCopy.transform.GetChild(1).transform.position;
+        Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffsetPosition(node, 0);
+        GameObject nodeCopy = Instantiate(node, edgeExit + nodeEntranceOffsetPos, node.transform.rotation);
 
     }
 
@@ -53,9 +62,9 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
         Transform edgeEntrance = edge.transform.GetChild(0).transform;
         return (edge.transform.position - edgeEntrance.position);
     }
-    private Vector3 CalculateNodeEntranceOffsetPosition(GameObject node)
+    private Vector3 CalculateNodeEntranceOffsetPosition(GameObject node, int portIndex)
     {
-        Transform nodeEntrance = node.transform.GetChild(0).transform;
+        Transform nodeEntrance = node.GetComponent<ProceduralEnvironmentGeneration>().ports[portIndex];
         return (node.transform.position - nodeEntrance.position);
     }
 

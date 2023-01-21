@@ -40,16 +40,24 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
     {
         //generate edge
         GameObject edge = GenerateRandomEdge();
+        //set rotation of edge to extend from direction of port
         edge.transform.rotation = port.rotation;
+        //calculate offset position
         Vector3 edgeEntranceOffsetPos = CalculateEdgeOffsetPosition(edge);
+
         GameObject edgeCopy = Instantiate(edge, port.transform.position + edgeEntranceOffsetPos, edge.transform.rotation);
 
         //generate node
         GameObject node = GenerateRandomNode();
         //calculate node entrance offset position (for first port of next node, hardcoded for now)
-        Vector3 edgeExit = edgeCopy.transform.GetChild(1).transform.position;
+        Transform edgeExit = edgeCopy.transform.GetChild(1).transform;
+        //set rotation of node to align with direction of edge exit
+        node.transform.rotation = edgeExit.rotation;
+
+        //calculate offset position
         Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffsetPosition(node, 0);
-        GameObject nodeCopy = Instantiate(node, edgeExit + nodeEntranceOffsetPos, node.transform.rotation);
+
+        GameObject nodeCopy = Instantiate(node, edgeExit.position + nodeEntranceOffsetPos, node.transform.rotation);
 
     }
 

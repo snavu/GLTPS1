@@ -70,7 +70,7 @@ public class VechicleMovement : MonoBehaviour
     private void MovementAnim()
     {
         float scaledVelocityXZ = Vector3.Magnitude(rb.velocity) / maxVelocity;
-        scaledVelocityXZ *= movement.y;
+        scaledVelocityXZ = scaledVelocityXZ * movement.y;
 
         //set movement animation
         anim.SetFloat("velocityZ", scaledVelocityXZ);

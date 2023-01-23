@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Out Of Bounds
   - Port
+  - Node
   layers:
   - Default
   - TransparentFX

@@ -47,16 +47,24 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
 
     void Update()
     {
-        //if next node is colliding, remove from copy of prefabs list, destroy it, and generate next node
+        //if next node is colliding, destroy it, remove from lists, and generate next node
         for (int index = 0; index < nodeList.Count; index++)
         {
             if (nodePrefabsCopy[index].nodePrefabsSubList[0] != null && nodeList[index].GetComponent<ProceduralEnvironmentGeneration>().isColliding)
             {
-                nodePrefabsCopy[index].nodePrefabsSubList.Remove(nodeList[index]);
                 Destroy(nodeList[index]);
                 Destroy(edgeList[index]);
-                edgeList.Add(GenerateRandomEdge(portList[index]));
-                nodeList.Add(GenerateRandomNode(nodePrefabsCopy[index].nodePrefabsSubList, edgeList[index], index));
+
+                nodePrefabsCopy[index].nodePrefabsSubList.Remove(nodeList[index]);
+
+                nodeList.RemoveAt(index);
+                edgeList.RemoveAt(index);
+
+                if (nodePrefabsCopy[index].nodePrefabsSubList[0] != null)
+                {
+                    edgeList.Insert(index, GenerateRandomEdge(portList[index]));
+                    nodeList.Insert(index, GenerateRandomNode(nodePrefabsCopy[index].nodePrefabsSubList, edgeList[index], index));
+                }
             }
         }
 

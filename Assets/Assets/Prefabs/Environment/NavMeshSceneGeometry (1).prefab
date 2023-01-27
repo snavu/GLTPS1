@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55876477475964143}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -52,10 +52,11 @@ MonoBehaviour:
   edgePrefabs: []
   edgeList: []
   nodePrefabs: []
+  nodePrefabsCopy: []
   nodeList: []
   portList:
   - {fileID: 1940689947637692194}
-  generate: 1
+  generate: 0
   isColliding: 0
 --- !u!54 &2223635269080304367
 Rigidbody:

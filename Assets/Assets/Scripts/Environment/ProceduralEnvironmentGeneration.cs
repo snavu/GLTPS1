@@ -2,14 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SubList
+{
+    [SerializeField]
+    public List<GameObject> nodePrefabsSubList = new List<GameObject>();
+}
 public class ProceduralEnvironmentGeneration : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] edgePrefabs;
+    private List<GameObject> edgePrefabs;
     [SerializeField]
     private List<GameObject> edgeList;
     [SerializeField]
-    private GameObject[] nodePrefabs;
+    private List<GameObject> nodePrefabs;
+    [SerializeField]
+    private List<SubList> nodePrefabsCopy;
     [SerializeField]
     private List<GameObject> nodeList;
     [SerializeField]
@@ -39,13 +47,16 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
 
     void Update()
     {
-        //if next node is colliding, destroy it and regenerate next node
+        //if next node is colliding, remove from copy of prefabs list, destroy it, and generate next node
         for (int index = 0; index < nodeList.Count; index++)
         {
-            if (nodeList[index] != null && nodeList[index].GetComponent<ProceduralEnvironmentGeneration>().isColliding)
+            if (nodePrefabsCopy[index].nodePrefabsSubList[0] != null && nodeList[index].GetComponent<ProceduralEnvironmentGeneration>().isColliding)
             {
+                nodePrefabsCopy[index].nodePrefabsSubList.Remove(nodeList[index]);
                 Destroy(nodeList[index]);
-                nodeList[index] = GenerateRandomNode(edgeList[index]);
+                Destroy(edgeList[index]);
+                edgeList.Add(GenerateRandomEdge(portList[index]));
+                nodeList.Add(GenerateRandomNode(nodePrefabsCopy[index].nodePrefabsSubList, edgeList[index], index));
             }
         }
 
@@ -60,15 +71,21 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
     //note: run generate script per NavMeshSceneGeometry gameobject to generate layers of local nodes
     private void GenerateSceneGeometry(Transform port, int index)
     {
-        //initialize edge and node
+        //initialize edge, copy of node prefab list, and node at the port index 
         edgeList.Add(GenerateRandomEdge(port));
-        nodeList.Add(GenerateRandomNode(edgeList[index]));
+        nodePrefabsCopy.Add(new SubList());
+        foreach (GameObject node in nodePrefabs)
+        {
+            nodePrefabsCopy[index].nodePrefabsSubList.Add(node);
+        }
+        nodeList.Add(GenerateRandomNode(nodePrefabsCopy[index].nodePrefabsSubList, edgeList[index], index));
+
     }
 
     private GameObject GenerateRandomEdge(Transform port)
     {
         //generate edge
-        GameObject edge = edgePrefabs[Random.Range(0, edgePrefabs.Length)];
+        GameObject edge = edgePrefabs[Random.Range(0, edgePrefabs.Count)];
         //set rotation of edge to extend from direction of port
         edge.transform.rotation = port.rotation;
         //calculate offset position
@@ -88,15 +105,13 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
     private Vector3 CalculateNodeEntranceOffsetPosition(GameObject node)
     {
         Transform nodeEntrance = node.GetComponent<ProceduralEnvironmentGeneration>().portList[0];
-        Debug.Log(nodeEntrance);
         return (node.transform.position - nodeEntrance.position);
     }
 
-    private GameObject GenerateRandomNode(GameObject edgeClone)
+    private GameObject GenerateRandomNode(List<GameObject> nodePrefabs, GameObject edgeClone, int index)
     {
         //generate node
-        GameObject node = nodePrefabs[Random.Range(0, nodePrefabs.Length)];
-        //calculate node entrance offset position (for first port of next node, hardcoded for now)
+        GameObject node = nodePrefabs[Random.Range(0, nodePrefabs.Count)];
         Transform edgeExit = edgeClone.transform.GetChild(1).transform;
         //set rotation of node to align with direction of edge exit
         node.transform.rotation = edgeExit.rotation;

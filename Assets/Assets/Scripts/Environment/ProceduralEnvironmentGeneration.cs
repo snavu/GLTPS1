@@ -48,22 +48,34 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
     void Update()
     {
         //if next node is colliding, destroy it, remove from lists, and generate next node
-        for (int index = 0; index < nodeList.Count; index++)
+        for (int portIndex = 0; portIndex < nodeList.Count; portIndex++)
         {
-            if (nodePrefabsCopy[index].nodePrefabsSubList[0] != null && nodeList[index].GetComponent<ProceduralEnvironmentGeneration>().isColliding)
+            if (nodePrefabsCopy[portIndex].nodePrefabsSubList[0] != null && nodeList[portIndex].GetComponent<ProceduralEnvironmentGeneration>().isColliding)
             {
-                Destroy(nodeList[index]);
-                Destroy(edgeList[index]);
+                //destroy instantiated gameobject from scene
+                Destroy(nodeList[portIndex]);
+                Destroy(edgeList[portIndex]);
 
-                nodePrefabsCopy[index].nodePrefabsSubList.Remove(nodeList[index]);
-
-                nodeList.RemoveAt(index);
-                edgeList.RemoveAt(index);
-
-                if (nodePrefabsCopy[index].nodePrefabsSubList[0] != null)
+                //remove the instantiated nodeList gameobject from the corresponding nodePrefabsSubList element through string check
+                for (int subListIndex = 0; subListIndex < nodePrefabsCopy[portIndex].nodePrefabsSubList.Count; subListIndex++)
                 {
-                    edgeList.Insert(index, GenerateRandomEdge(portList[index]));
-                    nodeList.Insert(index, GenerateRandomNode(nodePrefabsCopy[index].nodePrefabsSubList, edgeList[index], index));
+                    if (nodePrefabsCopy[portIndex].nodePrefabsSubList[subListIndex].name == nodeList[portIndex].name)
+                    {
+                        nodePrefabsCopy[portIndex].nodePrefabsSubList.RemoveAt(subListIndex);
+                        Debug.Log("removed from list");
+                    }
+                }
+
+                //remove from lists
+                nodeList.RemoveAt(portIndex);
+                edgeList.RemoveAt(portIndex);
+
+                //replace elements from list with regenerated gameobjects
+                if (nodePrefabsCopy[portIndex].nodePrefabsSubList[0] != null)
+                {
+                    edgeList.Insert(portIndex, GenerateRandomEdge(portList[portIndex]));
+                    nodeList.Insert(portIndex, GenerateRandomNode(nodePrefabsCopy[portIndex].nodePrefabsSubList, edgeList[portIndex], portIndex));
+                    Debug.Log("added to list");
                 }
             }
         }
@@ -87,7 +99,6 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
             nodePrefabsCopy[index].nodePrefabsSubList.Add(node);
         }
         nodeList.Add(GenerateRandomNode(nodePrefabsCopy[index].nodePrefabsSubList, edgeList[index], index));
-
     }
 
     private GameObject GenerateRandomEdge(Transform port)
@@ -126,6 +137,9 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
         //calculate offset position
         Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffsetPosition(node);
         GameObject nodeClone = Instantiate(node, edgeExit.position + nodeEntranceOffsetPos, node.transform.rotation);
+
+        //trim "(Clone)" from instantiated gamgeobject name for string check to nodePrefabsSubList for removing collided objects from regenerating
+        nodeClone.name = nodeClone.name.Replace("(Clone)", "").Trim();
 
         return nodeClone;
     }

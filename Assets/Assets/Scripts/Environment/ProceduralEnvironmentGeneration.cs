@@ -45,49 +45,6 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        //if next node is colliding, destroy it, remove from lists, and generate next node
-        for (int portIndex = 0; portIndex < nodeList.Count; portIndex++)
-        {
-            if (nodePrefabsCopy[portIndex].nodePrefabsSubList.Count != 0 && nodeList[portIndex].GetComponent<ProceduralEnvironmentGeneration>().isColliding)
-            {
-                //remove the instantiated nodeList gameobject from the corresponding nodePrefabsSubList element through string check
-                for (int subListIndex = 0; subListIndex < nodePrefabsCopy[portIndex].nodePrefabsSubList.Count; subListIndex++)
-                {
-                    if (nodePrefabsCopy[portIndex].nodePrefabsSubList[subListIndex].name == nodeList[portIndex].name)
-                    {
-                        nodePrefabsCopy[portIndex].nodePrefabsSubList.RemoveAt(subListIndex);
-                    }
-                }
-                
-                //destroy instantiated gameobjects from scene
-                Destroy(nodeList[portIndex]);
-                Destroy(edgeList[portIndex]);
-
-                //reassign null at element index of lists
-                nodeList[portIndex] = null;
-                edgeList[portIndex] = null;
-
-
-                //replace elements from lists with regenerated gameobjects
-                if (nodePrefabsCopy[portIndex].nodePrefabsSubList.Count != 0)
-                {
-                    edgeList[portIndex] = GenerateRandomEdge(portList[portIndex]);
-                    nodeList[portIndex] = GenerateRandomNode(nodePrefabsCopy[portIndex].nodePrefabsSubList, edgeList[portIndex], portIndex);
-                }
-            }
-        }
-
-
-        if (!isColliding && !isActiveFlag)
-        {
-            transform.GetChild(0).gameObject.SetActive(true);
-            isActiveFlag = true;
-        }
-    }
-
-    //note: run generate script per NavMeshSceneGeometry gameobject to generate layers of local nodes
     private void GenerateSceneGeometry(Transform port, int index)
     {
         //initialize edge, copy of node prefab list, and node at the port index 
@@ -119,13 +76,6 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
         return edge.transform.position - edgeEntrance.position;
     }
 
-
-    private Vector3 CalculateNodeEntranceOffsetPosition(GameObject node)
-    {
-        Transform nodeEntrance = node.GetComponent<ProceduralEnvironmentGeneration>().portList[0];
-        return (node.transform.position - nodeEntrance.position);
-    }
-
     private GameObject GenerateRandomNode(List<GameObject> nodePrefabs, GameObject edgeClone, int index)
     {
         //generate node
@@ -137,12 +87,59 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
         Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffsetPosition(node);
         GameObject nodeClone = Instantiate(node, edgeExit.position + nodeEntranceOffsetPos, node.transform.rotation);
 
-        //trim "(Clone)" from instantiated gamgeobject name for string check to nodePrefabsSubList for removing collided objects from regenerating
+        //trim "(Clone)" from instantiated gamgeobject name for string check to nodePrefabsSubList for preventing collided objects from regenerating
         nodeClone.name = nodeClone.name.Replace("(Clone)", "").Trim();
 
         return nodeClone;
     }
 
+    private Vector3 CalculateNodeEntranceOffsetPosition(GameObject node)
+    {
+        Transform nodeEntrance = node.GetComponent<ProceduralEnvironmentGeneration>().portList[0];
+        return (node.transform.position - nodeEntrance.position);
+    }
+
+    void Update()
+    {
+        //if next node is colliding, remove from lists, destroy it, and generate next node
+        for (int portIndex = 0; portIndex < nodeList.Count; portIndex++)
+        {
+            if (nodePrefabsCopy[portIndex].nodePrefabsSubList.Count != 0 && nodeList[portIndex].GetComponent<ProceduralEnvironmentGeneration>().isColliding)
+            {
+                //remove the nodePrefabsSubList element corresponding to the instantiated nodeList gameobject through string check
+                for (int subListIndex = 0; subListIndex < nodePrefabsCopy[portIndex].nodePrefabsSubList.Count; subListIndex++)
+                {
+                    if (nodePrefabsCopy[portIndex].nodePrefabsSubList[subListIndex].name == nodeList[portIndex].name)
+                    {
+                        nodePrefabsCopy[portIndex].nodePrefabsSubList.RemoveAt(subListIndex);
+                    }
+                }
+
+                //destroy instantiated gameobjects from scene
+                Destroy(nodeList[portIndex]);
+                Destroy(edgeList[portIndex]);
+
+                //reassign null at element index of lists
+                nodeList[portIndex] = null;
+                edgeList[portIndex] = null;
+
+
+                //replace elements from lists with regenerated gameobjects
+                if (nodePrefabsCopy[portIndex].nodePrefabsSubList.Count != 0)
+                {
+                    edgeList[portIndex] = GenerateRandomEdge(portList[portIndex]);
+                    nodeList[portIndex] = GenerateRandomNode(nodePrefabsCopy[portIndex].nodePrefabsSubList, edgeList[portIndex], portIndex);
+                }
+            }
+        }
+
+        //if not colliding, set meshes to visible
+        if (!isColliding && !isActiveFlag)
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+            isActiveFlag = true;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

@@ -50,32 +50,31 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
         //if next node is colliding, destroy it, remove from lists, and generate next node
         for (int portIndex = 0; portIndex < nodeList.Count; portIndex++)
         {
-            if (nodePrefabsCopy[portIndex].nodePrefabsSubList[0] != null && nodeList[portIndex].GetComponent<ProceduralEnvironmentGeneration>().isColliding)
+            if (nodePrefabsCopy[portIndex].nodePrefabsSubList.Count != 0 && nodeList[portIndex].GetComponent<ProceduralEnvironmentGeneration>().isColliding)
             {
-                //destroy instantiated gameobject from scene
-                Destroy(nodeList[portIndex]);
-                Destroy(edgeList[portIndex]);
-
                 //remove the instantiated nodeList gameobject from the corresponding nodePrefabsSubList element through string check
                 for (int subListIndex = 0; subListIndex < nodePrefabsCopy[portIndex].nodePrefabsSubList.Count; subListIndex++)
                 {
                     if (nodePrefabsCopy[portIndex].nodePrefabsSubList[subListIndex].name == nodeList[portIndex].name)
                     {
                         nodePrefabsCopy[portIndex].nodePrefabsSubList.RemoveAt(subListIndex);
-                        Debug.Log("removed from list");
                     }
                 }
+                
+                //destroy instantiated gameobjects from scene
+                Destroy(nodeList[portIndex]);
+                Destroy(edgeList[portIndex]);
 
-                //remove from lists
-                nodeList.RemoveAt(portIndex);
-                edgeList.RemoveAt(portIndex);
+                //reassign null at element index of lists
+                nodeList[portIndex] = null;
+                edgeList[portIndex] = null;
 
-                //replace elements from list with regenerated gameobjects
-                if (nodePrefabsCopy[portIndex].nodePrefabsSubList[0] != null)
+
+                //replace elements from lists with regenerated gameobjects
+                if (nodePrefabsCopy[portIndex].nodePrefabsSubList.Count != 0)
                 {
-                    edgeList.Insert(portIndex, GenerateRandomEdge(portList[portIndex]));
-                    nodeList.Insert(portIndex, GenerateRandomNode(nodePrefabsCopy[portIndex].nodePrefabsSubList, edgeList[portIndex], portIndex));
-                    Debug.Log("added to list");
+                    edgeList[portIndex] = GenerateRandomEdge(portList[portIndex]);
+                    nodeList[portIndex] = GenerateRandomNode(nodePrefabsCopy[portIndex].nodePrefabsSubList, edgeList[portIndex], portIndex);
                 }
             }
         }

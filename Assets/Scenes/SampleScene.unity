@@ -223,7 +223,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135867288}
-  m_LocalRotation: {x: -0.0266076, y: 0.000000001075018, z: 2.8613776e-11, w: 0.99964595}
+  m_LocalRotation: {x: -0.0266076, y: -0.000000001075018, z: -2.8613776e-11, w: 0.99964595}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -632,7 +632,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.026607603, y: 0.0000000010750182, z: 2.8613787e-11, w: 0.999646}
+  m_LocalRotation: {x: -0.026607603, y: -0.0000000010750182, z: -2.8613787e-11, w: 0.999646}
   m_LocalPosition: {x: 1.7, y: 1.33, z: -4.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -979,7 +979,7 @@ MonoBehaviour:
   - m_Height: 2.5
     m_Radius: 4.75
   - m_Height: 0.4
-    m_Radius: 4.750104
+    m_Radius: 4.75
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 2082827652}
@@ -1953,7 +1953,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244749583}
-  m_LocalRotation: {x: -0.044738255, y: -0.000000004297288, z: -1.9244584e-10, w: 0.99899876}
+  m_LocalRotation: {x: -0.04473826, y: 0.0000000042972883, z: 1.9244588e-10, w: 0.99899876}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7505,7 +7505,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: -0.0084201405, y: 0.000000017214171, z: 1.4495088e-10, w: 0.9999646}
+  m_LocalRotation: {x: -0.008420161, y: 0.000000017214171, z: 1.4495123e-10, w: 0.9999646}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7740,7 +7740,6 @@ MonoBehaviour:
   edgeList: []
   nodePrefabs:
   - {fileID: 55876477475964143, guid: b1ec4dde621200e43af1988cbce84ec6, type: 3}
-  - {fileID: 7485431124082322297, guid: 1d12e6c7af49b574c8d38d433dd81366, type: 3}
   nodePrefabsCopy: []
   nodeList: []
   portList:

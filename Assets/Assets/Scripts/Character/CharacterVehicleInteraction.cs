@@ -54,6 +54,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
     [SerializeField]
     private float enterDuration = 1.0f;
 
+    private Transform vehicleEnter;
+
 
     void Start()
     {
@@ -133,6 +135,32 @@ public class CharacterVehicleInteraction : MonoBehaviour
             CharacterMovementAnimation.Movement(playerAnim, agent.velocity, maxSpeed);
         }
 
+        //orient position to enter ket
+        if (agent.isActiveAndEnabled)
+        {
+            agent.destination = vehicleEnter.position;
+            if (Vector3.Distance(transform.position, vehicleEnter.position) < 0.01f)
+            {
+                //orient rotation to enter ket
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, vehicleEnter.rotation, rotationSpeed * Time.deltaTime);
+                child.rotation = Quaternion.RotateTowards(child.rotation, vehicleEnter.gameObject.transform.rotation, rotationSpeed * Time.deltaTime);
+                if (transform.rotation == vehicleEnter.rotation && child.rotation == vehicleEnter.rotation)
+                {
+                    if (vehicleEnter.gameObject.name == "Right")
+                    {
+                        playerAnim.SetBool("ket right", true);
+                    }
+                    if (vehicleEnter.gameObject.name == "Left")
+                    {
+                        playerAnim.SetBool("ket left", true);
+                    }
+                    agent.enabled = false;
+                    preOrientEnter = true;
+                }
+            }
+        }
+
+
     }
 
     IEnumerator Wait(float duration)
@@ -170,9 +198,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
             //enable navmesh agent 
             agent.enabled = true;
             preOrientEnter = false;
-
+            enterable = false;
         }
-        enterable = false;
     }
 
     public void Exit(InputAction.CallbackContext context)
@@ -189,39 +216,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ket"))
         {
+            vehicleEnter = other.transform;
             enterable = true;
         }
-    }
-    void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Ket") && !preOrientEnter && !enterable)
-        {
-            //orient position to enter ket
-            if (agent.isActiveAndEnabled)
-            {
-                agent.destination = other.transform.position;
-                if (Vector3.Distance(transform.position, other.transform.position) < 0.01f)
-                {
-                    //orient rotation to enter ket
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, other.gameObject.transform.rotation, rotationSpeed * Time.deltaTime);
-                    child.rotation = Quaternion.RotateTowards(child.rotation, other.gameObject.transform.rotation, rotationSpeed * Time.deltaTime);
-                    if (transform.rotation == other.gameObject.transform.rotation && child.rotation == other.gameObject.transform.rotation)
-                    {
-                        if (other.gameObject.name == "Right")
-                        {
-                            playerAnim.SetBool("ket right", true);
-                        }
-                        if (other.gameObject.name == "Left")
-                        {
-                            playerAnim.SetBool("ket left", true);
-                        }
-                        agent.enabled = false;
-                        preOrientEnter = true;
-                    }
-                }
-            }
-        }
-
     }
 
     private void OnTriggerExit(Collider other)
@@ -231,5 +228,4 @@ public class CharacterVehicleInteraction : MonoBehaviour
             enterable = false;
         }
     }
-
 }

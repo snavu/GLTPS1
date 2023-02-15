@@ -31,7 +31,6 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
 
     private bool isActiveFlag = false;
 
-
     void Start()
     {
         if (generate && nodePrefabs[0] != null)
@@ -42,7 +41,6 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
                 GenerateSceneGeometry(portList[index], index);
             }
         }
-
     }
 
     private void GenerateSceneGeometry(Transform port, int index)

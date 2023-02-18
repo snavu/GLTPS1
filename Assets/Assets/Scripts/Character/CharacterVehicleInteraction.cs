@@ -139,7 +139,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
         if (agent.isActiveAndEnabled)
         {
             agent.destination = vehicleEnter.position;
-            if (Vector3.Distance(transform.position, vehicleEnter.position) < 0.01f)
+            if (Vector3.Distance(transform.position, vehicleEnter.position) < 0.1f)
             {
                 //orient rotation to enter ket
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, vehicleEnter.rotation, rotationSpeed * Time.deltaTime);

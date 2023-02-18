@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 1108202693440647537}
   - component: {fileID: 2919976549672928699}
   - component: {fileID: 1580631989}
+  - component: {fileID: 8575962270270804517}
+  - component: {fileID: 4146726276081342241}
   m_Layer: 0
   m_Name: alleyedge2
   m_TagString: Untagged
@@ -131,6 +133,48 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8576622464093220982, guid: 917cd7c36e13deb4fb254895c32f99fd, type: 3}
+--- !u!114 &8575962270270804517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712421037637788782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c21f1f4e663bd41a758226710a84cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surface: {fileID: 0}
+--- !u!114 &4146726276081342241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712421037637788782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &7594904206541996403
 GameObject:
   m_ObjectHideFlags: 0

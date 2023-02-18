@@ -31,8 +31,11 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
 
     private bool isActiveFlag = false;
 
+    [SerializeField]
+
     void Start()
     {
+        //conditions for generating nodes
         if (generate && nodePrefabs[0] != null)
         {
             for (int index = 0; index < portList.Count; index++)

@@ -53,6 +53,13 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
         }
     }
 
+    float CalculateVelocity()
+    {
+        Vector3 previous;
+        previous = transform.position;
+        float velocity = (transform.position - previous).magnitude / Time.deltaTime;
+        return velocity;
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

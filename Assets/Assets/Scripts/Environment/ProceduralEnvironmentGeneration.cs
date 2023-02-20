@@ -45,6 +45,7 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
             }
         }
     }
+    
 
     private void GenerateSceneGeometry(Transform port, int index)
     {
@@ -62,12 +63,14 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
     {
         //generate edge
         GameObject edge = edgePrefabs[Random.Range(0, edgePrefabs.Count)];
-        //set rotation of edge to extend from direction of port
+
+        //set rotation for calculating offset vector
         edge.transform.rotation = port.rotation;
+
         //calculate offset position
         Vector3 edgeEntranceOffsetPos = CalculateEdgeOffsetPosition(edge);
 
-        GameObject edgeClone = Instantiate(edge, port.transform.position + edgeEntranceOffsetPos, edge.transform.rotation);
+        GameObject edgeClone = Instantiate(edge, port.transform.position + edgeEntranceOffsetPos, port.rotation);
         return edgeClone;
     }
 
@@ -82,11 +85,15 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
         //generate node
         GameObject node = nodePrefabs[Random.Range(0, nodePrefabs.Count)];
         Transform edgeExit = edgeClone.transform.GetChild(1).transform;
-        //set rotation of node to align with direction of edge exit
-        node.transform.rotation = edgeExit.rotation;
+
+        //set rotation for calculating offset vector
+        node.transform.rotation = edgeExit.rotation; 
+
         //calculate offset position
         Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffsetPosition(node);
-        GameObject nodeClone = Instantiate(node, edgeExit.position + nodeEntranceOffsetPos, node.transform.rotation);
+        GameObject nodeClone = Instantiate(node, edgeExit.position + nodeEntranceOffsetPos, edgeExit.rotation);
+
+        //GameObject nodeClone = Instantiate(node, edgeExit.position, edgeExit.rotation);
 
         //trim "(Clone)" from instantiated gamgeobject name for string check to nodePrefabsSubList for preventing collided objects from regenerating
         nodeClone.name = nodeClone.name.Replace("(Clone)", "").Trim();
@@ -97,7 +104,7 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
     private Vector3 CalculateNodeEntranceOffsetPosition(GameObject node)
     {
         Transform nodeEntrance = node.GetComponent<ProceduralEnvironmentGeneration>().portList[0];
-        return (node.transform.position - nodeEntrance.position);
+        return node.transform.position - nodeEntrance.position;
     }
 
     void Update()
@@ -133,15 +140,8 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
                 }
             }
         }
-
-        //if not colliding, set meshes to visible
-        if (!isColliding && !isActiveFlag)
-        {
-            transform.GetChild(0).gameObject.SetActive(true);
-            isActiveFlag = true;
-        }
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Node"))

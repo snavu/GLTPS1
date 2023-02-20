@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
             Quaternion rotationDir = Quaternion.LookRotation(cam);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
         }
-
+    
     }
     public void Jump(InputAction.CallbackContext context)
     {

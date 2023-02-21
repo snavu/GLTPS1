@@ -343,10 +343,9 @@ GameObject:
   - component: {fileID: 5904058153911093837}
   - component: {fileID: 5904058153911093878}
   - component: {fileID: 5904058153911093835}
-  - component: {fileID: 5356052533088141476}
   - component: {fileID: 5904058153911093834}
   - component: {fileID: 5904058153911093833}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NavMeshSceneGeometry
   m_TagString: Node
   m_Icon: {fileID: 0}
@@ -388,10 +387,16 @@ MonoBehaviour:
   - {fileID: 5904058155114218764}
   - {fileID: 5904058155402067626}
   - {fileID: 526587477814619113}
-  portList: []
+  portList:
+  - {fileID: 5904058155114218764}
+  - {fileID: 5904058155402067626}
+  - {fileID: 526587477814619113}
   index: 0
   delay: 0.5
   generate: 1
+  edge: {fileID: 0}
+  isColliding: 0
+  allowCollisionCheck: 1
 --- !u!114 &5904058153911093835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,20 +410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   surface: {fileID: 3356031396807646818}
---- !u!114 &5356052533088141476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5904058153911093832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31d68afe0ab3c8d49a37a19063ad7773, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isColliding: 0
-  allowCollisionCheck: 1
 --- !u!54 &5904058153911093834
 Rigidbody:
   m_ObjectHideFlags: 0

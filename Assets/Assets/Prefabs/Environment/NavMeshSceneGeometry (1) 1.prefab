@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 7532932536852527392}
   - component: {fileID: 7532932536852527393}
   m_Layer: 9
-  m_Name: NavMeshSceneGeometry (1)
+  m_Name: NavMeshSceneGeometry (1) 1
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,6 +275,7 @@ MonoBehaviour:
   - {fileID: 7532932537873774150}
   - {fileID: 7532932536978363880}
   index: 0
+  delay: 0.5
   generate: 0
   edge: {fileID: 0}
   isColliding: 0

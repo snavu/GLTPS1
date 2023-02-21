@@ -10,10 +10,7 @@ public class GenerateNode : MonoBehaviour
     private GameObject nodeClone;
     public List<GameObject> nodeList;
     private int index = 0;
-
-    [SerializeField]
-    private Transform edgeExit;
-    private Vector3 nodeEntranceOffsetPos;
+    public Transform edgeExit;
 
     void Start()
     {
@@ -34,38 +31,21 @@ public class GenerateNode : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         if (nodeClone != null)
         {
-            if (nodeClone.GetComponent<NodeCollisionCheck>().isColliding)
+            if (nodeClone.GetComponent<Node>().isColliding && nodeClone.GetComponent<Node>().portList.Count == 1)
             {
-                //remove previous port from list
-                nodeClone.GetComponent<Node>().portList.RemoveAt(0);
-                
-                if (nodeClone.GetComponent<Node>().portList.Count != 0)
-                {
-                    //recalculate rotation and offset position of node
-                    nodeEntranceOffsetPos = CalculateNodeEntranceOffset(nodeClone);
-                    nodeClone.transform.position = edgeExit.position + nodeEntranceOffsetPos;
-                }
-                else
-                {
-                    //no ports left for which the node will be non-colliding, destroy and remove node from node list
-                    Destroy(nodeClone);
-                    nodeList.RemoveAt(index);
+                //no ports left for which the node will be non-colliding, destroy and remove node from node list
+                Destroy(nodeClone);
+                nodeList.RemoveAt(index);
 
-                    if (nodeList.Count != 0)
-                    {
-                        //regenerate different node from node list
-                        nodeClone = GenerateRandomNode();
-                    }
+                if (nodeList.Count != 0)
+                {
+                    //regenerate different node from node list
+                    nodeClone = GenerateRandomNode();
                 }
-            }
-            else
-            {
-                //node is non-colliding, disable collision detection
-                nodeClone.GetComponent<NodeCollisionCheck>().allowCollisionCheck = false;
             }
         }
     }
@@ -77,13 +57,13 @@ public class GenerateNode : MonoBehaviour
 
         //generate node
         GameObject node = nodeList[index];
-
-        nodeEntranceOffsetPos = CalculateNodeEntranceOffset(node);
+        Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffset(node, edgeExit);
         GameObject nodeClone = Instantiate(node, edgeExit.position + nodeEntranceOffsetPos, node.transform.rotation);
+        nodeClone.GetComponent<Node>().edge = GetComponent<GenerateNode>();
         return nodeClone;
     }
 
-    private Vector3 CalculateNodeEntranceOffset(GameObject node)
+    public static Vector3 CalculateNodeEntranceOffset(GameObject node, Transform edgeExit)
     {
         //rotate node to point in direction of edge exit, and add opposite local angle of port as global angle to node angle 
         Quaternion mirrorRotation = edgeExit.rotation * Quaternion.Euler(0, 180, 0);

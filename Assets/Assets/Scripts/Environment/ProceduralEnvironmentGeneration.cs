@@ -70,8 +70,8 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
         //calculate offset position
         Vector3 edgeEntranceOffsetPos = CalculateEdgeOffsetPosition(edge);
 
-        GameObject edgeClone = Instantiate(edge, port.transform.position + edgeEntranceOffsetPos, port.rotation);
-        return edgeClone;
+        GameObject newEdge = Instantiate(edge, port.transform.position + edgeEntranceOffsetPos, port.rotation);
+        return newEdge;
     }
 
     private Vector3 CalculateEdgeOffsetPosition(GameObject edge)
@@ -80,25 +80,25 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
         return edge.transform.position - edgeEntrance.position;
     }
 
-    private GameObject GenerateRandomNode(List<GameObject> nodePrefabs, GameObject edgeClone, int index)
+    private GameObject GenerateRandomNode(List<GameObject> nodePrefabs, GameObject newEdge, int index)
     {
         //generate node
         GameObject node = nodePrefabs[Random.Range(0, nodePrefabs.Count)];
-        Transform edgeExit = edgeClone.transform.GetChild(1).transform;
+        Transform edgeExit = newEdge.transform.GetChild(1).transform;
 
         //set rotation for calculating offset vector
         node.transform.rotation = edgeExit.rotation; 
 
         //calculate offset position
         Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffsetPosition(node);
-        GameObject nodeClone = Instantiate(node, edgeExit.position + nodeEntranceOffsetPos, edgeExit.rotation);
+        GameObject newNode = Instantiate(node, edgeExit.position + nodeEntranceOffsetPos, edgeExit.rotation);
 
-        //GameObject nodeClone = Instantiate(node, edgeExit.position, edgeExit.rotation);
+        //GameObject newNode = Instantiate(node, edgeExit.position, edgeExit.rotation);
 
         //trim "(Clone)" from instantiated gamgeobject name for string check to nodePrefabsSubList for preventing collided objects from regenerating
-        nodeClone.name = nodeClone.name.Replace("(Clone)", "").Trim();
+        newNode.name = newNode.name.Replace("(Clone)", "").Trim();
 
-        return nodeClone;
+        return newNode;
     }
 
     private Vector3 CalculateNodeEntranceOffsetPosition(GameObject node)

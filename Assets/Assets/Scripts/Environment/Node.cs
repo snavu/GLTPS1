@@ -17,7 +17,6 @@ public class Node : MonoBehaviour
     private bool isActive = false;
 
     public bool allowCollisionCheck = true;
-    private bool checkCollisionInvoked = false;
 
     void Start()
     {

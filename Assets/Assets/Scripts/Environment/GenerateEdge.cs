@@ -7,11 +7,10 @@ public class GenerateEdge : MonoBehaviour
     [SerializeField]
     private List<GameObject> edgePrefabs;
     [SerializeField]
-    private GameObject edgeClone;
+    private GameObject newEdge;
     [SerializeField]
     private List<GameObject> edgeList;
     private int index = 0;
-
     [SerializeField]
     private List<GameObject> barrierPrefabs;
 
@@ -27,24 +26,24 @@ public class GenerateEdge : MonoBehaviour
         if (edgeList.Count != 0)
         {
             //regenerate different edge from edge lsit
-            edgeClone = GenerateRandomEdge();
+            newEdge = GenerateRandomEdge();
         }
     }
 
     void Update()
     {
-        if (edgeClone != null)
+        if (newEdge != null)
         {
-            if (edgeClone.GetComponent<GenerateNode>().nodeList.Count == 0)
+            if (newEdge.GetComponent<GenerateNode>().isColliding || newEdge.GetComponent<GenerateNode>().nodeList.Count == 0)
             {
                 //no nodes left for which a node will be non-colliding, destroy and remove the edge from edge list
-                Destroy(edgeClone);
+                Destroy(newEdge);
                 edgeList.RemoveAt(index);
 
                 if (edgeList.Count != 0)
                 {
                     //regenerate different edge from edge lsit
-                    edgeClone = GenerateRandomEdge();
+                    newEdge = GenerateRandomEdge();
                 }
             }
         }
@@ -64,16 +63,15 @@ public class GenerateEdge : MonoBehaviour
         index = Random.Range(0, edgeList.Count);
         //generate edge
         GameObject edge = edgeList[index];
-
         //set rotation for calculating offset vector
         edge.transform.rotation = transform.rotation;
 
         //calculate offset position
-        Transform edgeEntrance = edge.transform.GetChild(0).transform;
+        Transform edgeEntrance = edge.transform.GetChild(1).transform;
         Vector3 edgeEntranceOffsetPos = edge.transform.position - edgeEntrance.position;
 
-        GameObject edgeClone = Instantiate(edge, transform.position + edgeEntranceOffsetPos, transform.rotation);
-        return edgeClone;
+        GameObject newEdge = Instantiate(edge, transform.position + edgeEntranceOffsetPos, transform.rotation);
+        return newEdge;
     }
 
     private GameObject GenerateRandomBarrier()

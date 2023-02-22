@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodePrefabs:
-  - {fileID: 7532932536852527394, guid: 30478f5f782f7614f86b754ab3aa5a5b, type: 3}
+  - {fileID: 826479483586718479, guid: 413cf97e1e69ead4e8d2cae64faaa44c, type: 3}
   newNode: {fileID: 0}
   nodeList: []
   edgeExit: {fileID: 642467320977384512}

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
+[ExecuteInEditMode]
 public class GenerateEdge : MonoBehaviour
 {
     [SerializeField]
@@ -27,6 +29,7 @@ public class GenerateEdge : MonoBehaviour
         {
             //regenerate different edge from edge lsit
             newEdge = GenerateRandomEdge();
+
         }
     }
 
@@ -71,6 +74,9 @@ public class GenerateEdge : MonoBehaviour
         Vector3 edgeEntranceOffsetPos = edge.transform.position - edgeEntrance.position;
 
         GameObject newEdge = Instantiate(edge, transform.position + edgeEntranceOffsetPos, transform.rotation);
+        Selection.activeObject = newEdge;
+        Debug.Log("Instantiate: " + newEdge);
+
         return newEdge;
     }
 

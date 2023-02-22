@@ -48,7 +48,7 @@ public class Node : MonoBehaviour
     {
         //wait for OnTrigger callbacks
         yield return waitForFixedUpdate;
-        
+
         //check if not colliding, set mesh active and disable collision checking
         if (!isColliding && !isActive)
         {

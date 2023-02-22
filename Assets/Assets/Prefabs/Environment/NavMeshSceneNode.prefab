@@ -483,8 +483,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edgePrefabs:
-  - {fileID: 3036595935919045, guid: 143f87b6a52085a4e9c44175c679501b, type: 3}
-  edgeClone: {fileID: 0}
+  - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
+  newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs: []
 --- !u!1 &5904058155402067625
@@ -532,8 +532,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edgePrefabs:
-  - {fileID: 3036595935919045, guid: 143f87b6a52085a4e9c44175c679501b, type: 3}
-  edgeClone: {fileID: 0}
+  - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
+  newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs: []
 --- !u!1 &6714308827086406770
@@ -836,7 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edgePrefabs:
-  - {fileID: 3036595935919045, guid: 143f87b6a52085a4e9c44175c679501b, type: 3}
-  edgeClone: {fileID: 0}
+  - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
+  newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs: []

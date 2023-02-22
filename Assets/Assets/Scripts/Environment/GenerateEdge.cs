@@ -74,7 +74,6 @@ public class GenerateEdge : MonoBehaviour
         Vector3 edgeEntranceOffsetPos = edge.transform.position - edgeEntrance.position;
 
         GameObject newEdge = Instantiate(edge, transform.position + edgeEntranceOffsetPos, transform.rotation);
-        Selection.activeObject = newEdge;
         Debug.Log("Instantiate: " + newEdge);
 
         return newEdge;

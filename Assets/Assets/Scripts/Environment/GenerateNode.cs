@@ -88,12 +88,15 @@ public class GenerateNode : MonoBehaviour
 
     public static Vector3 CalculateNodeEntranceOffset(GameObject node, Transform edgeExit)
     {
+        //randomize port selection
+        int index = Random.Range(0, node.GetComponent<Node>().portList.Count);
+
         //rotate node to point in direction of edge exit, and add opposite local angle of port as global angle to node angle 
         Quaternion mirrorRotation = edgeExit.rotation * Quaternion.Euler(0, 180, 0);
-        node.transform.rotation = mirrorRotation * Quaternion.Inverse(node.GetComponent<Node>().portList[0].localRotation);
+        node.transform.rotation = mirrorRotation * Quaternion.Inverse(node.GetComponent<Node>().portList[index].localRotation);
 
         //calculate offset position 
-        return node.transform.position - node.GetComponent<Node>().portList[0].position;
+        return node.transform.position - node.GetComponent<Node>().portList[index].position;
     }
 
     private void OnTriggerStay(Collider other)

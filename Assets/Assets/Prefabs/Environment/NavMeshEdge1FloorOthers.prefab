@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 4744169615578792919}
   - component: {fileID: 4827415456948154862}
   - component: {fileID: 5533456082257225490}
-  - component: {fileID: 4923666999779876188}
-  - component: {fileID: 2893253554047469286}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -101,48 +99,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -629719859055844128, guid: 8bc8174dd71342d4f8ac8dde6dd7742c, type: 3}
---- !u!114 &4923666999779876188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436013654511104937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 2
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
---- !u!114 &2893253554047469286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436013654511104937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c21f1f4e663bd41a758226710a84cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  surface: {fileID: 4923666999779876188}
 --- !u!1 &4515912586455456545
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +125,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4515912586455456545}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.0000014305114}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -194,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodePrefabs:
   - {fileID: 826479483586718479, guid: 413cf97e1e69ead4e8d2cae64faaa44c, type: 3}
+  - {fileID: 3934203836255286974, guid: b629163e9641e00498af605eb102e484, type: 3}
   newNode: {fileID: 0}
   nodeList: []
   edgeExit: {fileID: 8186173595295890563}

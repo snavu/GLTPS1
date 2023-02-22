@@ -44,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private LayerMask layerMask = 7;
 
+    private Vector3 sphereCastPosition;
+
 
     void Awake()
     {
@@ -52,7 +54,9 @@ public class PlayerMovement : MonoBehaviour
         actions = new InputActions();
         actions.Player.Enable();
         actions.Player.Jump.performed += Jump;
-        
+
+        //align spherecast at bottom of collider, minus small constant to extrude vertically down, and scale position inversely proportional to controller skin width 
+        sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.01f, 0);
     }
 
     void Update()
@@ -61,12 +65,9 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = actions.Player.Move.ReadValue<Vector2>();
         horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
 
-        RaycastHit hit;
-        //align spherecast at bottom of collider, minus small constant to extrude vertically down, and scale position inversely proportional to controller skin width 
-        Vector3 sphereCastPosition = new Vector3 (0, controller.radius - controller.skinWidth - 0.01f, 0);
         //check ground collision
         isGrounded = Physics.CheckSphere(transform.position + sphereCastPosition, controller.radius, layerMask, QueryTriggerInteraction.Ignore);
-        
+
         //apply gravity
         if (isGrounded && verticalMovement < 0)
         {
@@ -110,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
             Quaternion rotationDir = Quaternion.LookRotation(cam);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
         }
-    
+
     }
     public void Jump(InputAction.CallbackContext context)
     {

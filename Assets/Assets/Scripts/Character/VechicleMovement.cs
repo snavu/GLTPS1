@@ -22,12 +22,22 @@ public class VechicleMovement : MonoBehaviour
     private Animator anim;
 
     [SerializeField]
-    private float angleLimitX;
+    private bool isGrounded;
     [SerializeField]
-    private float angleLimitZ;
+    private Vector3 boxCastHalfExtents;
+    [SerializeField]
+    private Vector3 boxCastOffset;
+
+    LayerMask layerMask;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        //layerMask ignore player, vehicle, and ai
+        layerMask = 1 << 6 | 1 << 7 | 1 << 8;
+        layerMask = ~layerMask;
+
     }
 
     void Update()
@@ -40,8 +50,10 @@ public class VechicleMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+        isGrounded = Physics.CheckBox(transform.position + boxCastOffset, boxCastHalfExtents, transform.rotation, layerMask, QueryTriggerInteraction.Ignore);
+
         //move
-        if (Mathf.Abs(movement.y) > 0 && Mathf.Abs(transform.rotation.x) < angleLimitX && Mathf.Abs(transform.rotation.z) < angleLimitZ)
+        if (Mathf.Abs(movement.y) > 0 && isGrounded)
         {
             rb.AddForce(movement.y * transform.forward * force * Time.fixedDeltaTime, ForceMode.Force);
 
@@ -76,4 +88,9 @@ public class VechicleMovement : MonoBehaviour
         anim.SetFloat("velocityZ", scaledVelocityXZ);
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireCube(transform.position + boxCastOffset, boxCastHalfExtents * 2);
+    }
 }

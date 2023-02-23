@@ -8,8 +8,8 @@ public class VehicleFuelManager : MonoBehaviour
     private PlayerMovement playerMovementScript;
     [SerializeField]
     private Vector2 movement;
-    [SerializeField]
-    private float fuel;
+    public float maxFuel;
+    public float currentFuel;
     [SerializeField]
     private float defaultFuelConsumptionRate;
     [SerializeField]
@@ -28,7 +28,11 @@ public class VehicleFuelManager : MonoBehaviour
 
         if (Mathf.Abs(movement.y) > 0)
         {
-            fuel -= defaultFuelConsumptionRate * Time.deltaTime;
+            if (playerMovementScript.actions.Vehicle.Accelerate.IsPressed())
+            {
+                currentFuel -= increasedFuelConsumptionRate * Time.deltaTime;
+            }
+            currentFuel -= defaultFuelConsumptionRate * Time.deltaTime;
         }
     }
 }

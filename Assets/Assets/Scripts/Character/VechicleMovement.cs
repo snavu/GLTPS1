@@ -12,9 +12,9 @@ public class VechicleMovement : MonoBehaviour
     private Vector2 movement;
 
     [SerializeField]
-    private float currentSpeed;
+    private float currentMovementRate;
     [SerializeField]
-    private float increasedSpeed;
+    private float increasedMovementRate;
     [SerializeField]
     private float force;
     [SerializeField]
@@ -37,9 +37,13 @@ public class VechicleMovement : MonoBehaviour
 
     LayerMask layerMask;
 
+    [SerializeField]
+    VehicleFuelManager vehicleFuelManagerScript;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        vehicleFuelManagerScript = GetComponent<VehicleFuelManager>();
 
         //layerMask ignore player, vehicle, and ai
         layerMask = 1 << 6 | 1 << 7 | 1 << 8;
@@ -50,17 +54,17 @@ public class VechicleMovement : MonoBehaviour
     {
         //get input
         movement = playerMovementScript.actions.Vehicle.Drive.ReadValue<Vector2>();
+
         //set speed
         if (playerMovementScript.actions.Vehicle.Accelerate.IsPressed())
         {
-            currentSpeed = increasedSpeed;
+            currentMovementRate = increasedMovementRate;
         }
         else
         {
-            currentSpeed = 1;
+            currentMovementRate = 1;
         }
-        scaledMaxVelocity = maxVelocity * currentSpeed;
-
+        
         //set movement aniamtion
         MovementAnim();
     }
@@ -69,9 +73,9 @@ public class VechicleMovement : MonoBehaviour
         isGrounded = Physics.CheckBox(transform.position + boxCastOffset, boxCastHalfExtents, transform.rotation, layerMask, QueryTriggerInteraction.Ignore);
 
         //move
-        if (Mathf.Abs(movement.y) > 0 && isGrounded)
+        if (Mathf.Abs(movement.y) > 0 && isGrounded && vehicleFuelManagerScript.currentFuel > 0)
         {
-            rb.AddForce(movement.y * transform.forward * force * currentSpeed * Time.fixedDeltaTime, ForceMode.Force);
+            rb.AddForce(movement.y * transform.forward * force * currentMovementRate * Time.fixedDeltaTime, ForceMode.Force);
 
             //rotate
             if (Mathf.Abs(movement.x) > 0)

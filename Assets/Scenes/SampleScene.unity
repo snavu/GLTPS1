@@ -225,7 +225,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135867288}
-  m_LocalRotation: {x: -0.022759419, y: -0.01042513, z: -0.00023734427, w: 0.9996866}
+  m_LocalRotation: {x: -0.022840364, y: -0.010425091, z: -0.00023818797, w: 0.99968475}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.5, z: -8.748407}
+  m_FollowOffset: {x: 0, y: 2.5, z: -8.596158}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.5, z: -8.748407}
+  m_FollowOffset: {x: 0, y: 2.5, z: -8.596158}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -665,8 +665,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.02275942, y: -0.010425148, z: -0.0002373447, w: 0.9996866}
-  m_LocalPosition: {x: -2.7175565, y: 1.33, z: -122.29651}
+  m_LocalRotation: {x: -0.022840368, y: -0.010425074, z: -0.0002381876, w: 0.99968475}
+  m_LocalPosition: {x: -2.7207313, y: 1.33, z: -122.144295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1008,11 +1008,11 @@ MonoBehaviour:
   m_SplineCurvature: 1
   m_Orbits:
   - m_Height: 6.91
-    m_Radius: 8.75
+    m_Radius: 8.790627
   - m_Height: 2.5
-    m_Radius: 8.748407
+    m_Radius: 8.596158
   - m_Height: 0.4
-    m_Radius: 8.76299
+    m_Radius: 8.863146
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 2082827652}
@@ -1026,7 +1026,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626363629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.7175565, y: 1.33, z: -122.29651}
+  m_LocalPosition: {x: -2.7207313, y: 1.33, z: -122.144295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1620,7 +1620,7 @@ MonoBehaviour:
   controller: {fileID: 1179579386}
   child: {fileID: 868928912622174518}
   isGrounded: 0
-  speed: 0
+  currentSpeed: 0
   walkSpeed: 2
   runSpeed: 4
   sprint: 0
@@ -2062,7 +2062,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244749583}
-  m_LocalRotation: {x: -0.040891442, y: -0.01041909, z: -0.00042643142, w: 0.9991092}
+  m_LocalRotation: {x: -0.04097234, y: -0.010419057, z: -0.00042727517, w: 0.99910593}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2125,6 +2125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1419417138}
   - component: {fileID: 1419417141}
+  - component: {fileID: 1419417153}
   - component: {fileID: 1419417142}
   - component: {fileID: 1419417143}
   - component: {fileID: 1419417147}
@@ -2193,16 +2194,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovementScript: {fileID: 1179579384}
   movement: {x: 0, y: 0}
-  speed: 0
-  increasedSpeed: 1.1
-  force: 9000
-  maxVelocity: 10
+  currentMovementRate: 0
+  increasedMovementRate: 1.4
+  force: 7400
+  maxVelocity: 8
   torque: 12000
   maxAngularVelocity: 0.5
   anim: {fileID: 491373355}
-  isGrounded: 0
+  isGrounded: 1
   boxCastHalfExtents: {x: 0.34, y: 0.83, z: 0.66}
   boxCastOffset: {x: 0, y: 0, z: -0.81}
+  vehicleFuelManagerScript: {fileID: 0}
 --- !u!65 &1419417142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2405,6 +2407,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df82625b8f553e94897644846795a905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1419417153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419417136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4159fa2de27316648a8e7b60557198fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovementScript: {fileID: 1179579384}
+  movement: {x: 0, y: 0}
+  maxFuel: 100
+  currentFuel: 30
+  defaultFuelConsumptionRate: 1
+  increasedFuelConsumptionRate: 2
 --- !u!95 &1690254641
 Animator:
   serializedVersion: 5
@@ -7544,7 +7564,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: -0.0045718728, y: -0.010427687, z: -0.00004767715, w: 0.9999352}
+  m_LocalRotation: {x: -0.0046528317, y: -0.010427716, z: -0.000048521568, w: 0.99993485}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7672,7 +7692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.5, z: -8.748407}
+  m_FollowOffset: {x: 0, y: 2.5, z: -8.596158}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1

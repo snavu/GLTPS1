@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class VechicleMovement : MonoBehaviour
+public class VehicleMovement : MonoBehaviour
 {
     [SerializeField]
     private PlayerMovement playerMovementScript;
@@ -64,6 +64,7 @@ public class VechicleMovement : MonoBehaviour
         {
             currentMovementRate = 1;
         }
+        scaledMaxVelocity = maxVelocity * currentMovementRate;
         
         //set movement aniamtion
         MovementAnim();
@@ -76,7 +77,7 @@ public class VechicleMovement : MonoBehaviour
         if (Mathf.Abs(movement.y) > 0 && isGrounded && vehicleFuelManagerScript.currentFuel > 0)
         {
             rb.AddForce(movement.y * transform.forward * force * currentMovementRate * Time.fixedDeltaTime, ForceMode.Force);
-
+            
             //rotate
             if (Mathf.Abs(movement.x) > 0)
             {

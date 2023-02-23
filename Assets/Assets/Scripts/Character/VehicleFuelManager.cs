@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class VehicleFuelManager : MonoBehaviour
 {
     [SerializeField]
@@ -15,9 +15,13 @@ public class VehicleFuelManager : MonoBehaviour
     [SerializeField]
     private float increasedFuelConsumptionRate;
 
+    [SerializeField]
+    private RectTransform fuelBar;
+    private float rectTransformInitialHeight;
+
     void Start()
     {
-
+        rectTransformInitialHeight = fuelBar.sizeDelta.y;
     }
 
     // Update is called once per frame
@@ -34,5 +38,8 @@ public class VehicleFuelManager : MonoBehaviour
             }
             currentFuel -= defaultFuelConsumptionRate * Time.deltaTime;
         }
+        //scale fuel bar directly proportionally to current fuel level
+        fuelBar.sizeDelta = new Vector2(fuelBar.sizeDelta.x,  rectTransformInitialHeight * (currentFuel / maxFuel));
+    
     }
 }

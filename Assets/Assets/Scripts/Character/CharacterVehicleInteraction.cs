@@ -67,6 +67,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
         playerMovementScript = GetComponent<PlayerMovement>();
         playerMovementScript.actions.Player.Interact.performed += Interact;
         playerMovementScript.actions.Vehicle.Exit.performed += Exit;
+
     }
 
     void Update()

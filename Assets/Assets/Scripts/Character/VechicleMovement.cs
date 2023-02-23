@@ -10,10 +10,17 @@ public class VechicleMovement : MonoBehaviour
     private Rigidbody rb;
     [SerializeField]
     private Vector2 movement;
+
+    [SerializeField]
+    private float currentSpeed;
+    [SerializeField]
+    private float increasedSpeed;
     [SerializeField]
     private float force;
     [SerializeField]
     private float maxVelocity;
+
+    private float scaledMaxVelocity;
     [SerializeField]
     private float torque;
     [SerializeField]
@@ -30,20 +37,29 @@ public class VechicleMovement : MonoBehaviour
 
     LayerMask layerMask;
 
-    void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
 
         //layerMask ignore player, vehicle, and ai
         layerMask = 1 << 6 | 1 << 7 | 1 << 8;
         layerMask = ~layerMask;
-
     }
 
     void Update()
     {
         //get input
         movement = playerMovementScript.actions.Vehicle.Drive.ReadValue<Vector2>();
+        //set speed
+        if (playerMovementScript.actions.Vehicle.Accelerate.IsPressed())
+        {
+            currentSpeed = increasedSpeed;
+        }
+        else
+        {
+            currentSpeed = 1;
+        }
+        scaledMaxVelocity = maxVelocity * currentSpeed;
 
         //set movement aniamtion
         MovementAnim();
@@ -55,7 +71,7 @@ public class VechicleMovement : MonoBehaviour
         //move
         if (Mathf.Abs(movement.y) > 0 && isGrounded)
         {
-            rb.AddForce(movement.y * transform.forward * force * Time.fixedDeltaTime, ForceMode.Force);
+            rb.AddForce(movement.y * transform.forward * force * currentSpeed * Time.fixedDeltaTime, ForceMode.Force);
 
             //rotate
             if (Mathf.Abs(movement.x) > 0)
@@ -71,7 +87,7 @@ public class VechicleMovement : MonoBehaviour
             }
         }
         //clamp velocity and angular velocity
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, scaledMaxVelocity);
         rb.angularVelocity = Vector3.ClampMagnitude(rb.angularVelocity, maxAngularVelocity);
     }
 

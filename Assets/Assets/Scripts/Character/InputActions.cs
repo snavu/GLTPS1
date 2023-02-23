@@ -306,6 +306,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Accelerate"",
+                    ""type"": ""Button"",
+                    ""id"": ""0ac0a263-3b4f-4ea9-85d7-d13cd97382c5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -438,6 +447,28 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0583917c-bab3-4af6-b415-437d38a8ddf0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Accelerate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aba06d01-2e2d-4be3-a219-cdb437e0b67a"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Accelerate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1034,6 +1065,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Vehicle = asset.FindActionMap("Vehicle", throwIfNotFound: true);
         m_Vehicle_Drive = m_Vehicle.FindAction("Drive", throwIfNotFound: true);
         m_Vehicle_Exit = m_Vehicle.FindAction("Exit", throwIfNotFound: true);
+        m_Vehicle_Accelerate = m_Vehicle.FindAction("Accelerate", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1172,12 +1204,14 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private IVehicleActions m_VehicleActionsCallbackInterface;
     private readonly InputAction m_Vehicle_Drive;
     private readonly InputAction m_Vehicle_Exit;
+    private readonly InputAction m_Vehicle_Accelerate;
     public struct VehicleActions
     {
         private @InputActions m_Wrapper;
         public VehicleActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Drive => m_Wrapper.m_Vehicle_Drive;
         public InputAction @Exit => m_Wrapper.m_Vehicle_Exit;
+        public InputAction @Accelerate => m_Wrapper.m_Vehicle_Accelerate;
         public InputActionMap Get() { return m_Wrapper.m_Vehicle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1193,6 +1227,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Exit.started -= m_Wrapper.m_VehicleActionsCallbackInterface.OnExit;
                 @Exit.performed -= m_Wrapper.m_VehicleActionsCallbackInterface.OnExit;
                 @Exit.canceled -= m_Wrapper.m_VehicleActionsCallbackInterface.OnExit;
+                @Accelerate.started -= m_Wrapper.m_VehicleActionsCallbackInterface.OnAccelerate;
+                @Accelerate.performed -= m_Wrapper.m_VehicleActionsCallbackInterface.OnAccelerate;
+                @Accelerate.canceled -= m_Wrapper.m_VehicleActionsCallbackInterface.OnAccelerate;
             }
             m_Wrapper.m_VehicleActionsCallbackInterface = instance;
             if (instance != null)
@@ -1203,6 +1240,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Exit.started += instance.OnExit;
                 @Exit.performed += instance.OnExit;
                 @Exit.canceled += instance.OnExit;
+                @Accelerate.started += instance.OnAccelerate;
+                @Accelerate.performed += instance.OnAccelerate;
+                @Accelerate.canceled += instance.OnAccelerate;
             }
         }
     }
@@ -1369,6 +1409,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     {
         void OnDrive(InputAction.CallbackContext context);
         void OnExit(InputAction.CallbackContext context);
+        void OnAccelerate(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

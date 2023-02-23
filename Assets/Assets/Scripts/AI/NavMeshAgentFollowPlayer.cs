@@ -35,12 +35,12 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
             }
 
             //set agent speed to player walk speed
-            if (Mathf.Approximately(playerMovementScript.speed, playerMovementScript.walkSpeed) && distance < radius)
+            if (Mathf.Approximately(playerMovementScript.currentSpeed, playerMovementScript.walkSpeed) && distance < radius)
             {
                 agent.speed = playerMovementScript.walkSpeed;
             }
             //set agent speed to player run speed
-            if (Mathf.Approximately(playerMovementScript.speed, playerMovementScript.runSpeed) || distance > radius + 0.5f)
+            if (Mathf.Approximately(playerMovementScript.currentSpeed, playerMovementScript.runSpeed) || distance > radius + 0.5f)
             {
                 agent.speed = playerMovementScript.runSpeed;
             }

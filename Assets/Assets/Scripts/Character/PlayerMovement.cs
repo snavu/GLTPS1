@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private bool isGrounded;
-    public float speed;
+    public float currentSpeed;
     public float walkSpeed = 2.0f;
     public float runSpeed = 4.0f;
     [SerializeField]
@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float smoothInputSpeed = 0.2f;
 
-    [SerializeField]
     private LayerMask layerMask = 7;
 
     private Vector3 sphereCastPosition;
@@ -81,14 +80,14 @@ public class PlayerMovement : MonoBehaviour
         //lerp speed values for blending walk/run animation states
         if (actions.Player.Sprint.ReadValue<float>() > 0)
         {
-            speed = Mathf.Lerp(speed, runSpeed, 10.0f * Time.deltaTime);
+            currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, 10.0f * Time.deltaTime);
         }
         else
         {
-            speed = Mathf.Lerp(speed, walkSpeed, 10.0f * Time.deltaTime);
+            currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, 10.0f * Time.deltaTime);
         }
 
-        velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * speed;
+        velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed;
         velocityXZ = transform.TransformDirection(velocityXZ);
         velocityY = new Vector3(0, verticalMovement, 0);
 

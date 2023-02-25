@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.unity.2d.pixel-perfect": {
-      "version": "5.0.3",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
     "com.unity.ai.navigation": {
       "version": "1.1.1",
       "depth": 0,

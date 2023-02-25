@@ -11,6 +11,6 @@ public class PlayerCompass : MonoBehaviour
 
     void Update()
     {
-        compass.rotation =  Quaternion.Euler(0,0,camera.eulerAngles.y);
+        compass.localRotation =  Quaternion.Euler(0,0,camera.eulerAngles.y);
     }
 }

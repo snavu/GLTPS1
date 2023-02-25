@@ -9,13 +9,15 @@ public class GenerateNode : MonoBehaviour
     [SerializeField]
     private GameObject newNode;
     public List<GameObject> nodeList;
-    private int index = 0;
+    private int nodeIndex = 0;
     public Transform edgeExit;
 
 
     public bool isColliding = false;
     private bool isActive = false;
     public bool allowCollisionCheck = true;
+    public int portIndex = 0;
+
 
     void Start()
     {
@@ -37,7 +39,7 @@ public class GenerateNode : MonoBehaviour
             {
                 //no ports left for which the node will be non-colliding, destroy and remove node from node list
                 Destroy(newNode);
-                nodeList.RemoveAt(index);
+                nodeList.RemoveAt(nodeIndex);
 
                 if (nodeList.Count != 0)
                 {
@@ -60,7 +62,7 @@ public class GenerateNode : MonoBehaviour
             isActive = true;
             allowCollisionCheck = false;
 
-            //generate first random edge
+            //regenerate node
             if (nodeList.Count != 0)
             {
                 newNode = GenerateRandomNode();
@@ -75,28 +77,30 @@ public class GenerateNode : MonoBehaviour
 
     private GameObject GenerateRandomNode()
     {
-        //store index
-        index = Random.Range(0, nodeList.Count);
-
+        //store node selection
+        nodeIndex = Random.Range(0, nodeList.Count);
         //generate node
-        GameObject node = nodeList[index];
-        Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffset(node, edgeExit);
+        GameObject node = nodeList[nodeIndex];
+
+        //store port selection
+        portIndex = Random.Range(0, node.GetComponent<Node>().portList.Count);
+
+        Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffset(node, portIndex, edgeExit);
         GameObject newNode = Instantiate(node, edgeExit.position + nodeEntranceOffsetPos, node.transform.rotation);
         newNode.GetComponent<Node>().edge = GetComponent<GenerateNode>();
+
         return newNode;
     }
 
-    public static Vector3 CalculateNodeEntranceOffset(GameObject node, Transform edgeExit)
+    public static Vector3 CalculateNodeEntranceOffset(GameObject node, int portIndex, Transform edgeExit)
     {
-        //randomize port selection
-        int index = Random.Range(0, node.GetComponent<Node>().portList.Count);
 
         //rotate node to point in direction of edge exit, and add opposite local angle of port as global angle to node angle 
         Quaternion mirrorRotation = edgeExit.rotation * Quaternion.Euler(0, 180, 0);
-        node.transform.rotation = mirrorRotation * Quaternion.Inverse(node.GetComponent<Node>().portList[index].localRotation);
+        node.transform.rotation = mirrorRotation * Quaternion.Inverse(node.GetComponent<Node>().portList[portIndex].localRotation);
 
         //calculate offset position 
-        return node.transform.position - node.GetComponent<Node>().portList[index].position;
+        return node.transform.position - node.GetComponent<Node>().portList[portIndex].position;
     }
 
     private void OnTriggerStay(Collider other)

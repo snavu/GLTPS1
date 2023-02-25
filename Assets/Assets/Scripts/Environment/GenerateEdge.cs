@@ -52,8 +52,8 @@ public class GenerateEdge : MonoBehaviour
         }
         else
         {
-            //no edges left in edge list, generate barrier at port
-            if (barrierPrefabs.Count != 0)
+            //no edges left in edge list and the port at which the node spawned at is not the same port as this one, generate barrier 
+            if (edgeList.Count == 0 &&  GetComponentInParent<Node>().portList[GetComponentInParent<Node>().edge.portIndex].name != gameObject.name)
             {
                 GenerateRandomBarrier();
             }

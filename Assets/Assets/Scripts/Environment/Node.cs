@@ -15,9 +15,7 @@ public class Node : MonoBehaviour
 
     public bool isColliding = true;
     private bool isActive = false;
-
     public bool allowCollisionCheck = true;
-
     void Start()
     {
         //generate edge at each port
@@ -29,7 +27,7 @@ public class Node : MonoBehaviour
     }
 
     //cache yield instructions
-    WaitForSeconds waitForSeconds = new WaitForSeconds(0.5f);
+    WaitForSeconds waitForSeconds = new WaitForSeconds(0.25f);
     WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
 
     IEnumerator GenerateSceneGeometry()
@@ -76,11 +74,14 @@ public class Node : MonoBehaviour
     {
         if (portList.Count > 1)
         {
-            //remove previous port from list
-            portList.RemoveAt(0);
+            //remove port from list
+            portList.RemoveAt(edge.portIndex);
+
+            //store new port selection
+            edge.portIndex = Random.Range(0, GetComponent<Node>().portList.Count);
 
             //recalculate rotation and offset position of node
-            Vector3 nodeEntranceOffsetPos = GenerateNode.CalculateNodeEntranceOffset(gameObject, edge.edgeExit);
+            Vector3 nodeEntranceOffsetPos = GenerateNode.CalculateNodeEntranceOffset(gameObject, edge.portIndex, edge.edgeExit);
             transform.position = edge.edgeExit.position + nodeEntranceOffsetPos;
         }
     }

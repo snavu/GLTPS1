@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Animations;
 
 public class CharacterItemInteraction : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class CharacterItemInteraction : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private bool isPickupable;
+
+    [SerializeField]
+    private ParentConstraint barrel;
 
     void Start()
     {
@@ -28,8 +32,8 @@ public class CharacterItemInteraction : MonoBehaviour
     {
         if (context.performed && isPickupable)
         {
-            Debug.Log(true);
-
+            Physics.IgnoreLayerCollision(7, 10, true);
+            barrel.constraintActive = true;
             anim.SetBool("carry", true);
         }
     }
@@ -38,8 +42,8 @@ public class CharacterItemInteraction : MonoBehaviour
 
         if (context.performed && anim.GetCurrentAnimatorStateInfo(2).IsTag("carry"))
         {
-            Debug.Log(true);
-
+            Physics.IgnoreLayerCollision(7, 10, false);
+            barrel.constraintActive = false;
             anim.SetBool("carry", false);
         }
     }

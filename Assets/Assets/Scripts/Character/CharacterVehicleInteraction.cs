@@ -108,7 +108,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             }
             else
             {
-                StartCoroutine(Wait(exitDuration));
+                StartCoroutine(DelayExit(exitDuration));
             }
 
             if (transform.position != vehicleLeftExit.position && exitLeft)
@@ -118,7 +118,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             }
             else
             {
-                StartCoroutine(Wait(exitDuration));
+                StartCoroutine(DelayExit(exitDuration));
             }
         }
 
@@ -163,7 +163,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     }
 
-    IEnumerator Wait(float duration)
+    IEnumerator DelayExit(float duration)
     {
         yield return new WaitForSeconds(duration);
         Physics.IgnoreLayerCollision(6, 7, false);
@@ -173,6 +173,11 @@ public class CharacterVehicleInteraction : MonoBehaviour
         exitLeft = false;
         exitRight = false;
         elapsed = 0f;
+    }
+
+    IEnumerator DelayEnter(){
+        yield return new WaitForSeconds(0.1f);
+        agent.enabled = true;
     }
 
     private void ChangeCameraRigRadius(float top, float middle, float bottom)
@@ -201,7 +206,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             controller.enabled = false;
             //enable navmesh agent 
             GetComponent<NavMeshObstacle>().enabled = false;
-            agent.enabled = true;
+            StartCoroutine(DelayEnter());
             preOrientEnter = false;
             enterable = false;
         }

@@ -572,7 +572,8 @@ MonoBehaviour:
   - {fileID: 6466177718867855727, guid: 83b59a561c12992479ba95f8adeb32ad, type: 3}
   newEdge: {fileID: 0}
   edgeList: []
-  barrierPrefabs: []
+  barrierPrefabs:
+  - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
 --- !u!1 &3934203836255286974
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +600,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3934203836255286974}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.0000016858738}
+  m_LocalRotation: {x: 0, y: 0.0000007586432, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

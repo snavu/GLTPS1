@@ -10,6 +10,7 @@ TagManager:
   - Out Of Bounds
   - Port
   - Node
+  - Barrel
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Player
   - AI
   - Node
-  - 
+  - Items
   - 
   - 
   - 

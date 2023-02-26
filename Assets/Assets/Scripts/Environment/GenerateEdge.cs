@@ -15,6 +15,7 @@ public class GenerateEdge : MonoBehaviour
     private int index = 0;
     [SerializeField]
     private List<GameObject> barrierPrefabs;
+    private bool spawnedBarrier = false;
 
     void Start()
     {
@@ -53,9 +54,10 @@ public class GenerateEdge : MonoBehaviour
         else
         {
             //no edges left in edge list and the port at which the node spawned at is not the same port as this one, generate barrier 
-            if (edgeList.Count == 0 &&  GetComponentInParent<Node>().portList[GetComponentInParent<Node>().edge.portIndex].name != gameObject.name)
+            if (edgeList.Count == 0 &&  GetComponentInParent<Node>().portList[GetComponentInParent<Node>().edge.portIndex].name != gameObject.name && !spawnedBarrier)
             {
                 GenerateRandomBarrier();
+                spawnedBarrier = true;
             }
         }
     }

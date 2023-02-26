@@ -64,6 +64,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""b5457138-e2b9-4841-b6a2-4c65cf02cbd2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Sprint"",
                     ""type"": ""Value"",
                     ""id"": ""61ef3988-6bbc-4af1-bcd0-c6667a455b24"",
@@ -282,6 +291,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8513554-a5ba-4b3e-af96-907aa04ab765"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13e20695-018a-4223-8fb7-8aac46980261"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -304,7 +335,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""id"": ""fb95c7c7-c0f6-4cf3-a56e-8c6d7307805a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -432,7 +463,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""646562ca-7fb8-4564-9111-a5e2284af90e"",
                     ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Exit"",
@@ -443,7 +474,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""133c14d2-b81c-4bfd-8458-e915c65dc068"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Exit"",
@@ -1060,6 +1091,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         // Vehicle
         m_Vehicle = asset.FindActionMap("Vehicle", throwIfNotFound: true);
@@ -1143,6 +1175,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Drop;
     private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
@@ -1152,6 +1185,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Drop => m_Wrapper.m_Player_Drop;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1174,6 +1208,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Drop.started += instance.OnDrop;
+            @Drop.performed += instance.OnDrop;
+            @Drop.canceled += instance.OnDrop;
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
@@ -1193,6 +1230,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Drop.started -= instance.OnDrop;
+            @Drop.performed -= instance.OnDrop;
+            @Drop.canceled -= instance.OnDrop;
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
@@ -1444,6 +1484,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnDrop(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
     }
     public interface IVehicleActions

@@ -42,6 +42,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Drop",
+                    "type": "Button",
+                    "id": "b5457138-e2b9-4841-b6a2-4c65cf02cbd2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Sprint",
                     "type": "Value",
                     "id": "61ef3988-6bbc-4af1-bcd0-c6667a455b24",
@@ -260,6 +269,28 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f8513554-a5ba-4b3e-af96-907aa04ab765",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13e20695-018a-4223-8fb7-8aac46980261",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -282,7 +313,7 @@
                     "id": "fb95c7c7-c0f6-4cf3-a56e-8c6d7307805a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 },
                 {
@@ -410,7 +441,7 @@
                     "name": "",
                     "id": "646562ca-7fb8-4564-9111-a5e2284af90e",
                     "path": "<Gamepad>/buttonWest",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Exit",
@@ -421,7 +452,7 @@
                     "name": "",
                     "id": "133c14d2-b81c-4bfd-8458-e915c65dc068",
                     "path": "<Keyboard>/e",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Exit",

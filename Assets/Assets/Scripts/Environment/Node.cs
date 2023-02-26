@@ -10,9 +10,7 @@ public class Node : MonoBehaviour
     private int index = 0;
 
     public bool generate = false;
-    [HideInInspector]
     public GenerateNode edge;
-
     public bool isColliding = true;
     private bool isActive = false;
     public bool allowCollisionCheck = true;

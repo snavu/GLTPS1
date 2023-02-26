@@ -99,9 +99,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
             }
 
         }
+
         if (preOrientExit)
         {
-
             if (transform.position != vehicleRightExit.position && exitRight)
             {
                 elapsed += Time.deltaTime;
@@ -210,8 +210,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
             playerAnim.SetTrigger("ket exit");
         }
     }
-
-
 
     void OnTriggerEnter(Collider other)
     {

@@ -1,9 +1,34 @@
 fileFormatVersion: 2
-guid: 58a9140901a89d44294447a637b6806c
+guid: e1349edf5d43bf144baa84ebc1d8120f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base 1
+    second: {fileID: 2100000, guid: ff29b02e4589c7d43856387d534c4bcf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base 2
+    second: {fileID: 2100000, guid: afc30f0f19c74cb40b1ff508258ba6d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base 3
+    second: {fileID: 2100000, guid: 138d76284569ee541ae807bae1e33b83, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cargo
+    second: {fileID: 2100000, guid: 3d03ce1a37573ba488381e3c0331978b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tread
+    second: {fileID: 2100000, guid: 117c45fc683591f4f9678c85cba43f06, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

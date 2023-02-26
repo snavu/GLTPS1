@@ -11,6 +11,7 @@ TagManager:
   - Port
   - Node
   - Barrel
+  - BarrelDropArea
   layers:
   - Default
   - TransparentFX

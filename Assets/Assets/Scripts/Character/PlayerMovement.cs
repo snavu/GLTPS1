@@ -54,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
         actions.Player.Enable();
         actions.Player.Jump.performed += Jump;
 
-
         //align spherecast at bottom of collider, minus small constant to extrude vertically down, and scale position inversely proportional to controller skin width 
         sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.01f, 0);
     }

@@ -5,20 +5,28 @@ using UnityEngine;
 public class VehicleBarrel : MonoBehaviour
 {
     public bool isInBarrelDropArea = false;
+    [SerializeField]
+    private SkinnedMeshRenderer ketBarrelMesh;
+    [SerializeField]
+    private CharacterItemInteraction characterItemInteractionScript;
+    [SerializeField]
 
+    void Start()
+    {
+        ketBarrelMesh = GameObject.FindWithTag("BarrelDropArea").GetComponent<SkinnedMeshRenderer>();
+        characterItemInteractionScript = GameObject.FindWithTag("Player").GetComponent<CharacterItemInteraction>();
+
+        //hide the barrel mesh of the kettengrad
+        ketBarrelMesh.enabled = false;
+    }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("BarrelDropArea"))
+        if (other.gameObject.CompareTag("BarrelDropArea") && !characterItemInteractionScript.isCarrying)
         {
-            isInBarrelDropArea = true;
-            Debug.Log(true);
+            ketBarrelMesh.enabled = true;
+            Destroy(gameObject);
         }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("BarrelDropArea"))
-        {
-            isInBarrelDropArea = false;
-        }
+
+
     }
 }

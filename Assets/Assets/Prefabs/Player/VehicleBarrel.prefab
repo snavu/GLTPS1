@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 944950819245036436}
   - component: {fileID: 6608317152222551345}
   - component: {fileID: 8035570738282173505}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: VehicleBarrel
   m_TagString: Barrel
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7119919594315674118}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
   m_Extents: {x: 0.05, y: 0.5, z: 0.05}

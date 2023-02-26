@@ -10,8 +10,8 @@ public class CharacterItemInteraction : MonoBehaviour
     private PlayerMovement playerMovementScript;
     [SerializeField]
     private Animator anim;
-    private bool isPickupable;
-    private bool isCarrying;
+    public bool isPickupable;
+    public bool isCarrying;
     [SerializeField]
     private bool inBarrelDropArea;
 
@@ -27,18 +27,14 @@ public class CharacterItemInteraction : MonoBehaviour
     [SerializeField]
     private CharacterController controller;
 
+    public Rigidbody vehicleRigidbody;
+
 
 
     void Start()
     {
         playerMovementScript.actions.Player.Interact.performed += Interact;
         playerMovementScript.actions.Player.Drop.performed += Drop;
-
-    }
-
-    void Update()
-    {
-
     }
 
     private void Interact(InputAction.CallbackContext context)
@@ -49,10 +45,10 @@ public class CharacterItemInteraction : MonoBehaviour
             playerMovementScript.actions.Player.Jump.Disable();
             playerMovementScript.actions.Player.Sprint.Disable();
 
-            SetParameters(true, 0.53f, true, true);
+            //freeze kettengrad rigidbody to prevent movement from player collider clipping bug
+            vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
-            //hide the barrel mesh of the kettengrad
-            ketBarrelMesh.enabled = false;
+            SetParameters(true, 0.53f, true, true);
 
             //set parent constraint of barrel
             source.sourceTransform = parentConstraintSource.transform;
@@ -65,7 +61,10 @@ public class CharacterItemInteraction : MonoBehaviour
 
         if (context.performed && isPickupable && !inBarrelDropArea)
         {
-            SetParameters(true, 0.54f, true, true);
+            playerMovementScript.actions.Player.Jump.Disable();
+            playerMovementScript.actions.Player.Sprint.Disable();
+
+            SetParameters(true, 0.5f, true, true);
 
             newBarrel.GetComponent<ParentConstraint>().constraintActive = true;
         }
@@ -73,20 +72,16 @@ public class CharacterItemInteraction : MonoBehaviour
 
     private void Drop(InputAction.CallbackContext context)
     {
-        playerMovementScript.actions.Player.Jump.Enable();
-        playerMovementScript.actions.Player.Sprint.Enable();
-
         if (context.performed && anim.GetCurrentAnimatorStateInfo(2).IsTag("carry"))
         {
+            playerMovementScript.actions.Player.Jump.Enable();
+            playerMovementScript.actions.Player.Sprint.Enable();
+
+            vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+
             SetParameters(false, 0.25f, false, false);
 
             newBarrel.GetComponent<ParentConstraint>().constraintActive = false;
-
-            if (newBarrel.GetComponent<VehicleBarrel>().isInBarrelDropArea)
-            {
-                Destroy(newBarrel);
-                ketBarrelMesh.enabled = true;
-            }
 
             isPickupable = false;
         }
@@ -94,16 +89,19 @@ public class CharacterItemInteraction : MonoBehaviour
 
     private void SetParameters(bool carry, float radius, bool carryAnimParameter, bool physicsIgnore)
     {
+
+        //disable physics collisions bettwen player and barrel, and vehicle and barrel
+        Physics.IgnoreLayerCollision(7, 10, physicsIgnore);
+        Physics.IgnoreLayerCollision(6, 10, physicsIgnore);
         isCarrying = carry;
         //set character controller radius size
         controller.radius = radius;
         //set carry animation
         anim.SetBool("carry", carryAnimParameter);
-        //disable physics collisions bettwen player and barrel
-        Physics.IgnoreLayerCollision(7, 10, physicsIgnore);
+
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Barrel"))
         {
@@ -117,9 +115,14 @@ public class CharacterItemInteraction : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag("Barrel"))
+        {
+            isPickupable = false;
+        }
         if (other.gameObject.CompareTag("BarrelDropArea"))
         {
             inBarrelDropArea = false;
+            isPickupable = false;
         }
     }
 }

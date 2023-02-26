@@ -56,7 +56,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     private Transform vehicleEnter;
 
-
     void Start()
     {
         Physics.IgnoreLayerCollision(6, 7, false);
@@ -137,7 +136,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
         }
 
         //orient position to enter ket
-        if (agent.isActiveAndEnabled)
+        if (agent.isActiveAndEnabled && !GetComponent<NavMeshObstacle>().enabled)
         {
             agent.destination = vehicleEnter.position;
             if (Vector3.Distance(transform.position, vehicleEnter.position) < 0.1f)
@@ -187,16 +186,21 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         if (context.performed && enterable
             && !playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Front")
-            && !playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Back"))
+            && !playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Back")
+            && !GetComponent<CharacterItemInteraction>().isCarrying)
         {
             //ignore collisions between layer 6 (vehicle) and layer 7 (player) 
             Physics.IgnoreLayerCollision(6, 7, true);
+
+            //undo constraints set for freezing kettengrad rigidbody to prevent movement from player collider clipping bug
+            GetComponent<CharacterItemInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.None;
 
             //disable player movement
             playerMovementScript.enabled = false;
             //disable character controller
             controller.enabled = false;
             //enable navmesh agent 
+            GetComponent<NavMeshObstacle>().enabled = false;
             agent.enabled = true;
             preOrientEnter = false;
             enterable = false;
@@ -208,6 +212,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
         if (context.performed && playerAnim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer"))
         {
             playerAnim.SetTrigger("ket exit");
+            GetComponent<NavMeshObstacle>().enabled = true;
         }
     }
 

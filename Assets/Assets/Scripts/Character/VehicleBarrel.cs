@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class VehicleBarrel : MonoBehaviour
 {
-    public bool isInBarrelDropArea = false;
     [SerializeField]
     private SkinnedMeshRenderer ketBarrelMesh;
     [SerializeField]
@@ -24,9 +23,8 @@ public class VehicleBarrel : MonoBehaviour
         if (other.gameObject.CompareTag("BarrelDropArea") && !characterItemInteractionScript.isCarrying)
         {
             ketBarrelMesh.enabled = true;
+            characterItemInteractionScript.isPickupable = false;
             Destroy(gameObject);
         }
-
-
     }
 }

@@ -39,7 +39,7 @@ public class CharacterItemInteraction : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext context)
     {
-        if (context.performed && isPickupable && inBarrelDropArea && !isCarrying)
+        if (context.performed && isPickupable && inBarrelDropArea && !isCarrying && newBarrel == null)
         {
             //disable player jump and spring
             playerMovementScript.actions.Player.Jump.Disable();

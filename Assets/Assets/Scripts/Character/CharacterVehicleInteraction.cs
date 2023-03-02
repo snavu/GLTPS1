@@ -192,13 +192,13 @@ public class CharacterVehicleInteraction : MonoBehaviour
         if (context.performed && enterable
             && !playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Front")
             && !playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Back")
-            && !GetComponent<CharacterItemInteraction>().isCarrying)
+            && !GetComponent<CharacterBarrelInteraction>().isCarrying)
         {
             //ignore collisions between layer 6 (vehicle) and layer 7 (player) 
             Physics.IgnoreLayerCollision(6, 7, true);
 
             //undo constraints set for freezing kettengrad rigidbody to prevent movement from player collider clipping bug
-            GetComponent<CharacterItemInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.None;
+            GetComponent<CharacterBarrelInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.None;
 
             //disable player movement
             playerMovementScript.enabled = false;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Animations;
 
-public class CharacterItemInteraction : MonoBehaviour
+public class CharacterBarrelInteraction : MonoBehaviour
 {
     [SerializeField]
     private PlayerMovement playerMovementScript;

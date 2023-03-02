@@ -12,6 +12,7 @@ TagManager:
   - Node
   - Barrel
   - BarrelDropArea
+  - Food
   layers:
   - Default
   - TransparentFX

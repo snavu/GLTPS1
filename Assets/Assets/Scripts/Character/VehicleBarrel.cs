@@ -7,23 +7,23 @@ public class VehicleBarrel : MonoBehaviour
     [SerializeField]
     private SkinnedMeshRenderer ketBarrelMesh;
     [SerializeField]
-    private CharacterItemInteraction characterItemInteractionScript;
+    private CharacterBarrelInteraction characterBarrelInteractionScript;
     [SerializeField]
 
     void Start()
     {
         ketBarrelMesh = GameObject.FindWithTag("BarrelDropArea").GetComponent<SkinnedMeshRenderer>();
-        characterItemInteractionScript = GameObject.FindWithTag("Player").GetComponent<CharacterItemInteraction>();
+        characterBarrelInteractionScript = GameObject.FindWithTag("Player").GetComponent<CharacterBarrelInteraction>();
 
         //hide the barrel mesh of the kettengrad
         ketBarrelMesh.enabled = false;
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("BarrelDropArea") && !characterItemInteractionScript.isCarrying)
+        if (other.gameObject.CompareTag("BarrelDropArea") && !characterBarrelInteractionScript.isCarrying)
         {
             ketBarrelMesh.enabled = true;
-            characterItemInteractionScript.isPickupable = false;
+            characterBarrelInteractionScript.isPickupable = false;
             Destroy(gameObject);
         }
     }

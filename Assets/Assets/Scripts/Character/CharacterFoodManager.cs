@@ -61,6 +61,8 @@ public class CharacterFoodManager : MonoBehaviour
             //offset position for adding ui objects
             offsetXPos += -40;
             index++;
+
+            isPickupable = false;
         }
 
     }
@@ -78,7 +80,7 @@ public class CharacterFoodManager : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Food"))
         {

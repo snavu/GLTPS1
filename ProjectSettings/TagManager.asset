@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ket Front
   - Ket
   - Wall
   - Out Of Bounds
@@ -13,6 +12,9 @@ TagManager:
   - Barrel
   - BarrelDropArea
   - Food
+  - Fuel
+  - FuelingStation
+  - Vehicle
   layers:
   - Default
   - TransparentFX

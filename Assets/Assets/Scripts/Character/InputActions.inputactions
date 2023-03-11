@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Drop",
+                    "name": "HoldInteract",
                     "type": "Button",
                     "id": "b5457138-e2b9-4841-b6a2-4c65cf02cbd2",
                     "expectedControlType": "Button",
@@ -286,7 +286,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Drop",
+                    "action": "HoldInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -297,7 +297,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Drop",
+                    "action": "HoldInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

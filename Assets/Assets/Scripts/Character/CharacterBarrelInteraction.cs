@@ -34,7 +34,7 @@ public class CharacterBarrelInteraction : MonoBehaviour
     void Start()
     {
         playerMovementScript.actions.Player.Interact.performed += Interact;
-        playerMovementScript.actions.Player.Drop.performed += Drop;
+        playerMovementScript.actions.Player.HoldInteract.performed += HoldInteract;
     }
 
     private void Interact(InputAction.CallbackContext context)
@@ -70,7 +70,7 @@ public class CharacterBarrelInteraction : MonoBehaviour
         }
     }
 
-    private void Drop(InputAction.CallbackContext context)
+    private void HoldInteract(InputAction.CallbackContext context)
     {
         if (context.performed && anim.GetCurrentAnimatorStateInfo(2).IsTag("carry"))
         {

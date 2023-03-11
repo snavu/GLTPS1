@@ -14,6 +14,7 @@ public class VehicleFuelManager : MonoBehaviour
     private float defaultFuelConsumptionRate;
     [SerializeField]
     private float increasedFuelConsumptionRate;
+    public float refuelingRate;
 
     [SerializeField]
     private RectTransform fuelBar;
@@ -30,16 +31,22 @@ public class VehicleFuelManager : MonoBehaviour
         //get input
         movement = playerMovementScript.actions.Vehicle.Drive.ReadValue<Vector2>();
 
+        //clamp fuel
+        currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
+
         if (Mathf.Abs(movement.y) > 0)
         {
             if (playerMovementScript.actions.Vehicle.Accelerate.IsPressed())
             {
                 currentFuel -= increasedFuelConsumptionRate * Time.deltaTime;
             }
-            currentFuel -= defaultFuelConsumptionRate * Time.deltaTime;
+            else
+            {
+                currentFuel -= defaultFuelConsumptionRate * Time.deltaTime;
+            }
         }
         //scale fuel bar directly proportionally to current fuel level
-        fuelBar.sizeDelta = new Vector2(fuelBar.sizeDelta.x,  rectTransformInitialHeight * (currentFuel / maxFuel));
-    
+        fuelBar.sizeDelta = new Vector2(fuelBar.sizeDelta.x, rectTransformInitialHeight * (currentFuel / maxFuel));
+
     }
 }

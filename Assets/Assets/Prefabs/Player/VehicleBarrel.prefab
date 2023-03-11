@@ -204,7 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b652530395c3f6c4193b25d5a2846797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInBarrelDropArea: 0
+  ketBarrelMesh: {fileID: 0}
+  characterBarrelInteractionScript: {fileID: 0}
+  vehicleFuelManagerScript: {fileID: 0}
 --- !u!1 &8254946061164284041
 GameObject:
   m_ObjectHideFlags: 0

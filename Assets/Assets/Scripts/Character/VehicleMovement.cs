@@ -39,11 +39,12 @@ public class VehicleMovement : MonoBehaviour
 
     [SerializeField]
     VehicleFuelManager vehicleFuelManagerScript;
+    [SerializeField]
+    private SkinnedMeshRenderer ketBarrelMesh;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        vehicleFuelManagerScript = GetComponent<VehicleFuelManager>();
 
         //layerMask ignore player, vehicle, and ai
         layerMask = 1 << 6 | 1 << 7 | 1 << 8;
@@ -65,7 +66,7 @@ public class VehicleMovement : MonoBehaviour
             currentMovementRate = 1;
         }
         scaledMaxVelocity = maxVelocity * currentMovementRate;
-        
+
         //set movement aniamtion
         MovementAnim();
     }
@@ -74,10 +75,10 @@ public class VehicleMovement : MonoBehaviour
         isGrounded = Physics.CheckBox(transform.position + boxCastOffset, boxCastHalfExtents, transform.rotation, layerMask, QueryTriggerInteraction.Ignore);
 
         //move
-        if (Mathf.Abs(movement.y) > 0 && isGrounded && vehicleFuelManagerScript.currentFuel > 0)
+        if (Mathf.Abs(movement.y) > 0 && isGrounded && vehicleFuelManagerScript.currentFuel > 0 && ketBarrelMesh.enabled)
         {
             rb.AddForce(movement.y * transform.forward * force * currentMovementRate * Time.fixedDeltaTime, ForceMode.Force);
-            
+
             //rotate
             if (Mathf.Abs(movement.x) > 0)
             {

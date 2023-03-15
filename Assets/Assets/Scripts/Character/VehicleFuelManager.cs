@@ -20,6 +20,9 @@ public class VehicleFuelManager : MonoBehaviour
     private RectTransform fuelBar;
     private float rectTransformInitialHeight;
 
+    [SerializeField]
+    private SkinnedMeshRenderer ketBarrelMesh;
+
     void Start()
     {
         rectTransformInitialHeight = fuelBar.sizeDelta.y;
@@ -34,7 +37,7 @@ public class VehicleFuelManager : MonoBehaviour
         //clamp fuel
         currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
 
-        if (Mathf.Abs(movement.y) > 0)
+        if (Mathf.Abs(movement.y) > 0 && ketBarrelMesh.enabled)
         {
             if (playerMovementScript.actions.Vehicle.Accelerate.IsPressed())
             {

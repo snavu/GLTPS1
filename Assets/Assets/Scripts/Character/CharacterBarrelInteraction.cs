@@ -16,8 +16,6 @@ public class CharacterBarrelInteraction : MonoBehaviour
     private bool inBarrelDropArea;
 
     [SerializeField]
-    private SkinnedMeshRenderer ketBarrelMesh;
-    [SerializeField]
     private GameObject barrelPrefab;
     [SerializeField]
     private GameObject newBarrel;

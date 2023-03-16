@@ -23,6 +23,7 @@ public class AgentLinkMover : MonoBehaviour
 
     IEnumerator Move(NavMeshAgent agent)
     {
+        //move navmesh agent across offmesh link
         OffMeshLinkData data = agent.currentOffMeshLinkData;
         Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
         while (agent.transform.position != endPos)

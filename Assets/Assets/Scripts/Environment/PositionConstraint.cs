@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PositionConstraint : MonoBehaviour
 {
-    [SerializeField]
-    private Transform player;
+    public Transform player;
     [SerializeField]
     private Vector3 offset;
     void Update()

@@ -121,7 +121,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
                 StartCoroutine(DelayExit(exitDuration));
             }
         }
-
+        
         if (playerMovementScript.actions.Vehicle.Drive.enabled)
         {
             steer = playerMovementScript.actions.Vehicle.Drive.ReadValue<Vector2>().x;
@@ -175,7 +175,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
         elapsed = 0f;
     }
 
-    IEnumerator DelayEnter(){
+    IEnumerator DelayEnter()
+    {
         yield return new WaitForSeconds(0.1f);
         agent.enabled = true;
     }

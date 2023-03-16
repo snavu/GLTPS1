@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
         actions = new InputActions();
+        Debug.Log(actions);
         actions.Player.Enable();
         actions.Player.Jump.performed += Jump;
 

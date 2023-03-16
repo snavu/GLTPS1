@@ -28,14 +28,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
     private float elapsed = 0f;
     [SerializeField]
     private float duration = 0.25f;
-    void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        navMeshAgentFollowPlayerScript = GetComponent<NavMeshAgentFollowPlayer>();
-        agentAnim = GetComponent<Animator>();
-    }
-
-
+    
     void Update()
     {
         CharacterMovementAnimation.Movement(GetComponent<Animator>(), agent.velocity, playerMovementScript.runSpeed);

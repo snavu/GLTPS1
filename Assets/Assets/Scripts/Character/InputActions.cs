@@ -82,6 +82,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Possess"",
+                    ""type"": ""Button"",
+                    ""id"": ""72bc3a2b-bdec-4010-ab50-1ab0f8f0eeec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Sprint"",
                     ""type"": ""Value"",
                     ""id"": ""61ef3988-6bbc-4af1-bcd0-c6667a455b24"",
@@ -342,6 +351,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Eat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbe2897b-6f6e-4ac8-94d4-9c2eabd3b670"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Possess"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0d3fd45-575b-44ce-96d8-b6f47f8ac175"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Possess"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1124,6 +1155,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Eat = m_Player.FindAction("Eat", throwIfNotFound: true);
         m_Player_HoldInteract = m_Player.FindAction("HoldInteract", throwIfNotFound: true);
+        m_Player_Possess = m_Player.FindAction("Possess", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         // Vehicle
         m_Vehicle = asset.FindActionMap("Vehicle", throwIfNotFound: true);
@@ -1209,6 +1241,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Eat;
     private readonly InputAction m_Player_HoldInteract;
+    private readonly InputAction m_Player_Possess;
     private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
@@ -1220,6 +1253,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Eat => m_Wrapper.m_Player_Eat;
         public InputAction @HoldInteract => m_Wrapper.m_Player_HoldInteract;
+        public InputAction @Possess => m_Wrapper.m_Player_Possess;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1248,6 +1282,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @HoldInteract.started += instance.OnHoldInteract;
             @HoldInteract.performed += instance.OnHoldInteract;
             @HoldInteract.canceled += instance.OnHoldInteract;
+            @Possess.started += instance.OnPossess;
+            @Possess.performed += instance.OnPossess;
+            @Possess.canceled += instance.OnPossess;
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
@@ -1273,6 +1310,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @HoldInteract.started -= instance.OnHoldInteract;
             @HoldInteract.performed -= instance.OnHoldInteract;
             @HoldInteract.canceled -= instance.OnHoldInteract;
+            @Possess.started -= instance.OnPossess;
+            @Possess.performed -= instance.OnPossess;
+            @Possess.canceled -= instance.OnPossess;
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
@@ -1526,6 +1566,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnEat(InputAction.CallbackContext context);
         void OnHoldInteract(InputAction.CallbackContext context);
+        void OnPossess(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
     }
     public interface IVehicleActions

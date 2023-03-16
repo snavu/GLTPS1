@@ -7,8 +7,6 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
     [SerializeField]
     private NavMeshAgent agent;
     [SerializeField]
-    private Transform playerPosition;
-    [SerializeField]
     private PlayerMovement playerMovementScript;
     [SerializeField]
     private Transform followPosition;
@@ -17,13 +15,8 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
     [SerializeField]
     private float radius;
 
-    void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-    }
     void Update()
     {
-
         float distance = Vector3.Distance(followPosition.position, transform.position);
 
         if (agent.isActiveAndEnabled)

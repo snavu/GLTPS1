@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Possess",
+                    "type": "Button",
+                    "id": "72bc3a2b-bdec-4010-ab50-1ab0f8f0eeec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Sprint",
                     "type": "Value",
                     "id": "61ef3988-6bbc-4af1-bcd0-c6667a455b24",
@@ -320,6 +329,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Eat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cbe2897b-6f6e-4ac8-94d4-9c2eabd3b670",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Possess",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0d3fd45-575b-44ce-96d8-b6f47f8ac175",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Possess",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

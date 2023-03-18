@@ -18,6 +18,8 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
     private float radius;
     [SerializeField]
     private float angularSpeed = 120f;
+    [SerializeField]
+    private Transform child;
 
     void Update()
     {
@@ -45,7 +47,8 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
 
             //set agent destination
             agent.destination = destination.transform.position;
-
+            
+            child.rotation = Quaternion.RotateTowards(child.rotation, transform.rotation, angularSpeed * Time.deltaTime);
             //set movement animation
             CharacterMovementAnimation.Movement(agentAnim, agent.velocity, playerMovementScript.runSpeed);
         }

@@ -57,6 +57,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
             }
         }
 
+        //lerp agent position to vehicle
         if (preOrientEnter)
         {
             if (transform.position != constraintPosition.position)
@@ -78,6 +79,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
             positionConstraint = false;
             rotationConstraint = false;
 
+            //lerp agent position to exit
             if (preOrientExit)
             {
                 if (transform.position != enterPosition.position)
@@ -88,7 +90,6 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
                 else
                 {
                     agent.enabled = true;
-
                     navMeshAgentFollowPlayerScript.enabled = true;
                     collider.enabled = true;
                     preOrientExit = false;

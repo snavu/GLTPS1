@@ -68,18 +68,20 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     void Update()
     {
-
+        //constrain player to vehicle, increase camera radius for vehicle movement
         if (constraint)
         {
             transform.position = vehicleSeat.position;
             transform.rotation = vehicleSeat.rotation;
             ChangeCameraRigRadius(freelookRadius[0], freelookRadius[1], freelookRadius[2]);
         }
+        //constrain is false, lerp camera radius back normal radius for player movement
         else if (freelook.m_Orbits[1].m_Radius != freelookRadius[4])
         {
             ChangeCameraRigRadius(freelookRadius[3], freelookRadius[4], freelookRadius[5]);
         }
 
+        //lerp player position to vehicle
         if (preOrientEnter)
         {
             if (transform.position != vehicleSeat.position)
@@ -93,11 +95,12 @@ public class CharacterVehicleInteraction : MonoBehaviour
                 preOrientEnter = false;
                 elapsed = 0f;
             }
-
         }
 
+        //lerp player position to exit vehicle
         if (preOrientExit)
         {
+            //exit to the right
             if (transform.position != vehicleRightExit.position && exitRight)
             {
                 elapsed += Time.deltaTime;
@@ -105,9 +108,11 @@ public class CharacterVehicleInteraction : MonoBehaviour
             }
             else
             {
+                //wait for duration of exiting vehicle before reenabling player movement and resetting flags
                 StartCoroutine(DelayExit(exitDuration));
             }
 
+            //exit to the left 
             if (transform.position != vehicleLeftExit.position && exitLeft)
             {
                 elapsed += Time.deltaTime;
@@ -119,6 +124,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             }
         }
 
+        //vehicle movement controls
         if (characterManagerScript.playerInput.actions.Vehicle.Drive.enabled)
         {
             steer = characterManagerScript.playerInput.actions.Vehicle.Drive.ReadValue<Vector2>().x;
@@ -127,6 +133,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             characterManagerScript.playerAnim.SetFloat("steer", steerSmooth);
         }
 
+        //handle player movement animation when navmesh agent takes over to position player in correct position to enter vehichle
         if (agent.isActiveAndEnabled)
         {
             CharacterMovementAnimation.Movement(characterManagerScript.playerAnim, agent.velocity, maxSpeed);
@@ -203,9 +210,10 @@ public class CharacterVehicleInteraction : MonoBehaviour
             characterManagerScript.playerInput.actions.Player.Disable();
             //disable character controller
             controller.enabled = false;
-            //enable navmesh agent 
+            //disable navmesh obstacle, and wait a short time before enabling the agent
             GetComponent<NavMeshObstacle>().enabled = false;
             StartCoroutine(DelayEnter());
+            
             preOrientEnter = false;
             enterable = false;
         }

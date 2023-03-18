@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class VehicleFuelManager : MonoBehaviour
 {
     [SerializeField]
-    private PlayerMovement playerMovementScript;
+    private CharacterManager characterManagerScript;
     [SerializeField]
     private Vector2 movement;
     public float maxFuel;
@@ -22,7 +22,6 @@ public class VehicleFuelManager : MonoBehaviour
 
     [SerializeField]
     private SkinnedMeshRenderer ketBarrelMesh;
-
     void Start()
     {
         rectTransformInitialHeight = fuelBar.sizeDelta.y;
@@ -31,15 +30,14 @@ public class VehicleFuelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //get input
-        movement = playerMovementScript.actions.Vehicle.Drive.ReadValue<Vector2>();
+        movement = characterManagerScript.playerInput.actions.Vehicle.Drive.ReadValue<Vector2>();
 
         //clamp fuel
         currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
 
         if (Mathf.Abs(movement.y) > 0 && ketBarrelMesh.enabled)
         {
-            if (playerMovementScript.actions.Vehicle.Accelerate.IsPressed())
+            if (characterManagerScript.playerInput.actions.Vehicle.Accelerate.IsPressed())
             {
                 currentFuel -= increasedFuelConsumptionRate * Time.deltaTime;
             }

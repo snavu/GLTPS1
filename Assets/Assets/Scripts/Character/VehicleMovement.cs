@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class VehicleMovement : MonoBehaviour
 {
     [SerializeField]
-    private PlayerMovement playerMovementScript;
+    private CharacterManager characterManagerScript;
     private Rigidbody rb;
     [SerializeField]
     private Vector2 movement;
@@ -54,10 +54,10 @@ public class VehicleMovement : MonoBehaviour
     void Update()
     {
         //get input
-        movement = playerMovementScript.actions.Vehicle.Drive.ReadValue<Vector2>();
+        movement = characterManagerScript.playerInput.actions.Vehicle.Drive.ReadValue<Vector2>();
 
         //set speed
-        if (playerMovementScript.actions.Vehicle.Accelerate.IsPressed())
+        if (characterManagerScript.playerInput.actions.Vehicle.Accelerate.IsPressed())
         {
             currentMovementRate = increasedMovementRate;
         }

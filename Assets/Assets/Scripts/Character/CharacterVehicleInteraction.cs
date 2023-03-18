@@ -14,8 +14,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private float smoothRadiusSpeed = 0.2f;
     private float smoothRadiusVelocity = 0f;
     [SerializeField]
-    private PlayerMovement playerMovementScript;
-
+    private PlayerInput playerInputScript;
+    [SerializeField]
+    private CharacterManager characterManagerScript;
     [SerializeField]
     private Animator vehicleAnim;
     [SerializeField]
@@ -23,6 +24,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
     public CharacterController controller;
     [SerializeField]
     private NavMeshAgent agent;
+    [SerializeField]
+    private float angularSpeed = 800f;
     [SerializeField]
     private Transform child;
     [SerializeField]
@@ -61,12 +64,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
         Physics.IgnoreLayerCollision(6, 7, false);
         Physics.IgnoreLayerCollision(6, 8, false);
 
-        controller = GetComponent<CharacterController>();
-        agent = GetComponent<NavMeshAgent>();
-        playerMovementScript = GetComponent<PlayerMovement>();
-        playerMovementScript.actions.Player.Interact.performed += Interact;
-        playerMovementScript.actions.Vehicle.Exit.performed += Exit;
-
+        playerInputScript.actions.Player.Interact.performed += Interact;
+        playerInputScript.actions.Player.Eat.performed += Exit;
     }
 
     void Update()
@@ -121,10 +120,10 @@ public class CharacterVehicleInteraction : MonoBehaviour
                 StartCoroutine(DelayExit(exitDuration));
             }
         }
-        
-        if (playerMovementScript.actions.Vehicle.Drive.enabled)
+
+        if (characterManagerScript.playerInput.actions.Vehicle.Drive.enabled)
         {
-            steer = playerMovementScript.actions.Vehicle.Drive.ReadValue<Vector2>().x;
+            steer = characterManagerScript.playerInput.actions.Vehicle.Drive.ReadValue<Vector2>().x;
             steerSmooth = Mathf.SmoothDamp(steerSmooth, steer, ref smoothInputVelocity, smoothInputSpeed);
             vehicleAnim.SetFloat("steer", steerSmooth);
             playerAnim.SetFloat("steer", steerSmooth);
@@ -138,6 +137,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
         //orient position to enter ket
         if (agent.isActiveAndEnabled && !GetComponent<NavMeshObstacle>().enabled)
         {
+            agent.angularSpeed = angularSpeed;
             agent.destination = vehicleEnter.position;
             if (Vector3.Distance(transform.position, vehicleEnter.position) < 0.1f)
             {
@@ -167,7 +167,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         Physics.IgnoreLayerCollision(6, 7, false);
-        playerMovementScript.enabled = true;
+        characterManagerScript.playerInput.enabled = true;
         controller.enabled = true;
         preOrientExit = false;
         exitLeft = false;
@@ -202,7 +202,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             GetComponent<CharacterBarrelInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.None;
 
             //disable player movement
-            playerMovementScript.enabled = false;
+            characterManagerScript.playerInput.enabled = false;
             //disable character controller
             controller.enabled = false;
             //enable navmesh agent 

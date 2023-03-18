@@ -6,41 +6,36 @@ using UnityEngine.InputSystem;
 public class CharacterPossession : MonoBehaviour
 {
     [SerializeField]
-    private PlayerMovement playerMovementScript;
+    private PlayerInput playerInputScript;
     [SerializeField]
     private PositionConstraint CMFollowTarget;
     [SerializeField]
     private PositionConstraint CMLookAtTarget;
     [SerializeField]
     private GameObject playerToPossess;
-    [SerializeField]
 
-    private void OnEnable()
+    void Start()
     {
-        //delay OnEnable to call after Awake function
-        StartCoroutine(DelayOnEnable());
-    }
-    IEnumerator DelayOnEnable()
-    {
-        yield return new WaitForEndOfFrame();
-        playerMovementScript.actions.Player.Possess.performed += Possess;
-    }
-
-    private void OnDisable()
-    {
-        playerMovementScript.actions.Player.Possess.performed -= Possess;
+        playerInputScript.actions.Player.Possess.performed += Possess;
     }
 
     private void Possess(InputAction.CallbackContext context)
     {
-        //change camera follow and look at target
-        CMFollowTarget.player = playerToPossess.transform;
-        CMLookAtTarget.player = playerToPossess.transform;
+        if (context.performed)
+        {
+            //change camera follow and look at target
+            CMFollowTarget.player = playerToPossess.transform;
+            CMLookAtTarget.player = playerToPossess.transform;
 
-        //disable player scripts
-        GetComponent<CharacterPossession>().enabled = false;
+            //disable player scripts
+            GetComponentInChildren<CharacterPossession>().enabled = false;
+            GetComponentInChildren<PlayerMovement>().enabled = true;
 
-        //enable player-to-possess player scripts
-        playerToPossess.GetComponent<CharacterPossession>().enabled = true;
+
+            //enable player-to-possess player scripts
+            playerToPossess.GetComponentInChildren<CharacterPossession>().enabled = true;
+            playerToPossess.GetComponentInChildren<PlayerMovement>().enabled = true;
+        }
+
     }
 }

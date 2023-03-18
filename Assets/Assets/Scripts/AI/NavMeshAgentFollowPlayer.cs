@@ -14,6 +14,8 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
     private GameObject destination;
     [SerializeField]
     private float radius;
+    [SerializeField]
+    private float angularSpeed = 120f;
 
     void Update()
     {
@@ -21,6 +23,7 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
 
         if (agent.isActiveAndEnabled)
         {
+            agent.angularSpeed = angularSpeed;
             //set destination position 
             if (distance > radius)
             {

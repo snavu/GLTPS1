@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
-{
+{    
+    [SerializeField]
+    private PlayerInput playerInputScript;
     [SerializeField]
     private CharacterController controller;
+    [SerializeField]
     private Animator anim;
     [SerializeField]
     private Transform child;
@@ -30,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     private float rotationSpeed = 600.0f;
     [SerializeField]
     Quaternion rotationDir;
-    public InputActions actions;
     [SerializeField]
 
     private float jumpHeight = 1.0f;
@@ -46,14 +48,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 sphereCastPosition;
 
 
-    void Awake()
+
+    void Start()
     {
-        controller = GetComponent<CharacterController>();
-        anim = GetComponentInChildren<Animator>();
-        actions = new InputActions();
-        Debug.Log(actions);
-        actions.Player.Enable();
-        actions.Player.Jump.performed += Jump;
+        playerInputScript.actions.Player.Jump.performed += Jump;
 
         //align spherecast at bottom of collide, scale position inversely proportional to controller skin width, and minus small constant to extrude vertically down
         sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.01f, 0);
@@ -62,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //get horizontal input
-        horizontalInput = actions.Player.Move.ReadValue<Vector2>();
+        horizontalInput = playerInputScript.actions.Player.Move.ReadValue<Vector2>();
         horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
 
         //check ground collision
@@ -79,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //lerp speed values for blending walk/run animation states
-        if (actions.Player.Sprint.ReadValue<float>() > 0)
+        if (playerInputScript.actions.Player.Sprint.ReadValue<float>() > 0)
         {
             currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, 10.0f * Time.deltaTime);
         }

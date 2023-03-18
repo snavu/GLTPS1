@@ -6,7 +6,7 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
 {
 
     [SerializeField]
-    private PlayerMovement playerMovementScript;
+    private PlayerInput playerInputScript;
     [SerializeField]
     private CharacterVehicleInteraction characterVehicleInteractionScript;
     [SerializeField]
@@ -15,12 +15,12 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     //animation events
     public void EnableVehicle()
     {
-        playerMovementScript.actions.Vehicle.Enable();
+        playerInputScript.actions.Vehicle.Enable();
 
     }
     public void DisableVehicle()
     {
-        playerMovementScript.actions.Vehicle.Disable();
+        playerInputScript.actions.Vehicle.Disable();
     }
 
     public void ExitVehicle()

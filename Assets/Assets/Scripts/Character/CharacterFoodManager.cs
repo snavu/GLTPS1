@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CharacterFoodManager : MonoBehaviour
 {
     [SerializeField]
-    private PlayerMovement playerMovementScript;
+    private PlayerInput playerInputScript;
     [SerializeField]
     private bool isPickupable;
     [SerializeField]
@@ -23,28 +23,17 @@ public class CharacterFoodManager : MonoBehaviour
     private GameObject panel;
 
     [SerializeField]
-    private float hunger = 100f;
-    [SerializeField]
-    private float hungerRate = 1f;
-    [SerializeField]
     private float hungerRefill = 20f;
-    [SerializeField]
-    private float maxHungerValue = 0;
-    [SerializeField]
-    private float minHungerValue = 100f;
 
+    [SerializeField]
+    private CharacterHunger characterHungerScript;
 
     void Start()
     {
-        playerMovementScript.actions.Player.Interact.performed += Interact;
-        playerMovementScript.actions.Player.Eat.performed += Eat;
+        playerInputScript.actions.Player.Interact.performed += Interact;
+        playerInputScript.actions.Player.Eat.performed += Eat;
     }
-    void Update()
-    {
-        //clamp hunger so player does not exceed max hunger value when refilling hunger
-        hunger = Mathf.Clamp(hunger, minHungerValue, maxHungerValue);
-        hunger -= hungerRate * Time.deltaTime;
-    }
+
     private void Interact(InputAction.CallbackContext context)
     {
         if (context.performed && isPickupable)
@@ -71,7 +60,7 @@ public class CharacterFoodManager : MonoBehaviour
     {
         if (context.performed && index > 0)
         {
-            hunger += hungerRefill;
+           characterHungerScript.hunger += hungerRefill;
 
             Destroy(newFoodbar[index - 1]);
             newFoodbar.RemoveAt(index-1);

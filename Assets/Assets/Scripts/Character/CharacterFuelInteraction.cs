@@ -7,7 +7,7 @@ using UnityEngine.Animations;
 public class CharacterFuelInteraction : MonoBehaviour
 {
     [SerializeField]
-    private PlayerMovement playerMovementScript;
+    private PlayerInput playerInputScript;
     [SerializeField]
     private CharacterBarrelInteraction characterBarrelInteractionScript;
     [SerializeField]
@@ -17,7 +17,7 @@ public class CharacterFuelInteraction : MonoBehaviour
     private bool isFueling;
     void Start()
     {
-        playerMovementScript.actions.Player.HoldInteract.performed += HoldInteract;
+        playerInputScript.actions.Player.HoldInteract.performed += HoldInteract;
     }
 
     private void HoldInteract(InputAction.CallbackContext context)

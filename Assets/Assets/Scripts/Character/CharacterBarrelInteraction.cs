@@ -7,7 +7,7 @@ using UnityEngine.Animations;
 public class CharacterBarrelInteraction : MonoBehaviour
 {
     [SerializeField]
-    private PlayerMovement playerMovementScript;
+    private PlayerInput playerInputScript;
     [SerializeField]
     private Animator anim;
     public bool isPickupable;
@@ -31,8 +31,8 @@ public class CharacterBarrelInteraction : MonoBehaviour
 
     void Start()
     {
-        playerMovementScript.actions.Player.Interact.performed += Interact;
-        playerMovementScript.actions.Player.HoldInteract.performed += HoldInteract;
+        playerInputScript.actions.Player.Interact.performed += Interact;
+        playerInputScript.actions.Player.HoldInteract.performed += HoldInteract;
     }
 
     private void Interact(InputAction.CallbackContext context)
@@ -40,8 +40,8 @@ public class CharacterBarrelInteraction : MonoBehaviour
         if (context.performed && isPickupable && inBarrelDropArea && !isCarrying && newBarrel == null)
         {
             //disable player jump and spring
-            playerMovementScript.actions.Player.Jump.Disable();
-            playerMovementScript.actions.Player.Sprint.Disable();
+            playerInputScript.actions.Player.Jump.Disable();
+            playerInputScript.actions.Player.Sprint.Disable();
 
             //freeze kettengrad rigidbody to prevent movement from player collider clipping bug
             vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
@@ -59,8 +59,8 @@ public class CharacterBarrelInteraction : MonoBehaviour
 
         if (context.performed && isPickupable && !inBarrelDropArea)
         {
-            playerMovementScript.actions.Player.Jump.Disable();
-            playerMovementScript.actions.Player.Sprint.Disable();
+            playerInputScript.actions.Player.Jump.Disable();
+            playerInputScript.actions.Player.Sprint.Disable();
 
             SetParameters(true, 0.5f, true, true);
 
@@ -72,8 +72,8 @@ public class CharacterBarrelInteraction : MonoBehaviour
     {
         if (context.performed && anim.GetCurrentAnimatorStateInfo(2).IsTag("carry"))
         {
-            playerMovementScript.actions.Player.Jump.Enable();
-            playerMovementScript.actions.Player.Sprint.Enable();
+            playerInputScript.actions.Player.Jump.Enable();
+            playerInputScript.actions.Player.Sprint.Enable();
 
             vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 

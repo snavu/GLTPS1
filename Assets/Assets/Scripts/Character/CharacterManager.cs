@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public PlayerInput playerInput;
+    public Animator playerAnim;
     [SerializeField]
     private PlayerMovement playerChitoMovementScript;
     [SerializeField]
@@ -12,17 +13,27 @@ public class CharacterManager : MonoBehaviour
     private PlayerInput playerChitoInputScript;
     [SerializeField]
     private PlayerInput playerYuuriInputScript;
+    [SerializeField]
+    private Animator chitoAnim;
+    [SerializeField]
+    private Animator yuuriAnim;
 
+    void Start()
+    {
+        playerInput = playerChitoInputScript;
+        playerAnim = chitoAnim;
+    }
     void Update()
     {
-        //get input
         if (playerChitoMovementScript.enabled)
         {
             playerInput = playerChitoInputScript;
+            playerAnim = chitoAnim;
         }
         else
         {
             playerInput = playerYuuriInputScript;
+            playerAnim = yuuriAnim;
         }
     }
 }

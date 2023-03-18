@@ -7,6 +7,8 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
     [SerializeField]
     private NavMeshAgent agent;
     [SerializeField]
+    private Animator agentAnim;
+    [SerializeField]
     private PlayerMovement playerMovementScript;
     [SerializeField]
     private Transform followPosition;
@@ -45,7 +47,7 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
             agent.destination = destination.transform.position;
 
             //set movement animation
-            CharacterMovementAnimation.Movement(GetComponent<Animator>(), agent.velocity, playerMovementScript.runSpeed);
+            CharacterMovementAnimation.Movement(agentAnim, agent.velocity, playerMovementScript.runSpeed);
         }
     }
 

@@ -69,7 +69,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""id"": ""acf3985a-d83c-47b8-aa7b-514d92d6e889"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -336,7 +336,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""efc9c95e-739e-406a-9ec8-bf63c0bdb210"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Eat"",
@@ -347,7 +347,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""7548b22a-05e2-4b48-aba4-ec5a951332f0"",
                     ""path"": ""<Keyboard>/r"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Eat"",

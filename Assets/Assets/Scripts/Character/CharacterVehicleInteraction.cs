@@ -19,8 +19,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private CharacterManager characterManagerScript;
     [SerializeField]
     private Animator vehicleAnim;
-    [SerializeField]
-    private Animator playerAnim;
     public CharacterController controller;
     [SerializeField]
     private NavMeshAgent agent;
@@ -65,7 +63,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
         Physics.IgnoreLayerCollision(6, 8, false);
 
         playerInputScript.actions.Player.Interact.performed += Interact;
-        playerInputScript.actions.Player.Eat.performed += Exit;
+        playerInputScript.actions.Vehicle.Exit.performed += Exit;
     }
 
     void Update()
@@ -126,12 +124,12 @@ public class CharacterVehicleInteraction : MonoBehaviour
             steer = characterManagerScript.playerInput.actions.Vehicle.Drive.ReadValue<Vector2>().x;
             steerSmooth = Mathf.SmoothDamp(steerSmooth, steer, ref smoothInputVelocity, smoothInputSpeed);
             vehicleAnim.SetFloat("steer", steerSmooth);
-            playerAnim.SetFloat("steer", steerSmooth);
+            characterManagerScript.playerAnim.SetFloat("steer", steerSmooth);
         }
 
         if (agent.isActiveAndEnabled)
         {
-            CharacterMovementAnimation.Movement(playerAnim, agent.velocity, maxSpeed);
+            CharacterMovementAnimation.Movement(characterManagerScript.playerAnim, agent.velocity, maxSpeed);
         }
 
         //orient position to enter ket
@@ -148,11 +146,11 @@ public class CharacterVehicleInteraction : MonoBehaviour
                 {
                     if (vehicleEnter.gameObject.name == "Right")
                     {
-                        playerAnim.SetBool("ket right", true);
+                        characterManagerScript.playerAnim.SetBool("ket right", true);
                     }
                     if (vehicleEnter.gameObject.name == "Left")
                     {
-                        playerAnim.SetBool("ket left", true);
+                        characterManagerScript.playerAnim.SetBool("ket left", true);
                     }
                     agent.enabled = false;
                     preOrientEnter = true;
@@ -167,7 +165,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         Physics.IgnoreLayerCollision(6, 7, false);
-        characterManagerScript.playerInput.enabled = true;
+        characterManagerScript.playerInput.actions.Player.Enable();
         controller.enabled = true;
         preOrientExit = false;
         exitLeft = false;
@@ -191,8 +189,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
     public void Interact(InputAction.CallbackContext context)
     {
         if (context.performed && enterable
-            && !playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Front")
-            && !playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Back")
+            && !characterManagerScript.playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Front")
+            && !characterManagerScript.playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Back")
             && !GetComponent<CharacterBarrelInteraction>().isCarrying)
         {
             //ignore collisions between layer 6 (vehicle) and layer 7 (player) 
@@ -202,7 +200,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             GetComponent<CharacterBarrelInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.None;
 
             //disable player movement
-            characterManagerScript.playerInput.enabled = false;
+            characterManagerScript.playerInput.actions.Player.Disable();
             //disable character controller
             controller.enabled = false;
             //enable navmesh agent 
@@ -215,9 +213,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     public void Exit(InputAction.CallbackContext context)
     {
-        if (context.performed && playerAnim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer"))
+        if (context.performed && characterManagerScript.playerAnim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer"))
         {
-            playerAnim.SetTrigger("ket exit");
+            characterManagerScript.playerAnim.SetTrigger("ket exit");
             GetComponent<NavMeshObstacle>().enabled = true;
         }
     }

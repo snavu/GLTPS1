@@ -6,6 +6,10 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
 {
     [SerializeField]
     private NavMeshAgent agent;
+    public Animator agentAnim;
+    [SerializeField]
+    private Collider collider;
+
     [SerializeField]
     private NavMeshAgentFollowPlayer navMeshAgentFollowPlayerScript;
     [SerializeField]
@@ -15,7 +19,6 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
     [SerializeField]
     private PlayerMovement playerMovementScript;
     [SerializeField]
-    public Animator agentAnim;
     public bool enter;
     public bool exit;
     private bool positionConstraint;
@@ -28,20 +31,19 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
     private float elapsed = 0f;
     [SerializeField]
     private float duration = 0.25f;
-    
+
     void Update()
     {
-        CharacterMovementAnimation.Movement(GetComponent<Animator>(), agent.velocity, playerMovementScript.runSpeed);
+        CharacterMovementAnimation.Movement(agentAnim, agent.velocity, playerMovementScript.runSpeed);
 
         if (enter && !preOrientExit)
         {
             navMeshAgentFollowPlayerScript.enabled = false;
-            //ignore collisions between layer 6 (vehicle) and layer 8 (AI) 
-            Physics.IgnoreLayerCollision(6, 8, true);
+            collider.enabled = false;
 
             //orient agent position to enter ket
             agent.destination = enterPosition.position;
-            if (Vector3.Distance(transform.position, enterPosition.position) < 0.1f)
+            if (Vector3.Distance(transform.position, enterPosition.position) < 0.2f)
             {
                 //orient rotation to enter ket
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, enterPosition.rotation, rotationSpeed * Time.deltaTime);
@@ -65,6 +67,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
             else
             {
                 positionConstraint = true;
+                rotationConstraint = true;
                 preOrientEnter = false;
                 elapsed = 0f;
             }
@@ -87,7 +90,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
                     agent.enabled = true;
 
                     navMeshAgentFollowPlayerScript.enabled = true;
-                    Physics.IgnoreLayerCollision(6, 8, false);
+                    collider.enabled = true;
                     preOrientExit = false;
                     exit = false;
 

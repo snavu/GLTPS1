@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
-{    
+{
     [SerializeField]
     private PlayerInput playerInputScript;
     [SerializeField]
@@ -66,48 +66,52 @@ public class PlayerMovement : MonoBehaviour
         //check ground collision
         isGrounded = Physics.CheckSphere(transform.position + sphereCastPosition, controller.radius, layerMask, QueryTriggerInteraction.Ignore);
 
-        //apply gravity
-        if (isGrounded && verticalMovement < 0)
+        if (controller.enabled)
         {
-            verticalMovement = 0f;
-        }
-        else
-        {
-            verticalMovement += gravity * Time.deltaTime;
-        }
+            //apply gravity
+            if (isGrounded && verticalMovement < 0)
+            {
+                verticalMovement = 0f;
+            }
+            else
+            {
+                verticalMovement += gravity * Time.deltaTime;
+            }
 
-        //lerp speed values for blending walk/run animation states
-        if (playerInputScript.actions.Player.Sprint.ReadValue<float>() > 0)
-        {
-            currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, 10.0f * Time.deltaTime);
-        }
-        else
-        {
-            currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, 10.0f * Time.deltaTime);
-        }
+            //lerp speed values for blending walk/run animation states
+            if (playerInputScript.actions.Player.Sprint.ReadValue<float>() > 0)
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, 10.0f * Time.deltaTime);
+            }
+            else
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, 10.0f * Time.deltaTime);
+            }
 
-        velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed;
-        velocityXZ = transform.TransformDirection(velocityXZ);
-        velocityY = new Vector3(0, verticalMovement, 0);
+            velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed;
+            velocityXZ = transform.TransformDirection(velocityXZ);
+            velocityY = new Vector3(0, verticalMovement, 0);
 
-        //move character based on input
-        controller.Move((velocityXZ + velocityY) * Time.deltaTime);
+            //move character based on input
+            controller.Move((velocityXZ + velocityY) * Time.deltaTime);
 
-        //pass velocityXZ to drive movement animation
-        CharacterMovementAnimation.Movement(anim, velocityXZ, runSpeed);
-        //rotate child in direction of movement      
-        if (Vector3.Magnitude(velocityXZ) > 0.5f)
-        {
-            rotationDir = Quaternion.LookRotation(velocityXZ);
-            child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
-        }
+            //pass velocityXZ to drive movement animation
+            CharacterMovementAnimation.Movement(anim, velocityXZ, runSpeed);
+            //rotate child in direction of movement      
+            if (Vector3.Magnitude(velocityXZ) > 0.5f)
+            {
+                rotationDir = Quaternion.LookRotation(velocityXZ);
+                child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
+            }
 
-        //rotate parent to camera
-        if (Vector3.Magnitude(velocityXZ) > 0.5f)
-        {
-            Vector3 cam = new Vector3(camera.TransformDirection(Vector3.forward).x, 0, camera.TransformDirection(Vector3.forward).z);
-            Quaternion rotationDir = Quaternion.LookRotation(cam);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
+            //rotate parent to camera
+            if (Vector3.Magnitude(velocityXZ) > 0.5f)
+            {
+                Vector3 cam = new Vector3(camera.TransformDirection(Vector3.forward).x, 0, camera.TransformDirection(Vector3.forward).z);
+                Quaternion rotationDir = Quaternion.LookRotation(cam);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
+            }
+
         }
 
     }

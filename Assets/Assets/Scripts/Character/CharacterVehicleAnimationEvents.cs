@@ -7,10 +7,14 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
 
     [SerializeField]
     private PlayerInput playerInputScript;
+
     [SerializeField]
     private CharacterVehicleInteraction characterVehicleInteractionScript;
     [SerializeField]
     private NavMeshAgentVehicleInteraction navMeshAgentVehicleInteractionScript;
+    [SerializeField]
+    private NavMeshAgentVehicleInteraction navMeshAgentSelfVehicleInteractionScript;
+
 
     //animation events
     public void EnableVehicle()
@@ -52,15 +56,13 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     {
         navMeshAgentVehicleInteractionScript.exit = true;
         navMeshAgentVehicleInteractionScript.agentAnim.SetTrigger("ket exit");
-
     }
     public void AgentExitVehicle()
     {
-        navMeshAgentVehicleInteractionScript.preOrientExit = true;
+        navMeshAgentSelfVehicleInteractionScript.preOrientExit = true;
     }
     public void AgentRotationConstraint()
     {
         navMeshAgentVehicleInteractionScript.rotationConstraint = true;
     }
-
 }

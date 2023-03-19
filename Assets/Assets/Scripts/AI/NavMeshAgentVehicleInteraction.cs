@@ -60,7 +60,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
         //lerp agent position to vehicle
         if (preOrientEnter)
         {
-            if (transform.position != constraintPosition.position)
+            if (Vector3.Distance(transform.position, constraintPosition.position) > 0.01f)
             {
                 elapsed += Time.deltaTime;
                 transform.position = Vector3.Lerp(transform.position, constraintPosition.position, elapsed / duration);
@@ -82,7 +82,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
             //lerp agent position to exit
             if (preOrientExit)
             {
-                if (transform.position != enterPosition.position)
+                if (Vector3.Distance(transform.position, enterPosition.position) > 0.01f)
                 {
                     elapsed += Time.deltaTime;
                     transform.position = Vector3.Lerp(transform.position, enterPosition.position, elapsed / duration);

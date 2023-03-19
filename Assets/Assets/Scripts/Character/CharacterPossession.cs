@@ -48,8 +48,8 @@ public class CharacterPossession : MonoBehaviour
             GetComponentInChildren<CharacterBarrelInteraction>().enabled = false;
             GetComponentInChildren<CharacterFuelInteraction>().enabled = false;
             GetComponentInChildren<CharacterVehicleInteraction>().enabled = false;
-            GetComponentInChildren<NavMeshAgent>().enabled = true;
             GetComponentInChildren<NavMeshObstacle>().enabled = false;
+            GetComponentInChildren<NavMeshAgent>().enabled = true;
             GetComponentInChildren<NavMeshAgentVehicleInteraction>().enabled = true;
             GetComponentInChildren<NavMeshAgentFollowPlayer>().enabled = true;
 

@@ -1,39 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterManager : MonoBehaviour
 {
     public PlayerInput playerInput;
     public Animator playerAnim;
-    [SerializeField]
-    private PlayerMovement playerChitoMovementScript;
-    [SerializeField]
 
-    private PlayerInput playerChitoInputScript;
     [SerializeField]
-    private PlayerInput playerYuuriInputScript;
+    private GameObject Chito;
     [SerializeField]
-    private Animator chitoAnim;
-    [SerializeField]
-    private Animator yuuriAnim;
+    private GameObject Yuuri;
+    private bool allowYuuriPossession = true;
 
     void Start()
     {
-        playerInput = playerChitoInputScript;
-        playerAnim = chitoAnim;
+        Chito.GetComponent<PlayerInput>().actions.Player.Possess.performed += Possess;
+
+        playerInput = Chito.GetComponent<PlayerInput>();
+        playerAnim = Chito.GetComponentInChildren<Animator>();
     }
-    void Update()
+    private void Possess(InputAction.CallbackContext context)
     {
-        if (playerChitoMovementScript.enabled)
+        if (context.performed)
         {
-            playerInput = playerChitoInputScript;
-            playerAnim = chitoAnim;
-        }
-        else
-        {
-            playerInput = playerYuuriInputScript;
-            playerAnim = yuuriAnim;
+            if (allowYuuriPossession)
+            {
+                playerInput = Yuuri.GetComponent<PlayerInput>();
+                playerAnim = Yuuri.GetComponentInChildren<Animator>();
+                Yuuri.tag = "Player";
+                Chito.tag = "Untagged";
+                allowYuuriPossession = false;
+            }
+            else
+            {
+                playerInput = Chito.GetComponent<PlayerInput>();
+                playerAnim = Chito.GetComponentInChildren<Animator>();
+                Yuuri.tag = "Untagged";
+                Chito.tag = "Player";
+                allowYuuriPossession = true;
+            }
         }
     }
 }

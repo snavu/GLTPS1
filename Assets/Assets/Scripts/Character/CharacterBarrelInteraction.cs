@@ -7,7 +7,7 @@ using UnityEngine.Animations;
 public class CharacterBarrelInteraction : MonoBehaviour
 {
     [SerializeField]
-    private PlayerInput playerInputScript;
+    private CharacterManager characterManagerScript;
     [SerializeField]
     private Animator anim;
     public bool isPickupable;
@@ -31,17 +31,17 @@ public class CharacterBarrelInteraction : MonoBehaviour
 
     void Start()
     {
-        playerInputScript.actions.Player.Interact.performed += Interact;
-        playerInputScript.actions.Player.HoldInteract.performed += HoldInteract;
+        characterManagerScript.playerInput.actions.Player.Interact.performed += Interact;
+        characterManagerScript.playerInput.actions.Player.HoldInteract.performed += HoldInteract;
     }
 
     private void Interact(InputAction.CallbackContext context)
     {
-        if (context.performed && isPickupable && inBarrelDropArea && !isCarrying && newBarrel == null)
+        if (context.performed && isPickupable && inBarrelDropArea && !isCarrying && newBarrel == null && this.enabled)
         {
             //disable player jump and spring
-            playerInputScript.actions.Player.Jump.Disable();
-            playerInputScript.actions.Player.Sprint.Disable();
+            characterManagerScript.playerInput.actions.Player.Jump.Disable();
+            characterManagerScript.playerInput.actions.Player.Sprint.Disable();
 
             //freeze kettengrad rigidbody to prevent movement from player collider clipping bug
             vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
@@ -57,10 +57,10 @@ public class CharacterBarrelInteraction : MonoBehaviour
             newBarrel.GetComponent<ParentConstraint>().constraintActive = true;
         }
 
-        if (context.performed && isPickupable && !inBarrelDropArea)
+        if (context.performed && isPickupable && !inBarrelDropArea && this.enabled)
         {
-            playerInputScript.actions.Player.Jump.Disable();
-            playerInputScript.actions.Player.Sprint.Disable();
+            characterManagerScript.playerInput.actions.Player.Jump.Disable();
+            characterManagerScript.playerInput.actions.Player.Sprint.Disable();
 
             SetParameters(true, 0.5f, true, true);
 
@@ -72,8 +72,8 @@ public class CharacterBarrelInteraction : MonoBehaviour
     {
         if (context.performed && anim.GetCurrentAnimatorStateInfo(2).IsTag("carry"))
         {
-            playerInputScript.actions.Player.Jump.Enable();
-            playerInputScript.actions.Player.Sprint.Enable();
+            characterManagerScript.playerInput.actions.Player.Jump.Enable();
+            characterManagerScript.playerInput.actions.Player.Sprint.Enable();
 
             vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 

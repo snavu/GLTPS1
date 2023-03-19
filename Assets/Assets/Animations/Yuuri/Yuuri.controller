@@ -372,7 +372,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chito_Chito_Chito_HoldBarrel_2_001
+  m_Name: Yuuri_Yuuri_Yuuri_HoldBarrel_001
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -386,7 +386,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fd88de8e0982a0f468ead2949bd05a14, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2f2caf950985ddd4c84eafa5439af24f, type: 2}
   m_Tag: carry
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -537,7 +537,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Carry
     m_StateMachine: {fileID: 3136954921619530058}
-    m_Mask: {fileID: 31900000, guid: 6635e76251e1ead428a815ad7c1f239f, type: 2}
+    m_Mask: {fileID: 31900000, guid: 359e365cccfb1b842ba95156b74c340b, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -808,7 +808,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 4129988780976796172}
-    m_Position: {x: -140, y: 220, z: 0}
+    m_Position: {x: -140, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1174310397816071930}
     m_Position: {x: 420, y: -90, z: 0}

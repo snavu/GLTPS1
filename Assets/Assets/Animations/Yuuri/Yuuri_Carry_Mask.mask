@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Yuuri_Carry_Mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Yuuri
+    m_Weight: 0
+  - m_Path: Yuuri/Root
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Pelvis
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Pelvis/Foot_IK.L
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Pelvis/Foot_IK.R
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Pelvis/Knee_IK.L
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Pelvis/Knee_IK.R
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Pelvis/Thigh.L
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Pelvis/Thigh.L/Shin.L
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Pelvis/Thigh.L/Shin.L/Foot.L
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Pelvis/Thigh.R
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Pelvis/Thigh.R/Shin.R
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Pelvis/Thigh.R/Shin.R/Foot.R
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Torso
+    m_Weight: 0
+  - m_Path: Yuuri/Root/Torso/Elbow_IK.L
+    m_Weight: 1
+  - m_Path: Yuuri/Root/Torso/Elbow_IK.R
+    m_Weight: 1
+  - m_Path: Yuuri/Root/Torso/Hand_IK.L
+    m_Weight: 1
+  - m_Path: Yuuri/Root/Torso/Hand_IK.R
+    m_Weight: 1
+  - m_Path: Yuuri/Root/Torso/Head
+    m_Weight: 1
+  - m_Path: Yuuri/Root/Torso/Shoulder.L
+    m_Weight: 1
+  - m_Path: Yuuri/Root/Torso/Shoulder.L/Forearm.L
+    m_Weight: 1
+  - m_Path: Yuuri/Root/Torso/Shoulder.L/Forearm.L/Hand.L
+    m_Weight: 1
+  - m_Path: Yuuri/Root/Torso/Shoulder.R
+    m_Weight: 1
+  - m_Path: Yuuri/Root/Torso/Shoulder.R/Forearm.R
+    m_Weight: 1
+  - m_Path: Yuuri/Root/Torso/Shoulder.R/Forearm.R/Hand.R
+    m_Weight: 1
+  - m_Path: YuuriBody
+    m_Weight: 0

@@ -29,7 +29,9 @@ public class CharacterPossession : MonoBehaviour
 
     private void Possess(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed 
+            && !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(1).IsTag("Ket")
+            && !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(2).IsTag("Carry"))
         {
             //note: input action callbacks occur even while script is inactive 
             //unsubscribe from the input action before switching script to prevent duplicate calls

@@ -68,8 +68,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 3c3d4d332bd8c6540a8efafc4d612981, type: 2}
-  m_Tag: Ket Seat Back
+  m_Motion: {fileID: 7400000, guid: 62f522f7d7b20204d9a0c9ea63d73733, type: 2}
+  m_Tag: Ket
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -121,7 +121,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 4d898c3466a8617459a6526368cfac9e, type: 2}
-  m_Tag: Ket Seat
+  m_Tag: Ket
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -224,7 +224,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 1
   m_TransitionOffset: 0
   m_ExitTime: 1
   m_HasExitTime: 0
@@ -335,7 +335,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.5
   m_TransitionOffset: 0
   m_ExitTime: 1
   m_HasExitTime: 1
@@ -387,7 +387,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: fd88de8e0982a0f468ead2949bd05a14, type: 2}
-  m_Tag: carry
+  m_Tag: Carry
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -414,7 +414,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 86db2ddaa162fea40957321b7f2ef55b, type: 2}
-  m_Tag: Ket Exit
+  m_Tag: Ket
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -441,7 +441,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: c72fdb056a9db184da821d593b8c2262, type: 2}
-  m_Tag: Ket Exit
+  m_Tag: Ket
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -560,7 +560,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 1
+  m_TransitionDuration: 0.5
   m_TransitionOffset: 0
   m_ExitTime: 1
   m_HasExitTime: 1
@@ -591,7 +591,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 845387211541185491}
-  m_Tag: Ket Seat Front
+  m_Tag: Ket
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -744,7 +744,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 7e547ac8fae4dfc4f954da625a581b28, type: 2}
-  m_Tag: Ket Seat
+  m_Tag: Ket
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -840,7 +840,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 1
+  m_TransitionDuration: 0.5
   m_TransitionOffset: 0
   m_ExitTime: 0.75
   m_HasExitTime: 0
@@ -869,8 +869,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9e15d566df27d9140bd181a4843c1e06, type: 2}
-  m_Tag: 
+  m_Motion: {fileID: 7400000, guid: a4549b9bae4f7c64c83d0ae5e3da93c0, type: 2}
+  m_Tag: Ket
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -944,8 +944,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fd1bf2e106bcc9d4f9a0f3191559727d, type: 2}
-  m_Tag: Ket Exit
+  m_Motion: {fileID: 7400000, guid: ab6da8e1e6d91a54495f249fd8117926, type: 2}
+  m_Tag: Ket
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 

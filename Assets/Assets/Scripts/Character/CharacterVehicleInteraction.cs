@@ -149,7 +149,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
                 //orient rotation to enter ket
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, vehicleEnter.rotation, rotationSpeed * Time.deltaTime);
                 child.rotation = Quaternion.RotateTowards(child.rotation, vehicleEnter.gameObject.transform.rotation, rotationSpeed * Time.deltaTime);
-                if (transform.rotation == vehicleEnter.rotation && child.rotation == vehicleEnter.rotation)
+                if (AngleUtils.RotationsApproximatelyEqual(transform, vehicleEnter) && AngleUtils.RotationsApproximatelyEqual(child, vehicleEnter))
                 {
                     if (vehicleEnter.gameObject.name == "Right")
                     {
@@ -196,8 +196,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     public void Interact(InputAction.CallbackContext context)
     {
         if (context.performed && enterable
-            && !characterManagerScript.playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Front")
-            && !characterManagerScript.playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket Seat Back")
+            && !characterManagerScript.playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket")
             && !GetComponent<CharacterBarrelInteraction>().isCarrying)
         {
             //ignore collisions between layer 6 (vehicle) and layer 7 (player) 

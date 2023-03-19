@@ -43,11 +43,11 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
 
             //orient agent position to enter ket
             agent.destination = enterPosition.position;
-            if (Vector3.Distance(transform.position, enterPosition.position) < 0.2f)
+            if (Vector3.Distance(transform.position, enterPosition.position) < 0.1f)
             {
                 //orient rotation to enter ket
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, enterPosition.rotation, rotationSpeed * Time.deltaTime);
-                if (transform.rotation == enterPosition.rotation)
+                if (AngleUtils.RotationsApproximatelyEqual(transform, enterPosition))
                 {
                     agentAnim.SetTrigger("ket back");
                     agent.enabled = false;

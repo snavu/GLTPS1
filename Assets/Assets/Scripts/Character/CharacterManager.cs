@@ -23,7 +23,9 @@ public class CharacterManager : MonoBehaviour
     }
     private void Possess(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed 
+            && !playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket")
+            && !playerAnim.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(2).IsTag("Carry"))
         {
             if (allowYuuriPossession)
             {

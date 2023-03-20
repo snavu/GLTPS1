@@ -8,9 +8,9 @@ public class CharacterPossession : MonoBehaviour
     [SerializeField]
     private PlayerInput playerInputScript;
     [SerializeField]
-    private PositionConstraint CMFollowTarget;
+    private GameObject CMFollowTarget;
     [SerializeField]
-    private PositionConstraint CMLookAtTarget;
+    private GameObject CMLookAtTarget;
     [SerializeField]
     private GameObject playerToPossess;
     private static bool possessActionSubscribed = false;
@@ -29,7 +29,7 @@ public class CharacterPossession : MonoBehaviour
 
     private void Possess(InputAction.CallbackContext context)
     {
-        if (context.performed 
+        if (context.performed
             && !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(1).IsTag("Ket")
             && !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(2).IsTag("Carry"))
         {
@@ -38,8 +38,12 @@ public class CharacterPossession : MonoBehaviour
             playerInputScript.actions.Player.Possess.performed -= Possess;
 
             //change camera follow and look at target
-            CMFollowTarget.player = playerToPossess.transform;
-            CMLookAtTarget.player = playerToPossess.transform;
+            CMFollowTarget.transform.position = new Vector3(playerToPossess.transform.position.x, CMFollowTarget.transform.position.y, playerToPossess.transform.position.z);
+            CMLookAtTarget.transform.position = new Vector3(playerToPossess.transform.position.x, CMLookAtTarget.transform.position.y, playerToPossess.transform.position.z);
+            CMFollowTarget.transform.rotation = playerToPossess.transform.rotation;
+            CMLookAtTarget.transform.rotation = playerToPossess.transform.rotation;
+            CMFollowTarget.transform.parent = playerToPossess.transform;
+            CMLookAtTarget.transform.parent = playerToPossess.transform;
 
             //switch player scripts
             GetComponentInChildren<CharacterController>().enabled = false;

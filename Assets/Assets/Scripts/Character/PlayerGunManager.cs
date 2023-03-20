@@ -35,35 +35,60 @@ public class PlayerGunManager : MonoBehaviour
     private float runSpeed = 4f;
 
     [SerializeField]
-    private ParentConstraint gunParentConstraint;
+    private Transform gun;
     [SerializeField]
-    private GameObject handBone;
+    private Transform handSocket;
     [SerializeField]
-    private GameObject backBone;
-    [SerializeField]
-    private ConstraintSource handSocket;
-    [SerializeField]
-    private ConstraintSource backSocket;
+    private Transform backSocket;
 
+    [SerializeField]
+    private float timeUntilEnequip = 0.5f;
+    private bool unequip = true;
 
+    [SerializeField]
+    private Transform camera;
+    [SerializeField]
+    private float rotationSpeed = 600.0f;
+    [SerializeField]
+    private Transform spineBone;
+
+    [SerializeField]
+    private Vector3 CMFollowTargetOffsetPos;
+    [SerializeField]
+    private Vector3 CMLookAtTargetOffsetPos;
+
+    [SerializeField]
+    private Transform CMFollowTarget;
+    [SerializeField]
+    private Transform CMLookAtTarget;
+    private Vector3 CMFollowTargetInitialLocalPos;
+
+    private Vector3 CMLookAtTargetInitialLocalPos;
+    [SerializeField]
+    private Transform child;
+
+    [SerializeField]
     void Start()
     {
+
         //playerInputScript.actions.Player.ADS.performed += AimDownSight;
     }
 
     void Update()
     {
-        //check if player movement script is enabled and that the yuuri is the player  
-        if (playerMovementScript.enabled &&
-            characterManagerScript.playerInput == playerInputScript &&
+        //check if yuuri is the player  
+        if (characterManagerScript.playerInput == playerInputScript &&
             playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f &&
+            playerMovementScript.enabled &&
             playerMovementScript.isGrounded)
         {
-            isAiming = true;
             playerMovementScript.enabled = false;
         }
 
-        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f && !playerMovementScript.enabled)
+        if (characterManagerScript.playerInput == playerInputScript &&
+            playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f &&
+            !playerMovementScript.enabled
+            )
         {
             //get horizontal input
             horizontalInput = playerInputScript.actions.Player.Move.ReadValue<Vector2>();
@@ -78,40 +103,75 @@ public class PlayerGunManager : MonoBehaviour
             //pass velocityXZ to drive movement animation
             CharacterMovementAnimation.Movement(anim, velocityXZ, runSpeed);
 
+            //rotate child in direction of camera      
+            child.rotation = Quaternion.Euler(0f, camera.rotation.eulerAngles.y, 0f);
+
+            //rotate player to camera
+            Vector3 camXZ = new Vector3(camera.TransformDirection(Vector3.forward).x, 0, camera.TransformDirection(Vector3.forward).z);
+            Quaternion rotationDirXZ = Quaternion.LookRotation(camXZ);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDirXZ, rotationSpeed * Time.deltaTime);
+
+            CMFollowTargetInitialLocalPos = new Vector3(0, CMFollowTarget.transform.position.y, 0);
+            CMLookAtTargetInitialLocalPos = new Vector3(0, CMLookAtTarget.transform.position.y, 0);
             //set player ADS animation
-            anim.SetBool("ADS", true);
+            if (unequip)
+            {
+                //set camera position
+                CMFollowTarget.localPosition = CMFollowTargetOffsetPos;
+                CMLookAtTarget.localPosition = CMLookAtTargetOffsetPos;
+
+                //set gun to hand
+                StopAllCoroutines();
+                AttachToGunHandSocket();
+                anim.SetBool("ADS", true);
+                unequip = false;
+            }
+
         }
         else
         {
-            anim.SetBool("ADS", false);
-            playerMovementScript.enabled = true;
+            if (!unequip)
+            {
+                //reset camera position
+                CMFollowTarget.localPosition = CMFollowTargetInitialLocalPos;
+                CMLookAtTarget.localPosition = CMLookAtTargetInitialLocalPos;
+
+                //set gun to back
+                StartCoroutine(AttachToGunBackSocket());
+                anim.SetBool("ADS", false);
+                playerMovementScript.enabled = true;
+                unequip = true;
+            }
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (characterManagerScript.playerInput == playerInputScript &&
+            playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f &&
+            !playerMovementScript.enabled
+            )
+        {
+            spineBone.rotation = camera.rotation;
         }
     }
 
     public void AttachToGunHandSocket()
     {
-        if (!gunParentConstraint.GetSource(0).Equals(handSocket))
-        {
-            //set parent constraint of gun to hand
-            handSocket.sourceTransform = handBone.transform;
-            handSocket.weight = 1;
-
-            gunParentConstraint.SetSource(0, handSocket);
-            gunParentConstraint.constraintActive = true;
-        }
-
+        //set parent of gun to hand
+        gun.parent = handSocket;
+        gun.localPosition = Vector3.zero;
+        gun.localRotation = Quaternion.identity;
     }
-    public void AttachToGunBackSocket()
+    public IEnumerator AttachToGunBackSocket()
     {
-        if (!gunParentConstraint.GetSource(0).Equals(backSocket))
-        {
-            //set parent constraint of gun to back
-            backSocket.sourceTransform = backBone.transform;
-            backSocket.weight = 1;
+        yield return new WaitForSeconds(timeUntilEnequip);
 
-            gunParentConstraint.SetSource(0, backSocket);
-            gunParentConstraint.constraintActive = true;
-        }
+        //set parent of gun to back
+        gun.parent = backSocket;
+        gun.localPosition = Vector3.zero;
+        gun.localRotation = Quaternion.identity;
+
 
     }
 

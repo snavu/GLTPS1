@@ -29,8 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private float gravity = -9.81f;
     [SerializeField]
     private float rotationSpeed = 600.0f;
-    [SerializeField]
-    Quaternion rotationDir;
+
     [SerializeField]
 
     private float jumpHeight = 1.0f;
@@ -98,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
             //rotate child in direction of movement      
             if (Vector3.Magnitude(velocityXZ) > 0.5f)
             {
-                rotationDir = Quaternion.LookRotation(velocityXZ);
+                Quaternion rotationDir = Quaternion.LookRotation(velocityXZ);
                 child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
             }
 

@@ -68,6 +68,7 @@ public class PlayerGunManager : MonoBehaviour
     private Transform child;
 
     [SerializeField]
+    private GameObject crosshair;
     void Start()
     {
 
@@ -124,7 +125,9 @@ public class PlayerGunManager : MonoBehaviour
                 StopAllCoroutines();
                 AttachToGunHandSocket();
                 anim.SetBool("ADS", true);
+                crosshair.SetActive(true);
                 unequip = false;
+
             }
 
         }
@@ -140,7 +143,9 @@ public class PlayerGunManager : MonoBehaviour
                 StartCoroutine(AttachToGunBackSocket());
                 anim.SetBool("ADS", false);
                 playerMovementScript.enabled = true;
+                crosshair.SetActive(false);
                 unequip = true;
+
             }
         }
     }

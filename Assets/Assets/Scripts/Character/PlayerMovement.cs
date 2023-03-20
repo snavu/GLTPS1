@@ -19,9 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocityXZ;
     private Vector3 velocityY;
     private float verticalMovement;
-
-    [SerializeField]
-    private bool isGrounded;
+    public bool isGrounded;
     public float currentSpeed;
     public float walkSpeed = 2.0f;
     public float runSpeed = 4.0f;
@@ -59,15 +57,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //get horizontal input
-        horizontalInput = playerInputScript.actions.Player.Move.ReadValue<Vector2>();
-        horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
-
-        //check ground collision
-        isGrounded = Physics.CheckSphere(transform.position + sphereCastPosition, controller.radius, layerMask, QueryTriggerInteraction.Ignore);
-
         if (controller.enabled)
         {
+            //get horizontal input
+            horizontalInput = playerInputScript.actions.Player.Move.ReadValue<Vector2>();
+            horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
+
+            //check ground collision
+            isGrounded = Physics.CheckSphere(transform.position + sphereCastPosition, controller.radius, layerMask, QueryTriggerInteraction.Ignore);
             //apply gravity
             if (isGrounded && verticalMovement < 0)
             {
@@ -97,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
             //pass velocityXZ to drive movement animation
             CharacterMovementAnimation.Movement(anim, velocityXZ, runSpeed);
+
             //rotate child in direction of movement      
             if (Vector3.Magnitude(velocityXZ) > 0.5f)
             {

@@ -47,7 +47,7 @@ public class VehicleMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         //layerMask ignore player, vehicle, and ai
-        layerMask = 1 << 6 | 1 << 7 | 1 << 8;
+        layerMask = 1 << 6 | 1 << 7;
         layerMask = ~layerMask;
     }
 

@@ -7,7 +7,7 @@ using Cinemachine;
 public class CharacterVehicleInteraction : MonoBehaviour
 {
     [SerializeField]
-    private CinemachineFreeLook freelook;
+    private CinemachineFreeLook freelookCamera;
     [SerializeField]
     private float[] freelookRadius;
     [SerializeField]
@@ -76,7 +76,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             ChangeCameraRigRadius(freelookRadius[0], freelookRadius[1], freelookRadius[2]);
         }
         //constrain is false, lerp camera radius back normal radius for player movement
-        else if (freelook.m_Orbits[1].m_Radius != freelookRadius[4])
+        else if (freelookCamera.m_Orbits[1].m_Radius != freelookRadius[4])
         {
             ChangeCameraRigRadius(freelookRadius[3], freelookRadius[4], freelookRadius[5]);
         }
@@ -188,9 +188,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     private void ChangeCameraRigRadius(float top, float middle, float bottom)
     {
-        freelook.m_Orbits[0].m_Radius = Mathf.SmoothDamp(freelook.m_Orbits[0].m_Radius, top, ref smoothRadiusVelocity, smoothRadiusSpeed);
-        freelook.m_Orbits[1].m_Radius = Mathf.SmoothDamp(freelook.m_Orbits[1].m_Radius, top, ref smoothRadiusVelocity, smoothRadiusSpeed);
-        freelook.m_Orbits[2].m_Radius = Mathf.SmoothDamp(freelook.m_Orbits[2].m_Radius, top, ref smoothRadiusVelocity, smoothRadiusSpeed);
+        freelookCamera.m_Orbits[0].m_Radius = Mathf.SmoothDamp(freelookCamera.m_Orbits[0].m_Radius, top, ref smoothRadiusVelocity, smoothRadiusSpeed);
+        freelookCamera.m_Orbits[1].m_Radius = Mathf.SmoothDamp(freelookCamera.m_Orbits[1].m_Radius, top, ref smoothRadiusVelocity, smoothRadiusSpeed);
+        freelookCamera.m_Orbits[2].m_Radius = Mathf.SmoothDamp(freelookCamera.m_Orbits[2].m_Radius, top, ref smoothRadiusVelocity, smoothRadiusSpeed);
     }
 
     public void Interact(InputAction.CallbackContext context)

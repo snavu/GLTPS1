@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Animations;
-public class PlayerGunManager : MonoBehaviour
+using Cinemachine;
+public class PlayerGunMovement : MonoBehaviour
 {
     [SerializeField]
     private PlayerInput playerInputScript;
@@ -69,6 +70,13 @@ public class PlayerGunManager : MonoBehaviour
 
     [SerializeField]
     private GameObject crosshair;
+
+    [SerializeField]
+    private CinemachineFreeLook freeLookCamera;
+    [SerializeField]
+    private float ADSDecelTime = 0.05f;
+    [SerializeField]
+    private float DefaultDecelTime = 0.3f;
     void Start()
     {
 
@@ -121,15 +129,17 @@ public class PlayerGunManager : MonoBehaviour
                 CMFollowTarget.localPosition = CMFollowTargetOffsetPos;
                 CMLookAtTarget.localPosition = CMLookAtTargetOffsetPos;
 
+                //set freelook camera values
+                freeLookCamera.m_XAxis.m_DecelTime = ADSDecelTime;
+                freeLookCamera.m_YAxis.m_DecelTime = ADSDecelTime;
+
                 //set gun to hand
                 StopAllCoroutines();
                 AttachToGunHandSocket();
                 anim.SetBool("ADS", true);
                 crosshair.SetActive(true);
                 unequip = false;
-
             }
-
         }
         else
         {
@@ -138,6 +148,10 @@ public class PlayerGunManager : MonoBehaviour
                 //reset camera position
                 CMFollowTarget.localPosition = CMFollowTargetInitialLocalPos;
                 CMLookAtTarget.localPosition = CMLookAtTargetInitialLocalPos;
+                
+                //set freelook camera values
+                freeLookCamera.m_XAxis.m_DecelTime = DefaultDecelTime;
+                freeLookCamera.m_YAxis.m_DecelTime = DefaultDecelTime;
 
                 //set gun to back
                 StartCoroutine(AttachToGunBackSocket());

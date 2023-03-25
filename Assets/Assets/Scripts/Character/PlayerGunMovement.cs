@@ -77,6 +77,9 @@ public class PlayerGunMovement : MonoBehaviour
     private float ADSDecelTime = 0.05f;
     [SerializeField]
     private float DefaultDecelTime = 0.3f;
+
+    [SerializeField]
+    private PlayerGunController playerGunControllerScript;
     void Start()
     {
 
@@ -159,7 +162,6 @@ public class PlayerGunMovement : MonoBehaviour
                 playerMovementScript.enabled = true;
                 crosshair.SetActive(false);
                 unequip = true;
-
             }
         }
     }
@@ -190,8 +192,6 @@ public class PlayerGunMovement : MonoBehaviour
         gun.parent = backSocket;
         gun.localPosition = Vector3.zero;
         gun.localRotation = Quaternion.identity;
-
-
     }
 
     // private void AimDownSight(InputAction.CallbackContext context)

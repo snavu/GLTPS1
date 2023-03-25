@@ -69,7 +69,7 @@ public class CharacterFoodManager : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Food"))
         {

@@ -50,7 +50,7 @@ public class CharacterPossession : MonoBehaviour
             GetComponentInChildren<CapsuleCollider>().enabled = true;
             GetComponentInChildren<PlayerMovement>().enabled = false;
             GetComponentInChildren<CharacterPossession>().enabled = false;
-            GetComponentInChildren<CharacterFoodManager>().enabled = false;
+            GetComponentInChildren<CharacterFoodInteraction>().enabled = false;
             GetComponentInChildren<CharacterBarrelInteraction>().enabled = false;
             GetComponentInChildren<CharacterFuelInteraction>().enabled = false;
             GetComponentInChildren<CharacterVehicleInteraction>().enabled = false;
@@ -64,7 +64,7 @@ public class CharacterPossession : MonoBehaviour
             playerToPossess.GetComponentInChildren<CapsuleCollider>().enabled = false;
             playerToPossess.GetComponentInChildren<PlayerMovement>().enabled = true;
             playerToPossess.GetComponentInChildren<CharacterPossession>().enabled = true;
-            playerToPossess.GetComponentInChildren<CharacterFoodManager>().enabled = true;
+            playerToPossess.GetComponentInChildren<CharacterFoodInteraction>().enabled = true;
             playerToPossess.GetComponentInChildren<CharacterBarrelInteraction>().enabled = true;
             playerToPossess.GetComponentInChildren<CharacterFuelInteraction>().enabled = true;
             playerToPossess.GetComponentInChildren<CharacterVehicleInteraction>().enabled = true;

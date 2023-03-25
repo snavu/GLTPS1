@@ -15,6 +15,7 @@ TagManager:
   - Fuel
   - FuelingStation
   - Vehicle
+  - Ammo
   layers:
   - Default
   - TransparentFX

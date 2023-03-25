@@ -11,6 +11,9 @@ public class CharacterHunger : MonoBehaviour
     private float maxHungerValue = 100f;
     [SerializeField]
     private float minHungerValue = 0f;
+    public int index;
+    public int offsetXPos;
+    public List<GameObject> newFoodbar;
 
     void Update()
     {

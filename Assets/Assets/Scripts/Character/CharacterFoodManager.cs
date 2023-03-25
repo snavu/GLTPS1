@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CharacterFoodManager : MonoBehaviour
 {
     [SerializeField]
-    private PlayerInput playerInputScript;
+    private PlayerInputInitialize playerInputScript;
     [SerializeField]
     private bool isPickupable;
     [SerializeField]

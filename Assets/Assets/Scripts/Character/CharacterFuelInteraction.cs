@@ -7,7 +7,7 @@ using UnityEngine.Animations;
 public class CharacterFuelInteraction : MonoBehaviour
 {
     [SerializeField]
-    private PlayerInput playerInputScript;
+    private PlayerInputInitialize playerInputScript;
     [SerializeField]
     private CharacterBarrelInteraction characterBarrelInteractionScript;
     [SerializeField]

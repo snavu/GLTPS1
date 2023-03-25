@@ -54,10 +54,10 @@ public class VehicleMovement : MonoBehaviour
     void Update()
     {
         //get input
-        movement = characterManagerScript.playerInput.actions.Vehicle.Drive.ReadValue<Vector2>();
+        movement = characterManagerScript.PlayerInputInitialize.actions.Vehicle.Drive.ReadValue<Vector2>();
 
         //set speed
-        if (characterManagerScript.playerInput.actions.Vehicle.Accelerate.IsPressed())
+        if (characterManagerScript.PlayerInputInitialize.actions.Vehicle.Accelerate.IsPressed())
         {
             currentMovementRate = increasedMovementRate;
         }

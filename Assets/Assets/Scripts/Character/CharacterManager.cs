@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CharacterManager : MonoBehaviour
 {
-    public PlayerInput playerInput;
+    public PlayerInputInitialize PlayerInputInitialize;
     public Animator playerAnim;
 
     [SerializeField]
@@ -16,9 +16,9 @@ public class CharacterManager : MonoBehaviour
 
     void Start()
     {
-        Chito.GetComponent<PlayerInput>().actions.Player.Possess.performed += Possess;
+        Chito.GetComponent<PlayerInputInitialize>().actions.Player.Possess.performed += Possess;
 
-        playerInput = Chito.GetComponent<PlayerInput>();
+        PlayerInputInitialize = Chito.GetComponent<PlayerInputInitialize>();
         playerAnim = Chito.GetComponentInChildren<Animator>();
     }
     private void Possess(InputAction.CallbackContext context)
@@ -29,7 +29,7 @@ public class CharacterManager : MonoBehaviour
         {
             if (allowYuuriPossession)
             {
-                playerInput = Yuuri.GetComponent<PlayerInput>();
+                PlayerInputInitialize = Yuuri.GetComponent<PlayerInputInitialize>();
                 playerAnim = Yuuri.GetComponentInChildren<Animator>();
                 Yuuri.tag = "Player";
                 Chito.tag = "Untagged";
@@ -37,7 +37,7 @@ public class CharacterManager : MonoBehaviour
             }
             else
             {
-                playerInput = Chito.GetComponent<PlayerInput>();
+                PlayerInputInitialize = Chito.GetComponent<PlayerInputInitialize>();
                 playerAnim = Chito.GetComponentInChildren<Animator>();
                 Yuuri.tag = "Untagged";
                 Chito.tag = "Player";

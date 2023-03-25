@@ -31,8 +31,8 @@ public class CharacterBarrelInteraction : MonoBehaviour
 
     void Start()
     {
-        characterManagerScript.playerInput.actions.Player.Interact.performed += Interact;
-        characterManagerScript.playerInput.actions.Player.HoldInteract.performed += HoldInteract;
+        characterManagerScript.PlayerInputInitialize.actions.Player.Interact.performed += Interact;
+        characterManagerScript.PlayerInputInitialize.actions.Player.HoldInteract.performed += HoldInteract;
     }
 
     private void Interact(InputAction.CallbackContext context)
@@ -40,8 +40,8 @@ public class CharacterBarrelInteraction : MonoBehaviour
         if (context.performed && isPickupable && inBarrelDropArea && !isCarrying && newBarrel == null && this.enabled)
         {
             //disable player jump and spring
-            characterManagerScript.playerInput.actions.Player.Jump.Disable();
-            characterManagerScript.playerInput.actions.Player.Sprint.Disable();
+            characterManagerScript.PlayerInputInitialize.actions.Player.Jump.Disable();
+            characterManagerScript.PlayerInputInitialize.actions.Player.Sprint.Disable();
 
             //freeze kettengrad rigidbody to prevent movement from player collider clipping bug
             vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
@@ -59,8 +59,8 @@ public class CharacterBarrelInteraction : MonoBehaviour
 
         if (context.performed && isPickupable && !inBarrelDropArea && this.enabled)
         {
-            characterManagerScript.playerInput.actions.Player.Jump.Disable();
-            characterManagerScript.playerInput.actions.Player.Sprint.Disable();
+            characterManagerScript.PlayerInputInitialize.actions.Player.Jump.Disable();
+            characterManagerScript.PlayerInputInitialize.actions.Player.Sprint.Disable();
 
             SetParameters(true, 0.5f, true, true);
 
@@ -72,8 +72,8 @@ public class CharacterBarrelInteraction : MonoBehaviour
     {
         if (context.performed && anim.GetCurrentAnimatorStateInfo(2).IsTag("carry"))
         {
-            characterManagerScript.playerInput.actions.Player.Jump.Enable();
-            characterManagerScript.playerInput.actions.Player.Sprint.Enable();
+            characterManagerScript.PlayerInputInitialize.actions.Player.Jump.Enable();
+            characterManagerScript.PlayerInputInitialize.actions.Player.Sprint.Enable();
 
             vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 

@@ -6,7 +6,7 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
 {
 
     [SerializeField]
-    private PlayerInput playerInputScript;
+    private PlayerInputInitialize playerInputScript;
 
     [SerializeField]
     private CharacterVehicleInteraction characterVehicleInteractionScript;

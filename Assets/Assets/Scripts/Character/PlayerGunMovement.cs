@@ -7,7 +7,7 @@ using Cinemachine;
 public class PlayerGunMovement : MonoBehaviour
 {
     [SerializeField]
-    private PlayerInput playerInputScript;
+    private PlayerInputInitialize playerInputScript;
     [SerializeField]
     private PlayerMovement playerMovementScript;
     [SerializeField]
@@ -86,7 +86,7 @@ public class PlayerGunMovement : MonoBehaviour
     void Update()
     {
         //check if yuuri is the player  
-        if (characterManagerScript.playerInput == playerInputScript &&
+        if (characterManagerScript.PlayerInputInitialize == playerInputScript &&
             playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f &&
             playerMovementScript.enabled &&
             playerMovementScript.isGrounded)
@@ -94,7 +94,7 @@ public class PlayerGunMovement : MonoBehaviour
             playerMovementScript.enabled = false;
         }
 
-        if (characterManagerScript.playerInput == playerInputScript &&
+        if (characterManagerScript.PlayerInputInitialize == playerInputScript &&
             playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f &&
             !playerMovementScript.enabled
             )
@@ -166,7 +166,7 @@ public class PlayerGunMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if (characterManagerScript.playerInput == playerInputScript &&
+        if (characterManagerScript.PlayerInputInitialize == playerInputScript &&
             playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f &&
             !playerMovementScript.enabled
             )
@@ -196,7 +196,7 @@ public class PlayerGunMovement : MonoBehaviour
 
     // private void AimDownSight(InputAction.CallbackContext context)
     // {
-    //     if (characterManagerScript.playerInput == playerInputScript)
+    //     if (characterManagerScript.PlayerInputInitialize == playerInputScript)
     //     {
     //         isAiming = context.ReadValue<float>() > 0f;
 

@@ -14,7 +14,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private float smoothRadiusSpeed = 0.2f;
     private float smoothRadiusVelocity = 0f;
     [SerializeField]
-    private PlayerInput playerInputScript;
+    private PlayerInputInitialize playerInputScript;
     [SerializeField]
     private CharacterManager characterManagerScript;
     [SerializeField]
@@ -125,9 +125,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
         }
 
         //vehicle movement controls
-        if (characterManagerScript.playerInput.actions.Vehicle.Drive.enabled)
+        if (characterManagerScript.PlayerInputInitialize.actions.Vehicle.Drive.enabled)
         {
-            steer = characterManagerScript.playerInput.actions.Vehicle.Drive.ReadValue<Vector2>().x;
+            steer = characterManagerScript.PlayerInputInitialize.actions.Vehicle.Drive.ReadValue<Vector2>().x;
             steerSmooth = Mathf.SmoothDamp(steerSmooth, steer, ref smoothInputVelocity, smoothInputSpeed);
             vehicleAnim.SetFloat("steer", steerSmooth);
             characterManagerScript.playerAnim.SetFloat("steer", steerSmooth);
@@ -172,7 +172,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         Physics.IgnoreLayerCollision(6, 7, false);
-        characterManagerScript.playerInput.actions.Player.Enable();
+        characterManagerScript.PlayerInputInitialize.actions.Player.Enable();
         controller.enabled = true;
         preOrientExit = false;
         exitLeft = false;
@@ -206,7 +206,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             GetComponent<CharacterBarrelInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.None;
 
             //disable player movement
-            characterManagerScript.playerInput.actions.Player.Disable();
+            characterManagerScript.PlayerInputInitialize.actions.Player.Disable();
             //disable character controller
             controller.enabled = false;
             //disable navmesh obstacle, and wait a short time before enabling the agent

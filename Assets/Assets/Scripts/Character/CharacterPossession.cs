@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class CharacterPossession : MonoBehaviour
 {
     [SerializeField]
-    private PlayerInput playerInputScript;
+    private PlayerInputInitialize playerInputScript;
     [SerializeField]
     private GameObject CMFollowTarget;
     [SerializeField]

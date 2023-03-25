@@ -6,7 +6,7 @@ using Cinemachine;
 public class PlayerGunRecoil : MonoBehaviour
 {
     [SerializeField]
-    private PlayerInput playerInputScript;
+    private PlayerInputInitialize playerInputScript;
     [SerializeField]
     private CinemachineFreeLook freeLookCamera;
     [SerializeField]

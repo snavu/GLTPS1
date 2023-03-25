@@ -30,14 +30,14 @@ public class VehicleFuelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement = characterManagerScript.playerInput.actions.Vehicle.Drive.ReadValue<Vector2>();
+        movement = characterManagerScript.PlayerInputInitialize.actions.Vehicle.Drive.ReadValue<Vector2>();
 
         //clamp fuel
         currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
 
         if (Mathf.Abs(movement.y) > 0 && ketBarrelMesh.enabled)
         {
-            if (characterManagerScript.playerInput.actions.Vehicle.Accelerate.IsPressed())
+            if (characterManagerScript.PlayerInputInitialize.actions.Vehicle.Accelerate.IsPressed())
             {
                 currentFuel -= increasedFuelConsumptionRate * Time.deltaTime;
             }

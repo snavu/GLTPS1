@@ -26,7 +26,7 @@ public class CrosshairRecoil : MonoBehaviour
     private float recoilY;
 
     [SerializeField]
-    private PlayerInput playerInputScript;
+    private PlayerInputInitialize playerInputScript;
     private bool fire;
     [SerializeField]
     private bool recoil;

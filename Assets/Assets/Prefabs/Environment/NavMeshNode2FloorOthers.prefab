@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806315327659675037}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.3, y: 0, z: 83.8}
+  m_LocalPosition: {x: -50, y: 0, z: 64.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,6 +83,7 @@ MonoBehaviour:
   - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
   - {fileID: 5851680297174357704, guid: 8c87d594f5f2e9d4586e2ee5213b2561, type: 3}
   - {fileID: 6466177718867855727, guid: 83b59a561c12992479ba95f8adeb32ad, type: 3}
+  - {fileID: 2081935890965893310, guid: 9dea94c2f8d39ad46ac8e8a82a1c51b0, type: 3}
   newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs:
@@ -113,7 +114,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2209908701252209163}
-  m_LocalRotation: {x: 0, y: -0.0000020230486, z: 0, w: -1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000042146846}
   m_LocalPosition: {x: -163.1, y: 0, z: 29.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -123,8 +124,8 @@ Transform:
   - {fileID: 9117318042715689392}
   - {fileID: 3366163376944267663}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4212063024649245649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3264108709177565254}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 48.4, y: 0, z: -74.27}
+  m_LocalPosition: {x: 1.3, y: 0, z: -37.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -247,6 +248,7 @@ MonoBehaviour:
   - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
   - {fileID: 5851680297174357704, guid: 8c87d594f5f2e9d4586e2ee5213b2561, type: 3}
   - {fileID: 6466177718867855727, guid: 83b59a561c12992479ba95f8adeb32ad, type: 3}
+  - {fileID: 2081935890965893310, guid: 9dea94c2f8d39ad46ac8e8a82a1c51b0, type: 3}
   newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs:
@@ -591,7 +593,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5396823107671732630}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -99.16, y: 0, z: -77.22}
+  m_LocalPosition: {x: -92.33, y: 0, z: -38.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -615,6 +617,7 @@ MonoBehaviour:
   - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
   - {fileID: 5851680297174357704, guid: 8c87d594f5f2e9d4586e2ee5213b2561, type: 3}
   - {fileID: 6466177718867855727, guid: 83b59a561c12992479ba95f8adeb32ad, type: 3}
+  - {fileID: 2081935890965893310, guid: 9dea94c2f8d39ad46ac8e8a82a1c51b0, type: 3}
   newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs:

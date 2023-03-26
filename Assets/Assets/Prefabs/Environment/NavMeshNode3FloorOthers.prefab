@@ -132,6 +132,7 @@ MonoBehaviour:
   - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
   - {fileID: 5851680297174357704, guid: 8c87d594f5f2e9d4586e2ee5213b2561, type: 3}
   - {fileID: 6466177718867855727, guid: 83b59a561c12992479ba95f8adeb32ad, type: 3}
+  - {fileID: 2081935890965893310, guid: 9dea94c2f8d39ad46ac8e8a82a1c51b0, type: 3}
   newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs:
@@ -185,6 +186,7 @@ MonoBehaviour:
   - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
   - {fileID: 5851680297174357704, guid: 8c87d594f5f2e9d4586e2ee5213b2561, type: 3}
   - {fileID: 6466177718867855727, guid: 83b59a561c12992479ba95f8adeb32ad, type: 3}
+  - {fileID: 2081935890965893310, guid: 9dea94c2f8d39ad46ac8e8a82a1c51b0, type: 3}
   newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs:
@@ -465,6 +467,7 @@ MonoBehaviour:
   - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
   - {fileID: 5851680297174357704, guid: 8c87d594f5f2e9d4586e2ee5213b2561, type: 3}
   - {fileID: 6466177718867855727, guid: 83b59a561c12992479ba95f8adeb32ad, type: 3}
+  - {fileID: 2081935890965893310, guid: 9dea94c2f8d39ad46ac8e8a82a1c51b0, type: 3}
   newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs:

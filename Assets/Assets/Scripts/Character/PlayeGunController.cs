@@ -23,6 +23,9 @@ public class PlayerGunController : MonoBehaviour
     private float recoilValue;
     private bool isPickupable;
     private Collider other;
+    [SerializeField]
+    private ParticleSystem barrelSmoke;
+
 
     void Start()
     {
@@ -56,9 +59,19 @@ public class PlayerGunController : MonoBehaviour
 
                     //camera recoil effect
                     freeLookCamera.m_YAxis.Value += recoilValue;
+
+                    StartCoroutine(SmokeEffect(1f));
+
                 }
             }
         }
+    }
+
+    IEnumerator SmokeEffect(float duration)
+    {
+        barrelSmoke.Play();
+        yield return new WaitForSeconds(duration);
+        barrelSmoke.Stop();
     }
 
     private void Interact(InputAction.CallbackContext context)

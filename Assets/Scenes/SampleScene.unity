@@ -337,7 +337,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135867288}
-  m_LocalRotation: {x: 0.015071345, y: -0.02367202, z: 0.00035690982, w: 0.99960613}
+  m_LocalRotation: {x: 0.015071347, y: -0.023672171, z: 0.00035691206, w: 0.99960613}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1045,8 +1045,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.015071346, y: -0.023672018, z: 0.00035690988, w: 0.99960613}
-  m_LocalPosition: {x: -6.8921623, y: 2.0900002, z: -112.41867}
+  m_LocalRotation: {x: 0.015071346, y: -0.023672171, z: 0.00035691212, w: 0.99960613}
+  m_LocalPosition: {x: -6.892161, y: 2.0900002, z: -112.41867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1462,7 +1462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626363629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.8921623, y: 2.0900002, z: -112.41867}
+  m_LocalPosition: {x: -6.892161, y: 2.0900002, z: -112.41867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2814,7 +2814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1190800611
 Transform:
   m_ObjectHideFlags: 0
@@ -2975,7 +2975,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -8129,7 +8129,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244749583}
-  m_LocalRotation: {x: 0.05136014, y: -0.023643464, z: 0.0012162782, w: 0.99839956}
+  m_LocalRotation: {x: 0.051360138, y: -0.023643613, z: 0.001216286, w: 0.99839956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14541,10 +14541,11 @@ MonoBehaviour:
   camera: {fileID: 330585545}
   bulletHoleDecal: {fileID: 6128565600640196593, guid: ffbfaba06f9a35140a8a386fa346ed6f,
     type: 3}
-  ammoCount: 10
+  ammoCount: 100
   freeLookCamera: {fileID: 626363630}
   recoilValue: -0.01
-  barrelSmoke: {fileID: 1190800613}
+  barrelSmoke: {fileID: 2899123893391825264, guid: 1c061b2fb6020c740b709200afab0c39,
+    type: 3}
 --- !u!1 &2082827650
 GameObject:
   m_ObjectHideFlags: 3
@@ -14569,7 +14570,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: 0.05136014, y: -0.023643464, z: 0.0012162782, w: 0.99839956}
+  m_LocalRotation: {x: 0.051360138, y: -0.023643613, z: 0.001216286, w: 0.99839956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16582,7 +16583,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4457449216535467784}
-  m_LocalRotation: {x: 0.003201478, y: -0.99629295, z: 0.04277559, w: 0.0745683}
+  m_LocalRotation: {x: 0.00243438, y: -0.9968705, z: 0.034032248, w: 0.07131045}
   m_LocalPosition: {x: 13.1739, y: 11.7265, z: 27.1179}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16834,7 +16835,7 @@ LookAtConstraint:
   m_Active: 1
   m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 1179579385}
+  - sourceTransform: {fileID: 330585546}
     weight: 1
 --- !u!4 &4488817534181744025
 Transform:
@@ -17042,7 +17043,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9212458544065924280}
-  m_LocalRotation: {x: 0.1410795, y: -0.7766463, z: 0.18741566, w: 0.5846303}
+  m_LocalRotation: {x: 0.059532404, y: -0.88679415, z: 0.119302265, w: 0.44251454}
   m_LocalPosition: {x: 3.45835, y: 5.6396, z: -104.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17457,7 +17458,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187429608059279339}
-  m_LocalRotation: {x: 0.005884605, y: 0.99077773, z: -0.12739845, w: 0.045766}
+  m_LocalRotation: {x: 0.004628011, y: 0.99359906, z: -0.10381535, w: 0.044293907}
   m_LocalPosition: {x: -12.7943, y: 16.1038, z: -46.3519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17483,7 +17484,7 @@ LookAtConstraint:
   m_Active: 1
   m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 1179579385}
+  - sourceTransform: {fileID: 330585546}
     weight: 1
 --- !u!1 &6779002777505752197
 GameObject:
@@ -17901,7 +17902,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86235679554125965}
-  m_LocalRotation: {x: 0.0009106698, y: -0.9990589, z: 0.02652154, w: 0.034308203}
+  m_LocalRotation: {x: 0.0007796804, y: -0.99916726, z: 0.023230102, w: 0.033535413}
   m_LocalPosition: {x: 16.8635, y: 18.5724, z: 241.068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17927,7 +17928,7 @@ LookAtConstraint:
   m_Active: 1
   m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 1179579385}
+  - sourceTransform: {fileID: 330585546}
     weight: 1
 --- !u!4 &8988146134422153048
 Transform:
@@ -17936,7 +17937,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5412853362487005052}
-  m_LocalRotation: {x: 0.0021285643, y: 0.996627, z: -0.07731232, w: 0.027441548}
+  m_LocalRotation: {x: 0.0017649021, y: 0.99754304, z: -0.06449547, w: 0.027297517}
   m_LocalPosition: {x: -12.7943, y: 16.1038, z: -4.65799}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17962,7 +17963,7 @@ LookAtConstraint:
   m_Active: 1
   m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 1179579385}
+  - sourceTransform: {fileID: 330585546}
     weight: 1
 --- !u!4 &8998354304302846251
 Transform:
@@ -18455,5 +18456,5 @@ LookAtConstraint:
   m_Active: 1
   m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 1179579385}
+  - sourceTransform: {fileID: 330585546}
     weight: 1

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.Animations;
 public class PlayerGunController : MonoBehaviour
 {
     [SerializeField]
@@ -24,8 +25,8 @@ public class PlayerGunController : MonoBehaviour
     private bool isPickupable;
     private Collider other;
     [SerializeField]
-    private ParticleSystem barrelSmoke;
-
+    private GameObject barrelSmoke;
+    private ConstraintSource source;
 
     void Start()
     {
@@ -69,9 +70,13 @@ public class PlayerGunController : MonoBehaviour
 
     IEnumerator SmokeEffect(float duration)
     {
-        barrelSmoke.Play();
+        GameObject newBarrelSmoke = Instantiate(barrelSmoke, muzzle.position, transform.rotation);
+        source.sourceTransform = camera.transform;
+        source.weight = 1;
+        newBarrelSmoke.GetComponent<LookAtConstraint>().SetSource(0, source);
+        newBarrelSmoke.GetComponent<Rigidbody>().AddForce(muzzle.forward, ForceMode.Impulse);
         yield return new WaitForSeconds(duration);
-        barrelSmoke.Stop();
+        Destroy(newBarrelSmoke);
     }
 
     private void Interact(InputAction.CallbackContext context)

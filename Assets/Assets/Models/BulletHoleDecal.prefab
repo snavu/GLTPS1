@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipeWaterLevelScript: {fileID: 0}
   waterStream: {fileID: 3711447388222789177}
-  duration: 2
+  duration: 10
 --- !u!65 &5004712126955452961
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -6,80 +6,53 @@ using UnityEngine.Animations;
 using Cinemachine;
 public class PlayerGunMovement : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerInputInitialize playerInputScript;
-    [SerializeField]
-    private PlayerMovement playerMovementScript;
-    [SerializeField]
-    private CharacterManager characterManagerScript;
-
-    public bool isAiming;
-    [SerializeField]
-    private Vector2 horizontalInput;
-    [SerializeField]
-
-    private Vector2 horizontalMovement;
+    [SerializeField] private PlayerInputInitialize playerInputScript;
+    [SerializeField] private PlayerMovement playerMovementScript;
+    [SerializeField] private CharacterManager characterManagerScript;
+    [SerializeField] private Vector2 horizontalInput;
+    [SerializeField] private Vector2 horizontalMovement;
     private Vector3 velocityXZ;
     private Vector2 smoothMovement;
-    [SerializeField]
-    private float smoothInputSpeed;
-    [SerializeField]
-    private float currentSpeed = 2f;
-    [SerializeField]
-    private CharacterController controller;
-    [SerializeField]
+    [SerializeField] private float smoothInputSpeed;
+    [SerializeField] private float currentSpeed = 2f;
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private Animator anim;
 
-    private Animator anim;
-  
-    [SerializeField]
-    private float runSpeed = 4f;
+    [SerializeField] private float runSpeed = 4f;
 
-    [SerializeField]
-    private Transform gun;
-    [SerializeField]
-    private Transform handSocket;
-    [SerializeField]
-    private Transform backSocket;
-    [SerializeField]
-    private Transform frontSocket;
-    private bool unequip = true;
+    [SerializeField] private Transform gun;
+    [SerializeField] private Transform backSocket;
+    [SerializeField] private Transform frontSocket;
+    private bool flagEquip = false;
 
-    [SerializeField]
-    private Transform camera;
-    [SerializeField]
-    private float rotationSpeed = 600.0f;
-    [SerializeField]
-    private Transform spineBone;
+    [SerializeField] private Transform camera;
+    [SerializeField] private float rotationSpeed = 600.0f;
+    [SerializeField] private Transform spineBone;
 
-    [SerializeField]
-    private Vector3 CMFollowTargetOffsetPos;
-    [SerializeField]
-    private Vector3 CMLookAtTargetOffsetPos;
+    [SerializeField] private Vector3 CMFollowTargetOffsetPos;
+    [SerializeField] private Vector3 CMLookAtTargetOffsetPos;
+    [SerializeField] private Vector3 CMFollowTargetOffsetPosRight;
+    [SerializeField] private Vector3 CMLookAtTargetOffsetPosRight;
+    [SerializeField] private Vector3 CMFollowTargetOffsetPosLeft;
+    [SerializeField] private Vector3 CMLookAtTargetOffsetPosLeft;
 
-    [SerializeField]
-    private Transform CMFollowTarget;
-    [SerializeField]
-    private Transform CMLookAtTarget;
+    [SerializeField] private Transform CMFollowTarget;
+    [SerializeField] private Transform CMLookAtTarget;
     private Vector3 CMFollowTargetInitialLocalPos;
 
     private Vector3 CMLookAtTargetInitialLocalPos;
-    [SerializeField]
-    private Transform child;
+    [SerializeField] private Transform child;
 
-    [SerializeField]
-    private GameObject crosshair;
+    [SerializeField] private GameObject crosshair;
 
-    [SerializeField]
-    private CinemachineFreeLook freeLookCamera;
-    [SerializeField]
-    private float ADSDecelTime = 0.05f;
-    [SerializeField]
-    private float DefaultDecelTime = 0.3f;
+    [SerializeField] private CinemachineFreeLook freeLookCamera;
+    [SerializeField] private float ADSDecelTime = 0.05f;
+    [SerializeField] private float DefaultDecelTime = 0.3f;
 
     void Start()
     {
-
-        //playerInputScript.actions.Player.ADS.performed += AimDownSight;
+        CMFollowTargetInitialLocalPos = new Vector3(0, CMFollowTarget.transform.position.y, 0);
+        CMLookAtTargetInitialLocalPos = new Vector3(0, CMLookAtTarget.transform.position.y, 0);
     }
 
     void Update()
@@ -87,7 +60,6 @@ public class PlayerGunMovement : MonoBehaviour
         //check if yuuri is the player  
         if (characterManagerScript.PlayerInputInitialize == playerInputScript &&
             playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f &&
-            playerMovementScript.enabled &&
             playerMovementScript.isGrounded)
         {
             playerMovementScript.enabled = false;
@@ -119,10 +91,8 @@ public class PlayerGunMovement : MonoBehaviour
             Quaternion rotationDirXZ = Quaternion.LookRotation(camXZ);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDirXZ, rotationSpeed * Time.deltaTime);
 
-            CMFollowTargetInitialLocalPos = new Vector3(0, CMFollowTarget.transform.position.y, 0);
-            CMLookAtTargetInitialLocalPos = new Vector3(0, CMLookAtTarget.transform.position.y, 0);
             //set player ADS animation
-            if (unequip)
+            if (flagEquip)
             {
                 //set camera position
                 CMFollowTarget.localPosition = CMFollowTargetOffsetPos;
@@ -137,12 +107,12 @@ public class PlayerGunMovement : MonoBehaviour
                 AttachToGunFrontSocket();
                 anim.SetBool("ADS", true);
                 crosshair.SetActive(true);
-                unequip = false;
+                flagEquip = false;
             }
         }
         else
         {
-            if (!unequip)
+            if (!flagEquip)
             {
                 //reset camera position
                 CMFollowTarget.localPosition = CMFollowTargetInitialLocalPos;
@@ -157,8 +127,26 @@ public class PlayerGunMovement : MonoBehaviour
                 anim.SetBool("ADS", false);
                 playerMovementScript.enabled = true;
                 crosshair.SetActive(false);
-                unequip = true;
+                flagEquip = true;
             }
+        }
+
+        //switch shoulder camera
+        if (playerInputScript.actions.Player.SwitchShoulder.ReadValue<float>() > 0)
+        {
+            CMFollowTargetOffsetPos = CMFollowTargetOffsetPosRight;
+            CMLookAtTargetOffsetPos = CMLookAtTargetOffsetPosRight;
+            //set camera position
+            CMFollowTarget.localPosition = CMFollowTargetOffsetPos;
+            CMLookAtTarget.localPosition = CMLookAtTargetOffsetPos;
+        }
+        else if (playerInputScript.actions.Player.SwitchShoulder.ReadValue<float>() < 0)
+        {
+            CMFollowTargetOffsetPos = CMFollowTargetOffsetPosLeft;
+            CMLookAtTargetOffsetPos = CMLookAtTargetOffsetPosLeft;
+            //set camera position
+            CMFollowTarget.localPosition = CMFollowTargetOffsetPos;
+            CMLookAtTarget.localPosition = CMLookAtTargetOffsetPos;
         }
     }
 
@@ -185,14 +173,4 @@ public class PlayerGunMovement : MonoBehaviour
         gun.localPosition = Vector3.zero;
         gun.localRotation = Quaternion.identity;
     }
-
-    // private void AimDownSight(InputAction.CallbackContext context)
-    // {
-    //     if (characterManagerScript.PlayerInputInitialize == playerInputScript)
-    //     {
-    //         isAiming = context.ReadValue<float>() > 0f;
-
-    //     }
-    // }
-
 }

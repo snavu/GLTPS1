@@ -5,14 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerInputInitialize playerInputScript;
-    [SerializeField]
-    private CharacterController controller;
-    [SerializeField]
-    private Animator anim;
-    [SerializeField]
-    private Transform child;
+    [SerializeField] private PlayerInputInitialize playerInputScript;
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private Animator anim;
+    [SerializeField] private Transform child;
     private Vector2 horizontalInput;
 
     private Vector2 horizontalMovement;
@@ -24,26 +20,16 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed = 2.0f;
     public float runSpeed = 4.0f;
 
-    [SerializeField]
-    private float gravity = -9.81f;
-    [SerializeField]
-    private float rotationSpeed = 600.0f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float rotationSpeed = 600.0f;
 
-    [SerializeField]
+    [SerializeField] private float jumpHeight = 1.0f;
 
-    private float jumpHeight = 1.0f;
-
-    [SerializeField]
-    private Transform camera;
+    [SerializeField] private Transform camera;
     private Vector2 smoothMovement;
-    [SerializeField]
-    private float smoothInputSpeed = 0.2f;
-
+    [SerializeField] private float smoothInputSpeed = 0.2f;
     private LayerMask layerMask = 7;
-
     private Vector3 sphereCastPosition;
-
-
 
     void Start()
     {

@@ -116,6 +116,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SwitchShoulder"",
+                    ""type"": ""Button"",
+                    ""id"": ""044d220c-e8b7-4d4b-9717-1613092c8ba9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -166,7 +175,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c034b3a5-aeec-45ae-9026-93497911b849"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -342,7 +351,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""13e20695-018a-4223-8fb7-8aac46980261"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -364,7 +373,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7548b22a-05e2-4b48-aba4-ec5a951332f0"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -437,6 +446,39 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""40821e71-baef-43a9-bbfb-ff9330032dd9"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchShoulder"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""4dbf238f-9cd8-4f4c-b43a-76533c7a519a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchShoulder"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""f089e9fe-7ff9-43e7-aa4e-ecbd17182397"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchShoulder"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -597,7 +639,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""133c14d2-b81c-4bfd-8458-e915c65dc068"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -1221,6 +1263,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_ADS = m_Player.FindAction("ADS", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_SwitchShoulder = m_Player.FindAction("SwitchShoulder", throwIfNotFound: true);
         // Vehicle
         m_Vehicle = asset.FindActionMap("Vehicle", throwIfNotFound: true);
         m_Vehicle_Drive = m_Vehicle.FindAction("Drive", throwIfNotFound: true);
@@ -1309,6 +1352,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_ADS;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_SwitchShoulder;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -1323,6 +1367,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @ADS => m_Wrapper.m_Player_ADS;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @SwitchShoulder => m_Wrapper.m_Player_SwitchShoulder;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1362,6 +1407,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
+            @SwitchShoulder.started += instance.OnSwitchShoulder;
+            @SwitchShoulder.performed += instance.OnSwitchShoulder;
+            @SwitchShoulder.canceled += instance.OnSwitchShoulder;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1396,6 +1444,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
+            @SwitchShoulder.started -= instance.OnSwitchShoulder;
+            @SwitchShoulder.performed -= instance.OnSwitchShoulder;
+            @SwitchShoulder.canceled -= instance.OnSwitchShoulder;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1650,6 +1701,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnADS(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnSwitchShoulder(InputAction.CallbackContext context);
     }
     public interface IVehicleActions
     {

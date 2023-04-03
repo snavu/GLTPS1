@@ -41,6 +41,7 @@ public class PlayerGunController : MonoBehaviour
     {
         if (context.performed && ammoCount != 0 && 
             !anim.GetCurrentAnimatorStateInfo(5).IsTag("Reload") &&
+            anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") &&
             characterManagerScript.PlayerInputInitialize == playerInputScript)
         {
             // Cast a ray from the muzzle position to the center of the screen

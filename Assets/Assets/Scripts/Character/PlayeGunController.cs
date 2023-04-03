@@ -14,9 +14,7 @@ public class PlayerGunController : MonoBehaviour
     private Camera camera;
     [SerializeField]
     private GameObject bulletHoleDecal;
-
-    [SerializeField]
-    private int ammoCount = 10;
+    public int ammoCount = 10;
 
     [SerializeField]
     private CinemachineFreeLook freeLookCamera;
@@ -31,16 +29,19 @@ public class PlayerGunController : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private PlayerGunMovement playerGunMovementScript;
+    [SerializeField]
+    private CharacterManager characterManagerScript;
 
     void Start()
     {
         playerInputScript.actions.Player.Fire.performed += Fire;
-        playerInputScript.actions.Player.Interact.performed += Interact;
     }
 
     private void Fire(InputAction.CallbackContext context)
     {
-        if (context.performed && ammoCount != 0 && !anim.GetCurrentAnimatorStateInfo(5).IsTag("Reload"))
+        if (context.performed && ammoCount != 0 && 
+            !anim.GetCurrentAnimatorStateInfo(5).IsTag("Reload") &&
+            characterManagerScript.PlayerInputInitialize == playerInputScript)
         {
             // Cast a ray from the muzzle position to the center of the screen
             Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -81,34 +82,6 @@ public class PlayerGunController : MonoBehaviour
         Destroy(newBarrelSmoke);
     }
 
-    private void Interact(InputAction.CallbackContext context)
-    {
-        if (context.performed && isPickupable)
-        {
-            //destroy scene ammo gameobject
-            Destroy(other.gameObject);
-
-            //increase ammo count
-            ammoCount++;
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Ammo"))
-        {
-            isPickupable = true;
-            this.other = other;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Ammo"))
-        {
-            isPickupable = false;
-        }
-    }
 
     void OnDrawGizmos()
     {

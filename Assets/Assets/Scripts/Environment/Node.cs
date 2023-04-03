@@ -14,15 +14,15 @@ public class Node : MonoBehaviour
     public bool isColliding = true;
     private bool isActive = false;
     public bool allowCollisionCheck = true;
-    void Start()
-    {
-        //generate edge at each port
-        if (generate)
-        {
-            StartCoroutine(GenerateSceneGeometry());
-        }
-        StartCoroutine(CheckCollision());
-    }
+    // void Start()
+    // {
+    //     //generate edge at each port
+    //     if (generate)
+    //     {
+    //         StartCoroutine(GenerateSceneGeometry());
+    //     }
+    //     StartCoroutine(CheckCollision());
+    // }
 
     //cache yield instructions
     WaitForSeconds waitForSeconds = new WaitForSeconds(0.25f);
@@ -68,6 +68,15 @@ public class Node : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("GenerateNodeTrigger"))
+        {
+            StartCoroutine(GenerateSceneGeometry());
+            StartCoroutine(CheckCollision());
+        }
+    }
+
     private void ConnectFromDifferentPort()
     {
         if (portList.Count > 1)
@@ -89,6 +98,11 @@ public class Node : MonoBehaviour
         if (allowCollisionCheck && other.gameObject.CompareTag("Node"))
         {
             isColliding = false;
+        }
+        if (other.gameObject.CompareTag("GenerateNodeTrigger"))
+        {
+            Destroy(gameObject);
+            Destroy(edge);
         }
     }
 

@@ -250,7 +250,7 @@ MonoBehaviour:
   - {fileID: 1831251077086289681}
   - {fileID: 8186648540323981088}
   index: 0
-  generate: 1
+  generate: 0
   edge: {fileID: 0}
   isColliding: 0
   allowCollisionCheck: 1

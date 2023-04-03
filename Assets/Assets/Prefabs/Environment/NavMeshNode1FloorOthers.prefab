@@ -59,7 +59,7 @@ MonoBehaviour:
   - {fileID: 3541170138212901644}
   - {fileID: 3541170139606006124}
   index: 0
-  generate: 1
+  generate: 0
   edge: {fileID: 0}
   isColliding: 0
   allowCollisionCheck: 1

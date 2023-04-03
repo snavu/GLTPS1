@@ -109,6 +109,24 @@ public class PlayerGunMovement : MonoBehaviour
                 crosshair.SetActive(true);
                 flagEquip = false;
             }
+
+            //switch shoulder camera
+            if (playerInputScript.actions.Player.SwitchShoulder.ReadValue<float>() > 0)
+            {
+                CMFollowTargetOffsetPos = CMFollowTargetOffsetPosRight;
+                CMLookAtTargetOffsetPos = CMLookAtTargetOffsetPosRight;
+                //set camera position
+                CMFollowTarget.localPosition = CMFollowTargetOffsetPos;
+                CMLookAtTarget.localPosition = CMLookAtTargetOffsetPos;
+            }
+            else if (playerInputScript.actions.Player.SwitchShoulder.ReadValue<float>() < 0)
+            {
+                CMFollowTargetOffsetPos = CMFollowTargetOffsetPosLeft;
+                CMLookAtTargetOffsetPos = CMLookAtTargetOffsetPosLeft;
+                //set camera position
+                CMFollowTarget.localPosition = CMFollowTargetOffsetPos;
+                CMLookAtTarget.localPosition = CMLookAtTargetOffsetPos;
+            }
         }
         else
         {
@@ -129,24 +147,6 @@ public class PlayerGunMovement : MonoBehaviour
                 crosshair.SetActive(false);
                 flagEquip = true;
             }
-        }
-
-        //switch shoulder camera
-        if (playerInputScript.actions.Player.SwitchShoulder.ReadValue<float>() > 0)
-        {
-            CMFollowTargetOffsetPos = CMFollowTargetOffsetPosRight;
-            CMLookAtTargetOffsetPos = CMLookAtTargetOffsetPosRight;
-            //set camera position
-            CMFollowTarget.localPosition = CMFollowTargetOffsetPos;
-            CMLookAtTarget.localPosition = CMLookAtTargetOffsetPos;
-        }
-        else if (playerInputScript.actions.Player.SwitchShoulder.ReadValue<float>() < 0)
-        {
-            CMFollowTargetOffsetPos = CMFollowTargetOffsetPosLeft;
-            CMLookAtTargetOffsetPos = CMLookAtTargetOffsetPosLeft;
-            //set camera position
-            CMFollowTarget.localPosition = CMFollowTargetOffsetPos;
-            CMLookAtTarget.localPosition = CMLookAtTargetOffsetPos;
         }
     }
 

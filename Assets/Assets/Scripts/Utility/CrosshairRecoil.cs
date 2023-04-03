@@ -42,7 +42,6 @@ public class CrosshairRecoil : MonoBehaviour
         if (context.performed)
         {
             fire = true;
-            Debug.Log("fire");
         }
     }
     // Update is called once per frame

@@ -30,8 +30,7 @@ public class PlayerGunMovement : MonoBehaviour
     [SerializeField]
 
     private Animator anim;
-    [SerializeField]
-    private float walkSpeed = 2f;
+  
     [SerializeField]
     private float runSpeed = 4f;
 
@@ -43,9 +42,6 @@ public class PlayerGunMovement : MonoBehaviour
     private Transform backSocket;
     [SerializeField]
     private Transform frontSocket;
-
-    [SerializeField]
-    private float timeUntilEnequip = 0.5f;
     private bool unequip = true;
 
     [SerializeField]

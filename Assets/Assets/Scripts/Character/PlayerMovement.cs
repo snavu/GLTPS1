@@ -23,8 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public float currentSpeed;
     public float walkSpeed = 2.0f;
     public float runSpeed = 4.0f;
-    [SerializeField]
-    private float sprint = 0f;
+
     [SerializeField]
     private float gravity = -9.81f;
     [SerializeField]

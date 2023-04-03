@@ -29,10 +29,6 @@ public class ProceduralEnvironmentGeneration : MonoBehaviour
     [SerializeField]
     private bool isColliding = false;
 
-    private bool isActiveFlag = false;
-
-    [SerializeField]
-
     void Start()
     {
         //conditions for generating nodes

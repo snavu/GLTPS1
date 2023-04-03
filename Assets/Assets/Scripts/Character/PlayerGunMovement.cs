@@ -41,6 +41,8 @@ public class PlayerGunMovement : MonoBehaviour
     private Transform handSocket;
     [SerializeField]
     private Transform backSocket;
+    [SerializeField]
+    private Transform frontSocket;
 
     [SerializeField]
     private float timeUntilEnequip = 0.5f;
@@ -78,8 +80,6 @@ public class PlayerGunMovement : MonoBehaviour
     [SerializeField]
     private float DefaultDecelTime = 0.3f;
 
-    [SerializeField]
-    private PlayerGunController playerGunControllerScript;
     void Start()
     {
 
@@ -138,7 +138,7 @@ public class PlayerGunMovement : MonoBehaviour
 
                 //set gun to hand
                 StopAllCoroutines();
-                AttachToGunHandSocket();
+                AttachToGunFrontSocket();
                 anim.SetBool("ADS", true);
                 crosshair.SetActive(true);
                 unequip = false;
@@ -151,13 +151,13 @@ public class PlayerGunMovement : MonoBehaviour
                 //reset camera position
                 CMFollowTarget.localPosition = CMFollowTargetInitialLocalPos;
                 CMLookAtTarget.localPosition = CMLookAtTargetInitialLocalPos;
-                
+
                 //set freelook camera values
                 freeLookCamera.m_XAxis.m_DecelTime = DefaultDecelTime;
                 freeLookCamera.m_YAxis.m_DecelTime = DefaultDecelTime;
 
                 //set gun to back
-                StartCoroutine(AttachToGunBackSocket());
+                AttachToGunBackSocket();
                 anim.SetBool("ADS", false);
                 playerMovementScript.enabled = true;
                 crosshair.SetActive(false);
@@ -176,20 +176,16 @@ public class PlayerGunMovement : MonoBehaviour
             spineBone.rotation = camera.rotation;
         }
     }
-
-    public void AttachToGunHandSocket()
+    public void AttachToGunBackSocket()
     {
-        //set parent of gun to hand
-        gun.parent = handSocket;
+        //set parent of gun to back
+        gun.parent = backSocket;
         gun.localPosition = Vector3.zero;
         gun.localRotation = Quaternion.identity;
     }
-    public IEnumerator AttachToGunBackSocket()
+    public void AttachToGunFrontSocket()
     {
-        yield return new WaitForSeconds(timeUntilEnequip);
-
-        //set parent of gun to back
-        gun.parent = backSocket;
+        gun.parent = frontSocket;
         gun.localPosition = Vector3.zero;
         gun.localRotation = Quaternion.identity;
     }

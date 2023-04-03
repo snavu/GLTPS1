@@ -27,6 +27,10 @@ public class PlayerGunController : MonoBehaviour
     [SerializeField]
     private GameObject barrelSmoke;
     private ConstraintSource source;
+    [SerializeField]
+    private Animator anim;
+    [SerializeField]
+    private PlayerGunMovement playerGunMovementScript;
 
     void Start()
     {
@@ -36,34 +40,32 @@ public class PlayerGunController : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && ammoCount != 0 && !anim.GetCurrentAnimatorStateInfo(5).IsTag("Reload"))
         {
-            if (ammoCount != 0)
+            // Cast a ray from the muzzle position to the center of the screen
+            Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+            // Check if the ray hits something
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
             {
-                // Cast a ray from the muzzle position to the center of the screen
-                Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                // Determine the direction of the bullet
+                Vector3 bulletDirection = (hit.point - muzzle.position).normalized;
 
-                // Check if the ray hits something
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    // Determine the direction of the bullet
-                    Vector3 bulletDirection = (hit.point - muzzle.position).normalized;
+                //instantiate decal 
+                //note: minus hit.normal to spawn position to offset the decal object into the mesh along direction of normal and prevent z-fighting
+                Quaternion newBulletHoleDecalRotation = Quaternion.LookRotation(hit.normal, Vector3.up);
+                GameObject newBulletHoleDecal = Instantiate(bulletHoleDecal, hit.point - (hit.normal * 0.1f), newBulletHoleDecalRotation);
 
-                    //instantiate decal 
-                    //note: minus hit.normal to spawn position to offset the decal object into the mesh along direction of normal and prevent z-fighting
-                    Quaternion newBulletHoleDecalRotation = Quaternion.LookRotation(hit.normal, Vector3.up);
-                    GameObject newBulletHoleDecal = Instantiate(bulletHoleDecal, hit.point - (hit.normal * 0.1f), newBulletHoleDecalRotation);
+                //decrease ammo count per shot
+                ammoCount--;
 
-                    //decrease ammo count per shot
-                    ammoCount--;
+                //camera recoil effect
+                freeLookCamera.m_YAxis.Value += recoilValue;
 
-                    //camera recoil effect
-                    freeLookCamera.m_YAxis.Value += recoilValue;
+                StartCoroutine(SmokeEffect(1f));
 
-                    StartCoroutine(SmokeEffect(1f));
-
-                }
+                anim.SetTrigger("reload");
             }
         }
     }

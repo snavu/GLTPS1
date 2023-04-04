@@ -18,6 +18,7 @@ TagManager:
   - Ammo
   - Pipe
   - GenerateNodeTrigger
+  - NodeCache
   layers:
   - Default
   - TransparentFX

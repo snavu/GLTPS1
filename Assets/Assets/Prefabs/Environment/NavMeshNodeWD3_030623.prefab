@@ -167,13 +167,13 @@ MonoBehaviour:
   edgePrefabs:
   - {fileID: 7638387235834001019, guid: 1bb1d33433f15cf44a05d151572d72a1, type: 3}
   - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
-  - {fileID: 5851680297174357704, guid: 8c87d594f5f2e9d4586e2ee5213b2561, type: 3}
   - {fileID: 6466177718867855727, guid: 83b59a561c12992479ba95f8adeb32ad, type: 3}
   - {fileID: 2081935890965893310, guid: 9dea94c2f8d39ad46ac8e8a82a1c51b0, type: 3}
   newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
+  nodeCacheScript: {fileID: 11400000, guid: 8c913afd144ffc9409cc42ca8b1b6b2f, type: 2}
 --- !u!1 &5539610650229803994
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,13 +221,13 @@ MonoBehaviour:
   edgePrefabs:
   - {fileID: 7638387235834001019, guid: 1bb1d33433f15cf44a05d151572d72a1, type: 3}
   - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
-  - {fileID: 5851680297174357704, guid: 8c87d594f5f2e9d4586e2ee5213b2561, type: 3}
   - {fileID: 6466177718867855727, guid: 83b59a561c12992479ba95f8adeb32ad, type: 3}
   - {fileID: 2081935890965893310, guid: 9dea94c2f8d39ad46ac8e8a82a1c51b0, type: 3}
   newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
+  nodeCacheScript: {fileID: 11400000, guid: 8c913afd144ffc9409cc42ca8b1b6b2f, type: 2}
 --- !u!1 &6157660123466398756
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,7 +444,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6355166913744518856}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000034030387}
+  m_LocalRotation: {x: 0, y: -0.00000028212995, z: 0, w: -1}
   m_LocalPosition: {x: -364.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -477,7 +477,6 @@ MonoBehaviour:
   - {fileID: 5104165519160845379}
   - {fileID: 1952587822228459893}
   index: 0
-  generate: 0
   edge: {fileID: 0}
   isColliding: 0
   allowCollisionCheck: 1
@@ -872,10 +871,10 @@ MonoBehaviour:
   edgePrefabs:
   - {fileID: 7638387235834001019, guid: 1bb1d33433f15cf44a05d151572d72a1, type: 3}
   - {fileID: 4515912586455456545, guid: 8e23f1027ce30bb489f49b2e3525e7b5, type: 3}
-  - {fileID: 5851680297174357704, guid: 8c87d594f5f2e9d4586e2ee5213b2561, type: 3}
   - {fileID: 6466177718867855727, guid: 83b59a561c12992479ba95f8adeb32ad, type: 3}
   - {fileID: 2081935890965893310, guid: 9dea94c2f8d39ad46ac8e8a82a1c51b0, type: 3}
   newEdge: {fileID: 0}
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
+  nodeCacheScript: {fileID: 11400000, guid: 8c913afd144ffc9409cc42ca8b1b6b2f, type: 2}

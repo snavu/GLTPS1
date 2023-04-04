@@ -9,25 +9,23 @@ public class Node : MonoBehaviour
     [SerializeField]
     private int index = 0;
 
-    public bool generate = false;
     public GenerateNode edge;
     public bool isColliding = true;
     private bool isActive = false;
     public bool allowCollisionCheck = true;
-    // void Start()
-    // {
-    //     //generate edge at each port
-    //     if (generate)
-    //     {
-    //         StartCoroutine(GenerateSceneGeometry());
-    //     }
-    //     StartCoroutine(CheckCollision());
-    // }
+
+    private NodeCache nodeCacheScript;
+
+    private bool generate = false;
 
     //cache yield instructions
     WaitForSeconds waitForSeconds = new WaitForSeconds(0.25f);
     WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
 
+    void Start()
+    {
+        nodeCacheScript = GameObject.FindWithTag("NodeCache").GetComponent<NodeCache>();
+    }
     IEnumerator GenerateSceneGeometry()
     {
         yield return waitForSeconds;
@@ -68,15 +66,6 @@ public class Node : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("GenerateNodeTrigger"))
-        {
-            StartCoroutine(GenerateSceneGeometry());
-            StartCoroutine(CheckCollision());
-        }
-    }
-
     private void ConnectFromDifferentPort()
     {
         if (portList.Count > 1)
@@ -93,19 +82,33 @@ public class Node : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        if (Vector3.Distance(transform.position, nodeCacheScript.player.transform.position) < nodeCacheScript.spawnThreshold && !generate)
+        {
+            while(portList.Count != 0)
+            {
+                portList.RemoveAt(0);
+            }
+
+            //initialize list of ports
+            foreach (Transform port in portPrefab)
+            {
+                portList.Add(port);
+            }
+
+            StartCoroutine(GenerateSceneGeometry());
+            StartCoroutine(CheckCollision());
+            generate = true;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (allowCollisionCheck && other.gameObject.CompareTag("Node"))
         {
             isColliding = false;
         }
-        if (other.gameObject.CompareTag("GenerateNodeTrigger"))
-        {
-            Destroy(gameObject);
-            Destroy(edge);
-        }
     }
-
-
 }
 

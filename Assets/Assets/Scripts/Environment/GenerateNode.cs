@@ -18,10 +18,16 @@ public class GenerateNode : MonoBehaviour
     public bool allowCollisionCheck = true;
     public int portIndex = 0;
 
+    private NodeCache nodeCacheScript;
+
+    private bool resetNode = false;
 
     void Start()
     {
+        nodeCacheScript = GameObject.FindWithTag("NodeCache").GetComponent<NodeCache>();
+        
         //initialize list of nodes
+        //note: initialize node list in Start() for count check in GenerateEdge script
         foreach (GameObject node in nodePrefabs)
         {
             nodeList.Add(node);
@@ -33,11 +39,28 @@ public class GenerateNode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Vector3.Distance(transform.position, nodeCacheScript.player.transform.position) < nodeCacheScript.spawnThreshold && resetNode)
+        {
+            while (nodeList.Count != 0)
+            {
+                nodeList.RemoveAt(0);
+            }
+
+            //initialize list of nodes
+            foreach (GameObject node in nodePrefabs)
+            {
+                nodeList.Add(node);
+            }
+            StartCoroutine(CheckCollision());
+            resetNode = false;
+        }
+
         if (newNode != null)
         {
             if (newNode.GetComponent<Node>().isColliding && newNode.GetComponent<Node>().portList.Count == 1)
             {
                 //no ports left for which the node will be non-colliding, destroy and remove node from node list
+                //nodeCacheScript.nodeList.Remove(newNode);
                 Destroy(newNode);
                 nodeList.RemoveAt(nodeIndex);
 
@@ -48,6 +71,8 @@ public class GenerateNode : MonoBehaviour
                 }
             }
         }
+
+
     }
 
     IEnumerator CheckCollision()
@@ -88,6 +113,8 @@ public class GenerateNode : MonoBehaviour
         Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffset(node, portIndex, edgeExit);
         GameObject newNode = Instantiate(node, edgeExit.position + nodeEntranceOffsetPos, node.transform.rotation);
         newNode.GetComponent<Node>().edge = GetComponent<GenerateNode>();
+
+        nodeCacheScript.nodeList.Add(newNode);
 
         return newNode;
     }

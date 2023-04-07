@@ -60,19 +60,15 @@ public class PlayerMovement : MonoBehaviour
                 verticalMovement += gravity * Time.deltaTime;
             }
 
-            if (!ADS)
+            //lerp speed values for blending walk/run animation states
+            if (playerInputScript.actions.Player.Sprint.ReadValue<float>() > 0 && !ADS)
             {
-                //lerp speed values for blending walk/run animation states
-                if (playerInputScript.actions.Player.Sprint.ReadValue<float>() > 0)
-                {
-                    currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, 10.0f * Time.deltaTime);
-                }
-                else
-                {
-                    currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, 10.0f * Time.deltaTime);
-                }
+                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, 10.0f * Time.deltaTime);
             }
-
+            else
+            {
+                currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, 10.0f * Time.deltaTime);
+            }
 
             velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed;
             velocityXZ = transform.TransformDirection(velocityXZ);

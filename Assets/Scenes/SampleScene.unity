@@ -337,7 +337,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135867288}
-  m_LocalRotation: {x: 0.015071339, y: -0.023673274, z: 0.00035692853, w: 0.9996061}
+  m_LocalRotation: {x: -0.004572963, y: -0.023675665, z: -0.00010829942, w: 0.99970925}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1045,8 +1045,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.0150713455, y: -0.023673275, z: 0.00035692842, w: 0.9996061}
-  m_LocalPosition: {x: -6.8921504, y: 2.0900002, z: -112.41867}
+  m_LocalRotation: {x: -0.0045729666, y: -0.023675665, z: -0.00010829946, w: 0.99970925}
+  m_LocalPosition: {x: -6.892151, y: 2.0900002, z: -112.41867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1390,8 +1390,8 @@ MonoBehaviour:
   m_LegacyBlendHint: 0
   m_YAxis:
     Value: 0.5
-    m_SpeedMode: 0
-    m_MaxSpeed: 0.3
+    m_SpeedMode: 1
+    m_MaxSpeed: 0.001
     m_AccelTime: 10
     m_DecelTime: 0.3
     m_InputAxisName: Mouse Y
@@ -1414,8 +1414,8 @@ MonoBehaviour:
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
     Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 100
+    m_SpeedMode: 1
+    m_MaxSpeed: 0.1
     m_AccelTime: 10
     m_DecelTime: 0.3
     m_InputAxisName: Mouse X
@@ -1444,11 +1444,11 @@ MonoBehaviour:
   m_SplineCurvature: 1
   m_Orbits:
   - m_Height: 6.91
-    m_Radius: 4.750001
+    m_Radius: 4.75
   - m_Height: 3.26
     m_Radius: 4.75
   - m_Height: 0.4
-    m_Radius: 4.75
+    m_Radius: 4.750005
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 2082827652}
@@ -1462,7 +1462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626363629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.8921504, y: 2.0900002, z: -112.41867}
+  m_LocalPosition: {x: -6.892151, y: 2.0900002, z: -112.41867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1613,6 +1613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 691976055}
   - component: {fileID: 691976054}
+  - component: {fileID: 691976056}
   m_Layer: 0
   m_Name: Out Of Bounds Collider
   m_TagString: Out Of Bounds
@@ -1649,13 +1650,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691976053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.693668, y: -118.2, z: -3.6662006}
-  m_LocalScale: {x: 1000, y: 100, z: 1000}
+  m_LocalPosition: {x: -2.693668, y: -118.2, z: -114.4}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1818360608 &691976056
+PositionConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691976053}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Weight: 1
+  m_TranslationAtRest: {x: -2.693668, y: -118.2, z: -114.4}
+  m_TranslationOffset: {x: 4.4233413, y: -118.2, z: -6.7260056}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 0
+  m_AffectTranslationZ: 1
+  m_Active: 1
+  m_IsLocked: 0
+  m_Sources:
+  - sourceTransform: {fileID: 1179579385}
+    weight: 1
 --- !u!1 &760579139
 GameObject:
   m_ObjectHideFlags: 0
@@ -2746,13 +2767,15 @@ MonoBehaviour:
   child: {fileID: 868928912622174518}
   isGrounded: 0
   currentSpeed: 0
-  walkSpeed: 2
-  runSpeed: 4
+  walkSpeed: 4
+  runSpeed: 7
+  ADSSpeed: 2
   gravity: -9.81
   rotationSpeed: 600
   jumpHeight: 0.5
   camera: {fileID: 330585546}
   smoothInputSpeed: 0.2
+  ADS: 0
 --- !u!4 &1179579385
 Transform:
   m_ObjectHideFlags: 0
@@ -8022,7 +8045,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218261524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 1.788, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8130,7 +8153,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244749583}
-  m_LocalRotation: {x: 0.051360138, y: -0.023644717, z: 0.0012163424, w: 0.99839956}
+  m_LocalRotation: {x: 0.031732533, y: -0.023664001, z: 0.00075150793, w: 0.99921596}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14302,6 +14325,8 @@ MonoBehaviour:
   CMFollowTarget: {fileID: 1087767949}
   CMLookAtTarget: {fileID: 1218261524}
   playerToPossess: {fileID: 1179579383}
+  CMFollowTargetOffsetPos: {x: 0, y: -1.17, z: 0}
+  CMLookAtTargetOffsetPos: {x: 0, y: 1.6, z: 0}
 --- !u!195 &2072579801
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14354,13 +14379,15 @@ MonoBehaviour:
   child: {fileID: 543450653265870907}
   isGrounded: 0
   currentSpeed: 0
-  walkSpeed: 2
-  runSpeed: 4
+  walkSpeed: 4
+  runSpeed: 7
+  ADSSpeed: 2
   gravity: -9.81
   rotationSpeed: 600
   jumpHeight: 0.5
   camera: {fileID: 330585546}
   smoothInputSpeed: 0.2
+  ADS: 0
 --- !u!208 &2072579804
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -14596,21 +14623,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51c5d8c2ec718342b216e8381766120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterManagerScript: {fileID: 1924441660}
   playerInputScript: {fileID: 2072579809}
   playerMovementScript: {fileID: 2072579803}
-  characterManagerScript: {fileID: 1924441660}
-  horizontalInput: {x: 0, y: 0}
-  horizontalMovement: {x: 0, y: 0}
-  smoothInputSpeed: 0
-  currentSpeed: 2
-  controller: {fileID: 2072579811}
   anim: {fileID: 1690254641}
-  runSpeed: 4
   gun: {fileID: 766218211}
   backSocket: {fileID: 4707836875793678632}
   frontSocket: {fileID: 2741381671820065065}
   camera: {fileID: 330585546}
-  rotationSpeed: 600
   spineBone: {fileID: 3923637553446869499}
   CMFollowTargetOffsetPos: {x: 1.5, y: -1.17, z: 2}
   CMLookAtTargetOffsetPos: {x: 1.5, y: 1.6, z: 0}
@@ -14674,7 +14694,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: 0.051360138, y: -0.023644717, z: 0.0012163424, w: 0.99839956}
+  m_LocalRotation: {x: 0.031732533, y: -0.023664001, z: 0.00075150793, w: 0.99921596}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16737,7 +16757,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4457449216535467784}
-  m_LocalRotation: {x: 0.0024343734, y: -0.9968705, z: 0.03403216, w: 0.07131045}
+  m_LocalRotation: {x: 0.00243438, y: -0.9968705, z: 0.034032248, w: 0.07131045}
   m_LocalPosition: {x: 13.1739, y: 11.7265, z: 27.1179}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17232,7 +17252,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9212458544065924280}
-  m_LocalRotation: {x: 0.059532404, y: -0.88679427, z: 0.11930234, w: 0.44251433}
+  m_LocalRotation: {x: 0.059532337, y: -0.88679415, z: 0.11930237, w: 0.44251445}
   m_LocalPosition: {x: 3.45835, y: 5.6396, z: -104.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18300,7 +18320,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5412853362487005052}
-  m_LocalRotation: {x: 0.0017647176, y: 0.99754304, z: -0.064495556, w: 0.027297504}
+  m_LocalRotation: {x: 0.0017649166, y: 0.99754304, z: -0.06449555, w: 0.027297704}
   m_LocalPosition: {x: -12.7943, y: 16.1038, z: -4.65799}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18564,6 +18584,8 @@ MonoBehaviour:
   CMFollowTarget: {fileID: 1087767949}
   CMLookAtTarget: {fileID: 1218261524}
   playerToPossess: {fileID: 2072579798}
+  CMFollowTargetOffsetPos: {x: 0, y: -1.17, z: 0}
+  CMLookAtTargetOffsetPos: {x: 0, y: 1.6, z: 0}
 --- !u!114 &9146561997578268269
 MonoBehaviour:
   m_ObjectHideFlags: 0

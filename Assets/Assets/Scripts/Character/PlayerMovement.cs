@@ -17,8 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private float verticalMovement;
     public bool isGrounded;
     public float currentSpeed;
-    public float walkSpeed = 2.0f;
-    public float runSpeed = 4.0f;
+    public float walkSpeed = 4.0f;
+    public float runSpeed = 7.0f;
+    public float ADSSpeed = 2.0f;
 
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float rotationSpeed = 600.0f;
@@ -60,14 +61,19 @@ public class PlayerMovement : MonoBehaviour
                 verticalMovement += gravity * Time.deltaTime;
             }
 
-            //lerp speed values for blending walk/run animation states
-            if (playerInputScript.actions.Player.Sprint.ReadValue<float>() > 0 && !ADS)
-            {
-                currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, 10.0f * Time.deltaTime);
-            }
+            if (!ADS)
+                //lerp speed values for blending walk/run animation states
+                if (playerInputScript.actions.Player.Sprint.ReadValue<float>() > 0)
+                {
+                    currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, 10.0f * Time.deltaTime);
+                }
+                else
+                {
+                    currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, 10.0f * Time.deltaTime);
+                }
             else
             {
-                currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, 10.0f * Time.deltaTime);
+                currentSpeed = Mathf.Lerp(currentSpeed, ADSSpeed, 10.0f * Time.deltaTime);
             }
 
             velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed;

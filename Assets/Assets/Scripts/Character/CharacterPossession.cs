@@ -5,14 +5,13 @@ using UnityEngine.InputSystem;
 using UnityEngine.AI;
 public class CharacterPossession : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerInputInitialize playerInputScript;
-    [SerializeField]
-    private GameObject CMFollowTarget;
-    [SerializeField]
-    private GameObject CMLookAtTarget;
-    [SerializeField]
-    private GameObject playerToPossess;
+    [SerializeField] private PlayerInputInitialize playerInputScript;
+    [SerializeField] private GameObject CMFollowTarget;
+    [SerializeField] private GameObject CMLookAtTarget;
+    [SerializeField] private GameObject playerToPossess;
+
+    [SerializeField] private Vector3 CMFollowTargetOffsetPos;
+    [SerializeField] private Vector3 CMLookAtTargetOffsetPos;
 
     void OnEnable()
     {
@@ -37,12 +36,13 @@ public class CharacterPossession : MonoBehaviour
             playerInputScript.actions.Player.Possess.performed -= Possess;
 
             //change camera follow and look at target
-            CMFollowTarget.transform.position = new Vector3(playerToPossess.transform.position.x, CMFollowTarget.transform.position.y, playerToPossess.transform.position.z);
-            CMLookAtTarget.transform.position = new Vector3(playerToPossess.transform.position.x, CMLookAtTarget.transform.position.y, playerToPossess.transform.position.z);
-            CMFollowTarget.transform.rotation = playerToPossess.transform.rotation;
-            CMLookAtTarget.transform.rotation = playerToPossess.transform.rotation;
             CMFollowTarget.transform.parent = playerToPossess.transform;
             CMLookAtTarget.transform.parent = playerToPossess.transform;
+            CMFollowTarget.transform.localPosition = CMFollowTargetOffsetPos;
+            CMLookAtTarget.transform.localPosition = CMLookAtTargetOffsetPos;
+            CMFollowTarget.transform.rotation = playerToPossess.transform.rotation;
+            CMLookAtTarget.transform.rotation = playerToPossess.transform.rotation;
+
 
             //switch player scripts
             GetComponentInChildren<CharacterController>().enabled = false;

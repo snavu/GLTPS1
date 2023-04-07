@@ -6,26 +6,16 @@ using UnityEngine.Animations;
 using Cinemachine;
 public class PlayerGunMovement : MonoBehaviour
 {
+    [SerializeField] private CharacterManager characterManagerScript;
     [SerializeField] private PlayerInputInitialize playerInputScript;
     [SerializeField] private PlayerMovement playerMovementScript;
-    [SerializeField] private Vector2 horizontalInput;
-    [SerializeField] private Vector2 horizontalMovement;
-    private Vector3 velocityXZ;
-    private Vector2 smoothMovement;
-    [SerializeField] private float smoothInputSpeed;
-    [SerializeField] private float currentSpeed = 2f;
-    [SerializeField] private CharacterController controller;
     [SerializeField] private Animator anim;
-
-    [SerializeField] private float runSpeed = 4f;
-
     [SerializeField] private Transform gun;
     [SerializeField] private Transform backSocket;
     [SerializeField] private Transform frontSocket;
     private bool flagEquip = false;
 
     [SerializeField] private Transform camera;
-    [SerializeField] private float rotationSpeed = 600.0f;
     [SerializeField] private Transform spineBone;
 
     [SerializeField] private Vector3 CMFollowTargetOffsetPos;
@@ -34,11 +24,9 @@ public class PlayerGunMovement : MonoBehaviour
     [SerializeField] private Vector3 CMLookAtTargetOffsetPosRight;
     [SerializeField] private Vector3 CMFollowTargetOffsetPosLeft;
     [SerializeField] private Vector3 CMLookAtTargetOffsetPosLeft;
-
     [SerializeField] private Transform CMFollowTarget;
     [SerializeField] private Transform CMLookAtTarget;
     private Vector3 CMFollowTargetInitialLocalPos;
-
     private Vector3 CMLookAtTargetInitialLocalPos;
     [SerializeField] private Transform child;
 
@@ -57,7 +45,8 @@ public class PlayerGunMovement : MonoBehaviour
     void Update()
     {
         //check if yuuri is the player  
-        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
+        if (characterManagerScript.PlayerInputInitialize == playerInputScript &&
+            playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
         {
             playerMovementScript.ADS = true;
 
@@ -74,8 +63,8 @@ public class PlayerGunMovement : MonoBehaviour
                 CMLookAtTarget.localPosition = CMLookAtTargetOffsetPos;
 
                 //set freelook camera values
-                freeLookCamera.m_XAxis.m_DecelTime = ADSDecelTime;
-                freeLookCamera.m_YAxis.m_DecelTime = ADSDecelTime;
+                //freeLookCamera.m_XAxis.m_DecelTime = ADSDecelTime;
+                //freeLookCamera.m_YAxis.m_DecelTime = ADSDecelTime;
 
                 //set gun to hand
                 StopAllCoroutines();
@@ -112,8 +101,8 @@ public class PlayerGunMovement : MonoBehaviour
                 CMLookAtTarget.localPosition = CMLookAtTargetInitialLocalPos;
 
                 //set freelook camera values
-                freeLookCamera.m_XAxis.m_DecelTime = DefaultDecelTime;
-                freeLookCamera.m_YAxis.m_DecelTime = DefaultDecelTime;
+                //freeLookCamera.m_XAxis.m_DecelTime = DefaultDecelTime;
+                //freeLookCamera.m_YAxis.m_DecelTime = DefaultDecelTime;
 
                 //set gun to back
                 AttachToGunBackSocket();
@@ -128,7 +117,8 @@ public class PlayerGunMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
+        if (characterManagerScript.PlayerInputInitialize == playerInputScript &&
+            playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
         {
             spineBone.rotation = camera.rotation;
         }

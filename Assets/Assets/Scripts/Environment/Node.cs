@@ -16,7 +16,7 @@ public class Node : MonoBehaviour
 
     private NodeCache nodeCacheScript;
 
-    private bool generate = false;
+    private bool resetPorts = true;
 
     //cache yield instructions
     WaitForSeconds waitForSeconds = new WaitForSeconds(0.25f);
@@ -84,7 +84,7 @@ public class Node : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Vector3.Distance(transform.position, nodeCacheScript.player.transform.position) < nodeCacheScript.spawnThreshold && !generate)
+        if (Vector3.Distance(transform.position, nodeCacheScript.player.transform.position) < nodeCacheScript.spawnThreshold && resetPorts)
         {
             while(portList.Count != 0)
             {
@@ -99,7 +99,7 @@ public class Node : MonoBehaviour
 
             StartCoroutine(GenerateSceneGeometry());
             StartCoroutine(CheckCollision());
-            generate = true;
+            resetPorts = false;
         }
     }
 

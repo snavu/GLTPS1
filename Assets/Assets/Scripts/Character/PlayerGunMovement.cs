@@ -8,7 +8,6 @@ public class PlayerGunMovement : MonoBehaviour
 {
     [SerializeField] private PlayerInputInitialize playerInputScript;
     [SerializeField] private PlayerMovement playerMovementScript;
-    [SerializeField] private CharacterManager characterManagerScript;
     [SerializeField] private Vector2 horizontalInput;
     [SerializeField] private Vector2 horizontalMovement;
     private Vector3 velocityXZ;
@@ -58,38 +57,14 @@ public class PlayerGunMovement : MonoBehaviour
     void Update()
     {
         //check if yuuri is the player  
-        if (characterManagerScript.PlayerInputInitialize == playerInputScript &&
-            playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f &&
-            playerMovementScript.isGrounded)
+        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
         {
-            playerMovementScript.enabled = false;
-        }
+            playerMovementScript.ADS = true;
 
-        if (characterManagerScript.PlayerInputInitialize == playerInputScript &&
-            playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f &&
-            !playerMovementScript.enabled
-            )
-        {
-            //get horizontal input
-            horizontalInput = playerInputScript.actions.Player.Move.ReadValue<Vector2>();
-            horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
-
-            velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed;
-            velocityXZ = transform.TransformDirection(velocityXZ);
-
-            //move character based on input
-            controller.Move((velocityXZ) * Time.deltaTime);
-
-            //pass velocityXZ to drive movement animation
-            CharacterMovementAnimation.Movement(anim, velocityXZ, runSpeed);
-
-            //rotate child in direction of camera      
+            //rotate child to camera      
             child.rotation = Quaternion.Euler(0f, camera.rotation.eulerAngles.y, 0f);
-
-            //rotate player to camera
-            Vector3 camXZ = new Vector3(camera.TransformDirection(Vector3.forward).x, 0, camera.TransformDirection(Vector3.forward).z);
-            Quaternion rotationDirXZ = Quaternion.LookRotation(camXZ);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDirXZ, rotationSpeed * Time.deltaTime);
+            //rotate parent to camera
+            transform.rotation = Quaternion.Euler(0f, camera.rotation.eulerAngles.y, 0f);
 
             //set player ADS animation
             if (flagEquip)
@@ -143,19 +118,17 @@ public class PlayerGunMovement : MonoBehaviour
                 //set gun to back
                 AttachToGunBackSocket();
                 anim.SetBool("ADS", false);
-                playerMovementScript.enabled = true;
                 crosshair.SetActive(false);
                 flagEquip = true;
+
+                playerMovementScript.ADS = false;
             }
         }
     }
 
     void LateUpdate()
     {
-        if (characterManagerScript.PlayerInputInitialize == playerInputScript &&
-            playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f &&
-            !playerMovementScript.enabled
-            )
+        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
         {
             spineBone.rotation = camera.rotation;
         }

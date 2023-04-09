@@ -6,36 +6,25 @@ using UnityEngine.AI;
 using Cinemachine;
 public class CharacterVehicleInteraction : MonoBehaviour
 {
-    [SerializeField]
-    private CinemachineFreeLook freelookCamera;
-    [SerializeField]
-    private float[] freelookRadius;
+    [SerializeField] private CinemachineFreeLook freelookCamera;
+    [SerializeField] private float[] freelookRadius;
     [SerializeField]
     private float smoothRadiusSpeed = 0.2f;
     private float smoothRadiusVelocity = 0f;
-    [SerializeField]
-    private PlayerInputInitialize playerInputScript;
-    [SerializeField]
-    private CharacterManager characterManagerScript;
-    [SerializeField]
-    private Animator vehicleAnim;
+    [SerializeField] private PlayerInputInitialize playerInputScript;
+    [SerializeField] private Animator anim;
+    [SerializeField] private Animator vehicleAnim;
     public CharacterController controller;
-    [SerializeField]
-    private NavMeshAgent agent;
-    [SerializeField]
-    private float angularSpeed = 800f;
-    [SerializeField]
-    private Transform child;
-    [SerializeField]
-    private Transform vehicleSeat;
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private float angularSpeed = 800f;
+    [SerializeField] private Transform child;
+    [SerializeField] private Transform vehicleSeat;
     private bool enterable;
     private float steer;
     private float steerSmooth = 0f;
-    [SerializeField]
-    private float smoothInputSpeed = 0.2f;
+    [SerializeField] private float smoothInputSpeed = 0.2f;
     private float smoothInputVelocity = 0f;
-    [SerializeField]
-    private float rotationSpeed = 100.0f;
+    [SerializeField] private float rotationSpeed = 100.0f;
     public float elapsed = 0f;
 
     public bool preOrientEnter = false;
@@ -43,27 +32,29 @@ public class CharacterVehicleInteraction : MonoBehaviour
     private float maxSpeed = 4.0f;
     public bool constraint;
 
-    [SerializeField]
-    private Transform vehicleRightExit;
+    [SerializeField] private Transform vehicleRightExit;
 
-    [SerializeField]
-    private Transform vehicleLeftExit;
+    [SerializeField] private Transform vehicleLeftExit;
     public bool exitRight;
     public bool exitLeft;
-    [SerializeField]
-    private float exitDuration = 0.25f;
-    [SerializeField]
-    private float enterDuration = 1.0f;
+    [SerializeField] private float exitDuration = 0.25f;
+    [SerializeField] private float enterDuration = 1.0f;
 
     private Transform vehicleEnter;
 
-    void Start()
+    void OnEnable()
     {
         Physics.IgnoreLayerCollision(6, 7, false);
         Physics.IgnoreLayerCollision(6, 8, false);
 
         playerInputScript.actions.Player.Interact.performed += Interact;
         playerInputScript.actions.Vehicle.Exit.performed += Exit;
+    }
+
+    void OnDisable()
+    {
+        playerInputScript.actions.Player.Interact.performed -= Interact;
+        playerInputScript.actions.Vehicle.Exit.performed -= Exit;
     }
 
     void Update()
@@ -125,18 +116,18 @@ public class CharacterVehicleInteraction : MonoBehaviour
         }
 
         //vehicle movement controls
-        if (characterManagerScript.PlayerInputInitialize.actions.Vehicle.Drive.enabled)
+        if (playerInputScript.actions.Vehicle.Drive.enabled)
         {
-            steer = characterManagerScript.PlayerInputInitialize.actions.Vehicle.Drive.ReadValue<Vector2>().x;
+            steer = playerInputScript.actions.Vehicle.Drive.ReadValue<Vector2>().x;
             steerSmooth = Mathf.SmoothDamp(steerSmooth, steer, ref smoothInputVelocity, smoothInputSpeed);
             vehicleAnim.SetFloat("steer", steerSmooth);
-            characterManagerScript.playerAnim.SetFloat("steer", steerSmooth);
+            anim.SetFloat("steer", steerSmooth);
         }
 
         //handle player movement animation when navmesh agent takes over to position player in correct position to enter vehichle
         if (agent.isActiveAndEnabled)
         {
-            CharacterMovementAnimation.Movement(characterManagerScript.playerAnim, agent.velocity, maxSpeed);
+            CharacterMovementAnimation.Movement(anim, agent.velocity, maxSpeed);
         }
 
         //orient position to enter ket
@@ -153,11 +144,11 @@ public class CharacterVehicleInteraction : MonoBehaviour
                 {
                     if (vehicleEnter.gameObject.name == "Right")
                     {
-                        characterManagerScript.playerAnim.SetBool("ket right", true);
+                        anim.SetBool("ket right", true);
                     }
                     if (vehicleEnter.gameObject.name == "Left")
                     {
-                        characterManagerScript.playerAnim.SetBool("ket left", true);
+                        anim.SetBool("ket left", true);
                     }
                     agent.enabled = false;
                     preOrientEnter = true;
@@ -172,7 +163,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         Physics.IgnoreLayerCollision(6, 7, false);
-        characterManagerScript.PlayerInputInitialize.actions.Player.Enable();
+        playerInputScript.actions.Player.Enable();
         controller.enabled = true;
         preOrientExit = false;
         exitLeft = false;
@@ -196,7 +187,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     public void Interact(InputAction.CallbackContext context)
     {
         if (context.performed && enterable
-            && !characterManagerScript.playerAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket")
+            && !anim.GetCurrentAnimatorStateInfo(1).IsTag("Ket")
             && !GetComponent<CharacterBarrelInteraction>().isCarrying)
         {
             //ignore collisions between layer 6 (vehicle) and layer 7 (player) 
@@ -206,13 +197,13 @@ public class CharacterVehicleInteraction : MonoBehaviour
             GetComponent<CharacterBarrelInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.None;
 
             //disable player movement
-            characterManagerScript.PlayerInputInitialize.actions.Player.Disable();
+            playerInputScript.actions.Player.Disable();
             //disable character controller
             controller.enabled = false;
             //disable navmesh obstacle, and wait a short time before enabling the agent
             GetComponent<NavMeshObstacle>().enabled = false;
             StartCoroutine(DelayEnter());
-            
+
             preOrientEnter = false;
             enterable = false;
         }
@@ -220,9 +211,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     public void Exit(InputAction.CallbackContext context)
     {
-        if (context.performed && characterManagerScript.playerAnim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer"))
+        if (context.performed && anim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer"))
         {
-            characterManagerScript.playerAnim.SetTrigger("ket exit");
+            anim.SetTrigger("ket exit");
             GetComponent<NavMeshObstacle>().enabled = true;
         }
     }

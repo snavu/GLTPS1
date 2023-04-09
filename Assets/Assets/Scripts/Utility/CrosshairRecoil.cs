@@ -5,36 +5,30 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 public class CrosshairRecoil : MonoBehaviour
 {
-    [SerializeField]
-    private RawImage crosshairTop;
-    [SerializeField]
-    private RawImage crosshairRight;
-    [SerializeField]
-    private RawImage crosshairLeft;
-    [SerializeField]
-    private RawImage crosshairBottom;
-    [SerializeField]
-    private float recoilDuration;
-    [SerializeField]
-    private float recoilResetDuration;
-    [SerializeField]
-    private Vector2 maxRecoil;
+    [SerializeField] private RawImage crosshairTop;
+    [SerializeField] private RawImage crosshairRight;
+    [SerializeField] private RawImage crosshairLeft;
+    [SerializeField] private RawImage crosshairBottom;
+    [SerializeField] private float recoilDuration;
+    [SerializeField] private float recoilResetDuration;
+    [SerializeField] private Vector2 maxRecoil;
 
-    [SerializeField]
-    private float recoilX;
-    [SerializeField]
-    private float recoilY;
+    [SerializeField] private float recoilX;
+    [SerializeField] private float recoilY;
 
-    [SerializeField]
-    private PlayerInputInitialize playerInputScript;
+    [SerializeField] private PlayerInputInitialize playerInputScript;
     private bool fire;
-    [SerializeField]
-    private bool recoil;
+    [SerializeField] private bool recoil;
 
 
-    void Start()
+    void OnEnable()
     {
         playerInputScript.actions.Player.Fire.performed += Recoil;
+    }
+
+    void OnDisable()
+    {
+        playerInputScript.actions.Player.Fire.performed -= Recoil;
     }
 
     private void Recoil(InputAction.CallbackContext context)

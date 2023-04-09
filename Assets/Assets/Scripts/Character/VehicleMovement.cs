@@ -5,42 +5,28 @@ using UnityEngine.InputSystem;
 
 public class VehicleMovement : MonoBehaviour
 {
-    [SerializeField]
-    private CharacterManager characterManagerScript;
+    public PlayerInputInitialize playerInputScript;
     private Rigidbody rb;
-    [SerializeField]
-    private Vector2 movement;
+    [SerializeField] private Vector2 movement;
 
-    [SerializeField]
-    private float currentMovementRate;
-    [SerializeField]
-    private float increasedMovementRate;
-    [SerializeField]
-    private float force;
-    [SerializeField]
-    private float maxVelocity;
+    [SerializeField] private float currentMovementRate;
+    [SerializeField] private float increasedMovementRate;
+    [SerializeField] private float force;
+    [SerializeField] private float maxVelocity;
 
     private float scaledMaxVelocity;
-    [SerializeField]
-    private float torque;
-    [SerializeField]
-    private float maxAngularVelocity;
-    [SerializeField]
-    private Animator anim;
+    [SerializeField] private float torque;
+    [SerializeField] private float maxAngularVelocity;
+    [SerializeField] private Animator anim;
 
-    [SerializeField]
-    private bool isGrounded;
-    [SerializeField]
-    private Vector3 boxCastHalfExtents;
-    [SerializeField]
-    private Vector3 boxCastOffset;
+    [SerializeField] private bool isGrounded;
+    [SerializeField] private Vector3 boxCastHalfExtents;
+    [SerializeField] private Vector3 boxCastOffset;
 
     LayerMask layerMask;
 
-    [SerializeField]
-    VehicleFuelManager vehicleFuelManagerScript;
-    [SerializeField]
-    private SkinnedMeshRenderer ketBarrelMesh;
+    [SerializeField] private VehicleFuelManager vehicleFuelManagerScript;
+    [SerializeField] private SkinnedMeshRenderer ketBarrelMesh;
 
     void Start()
     {
@@ -54,10 +40,10 @@ public class VehicleMovement : MonoBehaviour
     void Update()
     {
         //get input
-        movement = characterManagerScript.PlayerInputInitialize.actions.Vehicle.Drive.ReadValue<Vector2>();
+        movement = playerInputScript.actions.Vehicle.Drive.ReadValue<Vector2>();
 
         //set speed
-        if (characterManagerScript.PlayerInputInitialize.actions.Vehicle.Accelerate.IsPressed())
+        if (playerInputScript.actions.Vehicle.Accelerate.IsPressed())
         {
             currentMovementRate = increasedMovementRate;
         }

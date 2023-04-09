@@ -28,10 +28,16 @@ public class CharacterItemInteraction : MonoBehaviour
     [SerializeField]
     private PlayerGunController playerGunControllerScript;
 
-    void Start()
+    void OnEnable()
     {
         playerInputScript.actions.Player.Interact.performed += Interact;
         playerInputScript.actions.Player.Eat.performed += Eat;
+    }
+
+    void OnDisable()
+    {
+        playerInputScript.actions.Player.Interact.performed -= Interact;
+        playerInputScript.actions.Player.Eat.performed -= Eat;
     }
 
     private void Interact(InputAction.CallbackContext context)

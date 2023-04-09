@@ -30,19 +30,21 @@ public class PlayerGunController : MonoBehaviour
     [SerializeField]
     private PlayerGunMovement playerGunMovementScript;
     [SerializeField]
-    private CharacterManager characterManagerScript;
-
-    void Start()
+    void OnEnable()
     {
         playerInputScript.actions.Player.Fire.performed += Fire;
     }
 
+    void OnDisable()
+    {
+        playerInputScript.actions.Player.Fire.performed -= Fire;
+    }
+
     private void Fire(InputAction.CallbackContext context)
     {
-        if (context.performed && ammoCount != 0 && 
+        if (context.performed && ammoCount != 0 &&
             !anim.GetCurrentAnimatorStateInfo(5).IsTag("Reload") &&
-            anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") &&
-            characterManagerScript.PlayerInputInitialize == playerInputScript)
+            anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS"))
         {
             // Cast a ray from the muzzle position to the center of the screen
             Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));

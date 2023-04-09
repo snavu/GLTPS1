@@ -15,14 +15,14 @@ public class CharacterPossession : MonoBehaviour
 
     void OnEnable()
     {
-        //subscribe the input action
-        StartCoroutine(DelayOnEnable());
+        playerInputScript.actions.Player.Enable();
+        playerInputScript.actions.Player.Possess.performed += Possess;
     }
 
-    IEnumerator DelayOnEnable()
+    void OnDisable()
     {
-        yield return new WaitForEndOfFrame();
-        playerInputScript.actions.Player.Possess.performed += Possess;
+        playerInputScript.actions.Player.Possess.performed -= Possess;
+        playerInputScript.actions.Player.Disable();
     }
 
     private void Possess(InputAction.CallbackContext context)
@@ -31,10 +31,6 @@ public class CharacterPossession : MonoBehaviour
             && !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(1).IsTag("Ket")
             && !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(2).IsTag("Carry"))
         {
-            //note: input action callbacks occur even while script is inactive 
-            //unsubscribe from the input action before switching script to prevent duplicate calls
-            playerInputScript.actions.Player.Possess.performed -= Possess;
-
             //change camera follow and look at target
             CMFollowTarget.transform.parent = playerToPossess.transform;
             CMLookAtTarget.transform.parent = playerToPossess.transform;
@@ -71,6 +67,7 @@ public class CharacterPossession : MonoBehaviour
             playerToPossess.GetComponentInChildren<NavMeshObstacle>().enabled = true;
             playerToPossess.GetComponentInChildren<NavMeshAgentVehicleInteraction>().enabled = false;
             playerToPossess.GetComponentInChildren<NavMeshAgentFollowPlayer>().enabled = false;
+
         }
     }
 }

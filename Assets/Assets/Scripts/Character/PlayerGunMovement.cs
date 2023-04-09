@@ -6,7 +6,6 @@ using UnityEngine.Animations;
 using Cinemachine;
 public class PlayerGunMovement : MonoBehaviour
 {
-    [SerializeField] private CharacterManager characterManagerScript;
     [SerializeField] private PlayerInputInitialize playerInputScript;
     [SerializeField] private PlayerMovement playerMovementScript;
     [SerializeField] private Animator anim;
@@ -44,9 +43,7 @@ public class PlayerGunMovement : MonoBehaviour
 
     void Update()
     {
-        //check if yuuri is the player  
-        if (characterManagerScript.PlayerInputInitialize == playerInputScript &&
-            playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
+        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
         {
             playerMovementScript.ADS = true;
 
@@ -117,8 +114,7 @@ public class PlayerGunMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if (characterManagerScript.PlayerInputInitialize == playerInputScript &&
-            playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
+        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
         {
             spineBone.rotation = camera.rotation;
         }

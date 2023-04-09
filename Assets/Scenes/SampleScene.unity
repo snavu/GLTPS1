@@ -337,7 +337,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135867288}
-  m_LocalRotation: {x: -0.004572964, y: -0.023675716, z: -0.00010829966, w: 0.99970925}
+  m_LocalRotation: {x: -0.004572966, y: -0.023675766, z: -0.00010829996, w: 0.99970925}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1045,8 +1045,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.0045729666, y: -0.023675716, z: -0.00010829965, w: 0.99970925}
-  m_LocalPosition: {x: -6.8921504, y: 2.0900002, z: -112.41867}
+  m_LocalRotation: {x: -0.0045729703, y: -0.023675766, z: -0.000108299995, w: 0.99970925}
+  m_LocalPosition: {x: -6.89215, y: 2.0900002, z: -112.41867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1444,7 +1444,7 @@ MonoBehaviour:
   m_SplineCurvature: 1
   m_Orbits:
   - m_Height: 6.91
-    m_Radius: 4.755191
+    m_Radius: 4.758152
   - m_Height: 3.26
     m_Radius: 4.75
   - m_Height: 0.4
@@ -1462,7 +1462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626363629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.8921504, y: 2.0900002, z: -112.41867}
+  m_LocalPosition: {x: -6.89215, y: 2.0900002, z: -112.41867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8155,7 +8155,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244749583}
-  m_LocalRotation: {x: 0.031732533, y: -0.023664048, z: 0.00075150945, w: 0.99921596}
+  m_LocalRotation: {x: 0.031732533, y: -0.023664098, z: 0.000751511, w: 0.99921596}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8489,7 +8489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c8feb75384eff4ba5d2bafcae2801b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterManagerScript: {fileID: 1924441660}
+  playerInputScript: {fileID: 9146561997578268269}
   movement: {x: 0, y: 0}
   currentMovementRate: 0
   increasedMovementRate: 1.4
@@ -8776,7 +8776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4159fa2de27316648a8e7b60557198fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterManagerScript: {fileID: 1924441660}
+  playerInputScript: {fileID: 9146561997578268269}
   movement: {x: 0, y: 0}
   maxFuel: 10000
   currentFuel: 10000
@@ -13857,7 +13857,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1924441659}
   - component: {fileID: 1924441658}
-  - component: {fileID: 1924441660}
   m_Layer: 0
   m_Name: CharacterManager
   m_TagString: Untagged
@@ -13899,22 +13898,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1924441660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924441657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06a6472c5e85bdb408f08b3a4689554c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerInputInitialize: {fileID: 0}
-  playerAnim: {fileID: 0}
-  Chito: {fileID: 1179579383}
-  Yuuri: {fileID: 2072579798}
 --- !u!1 &1944390926
 GameObject:
   m_ObjectHideFlags: 0
@@ -14291,7 +14274,7 @@ GameObject:
   - component: {fileID: 2072579817}
   m_Layer: 7
   m_Name: YuuriParent
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14429,7 +14412,7 @@ MonoBehaviour:
   - 3.3
   smoothRadiusSpeed: 1
   playerInputScript: {fileID: 2072579809}
-  characterManagerScript: {fileID: 1924441660}
+  anim: {fileID: 1690254641}
   vehicleAnim: {fileID: 491373355}
   controller: {fileID: 2072579811}
   agent: {fileID: 2072579801}
@@ -14476,7 +14459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ebc80023662db4bbbc7cfc073bfc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterManagerScript: {fileID: 1924441660}
+  playerInputScript: {fileID: 2072579809}
   anim: {fileID: 1690254641}
   isPickupable: 0
   isCarrying: 0
@@ -14626,7 +14609,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51c5d8c2ec718342b216e8381766120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterManagerScript: {fileID: 1924441660}
   playerInputScript: {fileID: 2072579809}
   playerMovementScript: {fileID: 2072579803}
   anim: {fileID: 1690254641}
@@ -14672,7 +14654,6 @@ MonoBehaviour:
     type: 3}
   anim: {fileID: 1690254641}
   playerGunMovementScript: {fileID: 2072579815}
-  characterManagerScript: {fileID: 1924441660}
 --- !u!114 &2072579817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14709,7 +14690,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: 0.031732533, y: -0.023664052, z: 0.00075150956, w: 0.99921596}
+  m_LocalRotation: {x: 0.031732533, y: -0.023664098, z: 0.000751511, w: 0.99921596}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15291,6 +15272,8 @@ MonoBehaviour:
   characterVehicleInteractionScript: {fileID: 2072579805}
   navMeshAgentVehicleInteractionScript: {fileID: 9146561997578268272}
   navMeshAgentSelfVehicleInteractionScript: {fileID: 2072579813}
+  vehicleMovementScript: {fileID: 1419417141}
+  vehicleFuelManagerScript: {fileID: 1419417153}
 --- !u!4 &923701116433474699
 Transform:
   m_ObjectHideFlags: 0
@@ -17800,7 +17783,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187429608059279339}
-  m_LocalRotation: {x: 0.0046278294, y: 0.99359906, z: -0.10381545, w: 0.044293888}
+  m_LocalRotation: {x: 0.0046280157, y: 0.99359906, z: -0.103815444, w: 0.044293907}
   m_LocalPosition: {x: -12.7943, y: 16.1038, z: -46.3519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18366,7 +18349,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86235679554125965}
-  m_LocalRotation: {x: 0.0007794933, y: -0.99916726, z: 0.023230108, w: 0.03353541}
+  m_LocalRotation: {x: 0.00077958684, y: -0.99916726, z: 0.023230106, w: 0.03353541}
   m_LocalPosition: {x: 16.8635, y: 18.5724, z: 241.068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18542,7 +18525,7 @@ MonoBehaviour:
   - 3.3
   smoothRadiusSpeed: 1
   playerInputScript: {fileID: 9146561997578268269}
-  characterManagerScript: {fileID: 1924441660}
+  anim: {fileID: 9146561999101011854}
   vehicleAnim: {fileID: 491373355}
   controller: {fileID: 1179579386}
   agent: {fileID: 9146561997578268258}
@@ -18585,7 +18568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ebc80023662db4bbbc7cfc073bfc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterManagerScript: {fileID: 1924441660}
+  playerInputScript: {fileID: 9146561997578268269}
   anim: {fileID: 9146561999101011854}
   isPickupable: 0
   isCarrying: 0
@@ -18803,6 +18786,8 @@ MonoBehaviour:
   characterVehicleInteractionScript: {fileID: 9146561997578268262}
   navMeshAgentVehicleInteractionScript: {fileID: 2072579813}
   navMeshAgentSelfVehicleInteractionScript: {fileID: 9146561997578268272}
+  vehicleMovementScript: {fileID: 1419417141}
+  vehicleFuelManagerScript: {fileID: 1419417153}
 --- !u!137 &9171919486203938678
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

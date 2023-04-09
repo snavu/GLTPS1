@@ -10,6 +10,8 @@ public class NavMeshAreaBaker : MonoBehaviour
     private Transform navMeshAgent;
     [SerializeField]
     private float distanceThreshold;
+    [SerializeField]
+    private 
 
     void Start()
     {

@@ -15,9 +15,13 @@ public class CharacterFuelInteraction : MonoBehaviour
     [SerializeField]
     private bool inFuelingStationInteractArea;
     private bool isFueling;
-    void Start()
+    void OnEnable()
     {
         playerInputScript.actions.Player.HoldInteract.performed += HoldInteract;
+    }
+    void OnDisable()
+    {
+        playerInputScript.actions.Player.HoldInteract.performed -= HoldInteract;
     }
 
     private void HoldInteract(InputAction.CallbackContext context)

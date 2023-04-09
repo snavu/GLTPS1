@@ -9,7 +9,13 @@ public class PlayerInputInitialize : MonoBehaviour
     void Awake()
     {
         actions = new InputActions();
-        actions.Player.Enable();
-
+        if (gameObject.name == "ChitoParent")
+        {
+            actions.Player.Enable();
+        }
+        else if (gameObject.name == "YuuriParent")
+        {
+            actions.Player.Disable();
+        }
     }
 }

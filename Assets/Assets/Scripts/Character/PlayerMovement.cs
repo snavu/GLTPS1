@@ -33,12 +33,17 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 sphereCastPosition;
 
     public bool ADS;
-    void Start()
+    void OnEnable()
     {
         playerInputScript.actions.Player.Jump.performed += Jump;
 
         //align spherecast at bottom of collide, scale position inversely proportional to controller skin width, and minus small constant to extrude vertically down
         sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.01f, 0);
+    }
+
+    void OnDisable()
+    {
+        playerInputScript.actions.Player.Jump.performed -= Jump;
     }
 
     void Update()

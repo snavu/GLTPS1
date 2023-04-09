@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class VehicleRightTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private Animator playerAnim;
+    [SerializeField] private Animator playerAnim;
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Wall"))

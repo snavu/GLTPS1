@@ -4,24 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 public class VehicleFuelManager : MonoBehaviour
 {
-    [SerializeField]
-    private CharacterManager characterManagerScript;
-    [SerializeField]
-    private Vector2 movement;
+    public PlayerInputInitialize playerInputScript;
+    [SerializeField] private Vector2 movement;
     public float maxFuel;
     public float currentFuel;
-    [SerializeField]
-    private float defaultFuelConsumptionRate;
-    [SerializeField]
-    private float increasedFuelConsumptionRate;
+    [SerializeField] private float defaultFuelConsumptionRate;
+    [SerializeField] private float increasedFuelConsumptionRate;
     public float refuelingRate;
 
-    [SerializeField]
-    private RectTransform fuelBar;
+    [SerializeField] private RectTransform fuelBar;
     private float rectTransformInitialHeight;
 
-    [SerializeField]
-    private SkinnedMeshRenderer ketBarrelMesh;
+    [SerializeField] private SkinnedMeshRenderer ketBarrelMesh;
     void Start()
     {
         rectTransformInitialHeight = fuelBar.sizeDelta.y;
@@ -30,14 +24,15 @@ public class VehicleFuelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement = characterManagerScript.PlayerInputInitialize.actions.Vehicle.Drive.ReadValue<Vector2>();
+        movement = playerInputScript.actions.Vehicle.Drive.ReadValue<Vector2>();
+
 
         //clamp fuel
         currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
 
         if (Mathf.Abs(movement.y) > 0 && ketBarrelMesh.enabled)
         {
-            if (characterManagerScript.PlayerInputInitialize.actions.Vehicle.Accelerate.IsPressed())
+            if (playerInputScript.actions.Vehicle.Accelerate.IsPressed())
             {
                 currentFuel -= increasedFuelConsumptionRate * Time.deltaTime;
             }

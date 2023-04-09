@@ -5,20 +5,21 @@ using UnityEngine;
 public class CharacterVehicleAnimationEvents : MonoBehaviour
 {
 
-    [SerializeField]
-    private PlayerInputInitialize playerInputScript;
+    [SerializeField] private PlayerInputInitialize playerInputScript;
 
-    [SerializeField]
-    private CharacterVehicleInteraction characterVehicleInteractionScript;
-    [SerializeField]
-    private NavMeshAgentVehicleInteraction navMeshAgentVehicleInteractionScript;
-    [SerializeField]
-    private NavMeshAgentVehicleInteraction navMeshAgentSelfVehicleInteractionScript;
+    [SerializeField] private CharacterVehicleInteraction characterVehicleInteractionScript;
+    [SerializeField] private NavMeshAgentVehicleInteraction navMeshAgentVehicleInteractionScript;
+    [SerializeField] private NavMeshAgentVehicleInteraction navMeshAgentSelfVehicleInteractionScript;
+    [SerializeField] private VehicleMovement vehicleMovementScript;
+    [SerializeField] private VehicleFuelManager vehicleFuelManagerScript;
+
 
 
     //animation events
     public void EnableVehicle()
     {
+        vehicleMovementScript.playerInputScript = playerInputScript;
+        vehicleMovementScript.playerInputScript = playerInputScript;
         playerInputScript.actions.Vehicle.Enable();
 
     }

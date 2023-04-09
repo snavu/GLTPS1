@@ -32,7 +32,6 @@ public class CharacterBarrelInteraction : MonoBehaviour
     void Start()
     {
         characterManagerScript.PlayerInputInitialize.actions.Player.Interact.performed += Interact;
-        characterManagerScript.PlayerInputInitialize.actions.Player.HoldInteract.performed += HoldInteract;
     }
 
     private void Interact(InputAction.CallbackContext context)
@@ -46,15 +45,11 @@ public class CharacterBarrelInteraction : MonoBehaviour
             //freeze kettengrad rigidbody to prevent movement from player collider clipping bug
             vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
-            SetParameters(true, 0.53f, true, true);
+            SetCarryParameters(true, 0.53f, true, true);
 
-            //set parent constraint of barrel
-            source.sourceTransform = parentConstraintSource.transform;
-            source.weight = 1;
-            //spawn barrel
             newBarrel = Instantiate(barrelPrefab, transform.position, transform.rotation);
-            newBarrel.GetComponent<ParentConstraint>().SetSource(0, source);
-            newBarrel.GetComponent<ParentConstraint>().constraintActive = true;
+
+            SetParentConstraint();
         }
 
         if (context.performed && isPickupable && !inBarrelDropArea && this.enabled)
@@ -62,22 +57,19 @@ public class CharacterBarrelInteraction : MonoBehaviour
             characterManagerScript.PlayerInputInitialize.actions.Player.Jump.Disable();
             characterManagerScript.PlayerInputInitialize.actions.Player.Sprint.Disable();
 
-            SetParameters(true, 0.5f, true, true);
+            SetCarryParameters(true, 0.5f, true, true);
 
-            newBarrel.GetComponent<ParentConstraint>().constraintActive = true;
+            SetParentConstraint();
         }
-    }
 
-    private void HoldInteract(InputAction.CallbackContext context)
-    {
-        if (context.performed && anim.GetCurrentAnimatorStateInfo(2).IsTag("carry"))
+        if (context.performed && anim.GetCurrentAnimatorStateInfo(2).IsTag("Carry") && this.enabled)
         {
             characterManagerScript.PlayerInputInitialize.actions.Player.Jump.Enable();
             characterManagerScript.PlayerInputInitialize.actions.Player.Sprint.Enable();
 
             vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
-            SetParameters(false, 0.25f, false, false);
+            SetCarryParameters(false, 0.25f, false, false);
 
             newBarrel.GetComponent<ParentConstraint>().constraintActive = false;
 
@@ -85,7 +77,17 @@ public class CharacterBarrelInteraction : MonoBehaviour
         }
     }
 
-    private void SetParameters(bool carry, float radius, bool carryAnimParameter, bool physicsIgnore)
+    private void SetParentConstraint()
+    {
+        //set parent constraint of barrel
+        source.sourceTransform = parentConstraintSource.transform;
+        source.weight = 1;
+
+        newBarrel.GetComponent<ParentConstraint>().SetSource(0, source);
+        newBarrel.GetComponent<ParentConstraint>().constraintActive = true;
+    }
+
+    private void SetCarryParameters(bool carry, float radius, bool carryAnimParameter, bool physicsIgnore)
     {
 
         //disable physics collisions bettwen player and barrel, and vehicle and barrel
@@ -96,7 +98,6 @@ public class CharacterBarrelInteraction : MonoBehaviour
         controller.radius = radius;
         //set carry animation
         anim.SetBool("carry", carryAnimParameter);
-
     }
 
     private void OnTriggerStay(Collider other)
@@ -104,6 +105,7 @@ public class CharacterBarrelInteraction : MonoBehaviour
         if (other.gameObject.CompareTag("Barrel"))
         {
             isPickupable = true;
+            newBarrel = other.gameObject;
         }
         if (other.gameObject.CompareTag("BarrelDropArea"))
         {

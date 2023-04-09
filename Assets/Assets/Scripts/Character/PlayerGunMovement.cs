@@ -32,8 +32,8 @@ public class PlayerGunMovement : MonoBehaviour
     [SerializeField] private GameObject crosshair;
 
     [SerializeField] private CinemachineFreeLook freeLookCamera;
-    [SerializeField] private float ADSDecelTime = 0.05f;
-    [SerializeField] private float DefaultDecelTime = 0.3f;
+    [SerializeField] private float ADSCameraSpeed = 0.5f;
+    [SerializeField] SetCameraSpeed setCameraSpeedScript;
 
     void Start()
     {
@@ -43,7 +43,7 @@ public class PlayerGunMovement : MonoBehaviour
 
     void Update()
     {
-        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
+        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f && Time.timeScale == 1)
         {
             playerMovementScript.ADS = true;
 
@@ -60,8 +60,7 @@ public class PlayerGunMovement : MonoBehaviour
                 CMLookAtTarget.localPosition = CMLookAtTargetOffsetPos;
 
                 //set freelook camera values
-                //freeLookCamera.m_XAxis.m_DecelTime = ADSDecelTime;
-                //freeLookCamera.m_YAxis.m_DecelTime = ADSDecelTime;
+                setCameraSpeedScript.SetADSSpeed();
 
                 //set gun to hand
                 StopAllCoroutines();
@@ -91,15 +90,14 @@ public class PlayerGunMovement : MonoBehaviour
         }
         else
         {
-            if (!flagEquip)
+            if (!flagEquip && Time.timeScale == 1)
             {
                 //reset camera position
                 CMFollowTarget.localPosition = CMFollowTargetInitialLocalPos;
                 CMLookAtTarget.localPosition = CMLookAtTargetInitialLocalPos;
 
                 //set freelook camera values
-                //freeLookCamera.m_XAxis.m_DecelTime = DefaultDecelTime;
-                //freeLookCamera.m_YAxis.m_DecelTime = DefaultDecelTime;
+               setCameraSpeedScript.SetDefaultSpeed();
 
                 //set gun to back
                 AttachToGunBackSocket();
@@ -114,7 +112,7 @@ public class PlayerGunMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f)
+        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f && Time.timeScale == 1)
         {
             spineBone.rotation = camera.rotation;
         }

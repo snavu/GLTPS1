@@ -6,30 +6,21 @@ using Cinemachine;
 using UnityEngine.Animations;
 public class PlayerGunController : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerInputInitialize playerInputScript;
-    [SerializeField]
-    private Transform muzzle;
-    [SerializeField]
-    private Camera camera;
-    [SerializeField]
-    private GameObject bulletHoleDecal;
+    [SerializeField] private PlayerInputInitialize playerInputScript;
+    [SerializeField] private Transform muzzle;
+    [SerializeField] private Camera camera;
+    [SerializeField]private GameObject bulletHoleDecal;
     public int ammoCount = 10;
 
-    [SerializeField]
-    private CinemachineFreeLook freeLookCamera;
-    [SerializeField]
-    private float recoilValue;
+    [SerializeField] private CinemachineFreeLook freeLookCamera;
+    [SerializeField] private float recoilValue;
     private bool isPickupable;
     private Collider other;
-    [SerializeField]
-    private GameObject barrelSmoke;
+    [SerializeField] private GameObject barrelSmoke;
     private ConstraintSource source;
-    [SerializeField]
-    private Animator anim;
-    [SerializeField]
-    private PlayerGunMovement playerGunMovementScript;
-    [SerializeField]
+    [SerializeField] private Animator anim;
+    [SerializeField]private PlayerGunMovement playerGunMovementScript;
+
     void OnEnable()
     {
         playerInputScript.actions.Player.Fire.performed += Fire;
@@ -44,7 +35,8 @@ public class PlayerGunController : MonoBehaviour
     {
         if (context.performed && ammoCount != 0 &&
             !anim.GetCurrentAnimatorStateInfo(5).IsTag("Reload") &&
-            anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS"))
+            anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") && 
+            Time.timeScale == 1)
         {
             // Cast a ray from the muzzle position to the center of the screen
             Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));

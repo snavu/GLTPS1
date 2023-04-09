@@ -42,7 +42,7 @@ public class CharacterItemInteraction : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext context)
     {
-        if (context.performed && this.enabled)
+        if (context.performed && Time.timeScale == 1)
         {
             if (isFood)
             {
@@ -76,7 +76,7 @@ public class CharacterItemInteraction : MonoBehaviour
 
     private void Eat(InputAction.CallbackContext context)
     {
-        if (context.performed && characterHungerScript.index > 0 && !anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS"))
+        if (context.performed && characterHungerScript.index > 0 && !anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") && Time.timeScale == 1)
         {
             characterHungerScript.hunger += hungerRefill;
 

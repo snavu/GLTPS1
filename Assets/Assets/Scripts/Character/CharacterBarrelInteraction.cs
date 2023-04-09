@@ -32,44 +32,47 @@ public class CharacterBarrelInteraction : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext context)
     {
-        if (context.performed && isPickupable && inBarrelDropArea && !isCarrying && newBarrel == null && this.enabled)
+        if (Time.timeScale == 1)
         {
-            //disable player jump and spring
-            playerInputScript.actions.Player.Jump.Disable();
-            playerInputScript.actions.Player.Sprint.Disable();
+            if (context.performed && isPickupable && inBarrelDropArea && !isCarrying && newBarrel == null)
+            {
+                //disable player jump and spring
+                playerInputScript.actions.Player.Jump.Disable();
+                playerInputScript.actions.Player.Sprint.Disable();
 
-            //freeze kettengrad rigidbody to prevent movement from player collider clipping bug
-            vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+                //freeze kettengrad rigidbody to prevent movement from player collider clipping bug
+                vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
-            SetCarryParameters(true, 0.53f, true, true);
+                SetCarryParameters(true, 0.53f, true, true);
 
-            newBarrel = Instantiate(barrelPrefab, transform.position, transform.rotation);
+                newBarrel = Instantiate(barrelPrefab, transform.position, transform.rotation);
 
-            SetParentConstraint();
-        }
+                SetParentConstraint();
+            }
 
-        if (context.performed && isPickupable && !inBarrelDropArea && this.enabled)
-        {
-            playerInputScript.actions.Player.Jump.Disable();
-            playerInputScript.actions.Player.Sprint.Disable();
+            if (context.performed && isPickupable && !inBarrelDropArea)
+            {
+                playerInputScript.actions.Player.Jump.Disable();
+                playerInputScript.actions.Player.Sprint.Disable();
 
-            SetCarryParameters(true, 0.5f, true, true);
+                SetCarryParameters(true, 0.5f, true, true);
 
-            SetParentConstraint();
-        }
+                SetParentConstraint();
+            }
 
-        if (context.performed && anim.GetCurrentAnimatorStateInfo(2).IsTag("Carry") && this.enabled)
-        {
-            playerInputScript.actions.Player.Jump.Enable();
-            playerInputScript.actions.Player.Sprint.Enable();
+            if (context.performed && anim.GetCurrentAnimatorStateInfo(2).IsTag("Carry"))
+            {
+                playerInputScript.actions.Player.Jump.Enable();
+                playerInputScript.actions.Player.Sprint.Enable();
 
-            vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+                vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
-            SetCarryParameters(false, 0.25f, false, false);
+                SetCarryParameters(false, 0.25f, false, false);
 
-            newBarrel.GetComponent<ParentConstraint>().constraintActive = false;
+                newBarrel.GetComponent<ParentConstraint>().constraintActive = false;
 
-            isPickupable = false;
+                isPickupable = false;
+            }
         }
     }
 

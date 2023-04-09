@@ -99,7 +99,7 @@ Transform:
   - {fileID: 5324561948237922802}
   - {fileID: 8816765720704875620}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &68314067162291318
 Rigidbody:
@@ -147,8 +147,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.55, y: 0.55, z: 0.55}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.75641847, y: 1.004911, z: 0.72423553}
+  m_Center: {x: 0.0029250383, y: -0.0233493, z: 0.0018196106}
 --- !u!208 &944950819245036436
 NavMeshObstacle:
   m_ObjectHideFlags: 0

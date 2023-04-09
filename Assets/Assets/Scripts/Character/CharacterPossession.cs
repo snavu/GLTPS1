@@ -29,7 +29,8 @@ public class CharacterPossession : MonoBehaviour
     {
         if (context.performed
             && !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(1).IsTag("Ket")
-            && !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(2).IsTag("Carry"))
+            && !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(2).IsTag("Carry") && 
+            Time.timeScale == 1)
         {
             //change camera follow and look at target
             CMFollowTarget.transform.parent = playerToPossess.transform;

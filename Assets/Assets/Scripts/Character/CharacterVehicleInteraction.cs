@@ -188,7 +188,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         if (context.performed && enterable
             && !anim.GetCurrentAnimatorStateInfo(1).IsTag("Ket")
-            && !GetComponent<CharacterBarrelInteraction>().isCarrying)
+            && !GetComponent<CharacterBarrelInteraction>().isCarrying && 
+                Time.timeScale == 1)
         {
             //ignore collisions between layer 6 (vehicle) and layer 7 (player) 
             Physics.IgnoreLayerCollision(6, 7, true);
@@ -211,7 +212,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     public void Exit(InputAction.CallbackContext context)
     {
-        if (context.performed && anim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer"))
+        if (context.performed && anim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer") && Time.timeScale == 1)
         {
             anim.SetTrigger("ket exit");
             GetComponent<NavMeshObstacle>().enabled = true;

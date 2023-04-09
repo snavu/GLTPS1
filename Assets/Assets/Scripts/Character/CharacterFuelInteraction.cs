@@ -26,7 +26,7 @@ public class CharacterFuelInteraction : MonoBehaviour
 
     private void HoldInteract(InputAction.CallbackContext context)
     {
-        if (context.performed && inFuelingStationInteractArea && !characterBarrelInteractionScript.isCarrying)
+        if (context.performed && inFuelingStationInteractArea && !characterBarrelInteractionScript.isCarrying && Time.timeScale == 1)
         {
             if (isFueling)
             {

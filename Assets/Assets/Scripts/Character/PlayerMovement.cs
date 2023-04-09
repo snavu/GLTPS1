@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump(InputAction.CallbackContext context)
     {
         //jump
-        if (context.performed && isGrounded && !ADS)
+        if (context.performed && isGrounded && !ADS && Time.timeScale == 1)
         {
             verticalMovement = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }

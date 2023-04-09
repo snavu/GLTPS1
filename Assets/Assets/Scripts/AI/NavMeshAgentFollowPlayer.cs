@@ -25,7 +25,7 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
     {
         float distance = Vector3.Distance(followPosition.position, transform.position);
 
-        if (agent.isActiveAndEnabled)
+        if (agent.isActiveAndEnabled && agent.isOnNavMesh)
         {
             agent.angularSpeed = angularSpeed;
             //set destination position 
@@ -47,7 +47,7 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
 
             //set agent destination
             agent.destination = destination.transform.position;
-            
+
             child.rotation = Quaternion.RotateTowards(child.rotation, transform.rotation, angularSpeed * Time.deltaTime);
             //set movement animation
             CharacterMovementAnimation.Movement(agentAnim, agent.velocity, playerMovementScript.runSpeed);

@@ -16,7 +16,7 @@ public class Node : MonoBehaviour
 
     private NodeCache nodeCacheScript;
 
-    private bool resetPorts = true;
+    [SerializeField] private bool resetPorts = true;
 
     //cache yield instructions
     WaitForSeconds waitForSeconds = new WaitForSeconds(0.25f);

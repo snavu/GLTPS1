@@ -9,7 +9,7 @@ public class PlayerGunController : MonoBehaviour
     [SerializeField] private PlayerInputInitialize playerInputScript;
     [SerializeField] private Transform muzzle;
     [SerializeField] private Camera camera;
-    [SerializeField]private GameObject bulletHoleDecal;
+    [SerializeField] private GameObject bulletHoleDecal;
     public int ammoCount = 10;
 
     [SerializeField] private CinemachineFreeLook freeLookCamera;
@@ -19,7 +19,7 @@ public class PlayerGunController : MonoBehaviour
     [SerializeField] private GameObject barrelSmoke;
     private ConstraintSource source;
     [SerializeField] private Animator anim;
-    [SerializeField]private PlayerGunMovement playerGunMovementScript;
+    [SerializeField] private PlayerGunMovement playerGunMovementScript;
 
     void OnEnable()
     {
@@ -35,34 +35,40 @@ public class PlayerGunController : MonoBehaviour
     {
         if (context.performed && ammoCount != 0 &&
             !anim.GetCurrentAnimatorStateInfo(5).IsTag("Reload") &&
-            anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") && 
+            anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") &&
             Time.timeScale == 1)
         {
-            // Cast a ray from the muzzle position to the center of the screen
+            // Set ray from the viewport to world space
             Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-            // Check if the ray hits something
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                // Determine the direction of the bullet
-                Vector3 bulletDirection = (hit.point - muzzle.position).normalized;
+            // Get raycast hit from hitmarker ui object
+            RaycastHit cameraRayCastHit;
+            //Physics.Raycast(ray, out cameraRayCastHit, 100f, layerMask);
+            Physics.Raycast(ray, out cameraRayCastHit);
 
-                //instantiate decal 
-                //note: minus hit.normal to spawn position to offset the decal object into the mesh along direction of normal and prevent z-fighting
-                Quaternion newBulletHoleDecalRotation = Quaternion.LookRotation(hit.normal, Vector3.up);
-                GameObject newBulletHoleDecal = Instantiate(bulletHoleDecal, hit.point - (hit.normal * 0.1f), newBulletHoleDecalRotation);
 
-                //decrease ammo count per shot
-                ammoCount--;
+            // Determine the direction of the bullet
+            Vector3 bulletDirection = (cameraRayCastHit.point - muzzle.position).normalized;
 
-                //camera recoil effect
-                freeLookCamera.m_YAxis.Value += recoilValue;
+            //cast ray from muzzle position to camera raycast hit position
+            RaycastHit bulletRayCastHit;
+            Physics.Raycast(muzzle.position, bulletDirection, out bulletRayCastHit, Mathf.Infinity);
 
-                StartCoroutine(SmokeEffect(1f));
+            //instantiate decal 
+            //note: minus hit.normal to spawn position to offset the decal object into the mesh along direction of normal and prevent z-fighting
+            Quaternion newBulletHoleDecalRotation = Quaternion.LookRotation(bulletRayCastHit.normal, Vector3.up);
+            GameObject newBulletHoleDecal = Instantiate(bulletHoleDecal, bulletRayCastHit.point - (bulletRayCastHit.normal * 0.1f), newBulletHoleDecalRotation);
 
-                anim.SetTrigger("reload");
-            }
+            //decrease ammo count per shot
+            ammoCount--;
+
+            //camera recoil effect
+            freeLookCamera.m_YAxis.Value += recoilValue;
+
+            StartCoroutine(SmokeEffect(1f));
+
+            anim.SetTrigger("reload");
+
         }
     }
 
@@ -80,17 +86,20 @@ public class PlayerGunController : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        // Cast a ray from the muzzle position to the center of the screen
+        // Cast a ray from the viewport to world space
         Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-        // Check if the ray hits something
-        RaycastHit hit;
-        Physics.Raycast(ray, out hit);
+        // Get raycast hit from hitmarker ui object
+        RaycastHit cameraRayCastHit;
+        Physics.Raycast(ray, out cameraRayCastHit);
 
         // Determine the direction of the bullet
-        Vector3 bulletDirection = (hit.point - muzzle.position).normalized;
+        Vector3 bulletDirection = (cameraRayCastHit.point - muzzle.position).normalized;
+
+
         Gizmos.color = Color.red;
         Gizmos.DrawRay(muzzle.position, bulletDirection * 100);
+
     }
 }
 

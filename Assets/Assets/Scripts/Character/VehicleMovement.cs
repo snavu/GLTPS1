@@ -23,7 +23,7 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] private Vector3 boxCastHalfExtents;
     [SerializeField] private Vector3 boxCastOffset;
 
-    LayerMask layerMask;
+    private LayerMask layerMask;
 
     [SerializeField] private VehicleFuelManager vehicleFuelManagerScript;
     [SerializeField] private SkinnedMeshRenderer ketBarrelMesh;
@@ -32,7 +32,7 @@ public class VehicleMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        //layerMask ignore player, vehicle, and ai
+        //layerMask ignore player, vehicle
         layerMask = 1 << 6 | 1 << 7;
         layerMask = ~layerMask;
     }

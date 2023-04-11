@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4909435044044716474}
   - component: {fileID: 1021176698768703434}
   - component: {fileID: 5004712126955452961}
-  - component: {fileID: -5725482019299990825}
+  - component: {fileID: -1811039467974389537}
   m_Layer: 0
   m_Name: BulletHoleDecal
   m_TagString: Untagged
@@ -96,7 +96,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.24, y: 0.29506207, z: 0.16290283}
   m_Center: {x: 0, y: -0.0015176535, z: 0.10499573}
---- !u!54 &-5725482019299990825
+--- !u!54 &-1811039467974389537
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,10 +119,10 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!1 &7643543651725345849
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,9 +21,12 @@ public class PlayerGunController : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private PlayerGunMovement playerGunMovementScript;
 
+    private LayerMask layerMask;
+
     void OnEnable()
     {
         playerInputScript.actions.Player.Fire.performed += Fire;
+        layerMask = LayerMask.GetMask("Default");
     }
 
     void OnDisable()
@@ -52,13 +55,15 @@ public class PlayerGunController : MonoBehaviour
 
             //cast ray from muzzle position to camera raycast hit position
             RaycastHit bulletRayCastHit;
-            Physics.Raycast(muzzle.position, bulletDirection, out bulletRayCastHit, Mathf.Infinity);
+            Physics.Raycast(muzzle.position, bulletDirection, out bulletRayCastHit, Mathf.Infinity, layerMask);
 
             //instantiate decal 
             //note: minus hit.normal to spawn position to offset the decal object into the mesh along direction of normal and prevent z-fighting
             Quaternion newBulletHoleDecalRotation = Quaternion.LookRotation(bulletRayCastHit.normal, Vector3.up);
             GameObject newBulletHoleDecal = Instantiate(bulletHoleDecal, bulletRayCastHit.point - (bulletRayCastHit.normal * 0.1f), newBulletHoleDecalRotation);
 
+            newBulletHoleDecal.transform.parent = bulletRayCastHit.collider.gameObject.transform;
+            
             //decrease ammo count per shot
             ammoCount--;
 

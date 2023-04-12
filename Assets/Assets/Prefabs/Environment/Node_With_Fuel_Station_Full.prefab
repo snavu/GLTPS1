@@ -39,8 +39,8 @@ Transform:
   - {fileID: 4783710200401864411}
   - {fileID: 8170840066235765091}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!114 &5580628470110941485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +71,7 @@ MonoBehaviour:
   edge: {fileID: 0}
   isColliding: 0
   allowCollisionCheck: 1
+  resetPorts: 1
 --- !u!54 &1214251667090428327
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -62,13 +62,14 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, constraintPosition.position) > 0.01f)
             {
+                rotationConstraint = true;
+
                 elapsed += Time.deltaTime;
                 transform.position = Vector3.Lerp(transform.position, constraintPosition.position, elapsed / duration);
             }
             else
             {
                 positionConstraint = true;
-                rotationConstraint = true;
                 preOrientEnter = false;
                 elapsed = 0f;
             }

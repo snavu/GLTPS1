@@ -42,7 +42,7 @@ public class WaterStreamEffect : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Pipe"))
+        if (other.gameObject.CompareTag("Pipe") && transform.parent.CompareTag("Pipe"))
         {
             pipeWaterLevelScript = other.gameObject.GetComponent<PipeWaterLevel>();
             if (pipeWaterLevelScript.waterlevel > 0)

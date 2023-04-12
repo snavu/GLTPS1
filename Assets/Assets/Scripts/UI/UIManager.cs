@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private PlayerInputInitialize chitoPlayerInputScript;
     [SerializeField] private PlayerInputInitialize yuuriPlayerInputScript;
+    [SerializeField] private UISettings UISettingsScript;
 
     void OnEnable()
     {
@@ -47,6 +48,7 @@ public class UIManager : MonoBehaviour
 
             if (settingsMenu.activeInHierarchy)
             {
+                UISettingsScript.SaveSettings();
                 CloseSettingsMenu();
             }
         }

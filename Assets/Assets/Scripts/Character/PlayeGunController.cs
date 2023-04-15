@@ -23,6 +23,8 @@ public class PlayerGunController : MonoBehaviour
 
     private LayerMask layerMask;
 
+    [SerializeField] private CharacterItemData characterItemDataScript; 
+
     void OnEnable()
     {
         playerInputScript.actions.Player.Fire.performed += Fire;

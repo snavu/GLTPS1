@@ -9,36 +9,43 @@ public class CharacterItemInteraction : MonoBehaviour
     private PlayerInputInitialize playerInputScript;
     private bool isFood;
     private bool isAmmo;
+    private bool isWater;
 
-    [SerializeField]
-    private Collider other;
-    [SerializeField]
-    private RawImage foodbarPrefab;
+    [SerializeField] private Collider other;
+    [SerializeField] private RawImage foodbarPrefab;
 
-    [SerializeField]
-    private GameObject panel;
+    [SerializeField] private GameObject panel;
 
-    [SerializeField]
-    private float hungerRefill = 20f;
+    [SerializeField] private float eatValue = 20f;
+    [SerializeField] private float drinkValue = 20f;
 
-    [SerializeField]
-    private CharacterHunger characterHungerScript;
-    [SerializeField]
-    private Animator anim;
-    [SerializeField]
-    private PlayerGunController playerGunControllerScript;
+    public float hungerLevel = 100f;
+    public float thirstLevel = 100f;
+    [SerializeField] private CharacterItemData characterItemDataScript;
+    [SerializeField] private Animator anim;
+    [SerializeField] private PlayerGunController playerGunControllerScript;
+    [SerializeField] private int maxAmmoValue = 5;
+
+    [SerializeField] private float waterIncreaseRate = 1f;
+
+
+
 
     void OnEnable()
     {
         playerInputScript.actions.Player.Interact.performed += Interact;
         playerInputScript.actions.Player.Eat.performed += Eat;
+        playerInputScript.actions.Player.Drink.performed += Drink;
     }
 
     void OnDisable()
     {
         playerInputScript.actions.Player.Interact.performed -= Interact;
         playerInputScript.actions.Player.Eat.performed -= Eat;
+        playerInputScript.actions.Player.Drink.performed -= Drink;
     }
+
+
 
     private void Interact(InputAction.CallbackContext context)
     {
@@ -50,43 +57,50 @@ public class CharacterItemInteraction : MonoBehaviour
                 Destroy(other.gameObject);
 
                 //add food ui object and set rotation and position on canvas
-                characterHungerScript.newFoodbar.Add(Instantiate(foodbarPrefab.gameObject, panel.transform));
-                characterHungerScript.newFoodbar[characterHungerScript.index].GetComponent<RectTransform>().localRotation = Quaternion.identity;
-                characterHungerScript.newFoodbar[characterHungerScript.index].GetComponent<RectTransform>().anchoredPosition3D = new Vector3(foodbarPrefab.rectTransform.anchoredPosition3D.x + characterHungerScript.offsetXPos
+                characterItemDataScript.newFoodbar.Add(Instantiate(foodbarPrefab.gameObject, panel.transform));
+                characterItemDataScript.newFoodbar[characterItemDataScript.index].GetComponent<RectTransform>().localRotation = Quaternion.identity;
+                characterItemDataScript.newFoodbar[characterItemDataScript.index].GetComponent<RectTransform>().anchoredPosition3D = new Vector3(foodbarPrefab.rectTransform.anchoredPosition3D.x + characterItemDataScript.offsetXPos
                                                                                                 , foodbarPrefab.rectTransform.anchoredPosition3D.y
                                                                                                 , foodbarPrefab.rectTransform.anchoredPosition3D.z);
                 //offset position for adding ui objects
-                characterHungerScript.offsetXPos += -40;
-                characterHungerScript.index++;
+                characterItemDataScript.offsetXPos += -30;
+                characterItemDataScript.index++;
 
                 isFood = false;
             }
-            else if (isAmmo)
+            if (isAmmo)
             {
                 //destroy scene ammo gameobject
                 Destroy(other.gameObject);
 
-                //increase ammo count
-                playerGunControllerScript.ammoCount++;
+                //increase ammo count by random ammount
+                playerGunControllerScript.ammoCount += Random.Range(1, maxAmmoValue + 1);
             }
-
         }
     }
 
-
     private void Eat(InputAction.CallbackContext context)
     {
-        if (context.performed && characterHungerScript.index > 0 && !anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") && Time.timeScale == 1)
+        if (context.performed && characterItemDataScript.index > 0 && !anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") && Time.timeScale == 1)
         {
-            characterHungerScript.hunger += hungerRefill;
+            hungerLevel += eatValue;
 
-            Destroy(characterHungerScript.newFoodbar[characterHungerScript.index - 1]);
-            characterHungerScript.newFoodbar.RemoveAt(characterHungerScript.index - 1);
-            characterHungerScript.offsetXPos += 40;
-            characterHungerScript.index--;
+            Destroy(characterItemDataScript.newFoodbar[characterItemDataScript.index - 1]);
+            characterItemDataScript.newFoodbar.RemoveAt(characterItemDataScript.index - 1);
+            characterItemDataScript.offsetXPos += 40;
+            characterItemDataScript.index--;
 
             //trigger eating animation
             anim.SetTrigger("eat");
+        }
+    }
+
+    private void Drink(InputAction.CallbackContext context)
+    {
+        if (context.performed && characterItemDataScript.waterLevel > 0 && !anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") && Time.timeScale == 1)
+        {
+            thirstLevel += drinkValue;
+            characterItemDataScript.waterLevel -= drinkValue;
         }
     }
 
@@ -97,7 +111,7 @@ public class CharacterItemInteraction : MonoBehaviour
             isFood = true;
             this.other = other;
         }
-        else if (other.gameObject.CompareTag("Ammo"))
+        if (other.gameObject.CompareTag("Ammo"))
         {
             isAmmo = true;
             this.other = other;
@@ -110,9 +124,17 @@ public class CharacterItemInteraction : MonoBehaviour
         {
             isFood = false;
         }
-        else if (other.gameObject.CompareTag("Ammo"))
+        if (other.gameObject.CompareTag("Ammo"))
         {
-            isAmmo = true;
+            isAmmo = false;
+        }
+    }
+
+    void OnParticleCollision(GameObject other)
+    {
+        if (other.gameObject.CompareTag("Water"))
+        {
+            characterItemDataScript.waterLevel += waterIncreaseRate;
         }
     }
 }

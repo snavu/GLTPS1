@@ -125,6 +125,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drink"",
+                    ""type"": ""Button"",
+                    ""id"": ""fd833e44-4077-4b47-ac06-275fe48699df"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -479,6 +488,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchShoulder"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c187868-0b92-48ba-a659-bca51751e81e"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Drink"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1264,6 +1284,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_ADS = m_Player.FindAction("ADS", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_SwitchShoulder = m_Player.FindAction("SwitchShoulder", throwIfNotFound: true);
+        m_Player_Drink = m_Player.FindAction("Drink", throwIfNotFound: true);
         // Vehicle
         m_Vehicle = asset.FindActionMap("Vehicle", throwIfNotFound: true);
         m_Vehicle_Drive = m_Vehicle.FindAction("Drive", throwIfNotFound: true);
@@ -1353,6 +1374,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ADS;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_SwitchShoulder;
+    private readonly InputAction m_Player_Drink;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -1368,6 +1390,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @ADS => m_Wrapper.m_Player_ADS;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @SwitchShoulder => m_Wrapper.m_Player_SwitchShoulder;
+        public InputAction @Drink => m_Wrapper.m_Player_Drink;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1410,6 +1433,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @SwitchShoulder.started += instance.OnSwitchShoulder;
             @SwitchShoulder.performed += instance.OnSwitchShoulder;
             @SwitchShoulder.canceled += instance.OnSwitchShoulder;
+            @Drink.started += instance.OnDrink;
+            @Drink.performed += instance.OnDrink;
+            @Drink.canceled += instance.OnDrink;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1447,6 +1473,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @SwitchShoulder.started -= instance.OnSwitchShoulder;
             @SwitchShoulder.performed -= instance.OnSwitchShoulder;
             @SwitchShoulder.canceled -= instance.OnSwitchShoulder;
+            @Drink.started -= instance.OnDrink;
+            @Drink.performed -= instance.OnDrink;
+            @Drink.canceled -= instance.OnDrink;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1702,6 +1731,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnADS(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnSwitchShoulder(InputAction.CallbackContext context);
+        void OnDrink(InputAction.CallbackContext context);
     }
     public interface IVehicleActions
     {

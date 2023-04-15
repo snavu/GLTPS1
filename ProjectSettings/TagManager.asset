@@ -19,6 +19,7 @@ TagManager:
   - Pipe
   - GenerateNodeTrigger
   - NodeCache
+  - Water
   layers:
   - Default
   - TransparentFX

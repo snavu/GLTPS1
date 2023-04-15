@@ -48,7 +48,7 @@ AvatarMask:
   - m_Path: Yuuri/Root/Torso/Hand_IK.R
     m_Weight: 1
   - m_Path: Yuuri/Root/Torso/Head
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Yuuri/Root/Torso/Shoulder.L
     m_Weight: 0
   - m_Path: Yuuri/Root/Torso/Shoulder.L/Forearm.L

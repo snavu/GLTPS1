@@ -48,7 +48,7 @@ AvatarMask:
   - m_Path: Chito/Root/Torso/Hand_IK.R
     m_Weight: 1
   - m_Path: Chito/Root/Torso/Head
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Chito/Root/Torso/Head/Head.001
     m_Weight: 0
   - m_Path: Chito/Root/Torso/Head/Head.002

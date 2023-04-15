@@ -101,6 +101,8 @@ public class CharacterItemInteraction : MonoBehaviour
         {
             thirstLevel += drinkValue;
             characterItemDataScript.waterLevel -= drinkValue;
+
+            anim.SetTrigger("drink");
         }
     }
 

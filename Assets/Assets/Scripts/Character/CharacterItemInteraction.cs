@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class CharacterItemInteraction : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerInputInitialize playerInputScript;
+    public PlayerInputInitialize playerInputScript;
     private bool isFood;
     private bool isAmmo;
     private bool isWater;
@@ -22,7 +21,7 @@ public class CharacterItemInteraction : MonoBehaviour
     public float hungerLevel = 100f;
     public float thirstLevel = 100f;
     [SerializeField] private CharacterItemData characterItemDataScript;
-    [SerializeField] private Animator anim;
+    public Animator anim;
     [SerializeField] private PlayerGunController playerGunControllerScript;
     [SerializeField] private int maxAmmoValue = 5;
 

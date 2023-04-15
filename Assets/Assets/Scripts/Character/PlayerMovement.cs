@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float currentSpeed;
     public float walkSpeed = 4.0f;
     public float runSpeed = 7.0f;
+    [SerializeField] float slowMovementRate = 0.5f;
     public float ADSSpeed = 2.0f;
 
     [SerializeField] private float gravity = -9.81f;
@@ -32,9 +33,12 @@ public class PlayerMovement : MonoBehaviour
     private LayerMask layerMask;
     private Vector3 sphereCastPosition;
 
+    [SerializeField] private CharacterItemInteraction characterItemInteractionScript;
+
     public bool ADS;
     void OnEnable()
     {
+        playerInputScript.actions.Player.Enable();
         playerInputScript.actions.Player.Jump.performed += Jump;
 
         //align spherecast at bottom of collide, scale position inversely proportional to controller skin width, and minus small constant to extrude vertically down
@@ -46,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDisable()
     {
+        playerInputScript.actions.Player.Disable();
         playerInputScript.actions.Player.Jump.performed -= Jump;
     }
 
@@ -84,7 +89,15 @@ public class PlayerMovement : MonoBehaviour
                 currentSpeed = Mathf.Lerp(currentSpeed, ADSSpeed, 10.0f * Time.deltaTime);
             }
 
-            velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed;
+            if (characterItemInteractionScript.hungerLevel < 30 || characterItemInteractionScript.thirstLevel < 30)
+            {
+                velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed * slowMovementRate;
+            }
+            else
+            {
+                velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed;
+            }
+
             velocityXZ = transform.TransformDirection(velocityXZ);
             velocityY = new Vector3(0, verticalMovement, 0);
 
@@ -111,8 +124,6 @@ public class PlayerMovement : MonoBehaviour
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationDir, rotationSpeed * Time.deltaTime);
                 }
             }
-
-
         }
 
     }

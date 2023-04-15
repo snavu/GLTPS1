@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class CharacterItemData : MonoBehaviour
 {
     public int index;
@@ -22,15 +21,15 @@ public class CharacterItemData : MonoBehaviour
 
     [SerializeField] private RectTransform waterBar;
     private float rectTransformInitialHeight;
+
+
     void Start()
     {
         rectTransformInitialHeight = waterBar.sizeDelta.y;
-
     }
 
     void Update()
     {
-
         //scale water bar directly proportionally to current water level
         waterBar.sizeDelta = new Vector2(waterBar.sizeDelta.x, rectTransformInitialHeight * (waterLevel / maxWaterLevel));
         //clamp water level
@@ -47,6 +46,5 @@ public class CharacterItemData : MonoBehaviour
 
         chitoItemInteraction.thirstLevel = Mathf.Clamp(chitoItemInteraction.thirstLevel, 0, maxThirstValue);
         chitoItemInteraction.thirstLevel -= thirstRate * Time.deltaTime;
-
     }
 }

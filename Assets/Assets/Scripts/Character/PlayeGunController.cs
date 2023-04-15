@@ -52,18 +52,18 @@ public class PlayerGunController : MonoBehaviour
 
             // Determine the direction of the bullet
             Vector3 bulletDirection = (cameraRayCastHit.point - muzzle.position).normalized;
-
             //cast ray from muzzle position to camera raycast hit position
             RaycastHit bulletRayCastHit;
-            Physics.Raycast(muzzle.position, bulletDirection, out bulletRayCastHit, Mathf.Infinity, layerMask);
-
-            //instantiate decal 
+            //ray cast from muzzle and instantiate decal 
             //note: minus hit.normal to spawn position to offset the decal object into the mesh along direction of normal and prevent z-fighting
-            Quaternion newBulletHoleDecalRotation = Quaternion.LookRotation(bulletRayCastHit.normal, Vector3.up);
-            GameObject newBulletHoleDecal = Instantiate(bulletHoleDecal, bulletRayCastHit.point - (bulletRayCastHit.normal * 0.1f), newBulletHoleDecalRotation);
+            if (Physics.Raycast(muzzle.position, bulletDirection, out bulletRayCastHit, Mathf.Infinity, layerMask))
+            {
+                Quaternion newBulletHoleDecalRotation = Quaternion.LookRotation(bulletRayCastHit.normal, Vector3.up);
+                GameObject newBulletHoleDecal = Instantiate(bulletHoleDecal, bulletRayCastHit.point - (bulletRayCastHit.normal * 0.1f), newBulletHoleDecalRotation);
 
-            newBulletHoleDecal.transform.parent = bulletRayCastHit.collider.gameObject.transform;
-            
+                newBulletHoleDecal.transform.parent = bulletRayCastHit.collider.gameObject.transform;
+            }
+
             //decrease ammo count per shot
             ammoCount--;
 

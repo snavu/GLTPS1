@@ -32,9 +32,8 @@ public class VehicleMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        //layerMask ignore player, vehicle
-        layerMask = 1 << 6 | 1 << 7;
-        layerMask = ~layerMask;
+        //layerMask only check collision with Default layer
+        layerMask = LayerMask.GetMask("Default");
     }
 
     void Update()
@@ -59,7 +58,6 @@ public class VehicleMovement : MonoBehaviour
     void FixedUpdate()
     {
         isGrounded = Physics.CheckBox(transform.position + boxCastOffset, boxCastHalfExtents, transform.rotation, layerMask, QueryTriggerInteraction.Ignore);
-
         //move
         if (Mathf.Abs(movement.y) > 0 && isGrounded && vehicleFuelManagerScript.currentFuel > 0 && ketBarrelMesh.enabled)
         {

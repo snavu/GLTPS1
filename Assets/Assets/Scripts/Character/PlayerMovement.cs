@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform camera;
     private Vector2 smoothMovement;
     [SerializeField] private float smoothInputSpeed = 0.2f;
-    private LayerMask layerMask = 7;
+    private LayerMask layerMask;
     private Vector3 sphereCastPosition;
 
     public bool ADS;
@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
 
         //align spherecast at bottom of collide, scale position inversely proportional to controller skin width, and minus small constant to extrude vertically down
         sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.01f, 0);
+
+        //set layermask interact with vehicle and default
+        layerMask = LayerMask.GetMask("Default", "Vehicle");
     }
 
     void OnDisable()

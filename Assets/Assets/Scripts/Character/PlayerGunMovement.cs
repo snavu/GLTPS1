@@ -37,6 +37,7 @@ public class PlayerGunMovement : MonoBehaviour
     [SerializeField] SetCameraSpeed setCameraSpeedScript;
 
     [SerializeField] private GameObject ammoCountUI;
+    [SerializeField] private GameObject fuelAndGasUI;
 
     void Start()
     {
@@ -49,6 +50,7 @@ public class PlayerGunMovement : MonoBehaviour
         if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f && Time.timeScale == 1)
         {
             ammoCountUI.SetActive(true);
+            fuelAndGasUI.SetActive(false);
 
             playerMovementScript.ADS = true;
 
@@ -98,6 +100,7 @@ public class PlayerGunMovement : MonoBehaviour
             if (!flagEquip && Time.timeScale == 1)
             {
                 ammoCountUI.SetActive(false);
+                fuelAndGasUI.SetActive(true);
 
                 //reset camera position
                 CMFollowTarget.localPosition = CMFollowTargetInitialLocalPos;

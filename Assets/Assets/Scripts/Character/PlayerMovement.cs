@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed = 4.0f;
     public float runSpeed = 7.0f;
     [SerializeField] float slowMovementRate = 0.5f;
+    [SerializeField] float lowEnergyMovementThreshold;
     public float ADSSpeed = 2.0f;
 
     [SerializeField] private float gravity = -9.81f;
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
         //set layermask interact with vehicle and default
         layerMask = LayerMask.GetMask("Default", "Vehicle");
+
     }
 
     void OnDisable()

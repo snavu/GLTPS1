@@ -125,6 +125,10 @@ public class CharacterItemInteraction : MonoBehaviour
             isAmmo = true;
             this.other = other;
         }
+        if (other.gameObject.CompareTag("Water"))
+        {
+            characterItemDataScript.waterLevel += waterIncreaseRate;
+        }
     }
 
     void OnTriggerExit(Collider other)

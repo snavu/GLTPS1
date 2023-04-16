@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 4434087087725204361}
   - component: {fileID: 3370739833084525653}
   - component: {fileID: 3609978508143915281}
+  - component: {fileID: 1066038763334564733}
   m_Layer: 9
   m_Name: NavMeshEdge1
   m_TagString: Node
@@ -114,7 +115,7 @@ MonoBehaviour:
   - {fileID: 826479483586718479, guid: 413cf97e1e69ead4e8d2cae64faaa44c, type: 3}
   - {fileID: 2209908701252209163, guid: 4424a7ecce45dbf459a6f3a9fb94c799, type: 3}
   - {fileID: 6355166913744518856, guid: 6e0fd24880310c94c8575c7a29fee0ca, type: 3}
-  - {fileID: 6355166913744518856, guid: 6e0fd24880310c94c8575c7a29fee0ca, type: 3}
+  - {fileID: 6574849589225440675, guid: 42d495c7a36bf6e4483f515a4115a30a, type: 3}
   - {fileID: 2451969257836235982, guid: 0a5ae65996cda214a8c26c75fad98aee, type: 3}
   newNode: {fileID: 0}
   nodeList: []
@@ -143,6 +144,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 65.12508, y: 132.57286, z: 92.769295}
   m_Center: {x: -0.46663666, y: 5.349617, z: 10.298969}
+--- !u!54 &1066038763334564733
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851680297174357704}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &162972321761833181
 PrefabInstance:
   m_ObjectHideFlags: 0

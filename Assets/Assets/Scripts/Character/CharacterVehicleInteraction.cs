@@ -131,15 +131,20 @@ public class CharacterVehicleInteraction : MonoBehaviour
         }
 
         //orient position to enter ket
-        if (agent.isActiveAndEnabled && !GetComponent<NavMeshObstacle>().enabled)
+        if (!preOrientEnter && !GetComponent<NavMeshObstacle>().enabled)
         {
             agent.angularSpeed = angularSpeed;
-            agent.destination = vehicleEnter.position;
+            if (agent.enabled)
+            {
+                agent.destination = vehicleEnter.position;
+            }
             if (Vector3.Distance(transform.position, vehicleEnter.position) < 0.1f)
             {
                 //orient rotation to enter ket
+                agent.enabled = false;
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, vehicleEnter.rotation, rotationSpeed * Time.deltaTime);
-                child.rotation = Quaternion.RotateTowards(child.rotation, vehicleEnter.gameObject.transform.rotation, rotationSpeed * Time.deltaTime);
+                child.rotation = Quaternion.RotateTowards(child.rotation, vehicleEnter.rotation, rotationSpeed * Time.deltaTime);
+
                 if (AngleUtils.RotationsApproximatelyEqual(transform, vehicleEnter) && AngleUtils.RotationsApproximatelyEqual(child, vehicleEnter))
                 {
                     if (vehicleEnter.gameObject.name == "Right")
@@ -150,7 +155,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
                     {
                         anim.SetBool("ket left", true);
                     }
-                    agent.enabled = false;
                     preOrientEnter = true;
                 }
             }
@@ -188,7 +192,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         if (context.performed && enterable
             && !anim.GetCurrentAnimatorStateInfo(1).IsTag("Ket")
-            && !GetComponent<CharacterBarrelInteraction>().isCarrying && 
+            && !GetComponent<CharacterBarrelInteraction>().isCarrying &&
                 Time.timeScale == 1)
         {
             //ignore collisions between layer 6 (vehicle) and layer 7 (player) 

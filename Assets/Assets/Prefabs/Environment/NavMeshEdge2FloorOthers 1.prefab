@@ -271,7 +271,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6466177718867855727}
-  m_LocalRotation: {x: -0, y: -0.7071066, z: -0, w: 0.707107}
+  m_LocalRotation: {x: -0, y: -0.00000068545336, z: -0, w: -1}
   m_LocalPosition: {x: -153.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -298,7 +298,7 @@ MonoBehaviour:
   - {fileID: 826479483586718479, guid: 413cf97e1e69ead4e8d2cae64faaa44c, type: 3}
   - {fileID: 2209908701252209163, guid: 4424a7ecce45dbf459a6f3a9fb94c799, type: 3}
   - {fileID: 6355166913744518856, guid: 6e0fd24880310c94c8575c7a29fee0ca, type: 3}
-  - {fileID: 6355166913744518856, guid: 6e0fd24880310c94c8575c7a29fee0ca, type: 3}
+  - {fileID: 6574849589225440675, guid: 42d495c7a36bf6e4483f515a4115a30a, type: 3}
   - {fileID: 2451969257836235982, guid: 0a5ae65996cda214a8c26c75fad98aee, type: 3}
   newNode: {fileID: 0}
   nodeList: []

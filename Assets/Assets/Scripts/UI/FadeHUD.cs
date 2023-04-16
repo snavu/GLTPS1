@@ -11,7 +11,11 @@ public class FadeHUD : MonoBehaviour
     [SerializeField] private RawImage ammoCountUI;
     [SerializeField] private TextMeshProUGUI ammoCountText;
     [SerializeField] private RawImage fuelUI;
+    [SerializeField] private RawImage fuelContainerUI;
+
     [SerializeField] private RawImage waterUI;
+    [SerializeField] private RawImage waterContainerUI;
+
     [SerializeField] private CharacterItemData characterItemDataScript;
 
     [SerializeField] private float duration = 1f;
@@ -69,10 +73,18 @@ public class FadeHUD : MonoBehaviour
         color.a = Mathf.Lerp(currentOtherUIalpha, alphaA, elapsed / duration);
         fuelUI.color = color;
 
+        color = fuelContainerUI.color;
+        color.a = Mathf.Lerp(currentOtherUIalpha, alphaA, elapsed / duration);
+        fuelContainerUI.color = color;
+
         // Lerp water UI
         color = waterUI.color;
         color.a = Mathf.Lerp(currentOtherUIalpha, alphaA, elapsed / duration);
         waterUI.color = color;
+
+        color = waterContainerUI.color;
+        color.a = Mathf.Lerp(currentOtherUIalpha, alphaA, elapsed / duration);
+        waterContainerUI.color = color;
 
         // Lerp foodbar UI
         foreach (GameObject foodbar in characterItemDataScript.newFoodbar)

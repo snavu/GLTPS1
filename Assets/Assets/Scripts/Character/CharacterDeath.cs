@@ -13,6 +13,7 @@ public class CharacterDeath : MonoBehaviour
     [SerializeField] private PlayerInputInitialize yuuriInputScript;
     [SerializeField] private CharacterPossession yuuriPosessionScript;
     [SerializeField] private CharacterBarrelInteraction yuuriBarrelInteractionScript;
+    [SerializeField] private CharacterVehicleInteraction yuuriVehicleInteractionScript;
 
 
 
@@ -22,8 +23,7 @@ public class CharacterDeath : MonoBehaviour
     [SerializeField] private PlayerInputInitialize chitoInputScript;
     [SerializeField] private CharacterPossession chitoPosessionScript;
     [SerializeField] private CharacterBarrelInteraction chitoBarrelInteractionScript;
-
-
+    [SerializeField] private CharacterVehicleInteraction chitoVehicleInteractionScript;
 
 
     public bool isChitoDead;
@@ -35,8 +35,8 @@ public class CharacterDeath : MonoBehaviour
     private bool gameOver;
     void Update()
     {
-        isChitoDead = IsDead(chitoItemInteractionScript, chitoAnim, chitoInputScript, chitoNavMeshAgent, chitoBarrelInteractionScript, isChitoDead);
-        isYuuriDead = IsDead(yuuriItemInteractionScript, yuuriAnim, yuuriInputScript, yuuriNavMeshAgent, yuuriBarrelInteractionScript, isYuuriDead);
+        isChitoDead = IsDead(chitoItemInteractionScript, chitoAnim, chitoInputScript, chitoNavMeshAgent, chitoBarrelInteractionScript, chitoVehicleInteractionScript, isChitoDead);
+        isYuuriDead = IsDead(yuuriItemInteractionScript, yuuriAnim, yuuriInputScript, yuuriNavMeshAgent, yuuriBarrelInteractionScript, yuuriVehicleInteractionScript, isYuuriDead);
 
         //check yuuri death sequence
         if (isYuuriDead)
@@ -60,6 +60,7 @@ public class CharacterDeath : MonoBehaviour
                 PlayerInputInitialize characterInputScript,
                 NavMeshAgent characterNavMeshAgent,
                 CharacterBarrelInteraction deadCharacterBarrelInteractionScript,
+                CharacterVehicleInteraction deadCharacterVehicleInteractionScript,
                 bool isDead)
     {
         if (characterItemInteractionScript.thirstLevel <= 0 && !isDead &&
@@ -75,6 +76,12 @@ public class CharacterDeath : MonoBehaviour
             if (characterAnim.GetCurrentAnimatorStateInfo(2).IsTag("Carry"))
             {
                 deadCharacterBarrelInteractionScript.DropBarrel();
+            }
+
+            //check if player is driving vehicle
+            if (characterAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket"))
+            {
+
             }
 
             characterAnim.SetTrigger("die");

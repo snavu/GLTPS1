@@ -41,7 +41,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     [SerializeField] private float enterDuration = 1.0f;
 
     private Transform vehicleEnter;
-
+    
     void OnEnable()
     {
         Physics.IgnoreLayerCollision(6, 7, false);

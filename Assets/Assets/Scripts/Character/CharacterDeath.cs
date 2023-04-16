@@ -13,7 +13,7 @@ public class CharacterDeath : MonoBehaviour
     [SerializeField] private PlayerInputInitialize yuuriInputScript;
     [SerializeField] private CharacterPossession yuuriPosessionScript;
     [SerializeField] private CharacterBarrelInteraction yuuriBarrelInteractionScript;
-    [SerializeField] private CharacterVehicleInteraction yuuriVehicleInteractionScript;
+    [SerializeField] private NavMeshAgentVehicleInteraction yuuriNavMeshAgentVehicleInteractionScript;
 
 
 
@@ -23,7 +23,7 @@ public class CharacterDeath : MonoBehaviour
     [SerializeField] private PlayerInputInitialize chitoInputScript;
     [SerializeField] private CharacterPossession chitoPosessionScript;
     [SerializeField] private CharacterBarrelInteraction chitoBarrelInteractionScript;
-    [SerializeField] private CharacterVehicleInteraction chitoVehicleInteractionScript;
+    [SerializeField] private NavMeshAgentVehicleInteraction chitoNavMeshAgentVehicleInteractionScript;
 
 
     public bool isChitoDead;
@@ -33,10 +33,23 @@ public class CharacterDeath : MonoBehaviour
     private bool isChitoPossessable = true;
 
     private bool gameOver;
-    void Update()
+    void LateUpdate()
     {
-        isChitoDead = IsDead(chitoItemInteractionScript, chitoAnim, chitoInputScript, chitoNavMeshAgent, chitoBarrelInteractionScript, chitoVehicleInteractionScript, isChitoDead);
-        isYuuriDead = IsDead(yuuriItemInteractionScript, yuuriAnim, yuuriInputScript, yuuriNavMeshAgent, yuuriBarrelInteractionScript, yuuriVehicleInteractionScript, isYuuriDead);
+        isChitoDead = IsDead(chitoItemInteractionScript,
+                             chitoAnim,
+                             chitoInputScript,
+                             chitoNavMeshAgent,
+                             chitoBarrelInteractionScript,
+                             chitoNavMeshAgentVehicleInteractionScript,
+                             isChitoDead);
+
+        isYuuriDead = IsDead(yuuriItemInteractionScript,
+                             yuuriAnim,
+                             yuuriInputScript,
+                             yuuriNavMeshAgent,
+                             yuuriBarrelInteractionScript,
+                             yuuriNavMeshAgentVehicleInteractionScript,
+                             isYuuriDead);
 
         //check yuuri death sequence
         if (isYuuriDead)
@@ -60,15 +73,17 @@ public class CharacterDeath : MonoBehaviour
                 PlayerInputInitialize characterInputScript,
                 NavMeshAgent characterNavMeshAgent,
                 CharacterBarrelInteraction deadCharacterBarrelInteractionScript,
-                CharacterVehicleInteraction deadCharacterVehicleInteractionScript,
+                NavMeshAgentVehicleInteraction deadNavMeshAgentVehicleInteraction,
                 bool isDead)
     {
         if (characterItemInteractionScript.thirstLevel <= 0 && !isDead &&
             !characterAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket"))
         {
-            if (characterNavMeshAgent.enabled)
+            //check if navmesg agent is enable and that the navmesh agent has exited the vehicle
+            if (characterNavMeshAgent.enabled && deadNavMeshAgentVehicleInteraction.exited)
             {
                 characterNavMeshAgent.enabled = false;
+                isDead = true;
             }
             characterInputScript.actions.Player.Disable();
 
@@ -76,16 +91,9 @@ public class CharacterDeath : MonoBehaviour
             if (characterAnim.GetCurrentAnimatorStateInfo(2).IsTag("Carry"))
             {
                 deadCharacterBarrelInteractionScript.DropBarrel();
+                isDead = true;
             }
-
-            //check if player is driving vehicle
-            if (characterAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket"))
-            {
-
-            }
-
             characterAnim.SetTrigger("die");
-            isDead = true;
         }
         return isDead;
     }

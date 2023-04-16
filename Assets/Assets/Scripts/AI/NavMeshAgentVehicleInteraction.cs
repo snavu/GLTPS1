@@ -32,6 +32,9 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
     [SerializeField]
     private float duration = 0.25f;
 
+    [SerializeField] private CharacterDeath characterDeathScript;
+
+    public bool exited = true;
     void Update()
     {
         CharacterMovementAnimation.Movement(agentAnim, agent.velocity, playerMovementScript.runSpeed);
@@ -40,7 +43,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
         {
             navMeshAgentFollowPlayerScript.enabled = false;
             collider.enabled = false;
-
+            exited = false;
             //orient agent position to enter ket
             if (agent.enabled)
             {
@@ -97,12 +100,19 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
                     navMeshAgentFollowPlayerScript.enabled = true;
                     collider.enabled = true;
                     preOrientExit = false;
-                    exit = false;
 
+                    exit = false;
                     elapsed = 0f;
+
+                    StartCoroutine(SetExitedFlag());
                 }
             }
+        }
 
+        IEnumerator SetExitedFlag()
+        {
+            yield return new WaitForEndOfFrame();
+            exited = true;
         }
 
         if (positionConstraint)

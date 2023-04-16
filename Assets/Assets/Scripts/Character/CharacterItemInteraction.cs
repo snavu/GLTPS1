@@ -51,7 +51,7 @@ public class CharacterItemInteraction : MonoBehaviour
     {
         if (context.performed && Time.timeScale == 1)
         {
-            if (isFood)
+            if (isFood && other != null)
             {
                 //destroy scene food gameobject
                 Destroy(other.gameObject);
@@ -72,7 +72,7 @@ public class CharacterItemInteraction : MonoBehaviour
 
                 isFood = false;
             }
-            if (isAmmo)
+            if (isAmmo && other != null)
             {
                 //destroy scene ammo gameobject
                 Destroy(other.gameObject);

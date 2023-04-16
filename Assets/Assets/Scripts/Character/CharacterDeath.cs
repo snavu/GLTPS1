@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.SceneManagement;
 
 public class CharacterDeath : MonoBehaviour
 {
@@ -28,6 +28,8 @@ public class CharacterDeath : MonoBehaviour
 
     private bool isYuuriPossessable = true;
     private bool isChitoPossessable = true;
+
+    private bool gameOver;
     void Update()
     {
         isChitoDead = IsDead(chitoItemInteractionScript, chitoAnim, chitoInputScript, chitoNavMeshAgent, isChitoDead);
@@ -36,12 +38,18 @@ public class CharacterDeath : MonoBehaviour
         //check yuuri death sequence
         if (isYuuriDead)
         {
-            DeathSequence(yuuriPosessionScript, chitoPosessionScript, yuuriNavMeshAgent, isYuuriPossessable);
+            DeathSequence(yuuriPosessionScript, chitoPosessionScript, yuuriNavMeshAgent, isChitoDead, isYuuriPossessable);
         }
         //check chito death sequence
         if (isChitoDead)
         {
-            DeathSequence(chitoPosessionScript, yuuriPosessionScript, chitoNavMeshAgent, isChitoPossessable);
+            DeathSequence(chitoPosessionScript, yuuriPosessionScript, chitoNavMeshAgent, isYuuriDead, isChitoPossessable);
+        }
+
+        if (isYuuriDead && isChitoDead && !gameOver)
+        {
+            StartCoroutine(DelayReloadScene());
+            gameOver = true;
         }
     }
     bool IsDead(CharacterItemInteraction characterItemInteractionScript, Animator characterAnim, PlayerInputInitialize characterInputScript, NavMeshAgent characterNavMeshAgent, bool isDead)
@@ -60,7 +68,7 @@ public class CharacterDeath : MonoBehaviour
         return isDead;
     }
 
-    void DeathSequence(CharacterPossession deadCharacterPosessionScript, CharacterPossession aliveCharacterPosessionScript, NavMeshAgent characterNavMeshAgent, bool isPossessable)
+    void DeathSequence(CharacterPossession deadCharacterPosessionScript, CharacterPossession aliveCharacterPosessionScript, NavMeshAgent characterNavMeshAgent, bool otherIsDead, bool isPossessable)
     {
         //disable possession mechanic
         if (isPossessable)
@@ -69,7 +77,10 @@ public class CharacterDeath : MonoBehaviour
             if (deadCharacterPosessionScript.enabled)
             {
                 aliveCharacterPosessionScript.enabled = false;
-                StartCoroutine(DelayCharacterPosession(deadCharacterPosessionScript, characterNavMeshAgent));
+                if (!otherIsDead)
+                {
+                    StartCoroutine(DelayCharacterPosession(deadCharacterPosessionScript, characterNavMeshAgent));
+                }
             }
             else //player is controlling alive character
             {
@@ -83,7 +94,14 @@ public class CharacterDeath : MonoBehaviour
     IEnumerator DelayCharacterPosession(CharacterPossession deadCharacterPosessionScript, NavMeshAgent characterNavMeshAgent)
     {
         yield return new WaitForSeconds(2);
-
         deadCharacterPosessionScript.PossessCharacter(true);
     }
+
+    IEnumerator DelayReloadScene()
+    {
+        yield return new WaitForSeconds(6);
+        SceneManager.LoadScene(0);
+    }
 }
+
+

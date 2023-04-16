@@ -28,6 +28,8 @@ public class CharacterItemInteraction : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoCountText;
 
     [SerializeField] private float waterIncreaseRate = 1f;
+    [SerializeField] private int maxRandomFoodCount = 5;
+
 
     void OnEnable()
     {
@@ -54,15 +56,19 @@ public class CharacterItemInteraction : MonoBehaviour
                 //destroy scene food gameobject
                 Destroy(other.gameObject);
 
-                //add food ui object and set rotation and position on canvas
-                characterItemDataScript.newFoodbar.Add(Instantiate(foodbarPrefab.gameObject, panel.transform));
-                characterItemDataScript.newFoodbar[characterItemDataScript.index].GetComponent<RectTransform>().localRotation = Quaternion.identity;
-                characterItemDataScript.newFoodbar[characterItemDataScript.index].GetComponent<RectTransform>().anchoredPosition3D = new Vector3(foodbarPrefab.rectTransform.anchoredPosition3D.x + characterItemDataScript.offsetXPos
-                                                                                                , foodbarPrefab.rectTransform.anchoredPosition3D.y
-                                                                                                , foodbarPrefab.rectTransform.anchoredPosition3D.z);
-                //offset position for adding ui objects
-                characterItemDataScript.offsetXPos += -30;
-                characterItemDataScript.index++;
+                //increase food count by random amount
+                for (int i = 0; i < Random.Range(1, maxRandomFoodCount + 1); i++)
+                {
+                    //add food ui object and set rotation and position on canvas
+                    characterItemDataScript.newFoodbar.Add(Instantiate(foodbarPrefab.gameObject, panel.transform));
+                    characterItemDataScript.newFoodbar[characterItemDataScript.index].GetComponent<RectTransform>().localRotation = Quaternion.identity;
+                    characterItemDataScript.newFoodbar[characterItemDataScript.index].GetComponent<RectTransform>().anchoredPosition3D = new Vector3(foodbarPrefab.rectTransform.anchoredPosition3D.x + characterItemDataScript.offsetXPos
+                                                                                                    , foodbarPrefab.rectTransform.anchoredPosition3D.y
+                                                                                                    , foodbarPrefab.rectTransform.anchoredPosition3D.z);
+                    //offset position for adding ui objects
+                    characterItemDataScript.offsetXPos += -30;
+                    characterItemDataScript.index++;
+                }
 
                 isFood = false;
             }
@@ -71,7 +77,7 @@ public class CharacterItemInteraction : MonoBehaviour
                 //destroy scene ammo gameobject
                 Destroy(other.gameObject);
 
-                //increase ammo count by random ammount
+                //increase ammo count by random amount
                 playerGunControllerScript.ammoCount += Random.Range(1, maxRandomAmmoCount + 1);
 
                 //change ammo ui

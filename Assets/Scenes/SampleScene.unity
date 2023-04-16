@@ -250,7 +250,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20772707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -260,7 +260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1737, y: 44}
+  m_AnchoredPosition: {x: 1737, y: 171}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &20772709
@@ -3240,7 +3240,7 @@ MonoBehaviour:
   - m_Height: 3.26
     m_Radius: 4.75
   - m_Height: 0.4
-    m_Radius: 4.750018
+    m_Radius: 4.750012
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 2082827652}
@@ -4360,6 +4360,7 @@ GameObject:
   - component: {fileID: 826864469}
   - component: {fileID: 826864468}
   - component: {fileID: 826864467}
+  - component: {fileID: 826864471}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4451,6 +4452,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &826864471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826864466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28b3cc0f2a8661478a95cb493cb0eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInputScript: {fileID: 2072579809}
+  playerMovementScript: {fileID: 2072579803}
+  ammoCountUI: {fileID: 20772709}
+  ammoCountText: {fileID: 1244795587}
+  fuelUI: {fileID: 1123492379}
+  waterUI: {fileID: 488191839}
+  characterItemDataScript: {fileID: 1924441658}
+  duration: 0.5
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -10964,7 +10985,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244749583}
-  m_LocalRotation: {x: 0.07206458, y: 0.000000018223748, z: -0.00000000131671, w: 0.9974}
+  m_LocalRotation: {x: 0.072064556, y: 0.000000016641835, z: -0.0000000012024127,
+    w: 0.9974}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19125,10 +19147,7 @@ MonoBehaviour:
   child: {fileID: 543450653265870907}
   crosshair: {fileID: 2103558038}
   freeLookCamera: {fileID: 626363630}
-  ADSCameraSpeed: 0.5
   setCameraSpeedScript: {fileID: 626363635}
-  ammoCountUI: {fileID: 20772707}
-  fuelAndGasUI: {fileID: 1147475856}
 --- !u!114 &2072579816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19189,7 +19208,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: 0.07206457, y: -0.000000015447853, z: 0.000000001116145, w: 0.9974}
+  m_LocalRotation: {x: 0.07206458, y: 0.00000001822562, z: -0.0000000013168454, w: 0.9974}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

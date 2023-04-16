@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Animations;
 using Cinemachine;
+using UnityEngine.UI;
 public class PlayerGunMovement : MonoBehaviour
 {
     [SerializeField] private PlayerInputInitialize playerInputScript;
@@ -35,6 +36,8 @@ public class PlayerGunMovement : MonoBehaviour
     [SerializeField] private float ADSCameraSpeed = 0.5f;
     [SerializeField] SetCameraSpeed setCameraSpeedScript;
 
+    [SerializeField] private GameObject ammoCountUI;
+
     void Start()
     {
         CMFollowTargetInitialLocalPos = new Vector3(0, CMFollowTarget.transform.position.y, 0);
@@ -45,6 +48,8 @@ public class PlayerGunMovement : MonoBehaviour
     {
         if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f && Time.timeScale == 1)
         {
+            ammoCountUI.SetActive(true);
+
             playerMovementScript.ADS = true;
 
             //rotate child to camera      
@@ -92,12 +97,14 @@ public class PlayerGunMovement : MonoBehaviour
         {
             if (!flagEquip && Time.timeScale == 1)
             {
+                ammoCountUI.SetActive(false);
+
                 //reset camera position
                 CMFollowTarget.localPosition = CMFollowTargetInitialLocalPos;
                 CMLookAtTarget.localPosition = CMLookAtTargetInitialLocalPos;
 
                 //set freelook camera values
-               setCameraSpeedScript.SetDefaultSpeed();
+                setCameraSpeedScript.SetDefaultSpeed();
 
                 //set gun to back
                 AttachToGunBackSocket();

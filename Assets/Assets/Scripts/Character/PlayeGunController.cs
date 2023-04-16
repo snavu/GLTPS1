@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.Animations;
+using TMPro;
 public class PlayerGunController : MonoBehaviour
 {
     [SerializeField] private PlayerInputInitialize playerInputScript;
@@ -14,21 +15,19 @@ public class PlayerGunController : MonoBehaviour
 
     [SerializeField] private CinemachineFreeLook freeLookCamera;
     [SerializeField] private float recoilValue;
-    private bool isPickupable;
-    private Collider other;
     [SerializeField] private GameObject barrelSmoke;
     private ConstraintSource source;
     [SerializeField] private Animator anim;
-    [SerializeField] private PlayerGunMovement playerGunMovementScript;
+    [SerializeField] private TextMeshProUGUI ammoCountText;
 
     private LayerMask layerMask;
-
-    [SerializeField] private CharacterItemData characterItemDataScript; 
 
     void OnEnable()
     {
         playerInputScript.actions.Player.Fire.performed += Fire;
-        layerMask = LayerMask.GetMask("Default");
+        layerMask = LayerMask.GetMask("Default", "Vehicle");
+
+        ammoCountText.text = ammoCount.ToString();
     }
 
     void OnDisable()
@@ -49,7 +48,7 @@ public class PlayerGunController : MonoBehaviour
             // Get raycast hit from hitmarker ui object
             RaycastHit cameraRayCastHit;
             //Physics.Raycast(ray, out cameraRayCastHit, 100f, layerMask);
-            Physics.Raycast(ray, out cameraRayCastHit);
+            Physics.Raycast(ray, out cameraRayCastHit, Mathf.Infinity, layerMask, QueryTriggerInteraction.Ignore);
 
 
             // Determine the direction of the bullet
@@ -58,7 +57,7 @@ public class PlayerGunController : MonoBehaviour
             RaycastHit bulletRayCastHit;
             //ray cast from muzzle and instantiate decal 
             //note: minus hit.normal to spawn position to offset the decal object into the mesh along direction of normal and prevent z-fighting
-            if (Physics.Raycast(muzzle.position, bulletDirection, out bulletRayCastHit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(muzzle.position, bulletDirection, out bulletRayCastHit, Mathf.Infinity, layerMask, QueryTriggerInteraction.Ignore))
             {
                 Quaternion newBulletHoleDecalRotation = Quaternion.LookRotation(bulletRayCastHit.normal, Vector3.up);
                 GameObject newBulletHoleDecal = Instantiate(bulletHoleDecal, bulletRayCastHit.point - (bulletRayCastHit.normal * 0.1f), newBulletHoleDecalRotation);
@@ -68,6 +67,7 @@ public class PlayerGunController : MonoBehaviour
 
             //decrease ammo count per shot
             ammoCount--;
+            ammoCountText.text = ammoCount.ToString();
 
             //camera recoil effect
             freeLookCamera.m_YAxis.Value += recoilValue;

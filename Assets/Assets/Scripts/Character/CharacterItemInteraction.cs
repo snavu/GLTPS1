@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 public class CharacterItemInteraction : MonoBehaviour
 {
     public PlayerInputInitialize playerInputScript;
@@ -23,12 +24,10 @@ public class CharacterItemInteraction : MonoBehaviour
     [SerializeField] private CharacterItemData characterItemDataScript;
     public Animator anim;
     [SerializeField] private PlayerGunController playerGunControllerScript;
-    [SerializeField] private int maxAmmoValue = 5;
+    [SerializeField] private int maxRandomAmmoCount = 5;
+    [SerializeField] private TextMeshProUGUI ammoCountText;
 
     [SerializeField] private float waterIncreaseRate = 1f;
-
-
-
 
     void OnEnable()
     {
@@ -73,7 +72,10 @@ public class CharacterItemInteraction : MonoBehaviour
                 Destroy(other.gameObject);
 
                 //increase ammo count by random ammount
-                playerGunControllerScript.ammoCount += Random.Range(1, maxAmmoValue + 1);
+                playerGunControllerScript.ammoCount += Random.Range(1, maxRandomAmmoCount + 1);
+
+                //change ammo ui
+                ammoCountText.text = playerGunControllerScript.ammoCount.ToString();
             }
         }
     }
@@ -86,7 +88,7 @@ public class CharacterItemInteraction : MonoBehaviour
 
             Destroy(characterItemDataScript.newFoodbar[characterItemDataScript.index - 1]);
             characterItemDataScript.newFoodbar.RemoveAt(characterItemDataScript.index - 1);
-            characterItemDataScript.offsetXPos += 40;
+            characterItemDataScript.offsetXPos += 30;
             characterItemDataScript.index--;
 
             //trigger eating animation

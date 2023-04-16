@@ -12,6 +12,8 @@ public class CharacterDeath : MonoBehaviour
     [SerializeField] private Animator yuuriAnim;
     [SerializeField] private PlayerInputInitialize yuuriInputScript;
     [SerializeField] private CharacterPossession yuuriPosessionScript;
+    [SerializeField] private CharacterBarrelInteraction yuuriBarrelInteractionScript;
+
 
 
     [SerializeField] private CharacterItemInteraction chitoItemInteractionScript;
@@ -19,6 +21,7 @@ public class CharacterDeath : MonoBehaviour
     [SerializeField] private Animator chitoAnim;
     [SerializeField] private PlayerInputInitialize chitoInputScript;
     [SerializeField] private CharacterPossession chitoPosessionScript;
+    [SerializeField] private CharacterBarrelInteraction chitoBarrelInteractionScript;
 
 
 
@@ -32,8 +35,8 @@ public class CharacterDeath : MonoBehaviour
     private bool gameOver;
     void Update()
     {
-        isChitoDead = IsDead(chitoItemInteractionScript, chitoAnim, chitoInputScript, chitoNavMeshAgent, isChitoDead);
-        isYuuriDead = IsDead(yuuriItemInteractionScript, yuuriAnim, yuuriInputScript, yuuriNavMeshAgent, isYuuriDead);
+        isChitoDead = IsDead(chitoItemInteractionScript, chitoAnim, chitoInputScript, chitoNavMeshAgent, chitoBarrelInteractionScript, isChitoDead);
+        isYuuriDead = IsDead(yuuriItemInteractionScript, yuuriAnim, yuuriInputScript, yuuriNavMeshAgent, yuuriBarrelInteractionScript, isYuuriDead);
 
         //check yuuri death sequence
         if (isYuuriDead)
@@ -52,7 +55,12 @@ public class CharacterDeath : MonoBehaviour
             gameOver = true;
         }
     }
-    bool IsDead(CharacterItemInteraction characterItemInteractionScript, Animator characterAnim, PlayerInputInitialize characterInputScript, NavMeshAgent characterNavMeshAgent, bool isDead)
+    bool IsDead(CharacterItemInteraction characterItemInteractionScript,
+                Animator characterAnim,
+                PlayerInputInitialize characterInputScript,
+                NavMeshAgent characterNavMeshAgent,
+                CharacterBarrelInteraction deadCharacterBarrelInteractionScript,
+                bool isDead)
     {
         if (characterItemInteractionScript.thirstLevel <= 0 && !isDead &&
             !characterAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket"))
@@ -62,13 +70,24 @@ public class CharacterDeath : MonoBehaviour
                 characterNavMeshAgent.enabled = false;
             }
             characterInputScript.actions.Player.Disable();
+
+            //check if player is holding barrel
+            if (characterAnim.GetCurrentAnimatorStateInfo(2).IsTag("Carry"))
+            {
+                deadCharacterBarrelInteractionScript.DropBarrel();
+            }
+
             characterAnim.SetTrigger("die");
             isDead = true;
         }
         return isDead;
     }
 
-    void DeathSequence(CharacterPossession deadCharacterPosessionScript, CharacterPossession aliveCharacterPosessionScript, NavMeshAgent characterNavMeshAgent, bool otherIsDead, bool isPossessable)
+    void DeathSequence(CharacterPossession deadCharacterPosessionScript,
+                       CharacterPossession aliveCharacterPosessionScript,
+                       NavMeshAgent characterNavMeshAgent,
+                       bool otherIsDead,
+                       bool isPossessable)
     {
         //disable possession mechanic
         if (isPossessable)

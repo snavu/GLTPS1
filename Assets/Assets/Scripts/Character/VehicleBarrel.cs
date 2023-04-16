@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class VehicleBarrel : MonoBehaviour
 {
+    [SerializeField] private SkinnedMeshRenderer ketBarrelMesh;
     [SerializeField]
-    private SkinnedMeshRenderer ketBarrelMesh;
-    [SerializeField]
-    private CharacterBarrelInteraction characterBarrelInteractionScript;
-    [SerializeField]
-    private VehicleFuelManager vehicleFuelManagerScript;
+    public CharacterBarrelInteraction characterBarrelInteractionScript;
+    [SerializeField] private VehicleFuelManager vehicleFuelManagerScript;
 
     void Start()
     {
         ketBarrelMesh = GameObject.FindWithTag("BarrelDropArea").GetComponent<SkinnedMeshRenderer>();
-        characterBarrelInteractionScript = GameObject.FindWithTag("Player").GetComponent<CharacterBarrelInteraction>();
         vehicleFuelManagerScript = GameObject.FindWithTag("Vehicle").GetComponent<VehicleFuelManager>();
-        
+
         //hide the barrel mesh of the kettengrad
         ketBarrelMesh.enabled = false;
     }
@@ -25,7 +22,6 @@ public class VehicleBarrel : MonoBehaviour
         if (other.gameObject.CompareTag("BarrelDropArea") && !characterBarrelInteractionScript.isCarrying)
         {
             ketBarrelMesh.enabled = true;
-            characterBarrelInteractionScript.isPickupable = false;
             Destroy(gameObject);
         }
 

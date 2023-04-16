@@ -40,9 +40,6 @@ public class CharacterBarrelInteraction : MonoBehaviour
                 playerInputScript.actions.Player.Jump.Disable();
                 playerInputScript.actions.Player.Sprint.Disable();
 
-                //freeze kettengrad rigidbody to prevent movement from player collider clipping bug
-                vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
-
                 SetCarryParameters(true, 0.53f, true, true);
 
                 newBarrel = Instantiate(barrelPrefab, transform.position, transform.rotation);
@@ -69,8 +66,6 @@ public class CharacterBarrelInteraction : MonoBehaviour
     {
         playerInputScript.actions.Player.Jump.Enable();
         playerInputScript.actions.Player.Sprint.Enable();
-
-        vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
         SetCarryParameters(false, 0.25f, false, false);
 

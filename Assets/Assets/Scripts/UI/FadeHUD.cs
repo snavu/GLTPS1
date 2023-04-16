@@ -39,7 +39,7 @@ public class FadeHUD : MonoBehaviour
                 resetElasped = true;
             }
 
-            LerpHUDAlpha(0, 1);
+            LerpHUDAlpha(0, 0.4f);
         }
         else
         {
@@ -48,7 +48,7 @@ public class FadeHUD : MonoBehaviour
                 elapsed = 0f;
                 resetElasped = false;
             }
-            LerpHUDAlpha(1, 0);
+            LerpHUDAlpha(0.4f, 0);
         }
     }
 

@@ -41,7 +41,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     [SerializeField] private float enterDuration = 1.0f;
 
     private Transform vehicleEnter;
-    
+
     void OnEnable()
     {
         Physics.IgnoreLayerCollision(6, 7, false);
@@ -159,8 +159,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
                 }
             }
         }
-
-
     }
 
     IEnumerator DelayExit(float duration)
@@ -173,6 +171,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
         exitLeft = false;
         exitRight = false;
         elapsed = 0f;
+
+        GetComponent<CharacterBarrelInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     IEnumerator DelayEnter()
@@ -197,9 +197,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
         {
             //ignore collisions between layer 6 (vehicle) and layer 7 (player) 
             Physics.IgnoreLayerCollision(6, 7, true);
-
-            //undo constraints set for freezing kettengrad rigidbody to prevent movement from player collider clipping bug
-            GetComponent<CharacterBarrelInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.None;
 
             //disable player movement
             playerInputScript.actions.Player.Disable();

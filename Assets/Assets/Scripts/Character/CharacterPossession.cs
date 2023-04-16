@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using UnityEngine.Animations;
+
 public class CharacterPossession : MonoBehaviour
 {
     [SerializeField] private PlayerInputInitialize playerInputScript;
@@ -12,6 +14,13 @@ public class CharacterPossession : MonoBehaviour
 
     [SerializeField] private Vector3 CMFollowTargetOffsetPos;
     [SerializeField] private Vector3 CMLookAtTargetOffsetPos;
+
+    [SerializeField] private PositionConstraint outOfBoundsBox;
+    [SerializeField] private PositionConstraint skybox;
+    [SerializeField] private PositionConstraint weatherParticleSystem;
+    [SerializeField] private NodeCache nodeCacheScript;
+
+    private ConstraintSource source;
 
     void OnEnable()
     {
@@ -36,6 +45,21 @@ public class CharacterPossession : MonoBehaviour
 
     public void PossessCharacter(bool isDead)
     {
+        nodeCacheScript.player = playerToPossess;
+
+        //switch the position contraints
+        source.sourceTransform = playerToPossess.transform;
+        source.weight = 1;
+
+        outOfBoundsBox.SetSource(0, source);
+        outOfBoundsBox.constraintActive = true;
+
+        skybox.SetSource(0, source);
+        skybox.constraintActive = true;
+
+        weatherParticleSystem.SetSource(0, source);
+        weatherParticleSystem.constraintActive = true;
+
         //change camera follow and look at target
         CMFollowTarget.transform.parent = playerToPossess.transform;
         CMLookAtTarget.transform.parent = playerToPossess.transform;

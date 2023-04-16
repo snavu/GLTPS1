@@ -19,7 +19,7 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] private float maxAngularVelocity;
     [SerializeField] private Animator anim;
 
-    [SerializeField] private bool isGrounded;
+    public bool isGrounded;
     [SerializeField] private Vector3 boxCastHalfExtents;
     [SerializeField] private Vector3 boxCastOffset;
 
@@ -28,6 +28,7 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] private VehicleFuelManager vehicleFuelManagerScript;
     [SerializeField] private SkinnedMeshRenderer ketBarrelMesh;
 
+    private bool toggleVehicleControls;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -52,7 +53,7 @@ public class VehicleMovement : MonoBehaviour
         }
         scaledMaxVelocity = maxVelocity * currentMovementRate;
 
-        //set movement aniamtion
+        //set movement animation
         MovementAnim();
     }
     void FixedUpdate()
@@ -61,6 +62,8 @@ public class VehicleMovement : MonoBehaviour
         //move
         if (Mathf.Abs(movement.y) > 0 && isGrounded && vehicleFuelManagerScript.currentFuel > 0 && ketBarrelMesh.enabled)
         {
+            rb.constraints = RigidbodyConstraints.None;
+
             rb.AddForce(movement.y * transform.forward * force * currentMovementRate * Time.fixedDeltaTime, ForceMode.Force);
 
             //rotate
@@ -76,6 +79,18 @@ public class VehicleMovement : MonoBehaviour
                 }
             }
         }
+
+        if (!isGrounded && !toggleVehicleControls)
+        {
+            playerInputScript.actions.Vehicle.Exit.Disable();
+            toggleVehicleControls = true;
+        }
+        else if(isGrounded && toggleVehicleControls)
+        {
+            playerInputScript.actions.Vehicle.Exit.Enable();
+            toggleVehicleControls = false;
+        }
+
         //clamp velocity and angular velocity
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, scaledMaxVelocity);
         rb.angularVelocity = Vector3.ClampMagnitude(rb.angularVelocity, maxAngularVelocity);

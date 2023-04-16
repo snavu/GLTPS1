@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item:
   - {fileID: 3885753846473637393, guid: c2d9328fe8d79fd44a0579a205685afa, type: 3}
+  - {fileID: 3885753846473637393, guid: 1e7089bfe691ded42a463efccb4cd458, type: 3}
   - {fileID: 0}
-  spawnChance: 280000003c000000
+  spawnChance: 210000002100000021000000

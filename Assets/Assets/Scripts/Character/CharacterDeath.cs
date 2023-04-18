@@ -54,12 +54,20 @@ public class CharacterDeath : MonoBehaviour
         //check yuuri death sequence
         if (isYuuriDead)
         {
-            DeathSequence(yuuriPosessionScript, chitoPosessionScript, yuuriNavMeshAgent, isChitoDead, isYuuriPossessable);
+            DeathSequence(yuuriPosessionScript,
+                          chitoPosessionScript,
+                          yuuriNavMeshAgent,
+                          isChitoDead,
+                          isYuuriPossessable);
         }
         //check chito death sequence
         if (isChitoDead)
         {
-            DeathSequence(chitoPosessionScript, yuuriPosessionScript, chitoNavMeshAgent, isYuuriDead, isChitoPossessable);
+            DeathSequence(chitoPosessionScript,
+                          yuuriPosessionScript,
+                          chitoNavMeshAgent,
+                          isYuuriDead,
+                          isChitoPossessable);
         }
 
         if (isYuuriDead && isChitoDead && !gameOver)
@@ -83,17 +91,16 @@ public class CharacterDeath : MonoBehaviour
             if (characterNavMeshAgent.enabled && deadNavMeshAgentVehicleInteraction.exited)
             {
                 characterNavMeshAgent.enabled = false;
-                isDead = true;
             }
-            characterInputScript.actions.Player.Disable();
 
             //check if player is holding barrel
             if (characterAnim.GetCurrentAnimatorStateInfo(2).IsTag("Carry"))
             {
                 deadCharacterBarrelInteractionScript.DropBarrel();
-                isDead = true;
             }
+            characterInputScript.actions.Player.Disable();
             characterAnim.SetTrigger("die");
+            isDead = true;
         }
         return isDead;
     }

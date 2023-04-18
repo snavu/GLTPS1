@@ -40,7 +40,7 @@ public class CharacterBarrelInteraction : MonoBehaviour
                 playerInputScript.actions.Player.Jump.Disable();
                 playerInputScript.actions.Player.Sprint.Disable();
 
-                SetCarryParameters(true, 0.4f, true, true);
+                SetCarryParameters(true, 0.4f, 0f, true, true);
 
                 newBarrel = Instantiate(barrelPrefab, transform.position, transform.rotation);
                 newBarrel.GetComponent<VehicleBarrel>().characterBarrelInteractionScript = this;
@@ -51,7 +51,7 @@ public class CharacterBarrelInteraction : MonoBehaviour
                 //disable player jump and sprint
                 playerInputScript.actions.Player.Jump.Disable();
                 playerInputScript.actions.Player.Sprint.Disable();
-                SetCarryParameters(true, 0.4f, true, true);
+                SetCarryParameters(true, 0.4f, 0f, true, true);
                 newBarrel.GetComponent<VehicleBarrel>().characterBarrelInteractionScript = this;
                 SetParentConstraint();
             }
@@ -67,7 +67,7 @@ public class CharacterBarrelInteraction : MonoBehaviour
         playerInputScript.actions.Player.Jump.Enable();
         playerInputScript.actions.Player.Sprint.Enable();
 
-        SetCarryParameters(false, 0.25f, false, false);
+        SetCarryParameters(false, 0.25f, 0.23f, false, false);
 
         if (newBarrel != null)
         {
@@ -87,13 +87,14 @@ public class CharacterBarrelInteraction : MonoBehaviour
         newBarrel.GetComponent<ParentConstraint>().constraintActive = true;
     }
 
-    private void SetCarryParameters(bool carry, float radius, bool carryAnimParameter, bool physicsIgnore)
+    private void SetCarryParameters(bool carry, float radius, float stepOffset, bool carryAnimParameter, bool physicsIgnore)
     {
         //ignore collision between player and barrel
         Physics.IgnoreLayerCollision(7, 11, physicsIgnore);
 
         isCarrying = carry;
-        //set character controller radius size
+        //set character controller values
+        controller.stepOffset = stepOffset;
         controller.radius = radius;
         //set carry animation
         anim.SetBool("carry", carryAnimParameter);

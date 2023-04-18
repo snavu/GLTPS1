@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 4572056411573027773}
   - component: {fileID: 7300809024565327847}
   - component: {fileID: 6537407080251073835}
+  - component: {fileID: 7142598863851564645}
   m_Layer: 0
   m_Name: Fueling Station
   m_TagString: Untagged
@@ -176,6 +177,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7142598863851564645
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144113218821308031}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2389851731438868642, guid: a1157ae17fb2cbd4b81fc02b08ebab35, type: 3}
 --- !u!1 &2209908701252209163
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +225,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2209908701252209163}
-  m_LocalRotation: {x: 0, y: -0.00000050576216, z: 0, w: -1}
+  m_LocalRotation: {x: 0, y: 0.00000050576216, z: 0, w: 1}
   m_LocalPosition: {x: -163.1, y: 0, z: 29.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -846,7 +869,7 @@ PrefabInstance:
     - target: {fileID: 3768388744490224771, guid: 592d59c9ae869a346a33128aecbb0deb,
         type: 3}
       propertyPath: CollisionModule.collidesWith.m_Bits
-      value: 64
+      value: 2048
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

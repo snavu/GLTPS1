@@ -67,16 +67,16 @@ public class CharacterItemData : MonoBehaviour
             _hungerRate = hungerRate;
             _thirstRate = thirstRate;
         }
+        waterLevel = Mathf.Clamp(waterLevel, 0, maxWaterLevel);
+        waterLevel -= _thirstRate * Time.deltaTime;
 
         yuuriItemInteraction.hungerLevel = Mathf.Clamp(yuuriItemInteraction.hungerLevel, 0, maxHungerValue);
         yuuriItemInteraction.hungerLevel -= _hungerRate * Time.deltaTime;
-
-        chitoItemInteraction.hungerLevel = Mathf.Clamp(chitoItemInteraction.hungerLevel, 0, maxHungerValue);
-        chitoItemInteraction.hungerLevel -= _hungerRate * Time.deltaTime;
-
         yuuriItemInteraction.thirstLevel = Mathf.Clamp(yuuriItemInteraction.thirstLevel, 0, maxThirstValue);
         yuuriItemInteraction.thirstLevel -= _thirstRate * Time.deltaTime;
 
+        chitoItemInteraction.hungerLevel = Mathf.Clamp(chitoItemInteraction.hungerLevel, 0, maxHungerValue);
+        chitoItemInteraction.hungerLevel -= _hungerRate * Time.deltaTime;
         chitoItemInteraction.thirstLevel = Mathf.Clamp(chitoItemInteraction.thirstLevel, 0, maxThirstValue);
         chitoItemInteraction.thirstLevel -= _thirstRate * Time.deltaTime;
     }

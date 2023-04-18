@@ -220,7 +220,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Ket"))
         {

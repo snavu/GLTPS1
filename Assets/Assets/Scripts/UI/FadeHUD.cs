@@ -19,6 +19,8 @@ public class FadeHUD : MonoBehaviour
 
     [SerializeField] private CharacterItemData characterItemDataScript;
 
+    public VehicleBarrel vehicleBarrelScript;
+
     [SerializeField] private float duration = 1f;
     private float elapsed1 = 0f;
     private float elapsed2 = 0f;
@@ -34,23 +36,43 @@ public class FadeHUD : MonoBehaviour
         fuelUIalpha = fuelUI.color.a;
         foodUIalpha = waterUI.color.a;
 
+        //lerp HUD for ADS
         if (yuuriPlayerMovementScript.ADS)
         {
             LerpAlpha(0.4f, 0, 0, ref elapsed1);
             elapsed2 = 0f;
             elapsed3 = 0f;
         }
-        else if (chitoPlayerInput.actions.Vehicle.enabled || yuuriPlayerInput.actions.Vehicle.enabled)
+        //lerp HUD for fuel when in vehicle
+        else if (chitoPlayerInput.actions.Vehicle.enabled ||
+                 yuuriPlayerInput.actions.Vehicle.enabled)
         {
             LerpAlpha(0, 0.4f, 0, ref elapsed2);
-
             elapsed1 = 0f;
             elapsed3 = 0f;
         }
+        //lerp HUD for fuel if barrel is being carried or fueling
+        else if (vehicleBarrelScript != null)
+        {
+            if (vehicleBarrelScript.characterBarrelInteractionScript.isCarrying ||
+                 vehicleBarrelScript.isFueling)
+            {
+                LerpAlpha(0, 0.4f, 0, ref elapsed2);
+                elapsed1 = 0f;
+                elapsed3 = 0f;
+            }
+            //lerp HUD for food/water
+            else
+            {
+                LerpAlpha(0, 0, 0.4f, ref elapsed3);
+                elapsed1 = 0f;
+                elapsed2 = 0f;
+            }
+        }
+        //lerp HUD for food/water
         else
         {
             LerpAlpha(0, 0, 0.4f, ref elapsed3);
-
             elapsed1 = 0f;
             elapsed2 = 0f;
         }

@@ -15,6 +15,8 @@ public class CharacterFuelInteraction : MonoBehaviour
     [SerializeField]
     private bool inFuelingStationInteractArea;
     private bool isFueling;
+
+    private Collider other;
     void OnEnable()
     {
         playerInputScript.actions.Player.HoldInteract.performed += HoldInteract;
@@ -30,12 +32,12 @@ public class CharacterFuelInteraction : MonoBehaviour
         {
             if (isFueling)
             {
-                fuelAnim.SetBool("Fueling", false);
+                other.gameObject.GetComponentInChildren<ParticleSystem>().Play();
                 isFueling = false;
             }
             else
             {
-                fuelAnim.SetBool("Fueling", true);
+                other.gameObject.GetComponentInChildren<ParticleSystem>().Stop();
                 isFueling = true;
             }
         }
@@ -45,8 +47,8 @@ public class CharacterFuelInteraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("FuelingStation"))
         {
-            fuelAnim = other.gameObject.GetComponentInChildren<Animator>();
             inFuelingStationInteractArea = true;
+            this.other = other;
         }
     }
     void OnTriggerExit(Collider other)

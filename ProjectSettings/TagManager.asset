@@ -20,6 +20,7 @@ TagManager:
   - GenerateNodeTrigger
   - NodeCache
   - Water
+  - UI
   layers:
   - Default
   - TransparentFX

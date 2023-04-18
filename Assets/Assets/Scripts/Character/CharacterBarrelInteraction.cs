@@ -79,7 +79,6 @@ public class CharacterBarrelInteraction : MonoBehaviour
 
     private void SetParentConstraint()
     {
-        Debug.Log("contraints set");
         //set parent constraint of barrel
         source.sourceTransform = parentConstraintSource.transform;
         source.weight = 1;

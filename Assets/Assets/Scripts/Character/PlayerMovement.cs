@@ -35,14 +35,13 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private CharacterItemInteraction characterItemInteractionScript;
 
+    public bool isCarrying;
+
     public bool ADS;
     void OnEnable()
     {
         playerInputScript.actions.Player.Enable();
         playerInputScript.actions.Player.Jump.performed += Jump;
-
-        //align spherecast at bottom of collide, scale position inversely proportional to controller skin width, and minus small constant to extrude vertically down
-        sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.01f, 0);
 
         //set layermask interact with vehicle and default
         layerMask = LayerMask.GetMask("Default", "Vehicle");
@@ -62,15 +61,21 @@ public class PlayerMovement : MonoBehaviour
             horizontalInput = playerInputScript.actions.Player.Move.ReadValue<Vector2>();
             horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
 
+            //align spherecast at bottom of collide, scale position inversely proportional to controller skin width, and minus small constant to extrude vertically down
+            sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.1f, 0);
+
             //check ground collision
             isGrounded = Physics.CheckSphere(transform.position + sphereCastPosition, controller.radius, layerMask, QueryTriggerInteraction.Ignore);
+
             //apply gravity
             if (isGrounded && verticalMovement < 0)
             {
+                Debug.Log("verticalMovement == 0: " + isGrounded);
                 verticalMovement = 0f;
             }
             else
             {
+                Debug.Log("verticalMovement < 0: " + isGrounded);
                 verticalMovement += gravity * Time.deltaTime;
             }
 
@@ -84,11 +89,13 @@ public class PlayerMovement : MonoBehaviour
                 {
                     currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, 10.0f * Time.deltaTime);
                 }
+            //lerp speed value for ADS speed
             else
             {
                 currentSpeed = Mathf.Lerp(currentSpeed, ADSSpeed, 10.0f * Time.deltaTime);
             }
 
+            //slow movement when hungry/thirsty
             if (characterItemInteractionScript.hungerLevel < 30 || characterItemInteractionScript.thirstLevel < 30)
             {
                 velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed * slowMovementRate;
@@ -139,6 +146,6 @@ public class PlayerMovement : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(0, controller.radius - controller.skinWidth - 0.01f, 0), controller.radius);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, controller.radius - controller.skinWidth - 0.1f, 0), controller.radius);
     }
 }

@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
   m_FogMode: 2
   m_FogDensity: 0.006
@@ -3023,11 +3023,11 @@ MonoBehaviour:
   m_SplineCurvature: 1
   m_Orbits:
   - m_Height: 6.91
-    m_Radius: 4.752146
+    m_Radius: 4.750012
   - m_Height: 3.26
     m_Radius: 4.75
   - m_Height: 0.4
-    m_Radius: 4.750093
+    m_Radius: 4.75
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 2082827652}
@@ -4077,7 +4077,7 @@ GameObject:
   - component: {fileID: 826864471}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4188,6 +4188,7 @@ MonoBehaviour:
   waterUI: {fileID: 488191839}
   waterContainerUI: {fileID: 1494158686}
   characterItemDataScript: {fileID: 1924441658}
+  vehicleBarrelScript: {fileID: 0}
   duration: 0.5
 --- !u!1 &832575517
 GameObject:

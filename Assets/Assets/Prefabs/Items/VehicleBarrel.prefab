@@ -207,6 +207,8 @@ MonoBehaviour:
   ketBarrelMesh: {fileID: 0}
   characterBarrelInteractionScript: {fileID: 0}
   vehicleFuelManagerScript: {fileID: 0}
+  fadeHUDScript: {fileID: 0}
+  isFueling: 0
 --- !u!1 &8254946061164284041
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +222,7 @@ GameObject:
   - component: {fileID: 3694072800383821365}
   - component: {fileID: 3993578370458025365}
   - component: {fileID: 592613283895350263}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

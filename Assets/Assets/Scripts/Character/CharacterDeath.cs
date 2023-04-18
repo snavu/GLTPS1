@@ -84,13 +84,14 @@ public class CharacterDeath : MonoBehaviour
                 NavMeshAgentVehicleInteraction deadNavMeshAgentVehicleInteraction,
                 bool isDead)
     {
-        if (characterItemInteractionScript.thirstLevel <= 0 && !isDead &&
+        if (characterItemInteractionScript.thirstLevel <= 0 &&
             !characterAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket"))
         {
             //check if navmesg agent is enable and that the navmesh agent has exited the vehicle
-            if (characterNavMeshAgent.enabled && deadNavMeshAgentVehicleInteraction.exited)
+            if (characterNavMeshAgent.enabled)
             {
                 characterNavMeshAgent.enabled = false;
+                deadNavMeshAgentVehicleInteraction.enabled = false;
             }
 
             //check if player is holding barrel
@@ -134,7 +135,7 @@ public class CharacterDeath : MonoBehaviour
 
     IEnumerator DelayCharacterPosession(CharacterPossession deadCharacterPosessionScript, NavMeshAgent characterNavMeshAgent)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         deadCharacterPosessionScript.PossessCharacter(true);
     }
 

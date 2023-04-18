@@ -103,16 +103,8 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
 
                     exit = false;
                     elapsed = 0f;
-
-                    StartCoroutine(SetExitedFlag());
                 }
             }
-        }
-
-        IEnumerator SetExitedFlag()
-        {
-            yield return new WaitForEndOfFrame();
-            exited = true;
         }
 
         if (positionConstraint)

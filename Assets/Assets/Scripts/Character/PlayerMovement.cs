@@ -62,20 +62,18 @@ public class PlayerMovement : MonoBehaviour
             horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
 
             //align spherecast at bottom of collide, scale position inversely proportional to controller skin width, and minus small constant to extrude vertically down
-            sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.1f, 0);
+            sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.01f - 0.1f, 0);
 
             //check ground collision
-            isGrounded = Physics.CheckSphere(transform.position + sphereCastPosition, controller.radius, layerMask, QueryTriggerInteraction.Ignore);
+            isGrounded = Physics.CheckSphere(transform.position + sphereCastPosition, controller.radius - 0.1f, layerMask, QueryTriggerInteraction.Ignore);
 
             //apply gravity
             if (isGrounded && verticalMovement < 0)
             {
-                Debug.Log("verticalMovement == 0: " + isGrounded);
                 verticalMovement = 0f;
             }
             else
             {
-                Debug.Log("verticalMovement < 0: " + isGrounded);
                 verticalMovement += gravity * Time.deltaTime;
             }
 
@@ -146,6 +144,6 @@ public class PlayerMovement : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(0, controller.radius - controller.skinWidth - 0.1f, 0), controller.radius);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, controller.radius - controller.skinWidth - 0.01f - 0.1f, 0), controller.radius - 0.1f);
     }
 }

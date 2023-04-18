@@ -19,14 +19,14 @@ public class CharacterFuelInteraction : MonoBehaviour
     private Collider other;
     void OnEnable()
     {
-        playerInputScript.actions.Player.HoldInteract.performed += HoldInteract;
+        playerInputScript.actions.Player.Interact.performed += Interact;
     }
     void OnDisable()
     {
-        playerInputScript.actions.Player.HoldInteract.performed -= HoldInteract;
+        playerInputScript.actions.Player.Interact.performed -= Interact;
     }
 
-    private void HoldInteract(InputAction.CallbackContext context)
+    private void Interact(InputAction.CallbackContext context)
     {
         if (context.performed && inFuelingStationInteractArea && !characterBarrelInteractionScript.isCarrying && Time.timeScale == 1)
         {

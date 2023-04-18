@@ -40,6 +40,7 @@ public class VehicleBarrel : MonoBehaviour
         if (other.gameObject.CompareTag("BarrelDropArea") && !characterBarrelInteractionScript.isCarrying)
         {
             ketBarrelMesh.enabled = true;
+            characterBarrelInteractionScript.isPickupable = false;
             Destroy(gameObject);
         }
     }

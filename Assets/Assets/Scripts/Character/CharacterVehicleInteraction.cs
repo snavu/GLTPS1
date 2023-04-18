@@ -49,6 +49,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
         playerInputScript.actions.Player.Interact.performed += Interact;
         playerInputScript.actions.Vehicle.Exit.performed += Exit;
+
+        GetComponent<CharacterBarrelInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+
     }
 
     void OnDisable()

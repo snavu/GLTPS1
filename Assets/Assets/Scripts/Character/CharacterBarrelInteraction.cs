@@ -36,11 +36,11 @@ public class CharacterBarrelInteraction : MonoBehaviour
         {
             if (context.performed && isPickupable && !anim.GetCurrentAnimatorStateInfo(2).IsTag("Carry") && inBarrelDropArea && !GameObject.FindWithTag("Barrel"))
             {
-                //disable player jump and spring
+                //disable player jump and sprint
                 playerInputScript.actions.Player.Jump.Disable();
                 playerInputScript.actions.Player.Sprint.Disable();
 
-                SetCarryParameters(true, 0.53f, true, true);
+                SetCarryParameters(true, 0.4f, true, true);
 
                 newBarrel = Instantiate(barrelPrefab, transform.position, transform.rotation);
                 newBarrel.GetComponent<VehicleBarrel>().characterBarrelInteractionScript = this;
@@ -48,10 +48,10 @@ public class CharacterBarrelInteraction : MonoBehaviour
             }
             if (context.performed && isPickupable && !anim.GetCurrentAnimatorStateInfo(2).IsTag("Carry") && !inBarrelDropArea)
             {
-                //disable player jump and spring
+                //disable player jump and sprint
                 playerInputScript.actions.Player.Jump.Disable();
                 playerInputScript.actions.Player.Sprint.Disable();
-                SetCarryParameters(true, 0.53f, true, true);
+                SetCarryParameters(true, 0.4f, true, true);
                 newBarrel.GetComponent<VehicleBarrel>().characterBarrelInteractionScript = this;
                 SetParentConstraint();
             }
@@ -89,10 +89,9 @@ public class CharacterBarrelInteraction : MonoBehaviour
 
     private void SetCarryParameters(bool carry, float radius, bool carryAnimParameter, bool physicsIgnore)
     {
+        //ignore collision between player and barrel
+        Physics.IgnoreLayerCollision(7, 11, physicsIgnore);
 
-        //disable physics collisions bettwen player and barrel, and vehicle and barrel
-        Physics.IgnoreLayerCollision(7, 10, physicsIgnore);
-        Physics.IgnoreLayerCollision(6, 10, physicsIgnore);
         isCarrying = carry;
         //set character controller radius size
         controller.radius = radius;

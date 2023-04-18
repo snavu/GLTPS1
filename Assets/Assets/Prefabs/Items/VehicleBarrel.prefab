@@ -109,7 +109,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7119919594315674118}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 3694072800383821365}
   - component: {fileID: 3993578370458025365}
   - component: {fileID: 592613283895350263}
-  m_Layer: 2
+  m_Layer: 11
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

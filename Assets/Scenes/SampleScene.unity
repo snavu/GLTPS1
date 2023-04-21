@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.26, z: -4.750001}
+  m_FollowOffset: {x: 0, y: 3.26, z: -4.75}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.26, z: -4.750001}
+  m_FollowOffset: {x: 0, y: 3.26, z: -4.75}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -3047,11 +3047,11 @@ MonoBehaviour:
   m_SplineCurvature: 1
   m_Orbits:
   - m_Height: 6.91
-    m_Radius: 4.75
+    m_Radius: 4.828149
   - m_Height: 3.26
-    m_Radius: 4.750001
-  - m_Height: 0.4
     m_Radius: 4.75
+  - m_Height: 0.4
+    m_Radius: 4.760527
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 2082827652}
@@ -23103,7 +23103,7 @@ MonoBehaviour:
   slowDepletionRate: 0.7
   hungerRate: 0.15
   maxHungerValue: 100
-  thirstRate: 0.3
+  thirstRate: 0.25
   maxThirstValue: 100
   maxWaterLevel: 200
   waterBar: {fileID: 488191838}
@@ -24014,6 +24014,7 @@ MonoBehaviour:
   exitLeft: 0
   exitDuration: 0.5
   enterDuration: 4
+  vehicleFuelManagerScript: {fileID: 1419417153}
 --- !u!114 &2072579806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24303,7 +24304,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: 0.07205994, y: 0.011308394, z: -0.0008170589, w: 0.99733585}
+  m_LocalRotation: {x: 0.07205992, y: 0.01130836, z: -0.0008170562, w: 0.99733585}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24433,7 +24434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.26, z: -4.750001}
+  m_FollowOffset: {x: 0, y: 3.26, z: -4.75}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -28191,6 +28192,7 @@ MonoBehaviour:
   exitLeft: 0
   exitDuration: 0.5
   enterDuration: 4
+  vehicleFuelManagerScript: {fileID: 1419417153}
 --- !u!114 &9146561997578268263
 MonoBehaviour:
   m_ObjectHideFlags: 0

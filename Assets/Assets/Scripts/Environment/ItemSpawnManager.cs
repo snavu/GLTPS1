@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class ItemSpawnManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] item;
-    [SerializeField]
-    private int[] spawnChance;
+    [SerializeField] private GameObject[] item;
+    [SerializeField] private int[] spawnChance;
     void Start()
     {
         RandomWeightedSpawnItem();

@@ -42,6 +42,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     private Transform vehicleEnter;
 
+    [SerializeField] VehicleFuelManager vehicleFuelManagerScript;
+
     void OnEnable()
     {
         Physics.IgnoreLayerCollision(6, 7, false);
@@ -198,6 +200,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
             && !GetComponent<CharacterBarrelInteraction>().isCarrying &&
                 Time.timeScale == 1)
         {
+            vehicleFuelManagerScript.playerInputScript = playerInputScript;
+
             //ignore collisions between layer 6 (vehicle) and layer 7 (player) 
             Physics.IgnoreLayerCollision(6, 7, true);
 

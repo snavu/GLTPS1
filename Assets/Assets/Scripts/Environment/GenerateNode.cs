@@ -19,13 +19,15 @@ public class GenerateNode : MonoBehaviour
     public int portIndex = 0;
 
     private NodeCache nodeCacheScript;
+    [SerializeField] private List<int> spawnChance;
+
 
     private bool resetNode = false;
 
     void Start()
     {
         nodeCacheScript = GameObject.FindWithTag("NodeCache").GetComponent<NodeCache>();
-        
+
         //initialize list of nodes
         //note: initialize node list in Start() for count check in GenerateEdge script
         foreach (GameObject node in nodePrefabs)
@@ -41,9 +43,11 @@ public class GenerateNode : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, nodeCacheScript.player.transform.position) < nodeCacheScript.spawnThreshold && resetNode)
         {
+            //clear pre-existing node list
             while (nodeList.Count != 0)
             {
                 nodeList.RemoveAt(0);
+                Debug.Log(nodeList);
             }
 
             //initialize list of nodes
@@ -63,6 +67,8 @@ public class GenerateNode : MonoBehaviour
                 //nodeCacheScript.nodeList.Remove(newNode);
                 Destroy(newNode);
                 nodeList.RemoveAt(nodeIndex);
+                spawnChance.RemoveAt(nodeIndex);
+                
 
                 if (nodeList.Count != 0)
                 {
@@ -103,7 +109,9 @@ public class GenerateNode : MonoBehaviour
     private GameObject GenerateRandomNode()
     {
         //store node selection
-        nodeIndex = Random.Range(0, nodeList.Count);
+        //nodeIndex = Random.Range(0, nodeList.Count);
+        nodeIndex = RandomWeightedGenerator.GenerateRandomIndex(spawnChance.ToArray());
+
         //generate node
         GameObject node = nodeList[nodeIndex];
 

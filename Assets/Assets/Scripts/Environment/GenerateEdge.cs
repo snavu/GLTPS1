@@ -44,6 +44,7 @@ public class GenerateEdge : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, nodeCacheScript.player.transform.position) < nodeCacheScript.spawnThreshold && resetEdge)
         {
+            //clear pre-existing edge list
             while (edgeList.Count != 0)
             {
                 edgeList.RemoveAt(0);

@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
   m_FogMode: 2
-  m_FogDensity: 0.001
+  m_FogDensity: 0.003
   m_LinearFogStart: -3
   m_LinearFogEnd: 98
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -915,7 +915,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135867288}
-  m_LocalRotation: {x: 0.03579611, y: 0.011330556, z: -0.0004058761, w: 0.9992948}
+  m_LocalRotation: {x: 0.03579611, y: 0.011330606, z: -0.0004058779, w: 0.9992948}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2164,8 +2164,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.035796117, y: 0.011330556, z: -0.00040587614, w: 0.9992948}
-  m_LocalPosition: {x: -5.95471, y: 2.0900002, z: -117.29878}
+  m_LocalRotation: {x: 0.035796117, y: 0.011330607, z: -0.00040587783, w: 0.9992948}
+  m_LocalPosition: {x: -5.9547105, y: 2.0900002, z: -117.29878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2324,7 +2324,7 @@ Light:
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 4.18
+    m_NearPlane: 6
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -3065,7 +3065,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626363629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.95471, y: 2.0900002, z: -117.29878}
+  m_LocalPosition: {x: -5.9547105, y: 2.0900002, z: -117.29878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10959,7 +10959,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244749583}
-  m_LocalRotation: {x: 0.07205994, y: 0.011308311, z: -0.0008170528, w: 0.99733585}
+  m_LocalRotation: {x: 0.07205993, y: 0.011308395, z: -0.0008170589, w: 0.99733585}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17596,8 +17596,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeList: []
   player: {fileID: 1179579383}
-  despawnThreshold: 700
-  spawnThreshold: 600
+  despawnThreshold: 800
+  spawnThreshold: 700
 --- !u!1 &1733800194
 GameObject:
   m_ObjectHideFlags: 0
@@ -24303,7 +24303,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: 0.07205994, y: 0.011308311, z: -0.0008170528, w: 0.99733585}
+  m_LocalRotation: {x: 0.07205994, y: 0.011308394, z: -0.0008170589, w: 0.99733585}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -25167,6 +25167,7 @@ MonoBehaviour:
   - {fileID: 1206921448138736410}
   - {fileID: 1206921447888664764}
   - {fileID: 5052587641070415359}
+  - {fileID: 2749096977568988127}
   portList: []
   index: 0
   edge: {fileID: 7638387235834001022, guid: 1bb1d33433f15cf44a05d151572d72a1, type: 3}

@@ -79,6 +79,8 @@ public class CharacterPossession : MonoBehaviour
             GetComponentInChildren<CharacterFuelInteraction>().enabled = false;
             GetComponentInChildren<CharacterVehicleInteraction>().enabled = false;
             GetComponentInChildren<NavMeshObstacle>().enabled = false;
+            GetComponentInChildren<CharacterStatusScreenEffect>().enabled = false;
+
         }
         else
         {
@@ -94,6 +96,7 @@ public class CharacterPossession : MonoBehaviour
             GetComponentInChildren<NavMeshAgent>().enabled = true;
             GetComponentInChildren<NavMeshAgentVehicleInteraction>().enabled = true;
             GetComponentInChildren<NavMeshAgentFollowPlayer>().enabled = true;
+            GetComponentInChildren<CharacterStatusScreenEffect>().enabled = false;
         }
 
         //switch player-to-possess player scripts
@@ -109,5 +112,6 @@ public class CharacterPossession : MonoBehaviour
         playerToPossess.GetComponentInChildren<NavMeshObstacle>().enabled = true;
         playerToPossess.GetComponentInChildren<NavMeshAgentVehicleInteraction>().enabled = false;
         playerToPossess.GetComponentInChildren<NavMeshAgentFollowPlayer>().enabled = false;
+        playerToPossess.GetComponentInChildren<CharacterStatusScreenEffect>().enabled = true;
     }
 }

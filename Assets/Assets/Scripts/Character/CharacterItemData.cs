@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class CharacterItemData : MonoBehaviour
 {
     public int index;
@@ -34,9 +35,7 @@ public class CharacterItemData : MonoBehaviour
     private float yuuriHungerBarRectTransformInitialLength;
     [SerializeField] private RectTransform yuuriThirstBar;
     private float yuuriThirstBarRectTransformInitialLength;
-
-
-
+    
     void Start()
     {
         waterBarRectTransformInitialLength = waterBar.sizeDelta.y;
@@ -68,7 +67,6 @@ public class CharacterItemData : MonoBehaviour
             _thirstRate = thirstRate;
         }
         waterLevel = Mathf.Clamp(waterLevel, 0, maxWaterLevel);
-        waterLevel -= _thirstRate * Time.deltaTime;
 
         yuuriItemInteraction.hungerLevel = Mathf.Clamp(yuuriItemInteraction.hungerLevel, 0, maxHungerValue);
         yuuriItemInteraction.hungerLevel -= _hungerRate * Time.deltaTime;

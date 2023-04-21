@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 sphereCastPosition;
 
     [SerializeField] private CharacterItemInteraction characterItemInteractionScript;
+    [SerializeField] private CharacterStatusScreenEffect characterStatusScreenEffectScript;
 
     public bool isCarrying;
 
@@ -62,10 +63,10 @@ public class PlayerMovement : MonoBehaviour
             horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
 
             //align spherecast at bottom of collide, scale position inversely proportional to controller skin width, and minus small constant to extrude vertically down
-            sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.01f - 0.1f, 0);
+            sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.01f, 0);
 
             //check ground collision
-            isGrounded = Physics.CheckSphere(transform.position + sphereCastPosition, controller.radius - 0.1f, layerMask, QueryTriggerInteraction.Ignore);
+            isGrounded = Physics.CheckSphere(transform.position + sphereCastPosition, controller.radius, layerMask, QueryTriggerInteraction.Ignore);
 
             //apply gravity
             if (isGrounded && verticalMovement < 0)
@@ -94,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //slow movement when hungry/thirsty
-            if (characterItemInteractionScript.hungerLevel < 30 || characterItemInteractionScript.thirstLevel < 30)
+            if (characterItemInteractionScript.hungerLevel < characterStatusScreenEffectScript.hungerThreshold || characterItemInteractionScript.thirstLevel < characterStatusScreenEffectScript.thirstThreshold)
             {
                 velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed * slowMovementRate;
             }
@@ -144,6 +145,6 @@ public class PlayerMovement : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position + new Vector3(0, controller.radius - controller.skinWidth - 0.01f - 0.1f, 0), controller.radius - 0.1f);
+        Gizmos.DrawWireSphere(transform.position + new Vector3(0, controller.radius - controller.skinWidth - 0.01f, 0), controller.radius);
     }
 }

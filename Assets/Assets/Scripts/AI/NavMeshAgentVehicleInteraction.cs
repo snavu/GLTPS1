@@ -34,7 +34,6 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
 
     [SerializeField] private CharacterDeath characterDeathScript;
 
-    public bool exited = true;
     void Update()
     {
         CharacterMovementAnimation.Movement(agentAnim, agent.velocity, playerMovementScript.runSpeed);
@@ -43,7 +42,6 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
         {
             navMeshAgentFollowPlayerScript.enabled = false;
             collider.enabled = false;
-            exited = false;
             //orient agent position to enter ket
             if (agent.enabled)
             {
@@ -89,7 +87,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
             //lerp agent position to exit
             if (preOrientExit)
             {
-                if (Vector3.Distance(transform.position, enterPosition.position) > 0.01f)
+                if (Vector3.Distance(transform.position, enterPosition.position) > 0.01f &&  !agent.enabled)
                 {
                     elapsed += Time.deltaTime;
                     transform.position = Vector3.Lerp(transform.position, enterPosition.position, elapsed / duration);

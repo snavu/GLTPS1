@@ -47,7 +47,6 @@ public class GenerateNode : MonoBehaviour
             while (nodeList.Count != 0)
             {
                 nodeList.RemoveAt(0);
-                Debug.Log(nodeList);
             }
 
             //initialize list of nodes

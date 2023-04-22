@@ -84,10 +84,11 @@ public class CharacterDeath : MonoBehaviour
                 NavMeshAgentVehicleInteraction deadNavMeshAgentVehicleInteraction,
                 bool isDead)
     {
-        if (characterItemInteractionScript.thirstLevel <= 0 &&
-            characterItemInteractionScript.hungerLevel <= 0 &&
+        if ((characterItemInteractionScript.thirstLevel <= 0 ||
+            characterItemInteractionScript.hungerLevel <= 0) &&
             !characterAnim.GetCurrentAnimatorStateInfo(1).IsTag("Ket"))
         {
+            Debug.Log("dead");
             //check if navmesg agent is enable and that the navmesh agent has exited the vehicle
             if (characterNavMeshAgent.enabled)
             {

@@ -34,6 +34,8 @@ public class RainEffect : MonoBehaviour
 
     void Start()
     {
+        //initliaze elapsed2 to prevent lerp to no rain
+        elapsed2 = duration;
 
         initialFogColor = RenderSettings.fogColor;
         initialLightIntensity = directionalLight.intensity;
@@ -64,7 +66,7 @@ public class RainEffect : MonoBehaviour
 
     void Update()
     {
-        if (startRain )
+        if (startRain && elapsed2 < duration)
         {
             elapsed1 += Time.deltaTime;
 

@@ -22,6 +22,8 @@ public class CharacterItemData : MonoBehaviour
     [SerializeField] private float thirstRate = 2f;
     [SerializeField] private float maxThirstValue = 100f;
     [SerializeField] private float maxWaterLevel = 400f;
+    [SerializeField] private float waterSlowRefillRate = 0.1f;
+
 
     [SerializeField] private RectTransform waterBar;
     private float waterBarRectTransformInitialLength;
@@ -35,7 +37,9 @@ public class CharacterItemData : MonoBehaviour
     private float yuuriHungerBarRectTransformInitialLength;
     [SerializeField] private RectTransform yuuriThirstBar;
     private float yuuriThirstBarRectTransformInitialLength;
-    
+
+    [SerializeField] private RainEffect rainEffectScript;
+
     void Start()
     {
         waterBarRectTransformInitialLength = waterBar.sizeDelta.y;
@@ -67,6 +71,10 @@ public class CharacterItemData : MonoBehaviour
             _thirstRate = thirstRate;
         }
         waterLevel = Mathf.Clamp(waterLevel, 0, maxWaterLevel);
+        if (rainEffectScript.startRain)
+        {
+            waterLevel += waterSlowRefillRate * Time.deltaTime;
+        }
 
         yuuriItemInteraction.hungerLevel = Mathf.Clamp(yuuriItemInteraction.hungerLevel, 0, maxHungerValue);
         yuuriItemInteraction.hungerLevel -= _hungerRate * Time.deltaTime;

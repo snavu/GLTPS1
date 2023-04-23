@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6652392
 RectTransform:
   m_ObjectHideFlags: 0
@@ -915,7 +915,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135867288}
-  m_LocalRotation: {x: 0.0031531968, y: 0.011337616, z: -0.000035752208, w: 0.9999308}
+  m_LocalRotation: {x: 0.03579611, y: 0.0113304565, z: -0.00040587253, w: 0.9992948}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.26, z: -8.721668}
+  m_FollowOffset: {x: 0, y: 3.26, z: -4.75}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.26, z: -8.721668}
+  m_FollowOffset: {x: 0, y: 3.26, z: -4.75}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2164,8 +2164,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.0031531947, y: 0.0113376165, z: -0.0000357522, w: 0.9999308}
-  m_LocalPosition: {x: -6.0447617, y: 2.0900002, z: -121.26943}
+  m_LocalRotation: {x: 0.035796117, y: 0.0113304565, z: -0.00040587253, w: 0.9992948}
+  m_LocalPosition: {x: -5.954709, y: 2.0900002, z: -117.29878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3171,11 +3171,11 @@ MonoBehaviour:
   m_SplineCurvature: 1
   m_Orbits:
   - m_Height: 6.91
-    m_Radius: 8.776805
+    m_Radius: 4.75
   - m_Height: 3.26
-    m_Radius: 8.721668
+    m_Radius: 4.75
   - m_Height: 0.4
-    m_Radius: 8.75149
+    m_Radius: 4.750439
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 2082827652}
@@ -3189,7 +3189,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626363629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.0447617, y: 2.0900002, z: -121.26943}
+  m_LocalPosition: {x: -5.954709, y: 2.0900002, z: -117.29878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3543,7 +3543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &716500104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11081,7 +11081,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244749583}
-  m_LocalRotation: {x: 0.039461635, y: 0.011328806, z: -0.00044743047, w: 0.9991568}
+  m_LocalRotation: {x: 0.07205995, y: 0.011308244, z: -0.00081704836, w: 0.99733585}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11394,7 +11394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1334594709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13147,7 +13147,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1000
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -23353,11 +23353,13 @@ MonoBehaviour:
   thirstRate: 0.25
   maxThirstValue: 100
   maxWaterLevel: 200
+  waterSlowRefillRate: 0.1
   waterBar: {fileID: 488191838}
   chitoHungerBar: {fileID: 192138934}
   chitoThirstBar: {fileID: 1431766833}
   yuuriHungerBar: {fileID: 1672516515}
   yuuriThirstBar: {fileID: 1849035159}
+  rainEffectScript: {fileID: 2032314250}
 --- !u!4 &1924441659
 Transform:
   m_ObjectHideFlags: 0
@@ -23912,7 +23914,7 @@ MonoBehaviour:
   duration: 5
   startRain: 0
   stopRain: 1
-  rainChance: 0a0000005a000000
+  rainChance: 5a0000000a000000
   repeatInvokeDuration: 5
   rainDuration: 60
 --- !u!1 &2046324353
@@ -24333,7 +24335,7 @@ MonoBehaviour:
   playerGunControllerScript: {fileID: 2072579816}
   maxRandomAmmoCount: 5
   ammoCountText: {fileID: 1244795587}
-  waterIncreaseRate: 1
+  waterRefillRate: 1
   maxRandomFoodCount: 5
 --- !u!114 &2072579809
 MonoBehaviour:
@@ -24556,7 +24558,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: 0.039461635, y: 0.011328806, z: -0.00044743047, w: 0.9991568}
+  m_LocalRotation: {x: 0.07205993, y: 0.01130821, z: -0.0008170455, w: 0.99733585}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24686,7 +24688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.26, z: -8.721668}
+  m_FollowOffset: {x: 0, y: 3.26, z: -4.75}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -26706,7 +26708,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4457449216535467784}
-  m_LocalRotation: {x: 0.0020690549, y: -0.99741113, z: 0.03208524, w: 0.064322166}
+  m_LocalRotation: {x: 0.0021726266, y: -0.99728894, z: 0.03294909, w: 0.06576013}
   m_LocalPosition: {x: 13.1739, y: 11.7265, z: 27.1179}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -27201,7 +27203,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9212458544065924280}
-  m_LocalRotation: {x: 0.023463225, y: -0.96247894, z: 0.08839408, w: 0.25548038}
+  m_LocalRotation: {x: 0.034671415, y: -0.9435887, z: 0.10479772, w: 0.312179}
   m_LocalPosition: {x: 3.45835, y: 5.6396, z: -104.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -27668,7 +27670,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187429608059279339}
-  m_LocalRotation: {x: 0.004129966, y: 0.9947576, z: -0.09187229, w: 0.04471967}
+  m_LocalRotation: {x: 0.004655399, y: 0.99414366, z: -0.096804425, w: 0.047809128}
   m_LocalPosition: {x: -12.7943, y: 16.1038, z: -46.3519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28249,7 +28251,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86235679554125965}
-  m_LocalRotation: {x: 0.0007158456, y: -0.9992446, z: 0.022670835, w: 0.03155589}
+  m_LocalRotation: {x: 0.00072887057, y: -0.99923176, z: 0.02292037, w: 0.031779774}
   m_LocalPosition: {x: 16.8635, y: 18.5724, z: 241.068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28284,7 +28286,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5412853362487005052}
-  m_LocalRotation: {x: 0.0017244092, y: 0.9978013, z: -0.059641644, w: 0.028852385}
+  m_LocalRotation: {x: 0.0018717278, y: 0.99763364, z: -0.061708007, w: 0.03026023}
   m_LocalPosition: {x: -12.7943, y: 16.1038, z: -4.65799}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28523,7 +28525,7 @@ MonoBehaviour:
   playerGunControllerScript: {fileID: 2072579816}
   maxRandomAmmoCount: 5
   ammoCountText: {fileID: 1244795587}
-  waterIncreaseRate: 1
+  waterRefillRate: 1
   maxRandomFoodCount: 5
 --- !u!114 &9146561997578268267
 MonoBehaviour:

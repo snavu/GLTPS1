@@ -27,7 +27,7 @@ public class CharacterItemInteraction : MonoBehaviour
     [SerializeField] private int maxRandomAmmoCount = 5;
     [SerializeField] private TextMeshProUGUI ammoCountText;
 
-    [SerializeField] private float waterIncreaseRate = 1f;
+    [SerializeField] private float waterRefillRate = 1f;
     [SerializeField] private int maxRandomFoodCount = 5;
 
 
@@ -127,7 +127,7 @@ public class CharacterItemInteraction : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Water"))
         {
-            characterItemDataScript.waterLevel += waterIncreaseRate;
+            characterItemDataScript.waterLevel += waterRefillRate;
         }
     }
 
@@ -147,7 +147,7 @@ public class CharacterItemInteraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Water"))
         {
-            characterItemDataScript.waterLevel += waterIncreaseRate;
+            characterItemDataScript.waterLevel += waterRefillRate;
         }
     }
 }

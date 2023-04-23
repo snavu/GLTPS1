@@ -40,6 +40,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     [SerializeField] private float exitDuration = 0.25f;
     [SerializeField] private float enterDuration = 1.0f;
 
+    [SerializeField] private GameObject light;
     private Transform vehicleEnter;
 
     [SerializeField] VehicleFuelManager vehicleFuelManagerScript;
@@ -51,6 +52,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
         playerInputScript.actions.Player.Interact.performed += Interact;
         playerInputScript.actions.Vehicle.Exit.performed += Exit;
+        playerInputScript.actions.Vehicle.Light.performed += Light;
 
         GetComponent<CharacterBarrelInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
@@ -224,6 +226,21 @@ public class CharacterVehicleInteraction : MonoBehaviour
         {
             anim.SetTrigger("ket exit");
             GetComponent<NavMeshObstacle>().enabled = true;
+        }
+    }
+
+    private void Light(InputAction.CallbackContext context)
+    {
+        if (context.performed && anim.GetCurrentAnimatorStateInfo(1).IsName("Ket Steer") && Time.timeScale == 1)
+        {
+            if (light.activeInHierarchy)
+            {
+                light.SetActive(false);
+            }
+            else
+            {
+                light.SetActive(true);
+            }
         }
     }
 

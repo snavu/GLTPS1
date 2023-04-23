@@ -360,7 +360,7 @@
                 {
                     "name": "",
                     "id": "9c15f4e6-37bb-45a2-8878-642445ee57d7",
-                    "path": "<Keyboard>/v",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -470,7 +470,7 @@
                 {
                     "name": "",
                     "id": "7c187868-0b92-48ba-a659-bca51751e81e",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -506,6 +506,15 @@
                     "name": "Accelerate",
                     "type": "Button",
                     "id": "0ac0a263-3b4f-4ea9-85d7-d13cd97382c5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Light",
+                    "type": "Button",
+                    "id": "e46152ba-ac46-47e0-95ab-1eab4aa82ef1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -664,6 +673,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab791ca1-3b06-492e-a319-00fd629481d3",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Light",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

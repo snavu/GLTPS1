@@ -34,9 +34,8 @@ public class CharacterPossession : MonoBehaviour
 
     private void Possess(InputAction.CallbackContext context)
     {
-        if (context.performed
-            && !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(1).IsTag("Ket")
-            && !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(2).IsTag("Carry") &&
+        if (context.performed &&
+            !GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(1).IsTag("Ket") &&
             Time.timeScale == 1)
         {
             PossessCharacter(false);

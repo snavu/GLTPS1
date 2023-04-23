@@ -46,6 +46,8 @@ public class RainEffect : MonoBehaviour
     IEnumerator Rain()
     {
         int randomIndex = RandomWeightedGenerator.GenerateRandomIndex(rainChance);
+        Debug.Log(randomIndex);
+
         //no rain 
         if (randomIndex == 0)
         {
@@ -66,7 +68,7 @@ public class RainEffect : MonoBehaviour
 
     void Update()
     {
-        if (startRain && elapsed2 < duration)
+        if (startRain && elapsed1 < duration)
         {
             elapsed1 += Time.deltaTime;
 

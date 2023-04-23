@@ -62,6 +62,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         playerInputScript.actions.Player.Interact.performed -= Interact;
         playerInputScript.actions.Vehicle.Exit.performed -= Exit;
+        playerInputScript.actions.Vehicle.Light.performed -= Light;
     }
 
     void Update()

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class CharacterItemData : MonoBehaviour
 {
     public int index;
@@ -28,35 +28,39 @@ public class CharacterItemData : MonoBehaviour
     [SerializeField] private RectTransform waterBar;
     private float waterBarRectTransformInitialLength;
 
-    [SerializeField] private RectTransform chitoHungerBar;
-    private float chitoHungerBarRectTransformInitialLength;
-    [SerializeField] private RectTransform chitoThirstBar;
-    private float chitoThirstBarRectTransformInitialLength;
+    [SerializeField] private Image chitoHungerBar;
 
-    [SerializeField] private RectTransform yuuriHungerBar;
-    private float yuuriHungerBarRectTransformInitialLength;
-    [SerializeField] private RectTransform yuuriThirstBar;
-    private float yuuriThirstBarRectTransformInitialLength;
+    private float chitoHungerBarInitialFillAmount;
+
+    [SerializeField] private Image chitoThirstBar;
+    private float chitoThirstBarInitialFillAmount;
+
+
+    [SerializeField] private Image yuuriHungerBar;
+    private float yuuriHungerBarInitialFillAmount;
+
+    [SerializeField] private Image yuuriThirstBar;
+    private float yuuriThirstBarInitialFillAmount;
+
 
     [SerializeField] private RainEffect rainEffectScript;
 
     void Start()
     {
         waterBarRectTransformInitialLength = waterBar.sizeDelta.y;
-        chitoHungerBarRectTransformInitialLength = chitoHungerBar.sizeDelta.x;
-        chitoThirstBarRectTransformInitialLength = chitoThirstBar.sizeDelta.x;
-        yuuriHungerBarRectTransformInitialLength = yuuriHungerBar.sizeDelta.x;
-        yuuriThirstBarRectTransformInitialLength = yuuriThirstBar.sizeDelta.x;
+        chitoHungerBarInitialFillAmount = chitoHungerBar.fillAmount;
+        chitoThirstBarInitialFillAmount = chitoThirstBar.fillAmount;
+        yuuriHungerBarInitialFillAmount = yuuriHungerBar.fillAmount;
+        yuuriThirstBarInitialFillAmount = yuuriThirstBar.fillAmount;
     }
 
     void Update()
     {
         UpdateRectTransformSizeY(waterBar, waterBarRectTransformInitialLength, waterLevel, maxWaterLevel);
-        UpdateRectTransformSizeX(chitoHungerBar, chitoHungerBarRectTransformInitialLength, chitoItemInteraction.hungerLevel, maxHungerValue);
-        UpdateRectTransformSizeX(chitoThirstBar, chitoThirstBarRectTransformInitialLength, chitoItemInteraction.thirstLevel, maxThirstValue);
-        UpdateRectTransformSizeX(yuuriHungerBar, yuuriHungerBarRectTransformInitialLength, yuuriItemInteraction.hungerLevel, maxHungerValue);
-        UpdateRectTransformSizeX(yuuriThirstBar, yuuriThirstBarRectTransformInitialLength, yuuriItemInteraction.thirstLevel, maxThirstValue);
-
+        UpdateImageFillAmount(chitoHungerBar, chitoHungerBarInitialFillAmount, chitoItemInteraction.hungerLevel, maxHungerValue);
+        UpdateImageFillAmount(chitoThirstBar, chitoThirstBarInitialFillAmount, chitoItemInteraction.thirstLevel, maxThirstValue);
+        UpdateImageFillAmount(yuuriHungerBar, yuuriHungerBarInitialFillAmount, yuuriItemInteraction.hungerLevel, maxHungerValue);
+        UpdateImageFillAmount(yuuriThirstBar, yuuriThirstBarInitialFillAmount, yuuriItemInteraction.thirstLevel, maxThirstValue);
 
         float _hungerRate;
         float _thirstRate;
@@ -91,15 +95,15 @@ public class CharacterItemData : MonoBehaviour
     {
         //scale length directly proportionally to current length
         rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, initalLength * (currentLength / maxLength));
-        //clamp length
-        currentLength = Mathf.Clamp(currentLength, 0, maxLength);
     }
     private void UpdateRectTransformSizeX(RectTransform rectTransform, float initalLength, float currentLength, float maxLength)
     {
         //scale length directly proportionally to current length
         rectTransform.sizeDelta = new Vector2(initalLength * (currentLength / maxLength), rectTransform.sizeDelta.y);
-        //clamp length
-        currentLength = Mathf.Clamp(currentLength, 0, maxLength);
     }
 
+    private void UpdateImageFillAmount(Image image, float initalFillAmount, float currentFillAmount, float maxFillAmount)
+    {
+        image.fillAmount = initalFillAmount * (currentFillAmount / maxFillAmount);
+    }
 }

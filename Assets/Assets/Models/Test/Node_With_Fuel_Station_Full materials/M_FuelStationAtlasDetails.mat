@@ -23,7 +23,7 @@ Material:
   m_Name: M_FuelStationAtlasDetails
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 2100000, guid: 6685ba1ba16eb1243a094eac4ef8aa6d, type: 2}
-  m_ModifiedSerializedProperties: 16
+  m_ModifiedSerializedProperties: 24
   m_ValidKeywords:
   - _ALPHATEST_ON
   m_InvalidKeywords: []
@@ -50,10 +50,14 @@ Material:
     m_Floats:
     - _AlphaClip: 1
     - _AlphaToMask: 1
-    - _Cutoff: 0
+    - _BlendModePreserveSpecular: 1
+    - _Cull: 2
+    - _Cutoff: 0.6
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _ReceiveShadows: 1
     - _Smoothness: 0
+    - _SrcBlend: 1
     - _Surface: 0
     - _ZWrite: 1
     m_Colors: []

@@ -46,7 +46,6 @@ public class RainEffect : MonoBehaviour
     IEnumerator Rain()
     {
         int randomIndex = RandomWeightedGenerator.GenerateRandomIndex(rainChance);
-        Debug.Log(randomIndex);
 
         //no rain 
         if (randomIndex == 0)

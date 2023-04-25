@@ -13,6 +13,7 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     [SerializeField] private VehicleMovement vehicleMovementScript;
     [SerializeField] private VehicleFuelManager vehicleFuelManagerScript;
 
+    [SerializeField] private AudioSource vehicleAudioSource;
 
 
     //animation events
@@ -21,11 +22,12 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
         vehicleMovementScript.playerInputScript = playerInputScript;
         vehicleMovementScript.playerInputScript = playerInputScript;
         playerInputScript.actions.Vehicle.Enable();
-
+        vehicleAudioSource.Play();
     }
     public void DisableVehicle()
     {
         playerInputScript.actions.Vehicle.Disable();
+        vehicleAudioSource.Stop();
     }
 
     public void ExitVehicle()

@@ -45,6 +45,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     [SerializeField] VehicleFuelManager vehicleFuelManagerScript;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _audioClip;
+
     void OnEnable()
     {
         Physics.IgnoreLayerCollision(6, 7, false);
@@ -218,6 +221,12 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
             preOrientEnter = false;
             enterable = false;
+
+            if (_audioSource != null)
+            {
+                _audioSource.Stop();
+                _audioSource.PlayOneShot(_audioClip);
+            }
         }
     }
 

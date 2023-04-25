@@ -41,8 +41,7 @@ public class CharacterItemData : MonoBehaviour
 
     [SerializeField] private Image yuuriThirstBar;
     private float yuuriThirstBarInitialFillAmount;
-
-
+    
     [SerializeField] private RainEffect rainEffectScript;
 
     void Start()
@@ -75,6 +74,7 @@ public class CharacterItemData : MonoBehaviour
             _thirstRate = thirstRate;
         }
         waterLevel = Mathf.Clamp(waterLevel, 0, maxWaterLevel);
+
         if (rainEffectScript.startRain)
         {
             waterLevel += waterSlowRefillRate * Time.deltaTime;

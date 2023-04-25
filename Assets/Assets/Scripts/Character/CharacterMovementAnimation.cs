@@ -9,7 +9,6 @@ public class CharacterMovementAnimation : MonoBehaviour
     {
         //scale magnitude of vector in XZ plane
         float scaledVelocityXZ = Vector3.Magnitude(velocityXZ) / maxSpeed;
-
         //set movement animation
         anim.SetFloat("velocityXZ", scaledVelocityXZ);
     }

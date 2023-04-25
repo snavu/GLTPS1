@@ -24,6 +24,12 @@ public class CharacterStatusScreenEffect : MonoBehaviour
     private float elapsed = 0f;
     [SerializeField] private float duration = 2f;
 
+
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _audioClip;
+
+    private bool triggerDialogue;
+
     void Update()
     {
         //fade screen to black and increase audio reverb
@@ -53,6 +59,13 @@ public class CharacterStatusScreenEffect : MonoBehaviour
 
             //set audio reverb
             reverbFilter.reverbPreset = targetReverbPreset;
+
+            if (_audioSource != null && !triggerDialogue)
+            {
+                _audioSource.Stop();
+                _audioSource.PlayOneShot(_audioClip);
+                triggerDialogue = true;
+            }
         }
         else
         {
@@ -70,7 +83,7 @@ public class CharacterStatusScreenEffect : MonoBehaviour
                 }
             }
             reverbFilter.reverbPreset = defaultReverbPreset;
-
+            triggerDialogue = false;
         }
     }
 }

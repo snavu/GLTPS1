@@ -28,7 +28,10 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] private VehicleFuelManager vehicleFuelManagerScript;
     [SerializeField] private SkinnedMeshRenderer ketBarrelMesh;
 
-    private bool toggleVehicleControls;
+    private bool disableVehicle;
+
+    [SerializeField] private AudioSource vehicleAudioSource;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,10 +49,12 @@ public class VehicleMovement : MonoBehaviour
         if (playerInputScript.actions.Vehicle.Accelerate.IsPressed())
         {
             currentMovementRate = increasedMovementRate;
+            vehicleAudioSource.pitch = 1.1f;
         }
         else
         {
             currentMovementRate = 1;
+            vehicleAudioSource.pitch = 1f;
         }
         scaledMaxVelocity = maxVelocity * currentMovementRate;
 
@@ -80,15 +85,16 @@ public class VehicleMovement : MonoBehaviour
             }
         }
 
-        if (!isGrounded && !toggleVehicleControls)
+        //disable vehicle movement when not grounded
+        if (!isGrounded && !disableVehicle)
         {
             playerInputScript.actions.Vehicle.Exit.Disable();
-            toggleVehicleControls = true;
+            disableVehicle = true;
         }
-        else if(isGrounded && toggleVehicleControls)
+        else if (isGrounded && disableVehicle)
         {
             playerInputScript.actions.Vehicle.Exit.Enable();
-            toggleVehicleControls = false;
+            disableVehicle = false;
         }
 
         //clamp velocity and angular velocity

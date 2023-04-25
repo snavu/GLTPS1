@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterStreamEffect : MonoBehaviour
+public class BulletEffect : MonoBehaviour
 {
     [SerializeField]
     private PipeWaterLevel pipeWaterLevelScript;
@@ -13,6 +13,8 @@ public class WaterStreamEffect : MonoBehaviour
     [SerializeField]
     private float duration = 2f;
     private float decreaseRate = 1f;
+    public AudioSource _audioSource;
+    [SerializeField] private AudioClip[] _audioClip;
     void Start()
     {
         emission = waterStream.emission;
@@ -42,13 +44,25 @@ public class WaterStreamEffect : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Pipe") && transform.parent.CompareTag("Pipe"))
+        if (other.gameObject.CompareTag("Pipe"))
         {
+            _audioSource.PlayOneShot(_audioClip[Random.Range(0, 2)]);
+
             pipeWaterLevelScript = other.gameObject.GetComponent<PipeWaterLevel>();
             if (pipeWaterLevelScript.waterlevel > 0)
             {
                 waterStream.Play();
             }
+        }
+
+        if (other.gameObject.CompareTag("Metal"))
+        {
+            _audioSource.PlayOneShot(_audioClip[Random.Range(0, 2)]);
+        }
+
+        if (other.gameObject.CompareTag("Untagged") || other.gameObject.CompareTag("Food") || other.gameObject.CompareTag("Ammo"))
+        {
+            _audioSource.PlayOneShot(_audioClip[2]);
         }
     }
 }

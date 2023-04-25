@@ -19,8 +19,13 @@ public class PlayerGunController : MonoBehaviour
     private ConstraintSource source;
     [SerializeField] private Animator anim;
     [SerializeField] private TextMeshProUGUI ammoCountText;
-
     private LayerMask layerMask;
+
+    public AudioSource audioSourceGunFire;
+    public AudioSource audioSourceGunBolt;
+
+    [SerializeField] private AudioClip[] _audioClip;
+    private bool reload = true;
 
     void OnEnable()
     {
@@ -40,6 +45,7 @@ public class PlayerGunController : MonoBehaviour
         if (context.performed && ammoCount != 0 &&
             !anim.GetCurrentAnimatorStateInfo(5).IsTag("Reload") &&
             anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") &&
+            reload &&
             Time.timeScale == 1)
         {
             // Set ray from the viewport to world space
@@ -74,8 +80,9 @@ public class PlayerGunController : MonoBehaviour
 
             StartCoroutine(SmokeEffect(1f));
 
-            anim.SetTrigger("reload");
-
+            audioSourceGunFire.PlayOneShot(_audioClip[0]);
+            StartCoroutine(BoltAction(0.25f));
+            reload = false;
         }
     }
 
@@ -88,6 +95,14 @@ public class PlayerGunController : MonoBehaviour
         newBarrelSmoke.GetComponent<Rigidbody>().AddForce(muzzle.forward, ForceMode.Impulse);
         yield return new WaitForSeconds(duration);
         Destroy(newBarrelSmoke);
+    }
+
+    IEnumerator BoltAction(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        audioSourceGunBolt.PlayOneShot(_audioClip[1]);
+        anim.SetTrigger("reload");
+        reload = true;
     }
 
 

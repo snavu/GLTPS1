@@ -30,6 +30,8 @@ public class CharacterItemInteraction : MonoBehaviour
     [SerializeField] private float waterRefillRate = 1f;
     [SerializeField] private int maxRandomFoodCount = 5;
 
+    public AudioSource _audioSource;
+    [SerializeField] private AudioClip[] _audioClip;
 
     void OnEnable()
     {
@@ -71,6 +73,8 @@ public class CharacterItemInteraction : MonoBehaviour
                 }
 
                 isFood = false;
+
+                _audioSource.PlayOneShot(_audioClip[0]);
             }
             if (isAmmo && other != null)
             {
@@ -82,6 +86,8 @@ public class CharacterItemInteraction : MonoBehaviour
 
                 //change ammo ui
                 ammoCountText.text = playerGunControllerScript.ammoCount.ToString();
+
+                _audioSource.PlayOneShot(_audioClip[0]);
             }
         }
     }
@@ -99,6 +105,8 @@ public class CharacterItemInteraction : MonoBehaviour
 
             //trigger eating animation
             anim.SetTrigger("eat");
+
+            _audioSource.PlayOneShot(_audioClip[Random.Range(2, _audioClip.Length)]);
         }
     }
 
@@ -110,6 +118,8 @@ public class CharacterItemInteraction : MonoBehaviour
             characterItemDataScript.waterLevel -= drinkValue;
 
             anim.SetTrigger("drink");
+
+            _audioSource.PlayOneShot(_audioClip[1]);
         }
     }
 

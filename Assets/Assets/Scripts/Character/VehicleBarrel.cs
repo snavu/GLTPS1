@@ -12,13 +12,17 @@ public class VehicleBarrel : MonoBehaviour
     public bool isFueling;
 
     private float elapsed = 0f;
-    private float timeThreshold = 1f;
-
+    [SerializeField] private float timeThreshold = 1f;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioSource audioScourceMountBarrel;
+    private bool triggerFuelingAudio;
     void Start()
     {
         ketBarrelMesh = GameObject.FindWithTag("BarrelDropArea").GetComponent<SkinnedMeshRenderer>();
         vehicleFuelManagerScript = GameObject.FindWithTag("Vehicle").GetComponent<VehicleFuelManager>();
         fadeHUDScript = GameObject.FindWithTag("UI").GetComponent<FadeHUD>();
+        audioScourceMountBarrel = GameObject.FindWithTag("Vehicle").GetComponentInChildren<AudioSource>();
+
 
         //hide the barrel mesh of the kettengrad
         ketBarrelMesh.enabled = false;
@@ -32,7 +36,15 @@ public class VehicleBarrel : MonoBehaviour
         elapsed += Time.deltaTime;
         if (elapsed > timeThreshold)
         {
+            _audioSource.Stop();
             isFueling = false;
+            triggerFuelingAudio = false;
+        }
+
+        if (_audioSource != null && isFueling && !triggerFuelingAudio)
+        {
+            _audioSource.Play();
+            triggerFuelingAudio = true;
         }
     }
     private void OnTriggerStay(Collider other)
@@ -41,6 +53,7 @@ public class VehicleBarrel : MonoBehaviour
         {
             ketBarrelMesh.enabled = true;
             characterBarrelInteractionScript.isPickupable = false;
+            audioScourceMountBarrel.Play();
             Destroy(gameObject);
         }
     }
@@ -49,7 +62,6 @@ public class VehicleBarrel : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fuel"))
         {
-            Debug.Log(true);
             vehicleFuelManagerScript.currentFuel += vehicleFuelManagerScript.refuelingRate;
             isFueling = true;
             elapsed = 0f;

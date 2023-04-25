@@ -30,6 +30,8 @@ public class RainEffect : MonoBehaviour
     [SerializeField] private float repeatInvokeDuration = 5f;
     [SerializeField] private float rainDuration = 60f;
 
+    [SerializeField] private AudioSource rainAudioSource;
+
 
 
     void Start()
@@ -69,6 +71,12 @@ public class RainEffect : MonoBehaviour
     {
         if (startRain && elapsed1 < duration)
         {
+            if (elapsed1 == 0)
+            {
+                rainAudioSource.Play();
+                snowParticleSystem.Stop();
+            }
+
             elapsed1 += Time.deltaTime;
 
             if (volume.profile.TryGet<ColorAdjustments>(out colorAdjustments))
@@ -84,8 +92,8 @@ public class RainEffect : MonoBehaviour
             var emission = rainParticleSystem.emission;
             emission.rateOverTime = Mathf.Lerp(0, rainParticleSystemEmmisionRate, elapsed1 / duration);
 
+            rainAudioSource.volume = Mathf.Lerp(0, 0.08f, elapsed1 / duration);
 
-            snowParticleSystem.Stop();
             elapsed2 = 0f;
 
         }
@@ -106,8 +114,13 @@ public class RainEffect : MonoBehaviour
             var emission = rainParticleSystem.emission;
             emission.rateOverTime = Mathf.Lerp(rainParticleSystemEmmisionRate, 0, elapsed2 / duration);
 
-
-            snowParticleSystem.Play();
+            rainAudioSource.volume = Mathf.Lerp(0.08f, 0, elapsed2 / duration);
+            if (rainAudioSource.volume == 0f)
+            {
+                rainAudioSource.Stop();
+                snowParticleSystem.Play();
+            }
+            
             elapsed1 = 0f;
         }
     }

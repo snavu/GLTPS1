@@ -21,6 +21,8 @@ TagManager:
   - NodeCache
   - Water
   - UI
+  - Metal
+  - FuelingStationVoicelineTrigger
   layers:
   - Default
   - TransparentFX

@@ -14,9 +14,12 @@ public class CharacterFuelInteraction : MonoBehaviour
     private Animator fuelAnim;
     [SerializeField]
     private bool inFuelingStationInteractArea;
-    private bool isFueling;
+    public bool isFueling = true;
 
     private Collider other;
+
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _audioClip;
     void OnEnable()
     {
         playerInputScript.actions.Player.Interact.performed += Interact;
@@ -34,6 +37,12 @@ public class CharacterFuelInteraction : MonoBehaviour
             {
                 other.gameObject.GetComponentInChildren<ParticleSystem>().Play();
                 isFueling = false;
+
+                if (_audioSource != null)
+                {
+                    _audioSource.Stop();
+                    _audioSource.PlayOneShot(_audioClip);
+                }
             }
             else
             {

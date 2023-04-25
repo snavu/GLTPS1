@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2451969257836235982}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000025288108}
+  m_LocalRotation: {x: 0, y: 0.70710653, z: 0, w: -0.7071071}
   m_LocalPosition: {x: -154, y: 0, z: -92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -282,6 +282,59 @@ MonoBehaviour:
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
   nodeCacheScript: {fileID: 11400000, guid: 8c913afd144ffc9409cc42ca8b1b6b2f, type: 2}
+--- !u!1 &7400451767508363270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7847421704293764986}
+  - component: {fileID: 2789221644260958610}
+  m_Layer: 0
+  m_Name: VoicelineTrigger
+  m_TagString: FuelingStationVoicelineTrigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7847421704293764986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7400451767508363270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6468926277721734908}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2789221644260958610
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7400451767508363270}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 81.86176, y: 52.12386, z: 54.863964}
+  m_Center: {x: -47.242542, y: 21.06193, z: -22.431982}
 --- !u!1 &7567335470279291303
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,6 +902,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 144858924214827908, guid: 79469148192924f4cbb95d03841c529f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Metal
+      objectReference: {fileID: 0}
     - target: {fileID: 212103212407927494, guid: 79469148192924f4cbb95d03841c529f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -883,6 +941,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3444597308181563247, guid: 79469148192924f4cbb95d03841c529f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Metal
       objectReference: {fileID: 0}
     - target: {fileID: 3640220154874834529, guid: 79469148192924f4cbb95d03841c529f,
         type: 3}
@@ -934,6 +997,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5785413247944959356}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 79469148192924f4cbb95d03841c529f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7847421704293764986}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -1371447939681008422, guid: 79469148192924f4cbb95d03841c529f,
         type: 3}

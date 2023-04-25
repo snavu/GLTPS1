@@ -18,6 +18,10 @@ public class CharacterBarrelInteraction : MonoBehaviour
     private ConstraintSource source;
     [SerializeField] private CharacterController controller;
 
+
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _audioClip;
+
     public Rigidbody vehicleRigidbody;
 
     void OnEnable()
@@ -45,6 +49,8 @@ public class CharacterBarrelInteraction : MonoBehaviour
                 newBarrel = Instantiate(barrelPrefab, transform.position, transform.rotation);
                 newBarrel.GetComponent<VehicleBarrel>().characterBarrelInteractionScript = this;
                 SetParentConstraint();
+
+                _audioSource.PlayOneShot(_audioClip);
             }
             if (context.performed && isPickupable && !anim.GetCurrentAnimatorStateInfo(2).IsTag("Carry") && !inBarrelDropArea)
             {
@@ -54,6 +60,8 @@ public class CharacterBarrelInteraction : MonoBehaviour
                 SetCarryParameters(true, 0.4f, 0f, true, true);
                 newBarrel.GetComponent<VehicleBarrel>().characterBarrelInteractionScript = this;
                 SetParentConstraint();
+
+                _audioSource.PlayOneShot(_audioClip);
             }
             if (context.performed && anim.GetCurrentAnimatorStateInfo(2).IsTag("Carry"))
             {

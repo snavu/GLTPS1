@@ -112,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
             //pass velocityXZ to drive movement animation
             CharacterMovementAnimation.Movement(anim, velocityXZ, runSpeed);
+            float scaledVelocityXZ = Vector3.Magnitude(velocityXZ) / runSpeed;
 
             if (!ADS)
             {

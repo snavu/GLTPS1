@@ -915,7 +915,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135867288}
-  m_LocalRotation: {x: 0.03579611, y: 0.011330356, z: -0.00040586892, w: 0.9992948}
+  m_LocalRotation: {x: 0.0031988563, y: 0.01133762, z: -0.000036269932, w: 0.9999306}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.26, z: -4.75}
+  m_FollowOffset: {x: 0, y: 3.26, z: -8.711551}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.26, z: -4.75}
+  m_FollowOffset: {x: 0, y: 3.26, z: -8.711551}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2162,8 +2162,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.035796117, y: 0.011330356, z: -0.00040586895, w: 0.9992948}
-  m_LocalPosition: {x: -5.954708, y: 2.0900002, z: -117.29878}
+  m_LocalRotation: {x: 0.003198853, y: 0.011337618, z: -0.000036269917, w: 0.9999306}
+  m_LocalPosition: {x: -6.0445323, y: 2.0900002, z: -121.259315}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3448,11 +3448,11 @@ MonoBehaviour:
   m_SplineCurvature: 1
   m_Orbits:
   - m_Height: 6.91
-    m_Radius: 4.75
+    m_Radius: 8.795708
   - m_Height: 3.26
-    m_Radius: 4.75
+    m_Radius: 8.711551
   - m_Height: 0.4
-    m_Radius: 4.75013
+    m_Radius: 8.742714
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 2082827652}
@@ -3466,7 +3466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626363629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.954708, y: 2.0900002, z: -117.29878}
+  m_LocalPosition: {x: -6.0445323, y: 2.0900002, z: -121.259315}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12281,7 +12281,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244749583}
-  m_LocalRotation: {x: 0.07205991, y: 0.011308148, z: -0.0008170407, w: 0.9973359}
+  m_LocalRotation: {x: 0.039507255, y: 0.011328791, z: -0.000447948, w: 0.999155}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13211,6 +13211,152 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372979583}
   m_CullTransparentMesh: 1
+--- !u!1 &1380352480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1380352481}
+  - component: {fileID: 1380352482}
+  m_Layer: 6
+  m_Name: AudioSourceToggleLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1380352481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380352480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1419417138}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1380352482
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380352480}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.15
+  m_Pitch: 1.2
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 50
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.125
+      value: 1
+      inSlope: -8.0032
+      outSlope: -8.0032
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2633667
+      value: 0.36712646
+      inSlope: -2.0008
+      outSlope: -2.0008
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5133667
+      value: 0.117126465
+      inSlope: -0.5002
+      outSlope: -0.5002
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.12505
+      outSlope: -0.12505
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1419417136
 GameObject:
   m_ObjectHideFlags: 0
@@ -13261,6 +13407,7 @@ Transform:
   - {fileID: 710400085}
   - {fileID: 1351612634}
   - {fileID: 1022391044}
+  - {fileID: 1380352481}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26566,6 +26713,8 @@ MonoBehaviour:
   anim: {fileID: 1690254641}
   vehicleAnim: {fileID: 491373355}
   controller: {fileID: 2072579811}
+  _collider: {fileID: 919132149597969028}
+  navMeshAgentCollider: {fileID: 9146561999101011857}
   agent: {fileID: 2072579801}
   angularSpeed: 800
   child: {fileID: 543450653265870907}
@@ -26584,8 +26733,11 @@ MonoBehaviour:
   enterDuration: 4
   light: {fileID: 1511903713}
   vehicleFuelManagerScript: {fileID: 1419417153}
-  _audioSource: {fileID: 0}
-  _audioClip: {fileID: 0}
+  audioSourceVocal: {fileID: 0}
+  audioSourceToggleLight: {fileID: 1380352482}
+  voiceline: {fileID: 0}
+  toggleLightOn: {fileID: 8300000, guid: 5902b236089c59340ae56bf85a0e6c07, type: 3}
+  toggleLightOff: {fileID: 8300000, guid: 26b6b7a11bc829642929fde99f55d808, type: 3}
 --- !u!114 &2072579806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26902,7 +27054,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: 0.07205994, y: 0.011308112, z: -0.00081703847, w: 0.9973359}
+  m_LocalRotation: {x: 0.039507255, y: 0.011328791, z: -0.000447948, w: 0.999155}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -27032,7 +27184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 3.26, z: -4.75}
+  m_FollowOffset: {x: 0, y: 3.26, z: -8.711551}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -29231,7 +29383,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4457449216535467784}
-  m_LocalRotation: {x: 0.0021726266, y: -0.99728894, z: 0.03294909, w: 0.06576013}
+  m_LocalRotation: {x: 0.0020693075, y: -0.99741083, z: 0.03208738, w: 0.064325705}
   m_LocalPosition: {x: 13.1739, y: 11.7265, z: 27.1179}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -29806,7 +29958,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9212458544065924280}
-  m_LocalRotation: {x: 0.03467133, y: -0.9435887, z: 0.10479775, w: 0.31217897}
+  m_LocalRotation: {x: 0.02348488, y: -0.9624432, z: 0.08843114, w: 0.2556005}
   m_LocalPosition: {x: 3.45835, y: 5.6396, z: -104.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30273,7 +30425,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187429608059279339}
-  m_LocalRotation: {x: 0.0046552126, y: 0.99414366, z: -0.09680443, w: 0.04780911}
+  m_LocalRotation: {x: 0.004131202, y: 0.99475616, z: -0.091884464, w: 0.044727065}
   m_LocalPosition: {x: -12.7943, y: 16.1038, z: -46.3519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30854,7 +31006,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86235679554125965}
-  m_LocalRotation: {x: 0.00072887057, y: -0.99923176, z: 0.02292037, w: 0.031779774}
+  m_LocalRotation: {x: 0.0007158767, y: -0.9992446, z: 0.022671487, w: 0.03155635}
   m_LocalPosition: {x: 16.8635, y: 18.5724, z: 241.068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30889,7 +31041,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5412853362487005052}
-  m_LocalRotation: {x: 0.0018717278, y: 0.99763364, z: -0.061708007, w: 0.03026023}
+  m_LocalRotation: {x: 0.0017249512, y: 0.9978009, z: -0.059646778, w: 0.02885584}
   m_LocalPosition: {x: -12.7943, y: 16.1038, z: -4.65799}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31033,6 +31185,8 @@ MonoBehaviour:
   anim: {fileID: 9146561999101011854}
   vehicleAnim: {fileID: 491373355}
   controller: {fileID: 1179579386}
+  _collider: {fileID: 9146561999101011857}
+  navMeshAgentCollider: {fileID: 919132149597969028}
   agent: {fileID: 9146561997578268258}
   angularSpeed: 800
   child: {fileID: 868928912622174518}
@@ -31051,8 +31205,11 @@ MonoBehaviour:
   enterDuration: 4
   light: {fileID: 1511903713}
   vehicleFuelManagerScript: {fileID: 1419417153}
-  _audioSource: {fileID: 1687630294}
-  _audioClip: {fileID: 8300000, guid: 2ea3ba27229090d4889cbcb5db213dc3, type: 3}
+  audioSourceVocal: {fileID: 1687630294}
+  audioSourceToggleLight: {fileID: 1380352482}
+  voiceline: {fileID: 8300000, guid: 2ea3ba27229090d4889cbcb5db213dc3, type: 3}
+  toggleLightOn: {fileID: 8300000, guid: 5902b236089c59340ae56bf85a0e6c07, type: 3}
+  toggleLightOff: {fileID: 8300000, guid: 26b6b7a11bc829642929fde99f55d808, type: 3}
 --- !u!114 &9146561997578268263
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,6 +15,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private Animator vehicleAnim;
     public CharacterController controller;
+    [SerializeField] private Collider _collider;
+    [SerializeField] private Collider navMeshAgentCollider;
+
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private float angularSpeed = 800f;
     [SerializeField] private Transform child;
@@ -45,8 +48,13 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     [SerializeField] VehicleFuelManager vehicleFuelManagerScript;
 
-    [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioClip _audioClip;
+    [SerializeField] AudioSource audioSourceVocal;
+    [SerializeField] AudioSource audioSourceToggleLight;
+
+    [SerializeField] AudioClip voiceline;
+    [SerializeField] AudioClip toggleLightOn;
+    [SerializeField] AudioClip toggleLightOff;
+
 
     void OnEnable()
     {
@@ -178,6 +186,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
         Physics.IgnoreLayerCollision(6, 7, false);
         playerInputScript.actions.Player.Enable();
         controller.enabled = true;
+        _collider.enabled = true;
+        navMeshAgentCollider.enabled = true;
         preOrientExit = false;
         exitLeft = false;
         exitRight = false;
@@ -213,8 +223,10 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
             //disable player movement
             playerInputScript.actions.Player.Disable();
-            //disable character controller
+            //disable character controller and colliders
             controller.enabled = false;
+            _collider.enabled = false;
+            navMeshAgentCollider.enabled = false;
             //disable navmesh obstacle, and wait a short time before enabling the agent
             GetComponent<NavMeshObstacle>().enabled = false;
             StartCoroutine(DelayEnter());
@@ -222,10 +234,10 @@ public class CharacterVehicleInteraction : MonoBehaviour
             preOrientEnter = false;
             enterable = false;
 
-            if (_audioSource != null)
+            if (audioSourceVocal != null)
             {
-                _audioSource.Stop();
-                _audioSource.PlayOneShot(_audioClip);
+                audioSourceVocal.Stop();
+                audioSourceVocal.PlayOneShot(voiceline);
             }
         }
     }
@@ -246,10 +258,18 @@ public class CharacterVehicleInteraction : MonoBehaviour
             if (light.activeInHierarchy)
             {
                 light.SetActive(false);
+                if (audioSourceToggleLight != null)
+                {
+                    audioSourceToggleLight.PlayOneShot(toggleLightOff);
+                }
             }
             else
             {
                 light.SetActive(true);
+                if (audioSourceToggleLight != null)
+                {
+                    audioSourceToggleLight.PlayOneShot(toggleLightOn);
+                }
             }
         }
     }

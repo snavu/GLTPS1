@@ -52,7 +52,7 @@ public class CharacterBarrelInteraction : MonoBehaviour
 
                 _audioSource.PlayOneShot(_audioClip);
             }
-            if (context.performed && isPickupable && !anim.GetCurrentAnimatorStateInfo(2).IsTag("Carry") && !inBarrelDropArea)
+            if (context.performed && isPickupable && !anim.GetCurrentAnimatorStateInfo(2).IsTag("Carry") && !inBarrelDropArea && !isCarrying)
             {
                 //disable player jump and sprint
                 playerInputScript.actions.Player.Jump.Disable();

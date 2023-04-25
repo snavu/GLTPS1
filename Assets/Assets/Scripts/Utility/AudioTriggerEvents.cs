@@ -16,7 +16,7 @@ public class AudioTriggerEvents : MonoBehaviour
     {
         if (other.gameObject.CompareTag("FuelingStationVoicelineTrigger") && !flag1)
         {
-            if (_audioSource != null)
+            if (_audioSource != null && voicelines.Length != 0)
             {
                 _audioSource.Stop();
                 _audioSource.PlayOneShot(voicelines[0]);
@@ -25,7 +25,7 @@ public class AudioTriggerEvents : MonoBehaviour
         }
         if (other.gameObject.CompareTag("FuelingStation") && !flag2)
         {
-            if (_audioSource != null)
+            if (_audioSource != null && voicelines.Length != 0)
             {
                 _audioSource.Stop();
                 _audioSource.PlayOneShot(voicelines[1]);

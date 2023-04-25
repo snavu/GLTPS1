@@ -17,7 +17,7 @@ public class AudioAnimationEvents : MonoBehaviour
     }
     public void PlayFootstepOneAudioClipOneShot(AnimationEvent animEvent)
     {
-        if (animEvent.animatorClipInfo.weight > 0.75f)
+        if (animEvent.animatorClipInfo.weight > 0.5f)
         {
             if (isGroundedConcrete)
             {
@@ -31,7 +31,7 @@ public class AudioAnimationEvents : MonoBehaviour
     }
     public void PlayFootstepTwoAudioClipOneShot(AnimationEvent animEvent)
     {
-        if (animEvent.animatorClipInfo.weight > 0.75f)
+        if (animEvent.animatorClipInfo.weight > 0.5f)
         {
             if (isGroundedConcrete)
             {

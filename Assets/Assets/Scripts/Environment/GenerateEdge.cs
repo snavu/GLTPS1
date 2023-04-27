@@ -17,19 +17,24 @@ public class GenerateEdge : MonoBehaviour
     private List<GameObject> barrierPrefabs;
     private bool spawnedBarrier = false;
 
-    public NodeCache nodeCacheScript;
+    public NodeData nodeDataScript;
 
     private bool resetEdge = false;
 
     void Start()
     {
-        nodeCacheScript = GameObject.FindWithTag("NodeCache").GetComponent<NodeCache>();
+        nodeDataScript = GameObject.FindWithTag("NodeData").GetComponent<NodeData>();
 
         //initialize list of edges
         foreach (GameObject edge in edgePrefabs)
         {
             edgeList.Add(edge);
         }
+        // if (nodeDataScript.count == nodeDataScript.countThreshold)
+        // {
+        //     edgeList.Add(nodeDataScript.edge);
+        //     spawnChance.Add(nodeDataScript.spawnChance);
+        // }
 
         //generate first random edge
         if (edgeList.Count != 0)
@@ -42,29 +47,30 @@ public class GenerateEdge : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, nodeCacheScript.player.transform.position) < nodeCacheScript.spawnThreshold && resetEdge)
-        {
-            //clear pre-existing edge list
-            while (edgeList.Count != 0)
-            {
-                edgeList.RemoveAt(0);
-            }
+        // //respawn edge after despawn 
+        // if (Vector3.Distance(transform.position, nodeDataScript.player.transform.position) < nodeDataScript.spawnThreshold && resetEdge)
+        // {
+        //     //clear pre-existing edge list
+        //     while (edgeList.Count != 0)
+        //     {
+        //         edgeList.RemoveAt(0);
+        //     }
 
-            //initialize list of edges
-            foreach (GameObject edge in edgePrefabs)
-            {
-                edgeList.Add(edge);
-            }
+        //     //initialize list of edges
+        //     foreach (GameObject edge in edgePrefabs)
+        //     {
+        //         edgeList.Add(edge);
+        //     }
 
-            //generate first random edge
-            if (edgeList.Count != 0)
-            {
-                //regenerate different edge from edge lsit
-                newEdge = GenerateRandomEdge();
-            }
+        //     //generate first random edge
+        //     if (edgeList.Count != 0)
+        //     {
+        //         //regenerate different edge from edge lsit
+        //         newEdge = GenerateRandomEdge();
+        //     }
 
-            resetEdge = false;
-        }
+        //     resetEdge = false;
+        // }
 
         if (newEdge != null)
         {
@@ -73,7 +79,6 @@ public class GenerateEdge : MonoBehaviour
                 if (newEdge.GetComponent<GenerateNode>().isColliding || newEdge.GetComponent<GenerateNode>().nodeList.Count == 0)
                 {
                     //no nodes left for which a node will be non-colliding, destroy and remove the edge from edge list
-                    //nodeCacheScript.nodeList.Remove(newEdge);
                     Destroy(newEdge);
                     edgeList.RemoveAt(index);
 
@@ -110,8 +115,6 @@ public class GenerateEdge : MonoBehaviour
         Vector3 edgeEntranceOffsetPos = edge.transform.position - edgeEntrance.position;
 
         GameObject newEdge = Instantiate(edge, transform.position + edgeEntranceOffsetPos, transform.rotation);
-
-        nodeCacheScript.nodeList.Add(newEdge);
 
         return newEdge;
     }

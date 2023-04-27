@@ -6,25 +6,24 @@ public class Node : MonoBehaviour
 {
     public List<Transform> portPrefab;
     public List<Transform> portList;
-    [SerializeField]
-    private int index = 0;
+    [SerializeField] private int index = 0;
 
     public GenerateNode edge;
     public bool isColliding = true;
     private bool isActive = false;
     public bool allowCollisionCheck = true;
 
-    private NodeCache nodeCacheScript;
+    private NodeData nodeDataScript;
 
     [SerializeField] private bool resetPorts = true;
 
     //cache yield instructions
-    WaitForSeconds waitForSeconds = new WaitForSeconds(0.25f);
+    WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
     WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
 
     void Start()
     {
-        nodeCacheScript = GameObject.FindWithTag("NodeCache").GetComponent<NodeCache>();
+        nodeDataScript = GameObject.FindWithTag("NodeData").GetComponent<NodeData>();
     }
     IEnumerator GenerateSceneGeometry()
     {
@@ -35,6 +34,10 @@ public class Node : MonoBehaviour
             index++;
 
             StartCoroutine(GenerateSceneGeometry());
+        }
+        if (index == portPrefab.Count - 1)
+        {
+            nodeDataScript.count++;
         }
     }
 
@@ -84,9 +87,9 @@ public class Node : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Vector3.Distance(transform.position, nodeCacheScript.player.transform.position) < nodeCacheScript.spawnThreshold && resetPorts)
+        if (Vector3.Distance(transform.position, nodeDataScript.player.transform.position) < nodeDataScript.spawnThreshold && resetPorts)
         {
-            while(portList.Count != 0)
+            while (portList.Count != 0)
             {
                 portList.RemoveAt(0);
             }

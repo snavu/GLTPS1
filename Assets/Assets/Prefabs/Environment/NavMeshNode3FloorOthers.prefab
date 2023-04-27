@@ -256,7 +256,7 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeCacheScript: {fileID: 11400000, guid: 8c913afd144ffc9409cc42ca8b1b6b2f, type: 2}
+  nodeDataScript: {fileID: 0}
 --- !u!1 &2261728462455821403
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeCacheScript: {fileID: 11400000, guid: 8c913afd144ffc9409cc42ca8b1b6b2f, type: 2}
+  nodeDataScript: {fileID: 0}
 --- !u!1 &4111881817646381474
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +655,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6574849589225440675}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000037153688}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000033717478}
   m_LocalPosition: {x: -299.1, y: 0, z: 40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -937,7 +937,7 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeCacheScript: {fileID: 11400000, guid: 8c913afd144ffc9409cc42ca8b1b6b2f, type: 2}
+  nodeDataScript: {fileID: 0}
 --- !u!1001 &4943477166084453926
 PrefabInstance:
   m_ObjectHideFlags: 0

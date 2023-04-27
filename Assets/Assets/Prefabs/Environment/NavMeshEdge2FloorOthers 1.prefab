@@ -300,14 +300,14 @@ MonoBehaviour:
   - {fileID: 6355166913744518856, guid: 6e0fd24880310c94c8575c7a29fee0ca, type: 3}
   - {fileID: 6574849589225440675, guid: 42d495c7a36bf6e4483f515a4115a30a, type: 3}
   - {fileID: 2451969257836235982, guid: 0a5ae65996cda214a8c26c75fad98aee, type: 3}
-  - {fileID: 9186179694044918228, guid: 036eebdf2dc9b6e40b0c4aecf577f68f, type: 3}
   newNode: {fileID: 0}
   nodeList: []
   edgeExit: {fileID: 8319876885228119263}
   isColliding: 0
   allowCollisionCheck: 1
   portIndex: 0
-  spawnChance: 0a0000000a0000000a0000000a0000000a00000005000000
+  spawnChance: 0a0000000a0000000a0000000a0000000a000000
+  count: 0
 --- !u!54 &6466177718867855721
 Rigidbody:
   m_ObjectHideFlags: 0

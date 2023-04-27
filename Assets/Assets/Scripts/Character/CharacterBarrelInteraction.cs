@@ -51,6 +51,7 @@ public class CharacterBarrelInteraction : MonoBehaviour
                 SetParentConstraint();
 
                 _audioSource.PlayOneShot(_audioClip);
+
             }
             if (context.performed && isPickupable && !anim.GetCurrentAnimatorStateInfo(2).IsTag("Carry") && !inBarrelDropArea && !isCarrying)
             {

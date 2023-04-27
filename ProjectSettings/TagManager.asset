@@ -18,11 +18,11 @@ TagManager:
   - Ammo
   - Pipe
   - GenerateNodeTrigger
-  - NodeCache
   - Water
   - UI
   - Metal
   - FuelingStationVoicelineTrigger
+  - NodeData
   layers:
   - Default
   - TransparentFX

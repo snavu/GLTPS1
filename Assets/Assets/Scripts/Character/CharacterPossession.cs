@@ -18,7 +18,7 @@ public class CharacterPossession : MonoBehaviour
     [SerializeField] private PositionConstraint outOfBoundsBox;
     [SerializeField] private PositionConstraint skybox;
     [SerializeField] private PositionConstraint weatherParticleSystem;
-    [SerializeField] private NodeCache nodeCacheScript;
+    [SerializeField] private NodeData nodeDataScript;
 
     private ConstraintSource source;
 
@@ -44,7 +44,7 @@ public class CharacterPossession : MonoBehaviour
 
     public void PossessCharacter(bool isDead)
     {
-        nodeCacheScript.player = playerToPossess;
+        nodeDataScript.player = playerToPossess;
 
         //switch the position contraints
         source.sourceTransform = playerToPossess.transform;

@@ -23,6 +23,10 @@ public class ScaleLightIntensityScaleOverDistance : MonoBehaviour
         angleStep = spotAngle / rayCount;
 
         raycastDistance = new float[rayCount];
+        for (int i = 0; i < raycastDistance.Length; i++)
+        {
+            raycastDistance[i] = 1;
+        }
 
     }
     void Update()
@@ -58,7 +62,7 @@ public class ScaleLightIntensityScaleOverDistance : MonoBehaviour
             sum += raycastDistance[i];
         }
         raycastDistanceAverage = sum / raycastDistance.Length;
-        
+
         //scale light intensity proportional to average of distances
         _light.intensity = Mathf.Lerp(1, maxIntensity, raycastDistanceAverage);
     }

@@ -55,7 +55,7 @@ public class BulletEffect : MonoBehaviour
             }
         }
 
-        if (other.gameObject.CompareTag("Metal"))
+        if (other.gameObject.CompareTag("Metal") || other.gameObject.CompareTag("Vehicle"))
         {
             _audioSource.PlayOneShot(_audioClip[Random.Range(0, 2)]);
         }

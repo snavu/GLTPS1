@@ -75,7 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipeWaterLevelScript: {fileID: 0}
   waterStream: {fileID: 3711447388222789177}
-  duration: 20
+  duration: 40
   _audioSource: {fileID: -1005186158581873676}
   _audioClip:
   - {fileID: 8300000, guid: 3c589321e03d62942a823616c679c0d8, type: 3}

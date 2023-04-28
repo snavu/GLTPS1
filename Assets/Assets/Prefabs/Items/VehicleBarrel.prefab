@@ -80,6 +80,9 @@ MonoBehaviour:
   _audioSource: {fileID: 2758582321345731402}
   voicelines: []
   soundEffect: {fileID: 8300000, guid: f3ccebeec915dbf44a174911070eec58, type: 3}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 2039
   flag1: 0
   flag2: 0
 --- !u!82 &2758582321345731402

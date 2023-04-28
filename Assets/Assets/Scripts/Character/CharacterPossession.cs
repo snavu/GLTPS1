@@ -71,6 +71,7 @@ public class CharacterPossession : MonoBehaviour
         if (isDead)
         {
             GetComponentInChildren<CharacterController>().enabled = false;
+            GetComponentInChildren<CapsuleCollider>().enabled = false;
             GetComponentInChildren<PlayerMovement>().enabled = false;
             GetComponentInChildren<CharacterPossession>().enabled = false;
             GetComponentInChildren<CharacterItemInteraction>().enabled = false;

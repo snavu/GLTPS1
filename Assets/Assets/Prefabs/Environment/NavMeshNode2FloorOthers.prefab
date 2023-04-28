@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5222395975130474245}
   - component: {fileID: 7466557086953551681}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: VoicelIneTrigger
   m_TagString: FuelingStationVoicelineTrigger
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ Transform:
   - {fileID: 8994455186897239391}
   - {fileID: 3887228054662148945}
   - {fileID: 7686631471099141874}
-  - {fileID: 1263208188851465569}
+  - {fileID: 6483411770111139724}
   - {fileID: 5222395975130474245}
   m_Father: {fileID: 7696480084282083353}
   m_RootOrder: -1
@@ -208,8 +208,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6685ba1ba16eb1243a094eac4ef8aa6d, type: 2}
-  - {fileID: 2100000, guid: 6685ba1ba16eb1243a094eac4ef8aa6d, type: 2}
+  - {fileID: 2100000, guid: 56f6c95ae7a816f4e82a18247c3f3f83, type: 2}
+  - {fileID: 2100000, guid: 56f6c95ae7a816f4e82a18247c3f3f83, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -279,7 +279,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2209908701252209163}
-  m_LocalRotation: {x: 0, y: 0.70710653, z: 0, w: -0.7071071}
+  m_LocalRotation: {x: 0, y: -0.70710653, z: 0, w: 0.7071071}
   m_LocalPosition: {x: -163.1, y: 0, z: 29.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -757,7 +757,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbfac4427696fa040ab37b5c51ea940a, type: 3}
---- !u!4 &1263208188851465569 stripped
+--- !u!4 &6483411770111139724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
     type: 3}
@@ -854,6 +854,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FuelingStationTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519434099505275005, guid: 592d59c9ae869a346a33128aecbb0deb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3249111907099258463, guid: 592d59c9ae869a346a33128aecbb0deb,
         type: 3}

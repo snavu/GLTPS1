@@ -4,22 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 public class NavMeshAgentFollowPlayer : MonoBehaviour
 {
-    [SerializeField]
-    private NavMeshAgent agent;
-    [SerializeField]
-    private Animator agentAnim;
-    [SerializeField]
-    private PlayerMovement playerMovementScript;
-    [SerializeField]
-    private Transform followPosition;
-    [SerializeField]
-    private GameObject destination;
-    [SerializeField]
-    private float radius;
-    [SerializeField]
-    private float angularSpeed = 120f;
-    [SerializeField]
-    private Transform child;
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private Animator agentAnim;
+    [SerializeField] private PlayerMovement playerMovementScript;
+    [SerializeField] private Transform followPosition;
+    [SerializeField] private GameObject destination;
+    [SerializeField] private float radius;
+    [SerializeField] private float angularSpeed = 120f;
+    [SerializeField] private Transform child;
 
     void Update()
     {

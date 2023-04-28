@@ -8,7 +8,6 @@ public class AudioTriggerEvents : MonoBehaviour
     [SerializeField] private AudioClip[] voicelines;
     [SerializeField] private AudioClip soundEffect;
 
-
     public bool flag1;
     public bool flag2;
 

@@ -36,8 +36,8 @@ TagManager:
   - Node
   - Items
   - Barrel
-  - 
-  - 
+  - VoicelineTrigger
+  - FuelTrigger
   - 
   - 
   - 

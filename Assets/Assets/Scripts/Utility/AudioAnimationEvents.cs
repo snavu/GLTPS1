@@ -10,7 +10,7 @@ public class AudioAnimationEvents : MonoBehaviour
     private bool isGroundedMetal;
     private bool isWalking;
     private bool isRunning;
-
+    [SerializeField] private CharacterController cc;
     public void PlayAudioClipOneShot(AudioClip _audioClip)
     {
         _audioSource.PlayOneShot(_audioClip);
@@ -61,8 +61,9 @@ public class AudioAnimationEvents : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Untagged"))
+        if (other.gameObject.CompareTag("Untagged") && cc.velocity.y > 1f)
         {
+            Debug.Log( cc.velocity.y);
             isGroundedConcrete = false;
         }
         else if (other.gameObject.CompareTag("Metal") ||

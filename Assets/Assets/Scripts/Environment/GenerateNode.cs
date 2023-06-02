@@ -20,7 +20,6 @@ public class GenerateNode : MonoBehaviour
 
     private NodeData nodeDataScript;
     [SerializeField] private List<int> spawnChance;
-    public int count;
 
     private bool resetNode = false;
 
@@ -34,7 +33,6 @@ public class GenerateNode : MonoBehaviour
         {
             nodeList.Add(node);
         }
-        count = nodeDataScript.count;
         if (nodeDataScript.count >= nodeDataScript.countThreshold)
         {
             nodePrefabs.Add(nodeDataScript.edge);

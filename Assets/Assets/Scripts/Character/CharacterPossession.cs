@@ -81,6 +81,8 @@ public class CharacterPossession : MonoBehaviour
             GetComponentInChildren<NavMeshObstacle>().enabled = false;
             GetComponentInChildren<CharacterStatusScreenEffect>().enabled = false;
             GetComponentInChildren<AudioListener>().enabled = false;
+            GetComponentInChildren<NPCInteraction>().enabled = false;
+
         }
         else
         {
@@ -98,7 +100,7 @@ public class CharacterPossession : MonoBehaviour
             GetComponentInChildren<NavMeshAgentFollowPlayer>().enabled = true;
             GetComponentInChildren<CharacterStatusScreenEffect>().enabled = false;
             GetComponentInChildren<AudioListener>().enabled = false;
-
+            GetComponentInChildren<NPCInteraction>().enabled = false;
         }
 
         //switch player-to-possess player scripts
@@ -116,6 +118,7 @@ public class CharacterPossession : MonoBehaviour
         playerToPossess.GetComponentInChildren<NavMeshAgentFollowPlayer>().enabled = false;
         playerToPossess.GetComponentInChildren<CharacterStatusScreenEffect>().enabled = true;
         playerToPossess.GetComponentInChildren<AudioListener>().enabled = true;
+        playerToPossess.GetComponentInChildren<NPCInteraction>().enabled = true;
 
     }
 }

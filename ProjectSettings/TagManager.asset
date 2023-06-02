@@ -23,6 +23,7 @@ TagManager:
   - Metal
   - FuelingStationVoicelineTrigger
   - NodeData
+  - Kanazawa
   layers:
   - Default
   - TransparentFX

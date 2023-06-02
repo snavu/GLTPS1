@@ -63,7 +63,6 @@ public class AudioAnimationEvents : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Untagged") && cc.velocity.y > 1f)
         {
-            Debug.Log( cc.velocity.y);
             isGroundedConcrete = false;
         }
         else if (other.gameObject.CompareTag("Metal") ||

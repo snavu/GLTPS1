@@ -11,7 +11,7 @@ public class NavMeshAreaBaker : MonoBehaviour
     [SerializeField] private float timeThreshold = 0.3f;
 
 
-    void Start()
+    void Awake()
     {
         surface = GetComponent<NavMeshSurface>();
         UpdateNavMesh();
@@ -25,12 +25,13 @@ public class NavMeshAreaBaker : MonoBehaviour
             UpdateNavMesh();
             elapsed = 0;
         }
+        
         // if (Vector3.Distance(navMeshAgent.position, transform.position) >= distanceThreshold)
         // {
         //     UpdateNavMesh();
         // }
-    }
-
+    } 
+     
     private void UpdateNavMesh()
     {
         surface.RemoveData();

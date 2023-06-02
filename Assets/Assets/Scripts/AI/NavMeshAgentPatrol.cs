@@ -4,24 +4,55 @@ using UnityEngine;
 using UnityEngine.AI;
 public class NavMeshAgentPatrol : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent agent;
+    public NavMeshAgent agent;
     [SerializeField] private Animator agentAnim;
     [SerializeField] private GameObject destination;
-    [SerializeField] private PlayerMovement playerMovementScript;
     [SerializeField] private float angularSpeed = 800;
+    [SerializeField] private float maxSpeed = 7f;
+    [SerializeField] private Transform[] patrolPoints;
+    [SerializeField] private float waitDuration = 4f;
+    private int index;
+    private bool flag = false;
+
+    public bool patrol = true;
 
     // Update is called once per frame
+    void Start()
+    {
+        if (agent.isOnNavMesh && agent.isActiveAndEnabled)
+        {
+            StartCoroutine(SetDestination());
+        }
+    }
     void Update()
     {
-        if (agent.isActiveAndEnabled && agent.isOnNavMesh)
+        // set agent movement anim
+        CharacterMovementAnimation.Movement(agentAnim, agent.velocity, maxSpeed);
+
+        // set desintation when arrived
+        if (agent.isOnNavMesh && agent.isActiveAndEnabled && patrol)
         {
-            //set agent destination
-            agent.destination = destination.transform.position;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, transform.rotation, angularSpeed * Time.deltaTime);
-            
-            //set movement animation
-            CharacterMovementAnimation.Movement(agentAnim, agent.velocity, playerMovementScript.runSpeed);
-        
+            if (Vector3.Distance(transform.position, patrolPoints[index].position) < 0.01f && !flag)
+            {
+                StartCoroutine(SetDestination());
+                flag = true;
+            }
         }
+    }
+
+    public IEnumerator SetDestination()
+    {   
+        // wait at current destination
+        yield return new WaitForSeconds(waitDuration);
+
+        // set next destination position
+        index++;
+        if (index == patrolPoints.Length)
+        {
+            index = 0;
+        }
+
+        agent.destination = patrolPoints[index].position;
+        flag = false;
     }
 }

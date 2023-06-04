@@ -41,18 +41,21 @@ public class NavMeshAgentPatrol : MonoBehaviour
     }
 
     public IEnumerator SetDestination()
-    {   
+    {
         // wait at current destination
         yield return new WaitForSeconds(waitDuration);
 
-        // set next destination position
-        index++;
-        if (index == patrolPoints.Length)
+        if (patrol)
         {
-            index = 0;
-        }
+            // set next destination position
+            index++;
+            if (index == patrolPoints.Length)
+            {
+                index = 0;
+            }
 
-        agent.destination = patrolPoints[index].position;
-        flag = false;
+            agent.destination = patrolPoints[index].position;
+            flag = false;
+        }
     }
 }

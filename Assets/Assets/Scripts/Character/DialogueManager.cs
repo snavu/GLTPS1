@@ -10,8 +10,9 @@ public class DialogueManager : MonoBehaviour
     public float textSpeed;
     private int index;
     public Animator dialogueBoxAnim;
-
     public NPCInteraction NPCInteractionScript;
+
+    public AudioClip voicelines;
     void OnEnable()
     {
         textComponent.text = string.Empty;

@@ -2265,11 +2265,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16ec6d5631f960040896195be756a01b,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1912229365}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16ec6d5631f960040896195be756a01b,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1912229364}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16ec6d5631f960040896195be756a01b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1912229365}
+      addedObject: {fileID: 1912229366}
   m_SourcePrefab: {fileID: 100100000, guid: 16ec6d5631f960040896195be756a01b, type: 3}
 --- !u!1 &272010374
 GameObject:
@@ -4157,7 +4161,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 0.5
     m_SpeedMode: 1
-    m_MaxSpeed: 0.0015
+    m_MaxSpeed: 0
     m_AccelTime: 10
     m_DecelTime: 0.4
     m_InputAxisName: Mouse Y
@@ -4181,7 +4185,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 1
-    m_MaxSpeed: 0.15
+    m_MaxSpeed: 0
     m_AccelTime: 10
     m_DecelTime: 0.4
     m_InputAxisName: Mouse X
@@ -13338,7 +13342,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244749583}
-  m_LocalRotation: {x: 0.07205994, y: 0.011308394, z: -0.0008170589, w: 0.99733585}
+  m_LocalRotation: {x: 0.07205995, y: 0.011308394, z: -0.000817059, w: 0.99733585}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26843,15 +26847,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417f94c4e94f6434d8ac8c8f75982dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lines:
-  - 'Kanazawa: kfjlksdjfklsjdflkjsdklfjkl'
-  - 'Chito: kljashdflasjdflkaslkdf'
-  - 'Chito: jlaHSFKL;JASKF;LSAK;LDFJKL;ASDF'
-  - 'Kanazawa: asfaskldfgkjasdhjksfkjshdf'
   textComponent: {fileID: 790001305}
   textSpeed: 0.02
+  index: 0
   dialogueBoxAnim: {fileID: 2140067633}
   NPCInteractionScript: {fileID: 0}
+  lines:
+  - 'Chito: Hey!'
+  - '?: *cough* bleh... blehhhhh '
+  - 'Yuuri: Are you okay?'
+  - '?: agh... *cough*... *ahem*... sorry, it''s been so long since I spoke, I cant''t
+    speak well...'
+  - '?: I''m glad you didn''t get caught up in the explosion.'
+  - 'Kanazawa: I''m Kanazawa. I''m making a map as I go on my way.'
+  - 'Kanazawa: Is that your vehicle?'
+  - 'Chito: Yea'
+  - 'Kanazawa: Where''re you going?'
+  - 'Chito: We thought about going across the gorge to that tower.'
+  - 'Kanazawa: Tower?'
+  - 'Chito: Thought it might be a way to get to a higher level.'
+  - 'Kanazawa: Huh. If that''s the case.'
+  - 'Kanazawa: I''ve mapped out most of this level.'
+  - 'Kanazawa: Come to think of it, I still haven''t asked your names.'
+  - 'Chito: I''m Chito. That''s Yuuri'
+  - 'Kanazawa: I see. Nice to meet you.'
+  - 'Yuuri: Same.'
+  - 'Yuuri: Kanazawa.'
+  - 'Yuuri: *unwraps...* You can have this. It''s fruit flavored.'
+  - 'Kanazawa: It''s good!'
+  - 'Yuuri: Right?'
+  - 'Kanazawa: *nom nom nom*'
+  - 'Kanazawa: Oh, right. As thanks for sharing food with me... '
+  - 'Kanazawa: It''s a photograph machine '
+  - 'Chito: The machine they call a "camera"? '
+  - 'Kanazawa: They call it that, too. Well, have fun with it. '
+  - 'Chito: Thank you. '
+  - 'Yuuri: Where are you going? '
+  - 'Kanazawa: Thought I''d head north. '
+  - 'Yuuri: I see.'
+  voicelines:
+  - {fileID: 8300000, guid: c28f82e8cd692a24ca52682d6e674c9f, type: 3}
+  - {fileID: 8300000, guid: c57e3ed52f5f7c046adfe24bd7783a7d, type: 3}
+  - {fileID: 8300000, guid: 1173c1c82c5f1e14a90b0d3119ef02b9, type: 3}
+  - {fileID: 8300000, guid: 646bcfb3aa50b7b4f88f516a42a62277, type: 3}
+  - {fileID: 8300000, guid: edd70e74f4b4fcc41a8f969c67f0ee62, type: 3}
+  - {fileID: 8300000, guid: a468879cf0e738c4fa61ac39b0bba549, type: 3}
+  - {fileID: 8300000, guid: 604b8eabab084e74293e727aecae099f, type: 3}
+  - {fileID: 8300000, guid: a97e036511d7bea49b30357493a00d7e, type: 3}
+  - {fileID: 8300000, guid: db674151eadd5a04680c732e5c807ce5, type: 3}
+  - {fileID: 8300000, guid: 0745673c04a765d409d6cf7c31cd529d, type: 3}
+  - {fileID: 8300000, guid: 6dd24229c6812694a91640f8109a9b2e, type: 3}
+  - {fileID: 8300000, guid: 43f9deac31a95be41af8cd5498c9076a, type: 3}
+  - {fileID: 8300000, guid: bd87363049a19bc4f834e5f8646a2119, type: 3}
+  - {fileID: 8300000, guid: c48e66d332ff79243b2fec4c88939c56, type: 3}
+  - {fileID: 8300000, guid: 4b919281b8254f44f85230fed4b60caa, type: 3}
+  - {fileID: 8300000, guid: ef2116c79b857dd45838ac487bb58af2, type: 3}
+  - {fileID: 8300000, guid: 7ae529748d60d8846a99f22cb9c9d156, type: 3}
+  - {fileID: 8300000, guid: 48fac5fd5cc42af46bb5189d4b5f4c6c, type: 3}
+  - {fileID: 8300000, guid: 514d9aad499f71b4797747b1259d6876, type: 3}
+  - {fileID: 8300000, guid: f534eb43e011be14ea03c46229c411b5, type: 3}
+  - {fileID: 8300000, guid: 65fd21fec749c0848a4994fea6b7db20, type: 3}
+  - {fileID: 8300000, guid: 2b8b2076afd5f0c429e055330e9d95c7, type: 3}
+  - {fileID: 8300000, guid: d094c4388c9ec0c429ccb71e8171f175, type: 3}
+  - {fileID: 8300000, guid: 54b8abe4b7c5e8543a07f3214fe67ce2, type: 3}
+  - {fileID: 8300000, guid: 44ec1ff0b8d41634891cbbf2ce40c071, type: 3}
+  - {fileID: 8300000, guid: 214f316f4a6900c4aba92019277cd73e, type: 3}
+  - {fileID: 8300000, guid: ae1154a5a8f83354da4d28f6157124ae, type: 3}
+  - {fileID: 8300000, guid: 41e59baa11c136246b0e2e668143c8b4, type: 3}
+  - {fileID: 8300000, guid: 8e4babb5275edbd42bc76abbfc6228f4, type: 3}
+  - {fileID: 8300000, guid: d46a0fe87eea5ab4eb2b4695da5e12b9, type: 3}
+  - {fileID: 8300000, guid: 94c37b421bd600944a83169964df55e3, type: 3}
+  audioSource: {fileID: 1912229366}
+  indexOfNextSequence: 120000001c0000001f000000
+  sequenceCount: 0
 --- !u!135 &1912229365
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -26873,6 +26941,102 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &1912229366
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912229355}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1913131301
 GameObject:
   m_ObjectHideFlags: 0
@@ -28484,7 +28648,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: 0.07205994, y: 0.011308394, z: -0.0008170589, w: 0.99733585}
+  m_LocalRotation: {x: 0.07205995, y: 0.011308394, z: -0.000817059, w: 0.99733585}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

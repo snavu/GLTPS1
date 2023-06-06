@@ -41,6 +41,7 @@ public class NPCInteraction : MonoBehaviour
 
             // trigger dialogue
             other.gameObject.GetComponent<DialogueManager>().enabled = true;
+            other.gameObject.GetComponent<DialogueManager>().ShowDialogueBox();
             triggerDialogue = true;
 
             // disable switch character

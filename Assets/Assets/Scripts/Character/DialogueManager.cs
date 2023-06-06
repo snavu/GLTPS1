@@ -5,25 +5,29 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public string[] lines;
+
     public TextMeshProUGUI textComponent;
     public float textSpeed;
-    private int index;
+    public int index;
     public Animator dialogueBoxAnim;
     public NPCInteraction NPCInteractionScript;
+    public string[] lines;
+    public AudioClip[] voicelines;
+    public AudioSource audioSource;
 
-    public AudioClip voicelines;
-    void OnEnable()
+    public int[] indexOfNextSequence;
+    public int sequenceCount;
+
+    public void OnEnable()
     {
-        textComponent.text = string.Empty;
-
-        index = 0;
         StartCoroutine(TypeLine());
-        ShowDialogueBox();
     }
-
-    IEnumerator TypeLine()
+    public IEnumerator TypeLine()
     {
+        audioSource.Stop();
+        audioSource.PlayOneShot(voicelines[index]);
+
+        textComponent.text = string.Empty;
         foreach (char c in lines[index].ToCharArray())
         {
             textComponent.text += c;
@@ -33,12 +37,13 @@ public class DialogueManager : MonoBehaviour
 
     public void NextLine()
     {
-        if (index < lines.Length - 1 && textComponent.text == lines[index])
+        // type next line
+        if (index + 1 < indexOfNextSequence[sequenceCount] && textComponent.text == lines[index])
         {
             index++;
-            textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }
+        // stop typing, set text to line
         else if (textComponent.text != lines[index])
         {
             StopAllCoroutines();
@@ -46,6 +51,20 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            //current seqence is done, increment index for next sequence
+            index++;
+            //current sequence is done, increment sequence
+            if (sequenceCount < indexOfNextSequence.Length - 1)
+            {
+                sequenceCount++;
+            }
+
+            //if last sequence is done, repeat last sequence 
+            if (index == voicelines.Length)
+            {
+                index = indexOfNextSequence[indexOfNextSequence.Length - 2];
+            }
+
             HideDialogueBox();
         }
     }
@@ -54,8 +73,11 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueBoxAnim.SetTrigger("open");
     }
+
     public void HideDialogueBox()
     {
+        StopAllCoroutines();
+
         dialogueBoxAnim.SetTrigger("close");
         NPCInteractionScript.triggerDialogue = false;
         NPCInteractionScript.characterPossessionScript.enabled = true;

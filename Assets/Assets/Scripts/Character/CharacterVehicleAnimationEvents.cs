@@ -37,10 +37,12 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     public void SetConstraintTrue()
     {
         characterVehicleInteractionScript.constraint = true;
+        characterVehicleInteractionScript.changeCameraRadiusFlag1 = true;
     }
     public void SetConstraintFalse()
     {
         characterVehicleInteractionScript.constraint = false;
+        characterVehicleInteractionScript.changeCameraRadiusFlag2 = true;
     }
 
     public void ExitRight()

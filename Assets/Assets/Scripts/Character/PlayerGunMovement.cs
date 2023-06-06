@@ -34,6 +34,7 @@ public class PlayerGunMovement : MonoBehaviour
 
     [SerializeField] private CinemachineFreeLook freeLookCamera;
     [SerializeField] SetCameraSpeed setCameraSpeedScript;
+    [SerializeField] PlayerCameraController playerCameraControllerScript;
 
     void Start()
     {
@@ -43,7 +44,7 @@ public class PlayerGunMovement : MonoBehaviour
 
     void Update()
     {
-        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f && Time.timeScale == 1)
+        if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0f && Time.timeScale == 1 && !playerCameraControllerScript.equipCamera)
         {
             playerMovementScript.ADS = true;
 

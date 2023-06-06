@@ -8,9 +8,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
 {
     [SerializeField] private CinemachineFreeLook freelookCamera;
     [SerializeField] private float[] freelookRadius;
-    [SerializeField]
-    private float smoothRadiusSpeed = 0.2f;
-    private float smoothRadiusVelocity = 0f;
     [SerializeField] private PlayerInputInitialize playerInputScript;
     [SerializeField] private Animator anim;
     [SerializeField] private Animator vehicleAnim;
@@ -54,6 +51,10 @@ public class CharacterVehicleInteraction : MonoBehaviour
     [SerializeField] AudioClip voiceline;
     [SerializeField] AudioClip toggleLightOn;
     [SerializeField] AudioClip toggleLightOff;
+    [SerializeField] ChangeCameraRadius changeCameraRadiusScript;
+    public bool changeCameraRadiusFlag1;
+    public bool changeCameraRadiusFlag2;
+
 
 
     void OnEnable()
@@ -78,17 +79,11 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
     void Update()
     {
-        //constrain player to vehicle, increase camera radius for vehicle movement
+        //constrain player to vehicle
         if (constraint)
         {
             transform.position = vehicleSeat.position;
             transform.rotation = vehicleSeat.rotation;
-            ChangeCameraRigRadius(freelookRadius[0], freelookRadius[1], freelookRadius[2]);
-        }
-        //constrain is false, lerp camera radius back normal radius for player movement
-        else if (freelookCamera.m_Orbits[1].m_Radius != freelookRadius[4])
-        {
-            ChangeCameraRigRadius(freelookRadius[3], freelookRadius[4], freelookRadius[5]);
         }
 
         //lerp player position to vehicle
@@ -178,6 +173,23 @@ public class CharacterVehicleInteraction : MonoBehaviour
                 }
             }
         }
+
+        //increase camera radius for vehicle movement
+        if (changeCameraRadiusFlag1)
+        {
+            changeCameraRadiusScript.top = freelookRadius[0];
+            changeCameraRadiusScript.middle = freelookRadius[1];
+            changeCameraRadiusScript.bottom = freelookRadius[2];
+            changeCameraRadiusFlag1 = false;
+        }
+        //decrease camera radius back normal radius for player movement
+        if (changeCameraRadiusFlag2)
+        {
+            changeCameraRadiusScript.top = freelookRadius[3];
+            changeCameraRadiusScript.middle = freelookRadius[4];
+            changeCameraRadiusScript.bottom = freelookRadius[5];
+            changeCameraRadiusFlag2 = false;
+        }
     }
 
     IEnumerator DelayExit(float duration)
@@ -202,12 +214,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
         agent.enabled = true;
     }
 
-    private void ChangeCameraRigRadius(float top, float middle, float bottom)
-    {
-        freelookCamera.m_Orbits[0].m_Radius = Mathf.SmoothDamp(freelookCamera.m_Orbits[0].m_Radius, top, ref smoothRadiusVelocity, smoothRadiusSpeed);
-        freelookCamera.m_Orbits[1].m_Radius = Mathf.SmoothDamp(freelookCamera.m_Orbits[1].m_Radius, top, ref smoothRadiusVelocity, smoothRadiusSpeed);
-        freelookCamera.m_Orbits[2].m_Radius = Mathf.SmoothDamp(freelookCamera.m_Orbits[2].m_Radius, top, ref smoothRadiusVelocity, smoothRadiusSpeed);
-    }
 
     public void Interact(InputAction.CallbackContext context)
     {

@@ -6,6 +6,7 @@ using Cinemachine;
 public class SetCameraSpeed : MonoBehaviour
 {
     [SerializeField] private CinemachineFreeLook freeLookCamera;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private UISettings UISettingsScript;
 
     void Update()
@@ -20,6 +21,8 @@ public class SetCameraSpeed : MonoBehaviour
 
         freeLookCamera.m_XAxis.m_DecelTime = 0.4f;
         freeLookCamera.m_YAxis.m_DecelTime = 0.4f;
+
+        virtualCamera.enabled = true;
     }
 
     public void SetADSSpeed()
@@ -35,5 +38,7 @@ public class SetCameraSpeed : MonoBehaviour
     {
         freeLookCamera.m_XAxis.m_MaxSpeed = 0f;
         freeLookCamera.m_YAxis.m_MaxSpeed = 0f;
+
+        virtualCamera.enabled = false;
     }
 }

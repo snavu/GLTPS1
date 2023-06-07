@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     private UIInputActions actions;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject mainMenuReturnButton;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject photoMenu;
+
     [SerializeField] private GameObject HUD;
     [SerializeField] SetCameraSpeed setCameraSpeedScript;
 
     [SerializeField] private PlayerInputInitialize chitoPlayerInputScript;
     [SerializeField] private PlayerInputInitialize yuuriPlayerInputScript;
     [SerializeField] private UISettings UISettingsScript;
+    [SerializeField] private GameObject[] photoPanel;
+    private int panelUIIndex;
+    public int panelAssignmentIndex;
+    public int imageAssignmentIndex;
+    [SerializeField] private GameObject photoMenuSelectedImage;
 
     void OnEnable()
     {
@@ -41,7 +49,7 @@ public class UIManager : MonoBehaviour
                 OpenMainMenu();
                 EventSystem.current.SetSelectedGameObject(mainMenuReturnButton);
             }
-            else if (mainMenu.activeInHierarchy && !settingsMenu.activeInHierarchy)
+            else
             {
                 CloseMainMenu();
             }
@@ -50,6 +58,11 @@ public class UIManager : MonoBehaviour
             {
                 UISettingsScript.SaveSettings();
                 CloseSettingsMenu();
+            }
+
+            if (photoMenu.activeInHierarchy)
+            {
+                ClosePhotoMenu();
             }
         }
     }
@@ -105,6 +118,46 @@ public class UIManager : MonoBehaviour
     {
         settingsMenu.SetActive(false);
         OpenMainMenu();
+    }
+    public void OpenPhotoMenu()
+    {
+        photoMenu.SetActive(true);
+        HideMainMenu();
+    }
+    public void ClosePhotoMenu()
+    {
+        photoMenu.SetActive(false);
+        OpenMainMenu();
+    }
+
+    public void NextPhotoPanel()
+    {
+        if (panelUIIndex < photoPanel.Length - 1)
+        {
+            photoPanel[panelUIIndex].SetActive(false);
+            panelUIIndex++;
+            photoPanel[panelUIIndex].SetActive(true);
+        }
+    }
+    public void PreviousPhotoPanel()
+    {
+        if (panelUIIndex > 0)
+        {
+            photoPanel[panelUIIndex].SetActive(false);
+            panelUIIndex--;
+            photoPanel[panelUIIndex].SetActive(true);
+        }
+    }
+
+    public void ShowImage()
+    {
+        photoMenuSelectedImage.SetActive(true);
+        photoMenuSelectedImage.GetComponent<RawImage>().texture = EventSystem.current.currentSelectedGameObject.GetComponent<RawImage>().texture;
+    }
+
+    public void HideImage()
+    {
+        photoMenuSelectedImage.SetActive(false);
     }
 
     public void QuitApplication()

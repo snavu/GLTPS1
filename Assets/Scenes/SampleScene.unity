@@ -1314,7 +1314,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135867288}
-  m_LocalRotation: {x: 0.020925956, y: 0.000000016701613, z: -3.4957373e-10, w: 0.9997811}
+  m_LocalRotation: {x: 0.020925958, y: 0.00000001701022, z: -3.560331e-10, w: 0.9997811}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2973,6 +2973,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1912229364}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16ec6d5631f960040896195be756a01b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1912229367}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16ec6d5631f960040896195be756a01b,
         type: 3}
       insertIndex: -1
@@ -7294,7 +7298,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 0.5
     m_SpeedMode: 1
-    m_MaxSpeed: 0
+    m_MaxSpeed: 0.0015
     m_AccelTime: 10
     m_DecelTime: 0.4
     m_InputAxisName: Mouse Y
@@ -7318,7 +7322,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 1
-    m_MaxSpeed: 0
+    m_MaxSpeed: 0.15
     m_AccelTime: 10
     m_DecelTime: 0.4
     m_InputAxisName: Mouse X
@@ -9104,8 +9108,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2ca89170e8f8e194a976ee94e7ce5417, type: 2}
+  m_sharedMaterial: {fileID: -5104027118036990490, guid: 2ca89170e8f8e194a976ee94e7ce5417,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -20218,8 +20223,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2ca89170e8f8e194a976ee94e7ce5417, type: 2}
+  m_sharedMaterial: {fileID: -5104027118036990490, guid: 2ca89170e8f8e194a976ee94e7ce5417,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -20243,8 +20249,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20957,6 +20963,7 @@ MonoBehaviour:
   panelAssignmentIndex: 0
   imageAssignmentIndex: 0
   photoMenuSelectedImage: {fileID: 1706691920}
+  dialogueBox: {fileID: 894116683}
 --- !u!1 &1345677517
 GameObject:
   m_ObjectHideFlags: 0
@@ -36540,6 +36547,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1912229367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912229355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b4014aaecc81445b9f742210427968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManagerScript: {fileID: 1912229364}
+  itemName:
+  - PlayerMap
+  - PlayerCameraController
+  dialogueItems:
+  - reference:
+    - {fileID: 1179579383}
+  - reference:
+    - {fileID: 1179579383}
+  dialogueItemIndex: 0d00000018000000
+  unlocked: 0000
 --- !u!1 &1913131301
 GameObject:
   m_ObjectHideFlags: 0
@@ -37098,7 +37128,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1087767950}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 20
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -39117,7 +39147,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072579798}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c3548398071fa744a4487645fe34a3a, type: 3}
   m_Name: 
@@ -44073,7 +44103,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179579383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c3548398071fa744a4487645fe34a3a, type: 3}
   m_Name: 

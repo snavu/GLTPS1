@@ -111,8 +111,8 @@ public class PlayerCameraController : MonoBehaviour
             }
 
             // enable camera
-            if (playerInputScript.actions.Player.Sprint.ReadValue<float>() > 0)
-            {
+            // if (playerInputScript.actions.Player.Sprint.ReadValue<float>() > 0)
+            // {
                 if (playerInputScript.actions.Player.ADS.WasPressedThisFrame())
                 {
                     thirdPersonCamera.enabled = false;
@@ -130,7 +130,7 @@ public class PlayerCameraController : MonoBehaviour
                         body.SetActive(false);
                     }
                 }
-            }
+            // }
         }
 
         // camera zoom

@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public int panelAssignmentIndex;
     public int imageAssignmentIndex;
     [SerializeField] private GameObject photoMenuSelectedImage;
+    [SerializeField] private GameObject dialogueBox;
 
     void OnEnable()
     {
@@ -42,7 +43,7 @@ public class UIManager : MonoBehaviour
 
     public void Menu(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !dialogueBox.activeInHierarchy)
         {
             if (!mainMenu.activeInHierarchy)
             {

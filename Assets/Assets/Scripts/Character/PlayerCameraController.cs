@@ -134,13 +134,13 @@ public class PlayerCameraController : MonoBehaviour
         }
 
         // camera zoom
-        if (playerInputScript.actions.Player.CameraZoom.ReadValue<Vector2>().y > 0 && !flag)
+        if (playerInputScript.actions.Player.CameraZoom.ReadValue<Vector2>().y > 0 && !flag && equipCamera)
         {
             firstPersonCamera.m_Lens.FieldOfView = firstPersonCameraFOVZoomIn;
             audioSource.PlayOneShot(cameraZoomSFX);
             flag = true;
         }
-        else if (playerInputScript.actions.Player.CameraZoom.ReadValue<Vector2>().y < 0 && flag)
+        else if (playerInputScript.actions.Player.CameraZoom.ReadValue<Vector2>().y < 0 && flag && equipCamera)
         {
             firstPersonCamera.m_Lens.FieldOfView = firstPersonCameraFOVZoomDefault;
             audioSource.PlayOneShot(cameraZoomSFX);

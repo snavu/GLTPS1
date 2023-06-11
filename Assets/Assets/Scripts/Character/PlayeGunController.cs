@@ -33,6 +33,7 @@ public class PlayerGunController : MonoBehaviour
         layerMask = LayerMask.GetMask("Default", "Vehicle");
 
         ammoCountText.text = ammoCount.ToString();
+
     }
 
     void OnDisable()
@@ -55,7 +56,6 @@ public class PlayerGunController : MonoBehaviour
             RaycastHit cameraRayCastHit;
             //Physics.Raycast(ray, out cameraRayCastHit, 100f, layerMask);
             Physics.Raycast(ray, out cameraRayCastHit, Mathf.Infinity, layerMask, QueryTriggerInteraction.Ignore);
-
 
             // Determine the direction of the bullet
             Vector3 bulletDirection = (cameraRayCastHit.point - muzzle.position).normalized;

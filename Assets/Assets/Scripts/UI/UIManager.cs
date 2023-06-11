@@ -8,10 +8,8 @@ public class UIManager : MonoBehaviour
 {
     private UIInputActions actions;
     [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject mainMenuReturnButton;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject photoMenu;
-
     [SerializeField] private GameObject HUD;
     [SerializeField] SetCameraSpeed setCameraSpeedScript;
 
@@ -45,14 +43,14 @@ public class UIManager : MonoBehaviour
     {
         if (context.performed && !dialogueBox.activeInHierarchy)
         {
-            if (!mainMenu.activeInHierarchy)
+            if (photoMenuSelectedImage.activeInHierarchy)
             {
-                OpenMainMenu();
-                EventSystem.current.SetSelectedGameObject(mainMenuReturnButton);
+                HideImage();
+                return;
             }
-            else
+            else if (photoMenu.activeInHierarchy)
             {
-                CloseMainMenu();
+                ClosePhotoMenu();
             }
 
             if (settingsMenu.activeInHierarchy)
@@ -61,9 +59,13 @@ public class UIManager : MonoBehaviour
                 CloseSettingsMenu();
             }
 
-            if (photoMenu.activeInHierarchy)
+            if (!mainMenu.activeInHierarchy)
             {
-                ClosePhotoMenu();
+                OpenMainMenu();
+            }
+            else
+            {
+                CloseMainMenu();
             }
         }
     }

@@ -21,7 +21,7 @@ public class FadeHUD : MonoBehaviour
     public VehicleBarrel vehicleBarrelScript;
     [SerializeField] private NPCInteraction chitoNPCInteractionScript;
     [SerializeField] private NPCInteraction yuuriNPCInteractionScript;
-    [SerializeField] private GameObject cameraHUD;
+    [SerializeField] private PlayerCameraController playerCameraControllerScript;
 
     [SerializeField] private float duration = 1f;
     private float elapsed1 = 0f;
@@ -47,7 +47,7 @@ public class FadeHUD : MonoBehaviour
         //lerp HUD for dialogue interaction
         if (chitoNPCInteractionScript.triggerDialogue ||
             yuuriNPCInteractionScript.triggerDialogue ||
-            cameraHUD.activeInHierarchy)
+            playerCameraControllerScript.equipCamera)
         {
             LerpAlpha(0, 0, 0, 0, ref elapsed4);
             elapsed3 = 0f;

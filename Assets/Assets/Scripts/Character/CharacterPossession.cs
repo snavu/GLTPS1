@@ -18,6 +18,8 @@ public class CharacterPossession : MonoBehaviour
     [SerializeField] private PositionConstraint outOfBoundsBox;
     [SerializeField] private PositionConstraint skybox;
     [SerializeField] private PositionConstraint weatherParticleSystem;
+    [SerializeField] private PositionConstraint mapCamera;
+
     [SerializeField] private NodeData nodeDataScript;
 
     private float footstepVolume;
@@ -60,6 +62,9 @@ public class CharacterPossession : MonoBehaviour
 
         weatherParticleSystem.SetSource(0, source);
         weatherParticleSystem.constraintActive = true;
+
+        mapCamera.SetSource(0, source);
+        mapCamera.constraintActive = true;
 
         //change camera follow and look at target
         CMFollowTarget.transform.parent = playerToPossess.transform;

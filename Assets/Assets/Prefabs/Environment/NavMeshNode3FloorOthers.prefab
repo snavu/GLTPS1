@@ -256,7 +256,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &2261728462455821403
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +415,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &4111881817646381474
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,6 +637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2925405344368878918}
   - component: {fileID: 7252334874015155524}
+  - component: {fileID: 2637139009005503236}
   - component: {fileID: 3811279148218589719}
   - component: {fileID: 5903278570191810342}
   m_Layer: 9
@@ -655,7 +654,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6574849589225440675}
-  m_LocalRotation: {x: 0, y: -0.70710653, z: 0, w: 0.7071071}
+  m_LocalRotation: {x: 0, y: 0.0000011165948, z: 0, w: 1}
   m_LocalPosition: {x: -299.1, y: 0, z: 40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -692,6 +691,24 @@ MonoBehaviour:
   isColliding: 0
   allowCollisionCheck: 1
   resetPorts: 1
+  tracePathFromPillarNode: 0
+  tracePathFromPlayerNode: 0
+  isIntersectionNodeSet: 0
+--- !u!114 &2637139009005503236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6574849589225440675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0773015c77bb6b446b59e6db69b8ded9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  node: {fileID: 7252334874015155524}
+  triggerTraceFromPillarNode: 0
+  triggerTraceFromPlayerNode: 0
 --- !u!54 &3811279148218589719
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -937,7 +954,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1001 &4943477166084453926
 PrefabInstance:
   m_ObjectHideFlags: 0

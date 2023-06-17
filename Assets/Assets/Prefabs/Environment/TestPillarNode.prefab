@@ -397,7 +397,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &3528098560609431648
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +450,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &3772387697618721645
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +704,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &5812561510269701527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,7 +1501,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &9186179694044918228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,6 +1511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 591280030389179934}
   - component: {fileID: 1709822145722682260}
+  - component: {fileID: 3934650442732068805}
   - component: {fileID: 4902333852229047177}
   - component: {fileID: 8279822330184242798}
   m_Layer: 9
@@ -1531,7 +1528,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9186179694044918228}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000033717478}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.0000011379649}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1569,6 +1566,24 @@ MonoBehaviour:
   isColliding: 0
   allowCollisionCheck: 1
   resetPorts: 1
+  tracePathFromPillarNode: 1
+  tracePathFromPlayerNode: 0
+  isIntersectionNodeSet: 0
+--- !u!114 &3934650442732068805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9186179694044918228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0773015c77bb6b446b59e6db69b8ded9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  node: {fileID: 1709822145722682260}
+  triggerTraceFromPillarNode: 1
+  triggerTraceFromPlayerNode: 0
 --- !u!54 &4902333852229047177
 Rigidbody:
   m_ObjectHideFlags: 0

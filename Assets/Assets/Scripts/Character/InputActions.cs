@@ -581,6 +581,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""661d7baf-0df6-4850-9e95-75c2274a21b8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -746,6 +755,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Light"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d342e41-e939-4009-b3b6-734619188961"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1353,6 +1373,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Vehicle_Exit = m_Vehicle.FindAction("Exit", throwIfNotFound: true);
         m_Vehicle_Accelerate = m_Vehicle.FindAction("Accelerate", throwIfNotFound: true);
         m_Vehicle_Light = m_Vehicle.FindAction("Light", throwIfNotFound: true);
+        m_Vehicle_Map = m_Vehicle.FindAction("Map", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1580,6 +1601,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Vehicle_Exit;
     private readonly InputAction m_Vehicle_Accelerate;
     private readonly InputAction m_Vehicle_Light;
+    private readonly InputAction m_Vehicle_Map;
     public struct VehicleActions
     {
         private @InputActions m_Wrapper;
@@ -1588,6 +1610,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Exit => m_Wrapper.m_Vehicle_Exit;
         public InputAction @Accelerate => m_Wrapper.m_Vehicle_Accelerate;
         public InputAction @Light => m_Wrapper.m_Vehicle_Light;
+        public InputAction @Map => m_Wrapper.m_Vehicle_Map;
         public InputActionMap Get() { return m_Wrapper.m_Vehicle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1609,6 +1632,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Light.started += instance.OnLight;
             @Light.performed += instance.OnLight;
             @Light.canceled += instance.OnLight;
+            @Map.started += instance.OnMap;
+            @Map.performed += instance.OnMap;
+            @Map.canceled += instance.OnMap;
         }
 
         private void UnregisterCallbacks(IVehicleActions instance)
@@ -1625,6 +1651,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Light.started -= instance.OnLight;
             @Light.performed -= instance.OnLight;
             @Light.canceled -= instance.OnLight;
+            @Map.started -= instance.OnMap;
+            @Map.performed -= instance.OnMap;
+            @Map.canceled -= instance.OnMap;
         }
 
         public void RemoveCallbacks(IVehicleActions instance)
@@ -1828,6 +1857,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnExit(InputAction.CallbackContext context);
         void OnAccelerate(InputAction.CallbackContext context);
         void OnLight(InputAction.CallbackContext context);
+        void OnMap(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

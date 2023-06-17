@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 14617022401212853}
   - component: {fileID: 826479483586718472}
+  - component: {fileID: 6394017166548058962}
   - component: {fileID: 826479483586718473}
   - component: {fileID: 826479483586718478}
   m_Layer: 9
@@ -146,7 +147,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826479483586718479}
-  m_LocalRotation: {x: 0, y: -0.7071066, z: 0, w: 0.70710707}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.0000011165948}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -183,6 +184,24 @@ MonoBehaviour:
   isColliding: 0
   allowCollisionCheck: 1
   resetPorts: 1
+  tracePathFromPillarNode: 0
+  tracePathFromPlayerNode: 0
+  isIntersectionNodeSet: 0
+--- !u!114 &6394017166548058962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826479483586718479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0773015c77bb6b446b59e6db69b8ded9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  node: {fileID: 826479483586718472}
+  triggerTraceFromPillarNode: 0
+  triggerTraceFromPlayerNode: 0
 --- !u!54 &826479483586718473
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -992,7 +1011,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &3541170138992692620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1064,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &3541170138999103048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,7 +1169,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &5296418233158181354
 GameObject:
   m_ObjectHideFlags: 0

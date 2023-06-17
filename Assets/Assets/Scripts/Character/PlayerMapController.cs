@@ -12,17 +12,19 @@ public class PlayerMapController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip mapSFX;
     [SerializeField] private float duration = 0.2f;
-    private bool isMapEnabled;
-    private float elapsed;
+    public bool isMapEnabled;
+    private float elasped;
 
     void OnEnable()
     {
         playerInputScript.actions.Player.Map.performed += Map;
+        playerInputScript.actions.Vehicle.Map.performed += Map;
     }
 
     void OnDisable()
     {
         playerInputScript.actions.Player.Map.performed -= Map;
+        playerInputScript.actions.Vehicle.Map.performed += Map;
     }
 
     private void Map(InputAction.CallbackContext context)
@@ -32,7 +34,7 @@ public class PlayerMapController : MonoBehaviour
             if (!isMapEnabled)
             {
                 Time.timeScale = 0;
-                
+
                 // capture bird's eye view
                 mapCamera.Render();
 
@@ -48,13 +50,13 @@ public class PlayerMapController : MonoBehaviour
                 audioSource.PlayOneShot(mapSFX);
 
                 isMapEnabled = true;
-                elapsed = 0;
+                elasped = 0;
             }
             else
             {
                 Time.timeScale = 1;
                 isMapEnabled = false;
-                elapsed = 0;
+                elasped = 0;
             }
         }
     }
@@ -66,23 +68,23 @@ public class PlayerMapController : MonoBehaviour
         // lerp map UI alpha
         if (isMapEnabled)
         {
-            elapsed += Time.deltaTime;
+            elasped += Time.unscaledDeltaTime;
 
             foreach (RawImage UIComponent in mapImage)
             {
                 Color color = UIComponent.color;
-                color.a = Mathf.Lerp(mapImageAlpha, 1, elapsed / duration);
+                color.a = Mathf.Lerp(mapImageAlpha, 1, elasped / duration);
                 UIComponent.color = color;
             }
         }
         else
         {
-            elapsed += Time.deltaTime;
+            elasped += Time.deltaTime;
 
             foreach (RawImage UIComponent in mapImage)
             {
                 Color color = UIComponent.color;
-                color.a = Mathf.Lerp(mapImageAlpha, 0, elapsed / duration);
+                color.a = Mathf.Lerp(mapImageAlpha, 0, elasped / duration);
                 UIComponent.color = color;
             }
         }

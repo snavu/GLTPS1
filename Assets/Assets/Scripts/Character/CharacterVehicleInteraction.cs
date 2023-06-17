@@ -6,7 +6,6 @@ using UnityEngine.AI;
 using Cinemachine;
 public class CharacterVehicleInteraction : MonoBehaviour
 {
-    [SerializeField] private CinemachineFreeLook freelookCamera;
     [SerializeField] private float[] freelookRadius;
     [SerializeField] private PlayerInputInitialize playerInputScript;
     [SerializeField] private Animator anim;

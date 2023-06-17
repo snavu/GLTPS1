@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4909714509635740467}
   - component: {fileID: 5580628470110941485}
+  - component: {fileID: 1089346084707475501}
   - component: {fileID: 1214251667090428327}
   - component: {fileID: 4874626165589458153}
   m_Layer: 9
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2451969257836235982}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000033717478}
+  m_LocalRotation: {x: 0, y: 0.0000011165948, z: 0, w: 1}
   m_LocalPosition: {x: -154, y: 0, z: -92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -72,6 +73,24 @@ MonoBehaviour:
   isColliding: 0
   allowCollisionCheck: 1
   resetPorts: 1
+  tracePathFromPillarNode: 0
+  tracePathFromPlayerNode: 0
+  isIntersectionNodeSet: 0
+--- !u!114 &1089346084707475501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2451969257836235982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0773015c77bb6b446b59e6db69b8ded9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  node: {fileID: 5580628470110941485}
+  triggerTraceFromPillarNode: 0
+  triggerTraceFromPlayerNode: 0
 --- !u!54 &1214251667090428327
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,7 +192,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &4411088968737019054
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +245,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &4778404361912903799
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +298,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &7400451767508363270
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +404,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &7731319733205444014
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +457,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1 &8779613870796101525
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,7 +510,6 @@ MonoBehaviour:
   edgeList: []
   barrierPrefabs:
   - {fileID: 4683257163037230740, guid: 59a33235f70c3f34f9a613d847c2e5f8, type: 3}
-  nodeDataScript: {fileID: 0}
 --- !u!1001 &1745020827642730384
 PrefabInstance:
   m_ObjectHideFlags: 0

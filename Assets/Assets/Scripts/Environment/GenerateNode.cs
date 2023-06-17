@@ -4,42 +4,47 @@ using UnityEngine;
 
 public class GenerateNode : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> nodePrefabs;
-    [SerializeField]
-    private GameObject newNode;
+    [SerializeField] private List<GameObject> nodePrefabs;
+    [SerializeField] private GameObject newNode;
     public List<GameObject> nodeList;
     private int nodeIndex = 0;
     public Transform edgeExit;
-
-
     public bool isColliding = false;
     private bool isActive = false;
     public bool allowCollisionCheck = true;
     public int portIndex = 0;
+    [SerializeField] private List<int> spawnChance;
+    private bool resetNode = false;
+
+    //note: reference to the port at which the edge spawned      
+    public GenerateEdge port;
 
     private NodeData nodeDataScript;
-    [SerializeField] private List<int> spawnChance;
+    public int count;
 
-    private bool resetNode = false;
+
+    public bool tracePathFromPillarNode;
+    public bool tracePathFromPlayerNode;
 
     void Start()
     {
         nodeDataScript = GameObject.FindWithTag("NodeData").GetComponent<NodeData>();
 
         //initialize list of nodes
-        //note: initialize node list in Start() for count check in GenerateEdge script
         foreach (GameObject node in nodePrefabs)
         {
             nodeList.Add(node);
         }
+
+        // add pillar node to list of nodes to generate after certain number of nodes have been generated
         if (nodeDataScript.count >= nodeDataScript.countThreshold)
         {
-            nodePrefabs.Add(nodeDataScript.edge);
-            nodeList.Add(nodeDataScript.edge);
-            spawnChance.Add(nodeDataScript.spawnChance);
+            nodePrefabs.Add(nodeDataScript.pillarEdge);
+            nodeList.Add(nodeDataScript.pillarEdge);
+            spawnChance.Add(nodeDataScript.pillarSpawnChance);
 
         }
+
         StartCoroutine(CheckCollision());
 
     }
@@ -98,7 +103,7 @@ public class GenerateNode : MonoBehaviour
             isActive = true;
             allowCollisionCheck = false;
 
-            //regenerate node
+            //start generate node
             if (nodeList.Count != 0)
             {
                 newNode = GenerateRandomNode();
@@ -114,7 +119,6 @@ public class GenerateNode : MonoBehaviour
     private GameObject GenerateRandomNode()
     {
         //store node selection
-        //nodeIndex = Random.Range(0, nodeList.Count);
         nodeIndex = RandomWeightedGenerator.GenerateRandomIndex(spawnChance.ToArray());
 
         //generate node
@@ -125,7 +129,8 @@ public class GenerateNode : MonoBehaviour
 
         Vector3 nodeEntranceOffsetPos = CalculateNodeEntranceOffset(node, portIndex, edgeExit);
         GameObject newNode = Instantiate(node, edgeExit.position + nodeEntranceOffsetPos, node.transform.rotation);
-        newNode.GetComponent<Node>().edge = GetComponent<GenerateNode>();
+
+        newNode.GetComponent<Node>().edge = this;
 
         return newNode;
     }

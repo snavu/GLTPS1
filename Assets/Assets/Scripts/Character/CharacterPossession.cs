@@ -108,6 +108,7 @@ public class CharacterPossession : MonoBehaviour
             GetComponentInChildren<NPCInteraction>().enabled = false;
             footstepVolume = GetComponentInChildren<AudioSource>().volume;
             GetComponentInChildren<AudioSource>().volume = playerToPossess.GetComponentInChildren<AudioSource>().volume;
+
         }
 
         //switch player-to-possess player scripts
@@ -126,5 +127,6 @@ public class CharacterPossession : MonoBehaviour
         playerToPossess.GetComponentInChildren<CharacterStatusScreenEffect>().enabled = true;
         playerToPossess.GetComponentInChildren<NPCInteraction>().enabled = true;
         playerToPossess.GetComponentInChildren<AudioSource>().volume = footstepVolume;
+
     }
 }

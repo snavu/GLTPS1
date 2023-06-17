@@ -10,24 +10,16 @@ public class SubList
 }
 public class ProceduralEnvironmentGeneration : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> edgePrefabs;
-    [SerializeField]
-    private List<GameObject> edgeList;
-    [SerializeField]
-    private List<GameObject> nodePrefabs;
-    [SerializeField]
-    private List<SubList> nodePrefabsCopy;
-    [SerializeField]
-    private List<GameObject> nodeList;
-    [SerializeField]
-    private List<Transform> portList;
+    [SerializeField] private List<GameObject> edgePrefabs;
+    [SerializeField] private List<GameObject> edgeList;
+    [SerializeField] private List<GameObject> nodePrefabs;
+    [SerializeField] private List<SubList> nodePrefabsCopy;
+    [SerializeField] private List<GameObject> nodeList;
+    [SerializeField] private List<Transform> portList;
 
-    [SerializeField]
-    private bool generate;
+    [SerializeField] private bool generate;
 
-    [SerializeField]
-    private bool isColliding = false;
+    [SerializeField] private bool isColliding = false;
 
     void Start()
     {

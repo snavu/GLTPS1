@@ -12,10 +12,12 @@ public class Node : MonoBehaviour
     public bool isColliding = true;
     private bool isActive = false;
     public bool allowCollisionCheck = true;
-
-    private NodeData nodeDataScript;
-
     [SerializeField] private bool resetPorts = true;
+    private NodeData nodeDataScript;
+    public bool tracePathFromPillarNode;
+    public bool tracePathFromPlayerNode;
+    public bool isIntersectionNodeSet;
+
 
     //cache yield instructions
     WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
@@ -27,6 +29,7 @@ public class Node : MonoBehaviour
     }
     IEnumerator GenerateSceneGeometry()
     {
+        // enable GenerateEdge script for each port
         yield return waitForSeconds;
         if (index < portPrefab.Count)
         {
@@ -35,6 +38,7 @@ public class Node : MonoBehaviour
 
             StartCoroutine(GenerateSceneGeometry());
         }
+
         if (index == portPrefab.Count - 1)
         {
             nodeDataScript.count++;
@@ -87,6 +91,7 @@ public class Node : MonoBehaviour
 
     void LateUpdate()
     {
+        // start generation
         if (Vector3.Distance(transform.position, nodeDataScript.player.transform.position) < nodeDataScript.spawnThreshold && resetPorts)
         {
             while (portList.Count != 0)
@@ -104,6 +109,13 @@ public class Node : MonoBehaviour
             StartCoroutine(CheckCollision());
             resetPorts = false;
         }
+
+        //check if this node is an intersection between player and pillar nodes
+        if (tracePathFromPlayerNode && tracePathFromPillarNode && !isIntersectionNodeSet)
+        {
+            nodeDataScript.SetIntersectionNode(this);
+            isIntersectionNodeSet = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -111,6 +123,45 @@ public class Node : MonoBehaviour
         if (allowCollisionCheck && other.gameObject.CompareTag("Node"))
         {
             isColliding = false;
+        }
+    }
+
+    // pathfinding algorithm for map markers 
+    public void TracePathFromPlayerNode()
+    {
+        tracePathFromPlayerNode = true;
+
+        if (edge != null)
+        {
+            edge.tracePathFromPlayerNode = true;
+
+            if (nodeDataScript.edgesFromPlayer == null)
+            {
+                nodeDataScript.edgesFromPlayer = new List<GenerateNode>();
+            }
+            nodeDataScript.edgesFromPlayer.Add(edge);
+
+            // call same method for previous node
+            edge.port.GetComponentInParent<Node>().TracePathFromPlayerNode();
+        }
+    }
+    public void TracePathFromPillarNode(int pillarIndex)
+    {
+        tracePathFromPillarNode = true;
+
+        if (edge != null)
+        {
+            edge.tracePathFromPillarNode = true;
+
+            if (nodeDataScript.branch[pillarIndex].edges == null)
+            {
+                nodeDataScript.branch[pillarIndex].edges = new List<GenerateNode>();
+            }
+
+            nodeDataScript.branch[pillarIndex].edges.Add(edge);
+
+            // call same method for previous node
+            edge.port.GetComponentInParent<Node>().TracePathFromPillarNode(pillarIndex);
         }
     }
 }

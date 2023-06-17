@@ -59,6 +59,10 @@ MonoBehaviour:
   isColliding: 0
   allowCollisionCheck: 1
   portIndex: 0
+  spawnChance: 
+  port: {fileID: 0}
+  tracePathFromPillarNode: 0
+  tracePathFromPlayerNode: 0
 --- !u!65 &1785982107511396092
 BoxCollider:
   m_ObjectHideFlags: 0

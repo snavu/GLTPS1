@@ -3,43 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[ExecuteInEditMode]
 public class GenerateEdge : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> edgePrefabs;
-    [SerializeField]
-    private GameObject newEdge;
-    [SerializeField]
-    private List<GameObject> edgeList;
+    [SerializeField] private List<GameObject> edgePrefabs;
+    [SerializeField] private GameObject newEdge;
+    [SerializeField] private List<GameObject> edgeList;
     private int index = 0;
-    [SerializeField]
-    private List<GameObject> barrierPrefabs;
+    [SerializeField] private List<GameObject> barrierPrefabs;
     private bool spawnedBarrier = false;
-
-    public NodeData nodeDataScript;
-
     private bool resetEdge = false;
 
     void Start()
     {
-        nodeDataScript = GameObject.FindWithTag("NodeData").GetComponent<NodeData>();
-
         //initialize list of edges
         foreach (GameObject edge in edgePrefabs)
         {
             edgeList.Add(edge);
         }
-        // if (nodeDataScript.count == nodeDataScript.countThreshold)
-        // {
-        //     edgeList.Add(nodeDataScript.edge);
-        //     spawnChance.Add(nodeDataScript.spawnChance);
-        // }
 
         //generate first random edge
         if (edgeList.Count != 0)
         {
-            //regenerate different edge from edge lsit
             newEdge = GenerateRandomEdge();
         }
 
@@ -74,19 +58,16 @@ public class GenerateEdge : MonoBehaviour
 
         if (newEdge != null)
         {
-            if (newEdge.GetComponent<GenerateNode>() != null)
+            if (newEdge.GetComponent<GenerateNode>().isColliding || newEdge.GetComponent<GenerateNode>().nodeList.Count == 0)
             {
-                if (newEdge.GetComponent<GenerateNode>().isColliding || newEdge.GetComponent<GenerateNode>().nodeList.Count == 0)
-                {
-                    //no nodes left for which a node will be non-colliding, destroy and remove the edge from edge list
-                    Destroy(newEdge);
-                    edgeList.RemoveAt(index);
+                //no nodes left for which a node will be non-colliding, destroy and remove the edge from edge list
+                Destroy(newEdge);
+                edgeList.RemoveAt(index);
 
-                    if (edgeList.Count != 0)
-                    {
-                        //regenerate different edge from edge lsit
-                        newEdge = GenerateRandomEdge();
-                    }
+                if (edgeList.Count != 0)
+                {
+                    //regenerate different edge from edge list
+                    newEdge = GenerateRandomEdge();
                 }
             }
         }
@@ -94,7 +75,7 @@ public class GenerateEdge : MonoBehaviour
         {
             //no edges left in edge list and the port at which the node spawned at is not the same port as this one, generate barrier 
             if (barrierPrefabs.Count != 0 && edgeList.Count == 0 && !spawnedBarrier &&
-                GetComponentInParent<Node>().portList[GetComponentInParent<Node>().edge.portIndex].name != gameObject.name )
+                GetComponentInParent<Node>().portList[GetComponentInParent<Node>().edge.portIndex].name != gameObject.name)
             {
                 GenerateRandomBarrier();
                 spawnedBarrier = true;
@@ -116,6 +97,8 @@ public class GenerateEdge : MonoBehaviour
         Vector3 edgeEntranceOffsetPos = edge.transform.position - edgeEntrance.position;
 
         GameObject newEdge = Instantiate(edge, transform.position + edgeEntranceOffsetPos, transform.rotation);
+
+        newEdge.GetComponent<GenerateNode>().port = this;
 
         return newEdge;
     }

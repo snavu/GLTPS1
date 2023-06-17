@@ -4,21 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 public class NavMeshAgentVehicleInteraction : MonoBehaviour
 {
-    [SerializeField]
-    private NavMeshAgent agent;
+    [SerializeField] private NavMeshAgent agent;
     public Animator agentAnim;
-    [SerializeField]
-    private Collider collider;
+    [SerializeField] private Collider collider;
 
-    [SerializeField]
-    private NavMeshAgentFollowPlayer navMeshAgentFollowPlayerScript;
-    [SerializeField]
-    private Transform enterPosition;
-    [SerializeField]
-    private Transform constraintPosition;
-    [SerializeField]
-    private PlayerMovement playerMovementScript;
-    [SerializeField]
+    [SerializeField] private NavMeshAgentFollowPlayer navMeshAgentFollowPlayerScript;
+    [SerializeField] private Transform enterPosition;
+    [SerializeField] private Transform constraintPosition;
+    [SerializeField] private PlayerMovement playerMovementScript;
     public bool enter;
     public bool exit;
     private bool positionConstraint;
@@ -26,11 +19,9 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
 
     private bool preOrientEnter;
     public bool preOrientExit;
-    [SerializeField]
-    private float rotationSpeed = 600.0f;
+    [SerializeField] private float rotationSpeed = 600.0f;
     private float elapsed = 0f;
-    [SerializeField]
-    private float duration = 0.25f;
+    [SerializeField] private float duration = 0.25f;
 
     [SerializeField] private CharacterDeath characterDeathScript;
 

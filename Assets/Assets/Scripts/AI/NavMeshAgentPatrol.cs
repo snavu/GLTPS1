@@ -32,7 +32,7 @@ public class NavMeshAgentPatrol : MonoBehaviour
         // set desintation when arrived
         if (agent.isOnNavMesh && agent.isActiveAndEnabled && patrol)
         {
-            if (Vector3.Distance(transform.position, patrolPoints[index].position) < 0.01f && !flag)
+            if (Vector3.Distance(transform.position, patrolPoints[index].position) < 0.1f && !flag)
             {
                 StartCoroutine(SetDestination());
                 flag = true;

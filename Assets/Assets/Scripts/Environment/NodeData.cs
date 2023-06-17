@@ -71,7 +71,7 @@ public class NodeData : MonoBehaviour
 
 
             List<GenerateNode> edgesFromPillar = GetShortestIntersectingListOfEdges();
-            
+
             // assign points from pillar to the intersecting node
             for (int i = edgesFromPillar.Count - 1; i >= 0; i--)
             {
@@ -115,14 +115,14 @@ public class NodeData : MonoBehaviour
         }
 
         // initialize shortestListOfEdges
-        List<GenerateNode> shortestListOfEdges = branch[0].edges;
+        List<GenerateNode> shortestListOfEdges = subBranch[0].edges;
 
         // get shortest sublist
         for (int i = 0; i < branch.Count; i++)
         {
-            if (branch[i].edges.Count < shortestListOfEdges.Count)
+            if (subBranch[i].edges.Count < shortestListOfEdges.Count)
             {
-                shortestListOfEdges = branch[i].edges;
+                shortestListOfEdges = subBranch[i].edges;
             }
         }
 

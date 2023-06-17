@@ -115,6 +115,7 @@ public class Node : MonoBehaviour
         {
             nodeDataScript.SetIntersectionNode(this);
             isIntersectionNodeSet = true;
+
         }
     }
 
@@ -127,8 +128,10 @@ public class Node : MonoBehaviour
     }
 
     // pathfinding algorithm for map markers 
-    public void TracePathFromPlayerNode()
+    public IEnumerator TracePathFromPlayerNode()
     {
+        yield return new WaitForEndOfFrame();
+        
         tracePathFromPlayerNode = true;
 
         if (edge != null)
@@ -142,7 +145,7 @@ public class Node : MonoBehaviour
             nodeDataScript.edgesFromPlayer.Add(edge);
 
             // call same method for previous node
-            edge.port.GetComponentInParent<Node>().TracePathFromPlayerNode();
+            StartCoroutine(edge.port.GetComponentInParent<Node>().TracePathFromPlayerNode());
         }
     }
     public void TracePathFromPillarNode(int pillarIndex)

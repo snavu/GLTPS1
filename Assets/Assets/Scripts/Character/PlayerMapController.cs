@@ -15,6 +15,8 @@ public class PlayerMapController : MonoBehaviour
     public bool isMapEnabled;
     private float elasped;
 
+    private StartEnvironmentTrace startEnvironmentTraceScript;
+
     void OnEnable()
     {
         playerInputScript.actions.Player.Map.performed += Map;
@@ -89,4 +91,5 @@ public class PlayerMapController : MonoBehaviour
             }
         }
     }
+
 }

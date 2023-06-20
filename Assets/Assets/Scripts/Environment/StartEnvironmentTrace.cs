@@ -14,7 +14,7 @@ public class StartEnvironmentTrace : MonoBehaviour
         nodeDataScript = GameObject.FindWithTag("NodeData").GetComponent<NodeData>();
 
     }
-    void LateUpdate()
+    void Update()
     {
         if (triggerTraceFromPillarNode)
         {
@@ -24,16 +24,19 @@ public class StartEnvironmentTrace : MonoBehaviour
 
         if (triggerTraceFromPlayerNode)
         {
-            StartCoroutine(node.TracePathFromPlayerNode());
+            node.TracePathFromPlayerNode();
             triggerTraceFromPlayerNode = false;
         }
     }
-
     IEnumerator TriggerTraceFromPillarNode()
     {
-        yield return new WaitForSeconds(0.1f);
-        nodeDataScript.branch.Add(new EdgeCollection());
-        node.TracePathFromPillarNode(nodeDataScript.pillarIndex);
-        nodeDataScript.pillarIndex++;
+        yield return new WaitForFixedUpdate();
+
+        if (node.isActive)
+        {
+            nodeDataScript.branch.Add(new EdgeCollection());
+            node.TracePathFromPillarNode(nodeDataScript.pillarIndex);
+            nodeDataScript.pillarIndex++;
+        }
     }
 }

@@ -101,7 +101,7 @@ public class PlayerMapController : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Node"))
         {   

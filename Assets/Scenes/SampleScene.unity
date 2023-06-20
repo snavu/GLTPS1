@@ -5002,7 +5002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1818360608 &460466890
 PositionConstraint:
   m_ObjectHideFlags: 0
@@ -29621,8 +29621,6 @@ MonoBehaviour:
   pillarEdge: {fileID: 9186179694044918228, guid: 036eebdf2dc9b6e40b0c4aecf577f68f,
     type: 3}
   pillarSpawnChance: 100
-  isFirstIntersectionNode: 1
-  intersectionNode: {fileID: 0}
   edgesFromPlayer: []
   branch: []
   pillarIndex: 0
@@ -39846,6 +39844,7 @@ MonoBehaviour:
   index: 0
   edge: {fileID: 0}
   isColliding: 0
+  isActive: 0
   allowCollisionCheck: 1
   resetPorts: 1
   tracePathFromPillarNode: 0
@@ -42916,7 +42915,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.25
   m_Height: 1.6

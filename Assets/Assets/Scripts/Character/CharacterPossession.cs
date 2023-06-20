@@ -93,7 +93,7 @@ public class CharacterPossession : MonoBehaviour
         else
         {
             GetComponentInChildren<CharacterController>().enabled = false;
-            GetComponentInChildren<CapsuleCollider>().enabled = true;
+            //GetComponentInChildren<CapsuleCollider>().enabled = true;
             GetComponentInChildren<PlayerMovement>().enabled = false;
             GetComponentInChildren<CharacterPossession>().enabled = false;
             GetComponentInChildren<CharacterItemInteraction>().enabled = false;
@@ -113,7 +113,7 @@ public class CharacterPossession : MonoBehaviour
 
         //switch player-to-possess player scripts
         playerToPossess.GetComponentInChildren<CharacterController>().enabled = true;
-        playerToPossess.GetComponentInChildren<CapsuleCollider>().enabled = false;
+        //playerToPossess.GetComponentInChildren<CapsuleCollider>().enabled = false;
         playerToPossess.GetComponentInChildren<PlayerMovement>().enabled = true;
         playerToPossess.GetComponentInChildren<CharacterPossession>().enabled = true;
         playerToPossess.GetComponentInChildren<CharacterItemInteraction>().enabled = true;

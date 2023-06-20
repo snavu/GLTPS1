@@ -197,8 +197,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
         Physics.IgnoreLayerCollision(6, 7, false);
         playerInputScript.actions.Player.Enable();
         controller.enabled = true;
-        _collider.enabled = true;
-        navMeshAgentCollider.enabled = true;
         preOrientExit = false;
         exitLeft = false;
         exitRight = false;
@@ -228,10 +226,9 @@ public class CharacterVehicleInteraction : MonoBehaviour
 
             //disable player movement
             playerInputScript.actions.Player.Disable();
-            //disable character controller and colliders
+            //disable character controller
             controller.enabled = false;
-            _collider.enabled = false;
-            navMeshAgentCollider.enabled = false;
+            
             //disable navmesh obstacle, and wait a short time before enabling the agent
             GetComponent<NavMeshObstacle>().enabled = false;
             StartCoroutine(DelayEnter());

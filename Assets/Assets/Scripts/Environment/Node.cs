@@ -12,7 +12,7 @@ public class Node : MonoBehaviour
 
     public GenerateNode edge;
     public bool isColliding = true;
-    private bool isActive = false;
+    public bool isActive = false;
     public bool allowCollisionCheck = true;
     [SerializeField] private bool resetPorts = true;
     private NodeData nodeDataScript;
@@ -134,10 +134,8 @@ public class Node : MonoBehaviour
     }
 
     // pathfinding algorithm for map markers 
-    public IEnumerator TracePathFromPlayerNode()
+    public void TracePathFromPlayerNode()
     {
-        yield return new WaitForEndOfFrame();
-
         tracePathFromPlayerNode = true;
 
         if (edge != null)
@@ -147,7 +145,7 @@ public class Node : MonoBehaviour
             nodeDataScript.edgesFromPlayer.Add(edge);
 
             // call same method for previous node
-            StartCoroutine(edge.port.GetComponentInParent<Node>().TracePathFromPlayerNode());
+            edge.port.GetComponentInParent<Node>().TracePathFromPlayerNode();
         }
     }
     public void TracePathFromPillarNode(int pillarIndex)
@@ -168,6 +166,7 @@ public class Node : MonoBehaviour
             // call same method for previous node
             edge.port.GetComponentInParent<Node>().TracePathFromPillarNode(pillarIndex);
         }
+
     }
 }
 

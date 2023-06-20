@@ -38423,6 +38423,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputScript: {fileID: 2072579809}
+  node: {fileID: 0}
+  nodeDataScript: {fileID: 0}
   mapCamera: {fileID: 460466893}
   renderTexture: {fileID: 8400000, guid: 0c4f63cfa094791489d69c5b4b829e3a, type: 2}
   mapImage:
@@ -38432,6 +38434,7 @@ MonoBehaviour:
   mapSFX: {fileID: 8300000, guid: f97a1c9e7368d2346b7ea83f77aa22b2, type: 3}
   duration: 0.2
   isMapEnabled: 0
+  startEnvironmentTraceScript: {fileID: 0}
 --- !u!1 &2077553722 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 24a72dd0c10feb0489750a76919dac73,
@@ -43411,12 +43414,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179579383}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f39b44e419fb5bc469b1c69af78a7bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputScript: {fileID: 9146561997578268269}
+  node: {fileID: 0}
+  nodeDataScript: {fileID: 1732239728}
   mapCamera: {fileID: 460466893}
   renderTexture: {fileID: 8400000, guid: 0c4f63cfa094791489d69c5b4b829e3a, type: 2}
   mapImage:
@@ -43426,6 +43431,7 @@ MonoBehaviour:
   mapSFX: {fileID: 8300000, guid: f97a1c9e7368d2346b7ea83f77aa22b2, type: 3}
   duration: 0.2
   isMapEnabled: 0
+  startEnvironmentTraceScript: {fileID: 0}
 --- !u!1 &9146561998866254054
 GameObject:
   m_ObjectHideFlags: 0

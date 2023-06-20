@@ -5,7 +5,7 @@ using UnityEngine;
 public class GenerateNode : MonoBehaviour
 {
     [SerializeField] private List<GameObject> nodePrefabs;
-    [SerializeField] private GameObject newNode;
+    public GameObject newNode;
     public List<GameObject> nodeList;
     private int nodeIndex = 0;
     public Transform edgeExit;

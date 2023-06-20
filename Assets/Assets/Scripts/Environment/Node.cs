@@ -115,7 +115,6 @@ public class Node : MonoBehaviour
         //check if this node is an intersection between player and pillar nodes
         if (tracePathFromPlayerNode && tracePathFromPillarNode && !isIntersectionNodeSet)
         {
-            nodeDataScript.SetIntersectionNode(this);
             isIntersectionNodeSet = true;
         }
 
@@ -145,10 +144,6 @@ public class Node : MonoBehaviour
         {
             edge.tracePathFromPlayerNode = true;
 
-            if (nodeDataScript.edgesFromPlayer == null)
-            {
-                nodeDataScript.edgesFromPlayer = new List<GenerateNode>();
-            }
             nodeDataScript.edgesFromPlayer.Add(edge);
 
             // call same method for previous node

@@ -6,8 +6,7 @@ public class KanazawaInstanceManager : MonoBehaviour
 {
     [SerializeField] private Node node;
     private NodeData nodeDataScript;
-    [SerializeField] private StartEnvironmentTrace startEnvironmentTraceScript; 
-    [SerializeField] private GameObject kanazawa;
+    [SerializeField] private GameObject kanazawaCompound;
     public GameObject firstKanazawa;
     [SerializeField] private PlayerMapController playerMapControllerScript;
     private bool isPlayerOnNode;
@@ -23,9 +22,12 @@ public class KanazawaInstanceManager : MonoBehaviour
 
     void Update()
     {
-        if (node.isDeadEnd && !kanazawa.activeInHierarchy && nodeDataScript.intersectionNode == null)
+        if (kanazawaCompound != null)
         {
-            kanazawa.SetActive(true);
+            if (node.isDeadEnd && !kanazawaCompound.activeInHierarchy && !playerMapControllerScript.enabled)
+            {
+                kanazawaCompound.SetActive(true);
+            }
         }
 
         if (playerMapControllerScript.enabled && isPlayerOnNode && !flag)
@@ -37,10 +39,9 @@ public class KanazawaInstanceManager : MonoBehaviour
             {
                 if (kanazawa != firstKanazawa)
                 {
-                    kanazawa.SetActive(false);
+                    Destroy(kanazawa.transform.parent.transform.parent.gameObject);
                 }
             }
-            startEnvironmentTraceScript.triggerTraceFromPlayerNode = true;
 
             flag = true;
         }

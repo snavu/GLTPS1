@@ -41,7 +41,7 @@ public class NPCInteraction : MonoBehaviour
             kanazawa.GetComponent<NavMeshAgentPatrol>().agent.destination = kanazawa.transform.position;
 
             // trigger dialogue
-            StartCoroutine(kanazawa.GetComponent<DialogueManager>().TypeLine());
+            kanazawa.GetComponent<DialogueManager>().enabled = true;
             kanazawa.GetComponent<DialogueManager>().ShowDialogueBox();
             triggerDialogue = true;
 

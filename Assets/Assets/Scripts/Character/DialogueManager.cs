@@ -16,12 +16,17 @@ public class DialogueManager : MonoBehaviour
 
     public int[] indexOfNextSequence;
     public int sequenceCount;
-    void Start()
+    void Awake()
     {
+
         textComponent = GameObject.FindWithTag("Text").GetComponent<TextMeshProUGUI>();
         dialogueBoxAnim = GameObject.FindWithTag("DialogueBox").GetComponent<Animator>();
     }
 
+    public void OnEnable()
+    {
+        StartCoroutine(TypeLine());
+    }
     public IEnumerator TypeLine()
     {
         audioSource.Stop();

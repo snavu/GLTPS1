@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PlayerMapController : MonoBehaviour
 {
     [SerializeField] private PlayerInputInitialize playerInputScript;
+    public Node node;
+    [SerializeField] private NodeData nodeDataScript;
     [SerializeField] private Camera mapCamera;
     [SerializeField] private RenderTexture renderTexture;
     [SerializeField] private RawImage[] mapImage;
@@ -15,7 +17,7 @@ public class PlayerMapController : MonoBehaviour
     public bool isMapEnabled;
     private float elasped;
 
-    private StartEnvironmentTrace startEnvironmentTraceScript;
+    public StartEnvironmentTrace startEnvironmentTraceScript;
 
     void OnEnable()
     {
@@ -35,21 +37,13 @@ public class PlayerMapController : MonoBehaviour
         {
             if (!isMapEnabled)
             {
-                Time.timeScale = 0;
-
-                // capture bird's eye view
-                mapCamera.Render();
-
-                RenderTexture.active = renderTexture;
-                Texture2D screenshotTexture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
-                screenshotTexture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
-                screenshotTexture.Apply();
-                RenderTexture.active = null;
-
-                mapImage[0].texture = screenshotTexture;
-
+                //Time.timeScale = 0;
+                nodeDataScript.drawPath = true;
+                
                 audioSource.Stop();
                 audioSource.PlayOneShot(mapSFX);
+
+                StartCoroutine(RenderMap());
 
                 isMapEnabled = true;
                 elasped = 0;
@@ -61,6 +55,21 @@ public class PlayerMapController : MonoBehaviour
                 elasped = 0;
             }
         }
+    }
+
+    IEnumerator RenderMap()
+    {
+        yield return new WaitForSeconds(0.5f);
+        // capture bird's eye view
+        mapCamera.Render();
+
+        RenderTexture.active = renderTexture;
+        Texture2D screenshotTexture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
+        screenshotTexture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+        screenshotTexture.Apply();
+        RenderTexture.active = null;
+
+        mapImage[0].texture = screenshotTexture;
     }
 
     void Update()
@@ -88,6 +97,18 @@ public class PlayerMapController : MonoBehaviour
                 Color color = UIComponent.color;
                 color.a = Mathf.Lerp(mapImageAlpha, 0, elasped / duration);
                 UIComponent.color = color;
+            }
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Node"))
+        {   
+            node = other.gameObject.GetComponent<Node>();
+            if (other.gameObject.GetComponent<StartEnvironmentTrace>() != null)
+            {
+                startEnvironmentTraceScript = other.gameObject.GetComponent<StartEnvironmentTrace>();
             }
         }
     }

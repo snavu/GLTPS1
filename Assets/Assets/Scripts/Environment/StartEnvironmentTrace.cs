@@ -31,7 +31,7 @@ public class StartEnvironmentTrace : MonoBehaviour
 
     IEnumerator TriggerTraceFromPillarNode()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.1f);
         nodeDataScript.branch.Add(new EdgeCollection());
         node.TracePathFromPillarNode(nodeDataScript.pillarIndex);
         nodeDataScript.pillarIndex++;

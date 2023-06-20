@@ -13,13 +13,16 @@ public class AudioTriggerEvents : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("FuelingStationVoicelineTrigger") && !flag1)
+        if (other.gameObject.GetComponent<Node>() != null)
         {
-            if (_audioSource != null && voicelines.Length != 0)
+            if (other.gameObject.CompareTag("FuelingStationVoicelineTrigger") && other.gameObject.GetComponent<Node>().isActive && !flag1)
             {
-                _audioSource.Stop();
-                _audioSource.PlayOneShot(voicelines[0]);
-                flag1 = true;
+                if (_audioSource != null && voicelines.Length != 0)
+                {
+                    _audioSource.Stop();
+                    _audioSource.PlayOneShot(voicelines[0]);
+                    flag1 = true;
+                }
             }
         }
         if (other.gameObject.CompareTag("FuelingStation") && !flag2)
@@ -41,5 +44,6 @@ public class AudioTriggerEvents : MonoBehaviour
                 _audioSource.PlayOneShot(soundEffect);
             }
         }
+
     }
 }

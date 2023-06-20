@@ -18,7 +18,6 @@ public class DialogueManager : MonoBehaviour
     public int sequenceCount;
     void Awake()
     {
-
         textComponent = GameObject.FindWithTag("Text").GetComponent<TextMeshProUGUI>();
         dialogueBoxAnim = GameObject.FindWithTag("DialogueBox").GetComponent<Animator>();
     }

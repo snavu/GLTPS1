@@ -39,7 +39,7 @@ public class PlayerMapController : MonoBehaviour
             {
                 //Time.timeScale = 0;
                 nodeDataScript.drawPath = true;
-                
+
                 audioSource.Stop();
                 audioSource.PlayOneShot(mapSFX);
 
@@ -59,7 +59,7 @@ public class PlayerMapController : MonoBehaviour
 
     IEnumerator RenderMap()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         // capture bird's eye view
         mapCamera.Render();
 
@@ -103,12 +103,15 @@ public class PlayerMapController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Node"))
-        {   
-            node = other.gameObject.GetComponent<Node>();
-            if (other.gameObject.GetComponent<StartEnvironmentTrace>() != null)
+        if (other.gameObject.GetComponent<Node>() != null)
+        {
+            if (other.gameObject.GetComponent<Node>().isActive)
             {
-                startEnvironmentTraceScript = other.gameObject.GetComponent<StartEnvironmentTrace>();
+                node = other.gameObject.GetComponent<Node>();
+                if (other.gameObject.GetComponent<StartEnvironmentTrace>() != null)
+                {
+                    startEnvironmentTraceScript = other.gameObject.GetComponent<StartEnvironmentTrace>();
+                }
             }
         }
     }

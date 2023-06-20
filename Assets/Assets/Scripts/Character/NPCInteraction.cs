@@ -7,7 +7,8 @@ public class NPCInteraction : MonoBehaviour
 {
     [SerializeField] private PlayerInputInitialize playerInputScript;
     private GameObject kanazawa;
-    private GameObject node;
+    [SerializeField] private GameObject chito;
+    [SerializeField] private GameObject node;
     private bool isInteractable;
     public bool triggerDialogue;
     public Animator dialogueBoxAnim;
@@ -53,25 +54,28 @@ public class NPCInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Kanazawa"))
+        if (other.gameObject.CompareTag("Kanazawa") && gameObject.activeInHierarchy)
         {
             kanazawa = other.gameObject;
             kanazawa.GetComponent<DialogueManager>().NPCInteractionScript = this;
-            kanazawa.GetComponent<UnlockDialogueItem>().dialogueItems[0].reference[0] = gameObject;
-            kanazawa.GetComponent<UnlockDialogueItem>().dialogueItems[1].reference[0] = gameObject;
+            kanazawa.GetComponent<UnlockDialogueItem>().dialogueItems[0].reference[0] = chito;
+            kanazawa.GetComponent<UnlockDialogueItem>().dialogueItems[1].reference[0] = chito;
             node.GetComponent<KanazawaInstanceManager>().firstKanazawa = kanazawa;
             isInteractable = true;
         }
 
-        if (other.gameObject.CompareTag("Node"))
+        if (other.gameObject.CompareTag("Node") && other.gameObject.GetComponent<Node>() != null)
         {
-            node = other.gameObject;
+            if (other.gameObject.GetComponent<Node>().isActive)
+            {
+                node = other.gameObject;
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Kanazawa"))
+        if (other.gameObject.CompareTag("Kanazawa") && gameObject.activeInHierarchy)
         {
             isInteractable = false;
 

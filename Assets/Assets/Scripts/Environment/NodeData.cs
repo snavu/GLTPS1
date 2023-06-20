@@ -74,7 +74,7 @@ public class NodeData : MonoBehaviour
 
 
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
 
         // assign points from player to the intersecting node
         for (int i = 0; i < edgesFromPlayer.Count; i++)

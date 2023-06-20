@@ -8439,7 +8439,7 @@ GameObject:
   - component: {fileID: 790001305}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: Text
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29626,7 +29626,7 @@ MonoBehaviour:
   edgesFromPlayer: []
   branch: []
   pillarIndex: 0
-  isMapPathActive: 0
+  drawPath: 0
   lr: {fileID: 1455301842}
   points: []
   offsetPosition: {x: 0, y: 200, z: 0}
@@ -39099,7 +39099,7 @@ GameObject:
   - component: {fileID: 2140067633}
   m_Layer: 5
   m_Name: Dialogue
-  m_TagString: Untagged
+  m_TagString: DialogueBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39838,6 +39838,8 @@ MonoBehaviour:
   - {fileID: 5052587641070415359}
   - {fileID: 2749096977568988127}
   portList: []
+  numBlockedPorts: 0
+  isDeadEnd: 0
   index: 0
   edge: {fileID: 0}
   isColliding: 0
@@ -43226,7 +43228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 1687630294}
   voicelines:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 8be8491ebef95db43aacd3e884c19e5a, type: 3}
   - {fileID: 8300000, guid: 75d21cd353c52254d8d317632b6cc79c, type: 3}
   soundEffect: {fileID: 0}
   flag1: 0
@@ -43409,7 +43411,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179579383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f39b44e419fb5bc469b1c69af78a7bce, type: 3}
   m_Name: 

@@ -22,11 +22,11 @@ public class NodeData : MonoBehaviour
 
     // variables for map pathfinding
     public bool isFirstIntersectionNode = true;
-    [SerializeField] private Node intersectionNode;
+    public Node intersectionNode;
     public List<GenerateNode> edgesFromPlayer;
     public List<EdgeCollection> branch;
     public int pillarIndex = 0;
-    public bool isMapPathActive;
+    public bool drawPath;
 
     [SerializeField] private LineRenderer lr;
     [SerializeField] private List<Transform> points;
@@ -49,7 +49,7 @@ public class NodeData : MonoBehaviour
 
     void Update()
     {
-        if (intersectionNode != null && isMapPathActive)
+        if (intersectionNode != null && drawPath)
         {
             // assign points from player to the intersecting node
             for (int i = 0; i < edgesFromPlayer.Count; i++)
@@ -86,7 +86,7 @@ public class NodeData : MonoBehaviour
                 lr.SetPosition(i, points[i].position + offsetPosition);
             }
 
-            isMapPathActive = false;
+            drawPath = false;
         }
     }
 

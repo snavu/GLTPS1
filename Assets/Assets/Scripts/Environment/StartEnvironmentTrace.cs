@@ -8,9 +8,11 @@ public class StartEnvironmentTrace : MonoBehaviour
     private NodeData nodeDataScript;
     public bool triggerTraceFromPillarNode;
     public bool triggerTraceFromPlayerNode;
+
     void Start()
     {
         nodeDataScript = GameObject.FindWithTag("NodeData").GetComponent<NodeData>();
+
     }
     void LateUpdate()
     {
@@ -33,6 +35,5 @@ public class StartEnvironmentTrace : MonoBehaviour
         nodeDataScript.branch.Add(new EdgeCollection());
         node.TracePathFromPillarNode(nodeDataScript.pillarIndex);
         nodeDataScript.pillarIndex++;
-        triggerTraceFromPillarNode = false;
     }
 }

@@ -24,6 +24,8 @@ TagManager:
   - FuelingStationVoicelineTrigger
   - NodeData
   - Kanazawa
+  - Text
+  - DialogueBox
   layers:
   - Default
   - TransparentFX

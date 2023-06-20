@@ -6,6 +6,8 @@ public class Node : MonoBehaviour
 {
     public List<Transform> portPrefab;
     public List<Transform> portList;
+    public int numBlockedPorts;
+    public bool isDeadEnd;
     [SerializeField] private int index = 0;
 
     public GenerateNode edge;
@@ -14,10 +16,10 @@ public class Node : MonoBehaviour
     public bool allowCollisionCheck = true;
     [SerializeField] private bool resetPorts = true;
     private NodeData nodeDataScript;
+
     public bool tracePathFromPillarNode;
     public bool tracePathFromPlayerNode;
     public bool isIntersectionNodeSet;
-
 
     //cache yield instructions
     WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
@@ -115,7 +117,12 @@ public class Node : MonoBehaviour
         {
             nodeDataScript.SetIntersectionNode(this);
             isIntersectionNodeSet = true;
+        }
 
+        //check if this node is a dead end
+        if (numBlockedPorts == portPrefab.Count - 1)
+        {
+            isDeadEnd = true;
         }
     }
 
@@ -131,7 +138,7 @@ public class Node : MonoBehaviour
     public IEnumerator TracePathFromPlayerNode()
     {
         yield return new WaitForEndOfFrame();
-        
+
         tracePathFromPlayerNode = true;
 
         if (edge != null)

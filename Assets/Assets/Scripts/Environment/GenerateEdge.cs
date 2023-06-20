@@ -78,6 +78,7 @@ public class GenerateEdge : MonoBehaviour
                 GetComponentInParent<Node>().portList[GetComponentInParent<Node>().edge.portIndex].name != gameObject.name)
             {
                 GenerateRandomBarrier();
+                GetComponentInParent<Node>().numBlockedPorts++;
                 spawnedBarrier = true;
             }
         }

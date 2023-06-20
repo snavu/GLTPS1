@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class NPCInteraction : MonoBehaviour
 {
     [SerializeField] private PlayerInputInitialize playerInputScript;
-    private Collider other;
+    private GameObject kanazawa;
+    private GameObject node;
     private bool isInteractable;
     public bool triggerDialogue;
     public Animator dialogueBoxAnim;
@@ -24,24 +25,24 @@ public class NPCInteraction : MonoBehaviour
     {
         if (context.performed && triggerDialogue)
         {
-            other.gameObject.GetComponent<DialogueManager>().NextLine();
+            kanazawa.GetComponent<DialogueManager>().NextLine();
         }
 
         if (context.performed && isInteractable && !triggerDialogue && dialogueBoxAnim.GetCurrentAnimatorStateInfo(0).IsTag("Close"))
         {
             // stop agent patrol
-            other.gameObject.GetComponent<NavMeshAgentPatrol>().patrol = false;
+            kanazawa.GetComponent<NavMeshAgentPatrol>().patrol = false;
 
             // rotate agent to player
-            other.gameObject.GetComponent<RotateToPlayer>().enabled = true;
-            other.gameObject.GetComponent<RotateToPlayer>().player = transform;
+            kanazawa.GetComponent<RotateToPlayer>().enabled = true;
+            kanazawa.GetComponent<RotateToPlayer>().player = transform;
 
             // set agent destination to in place
-            other.gameObject.GetComponent<NavMeshAgentPatrol>().agent.destination = other.gameObject.transform.position;
+            kanazawa.GetComponent<NavMeshAgentPatrol>().agent.destination = kanazawa.transform.position;
 
             // trigger dialogue
-            other.gameObject.GetComponent<DialogueManager>().enabled = true;
-            other.gameObject.GetComponent<DialogueManager>().ShowDialogueBox();
+            StartCoroutine(kanazawa.GetComponent<DialogueManager>().TypeLine());
+            kanazawa.GetComponent<DialogueManager>().ShowDialogueBox();
             triggerDialogue = true;
 
             // disable switch character
@@ -54,9 +55,17 @@ public class NPCInteraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Kanazawa"))
         {
-            this.other = other;
-            other.gameObject.GetComponent<DialogueManager>().NPCInteractionScript = this;
+            kanazawa = other.gameObject;
+            kanazawa.GetComponent<DialogueManager>().NPCInteractionScript = this;
+            kanazawa.GetComponent<UnlockDialogueItem>().dialogueItems[0].reference[0] = gameObject;
+            kanazawa.GetComponent<UnlockDialogueItem>().dialogueItems[1].reference[0] = gameObject;
+            node.GetComponent<KanazawaInstanceManager>().firstKanazawa = kanazawa;
             isInteractable = true;
+        }
+
+        if (other.gameObject.CompareTag("Node"))
+        {
+            node = other.gameObject;
         }
     }
 

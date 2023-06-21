@@ -38,12 +38,14 @@ public class PlayerMapController : MonoBehaviour
             if (!isMapEnabled)
             {
                 //Time.timeScale = 0;
+                StartCoroutine(RenderMap(0f));
+
                 nodeDataScript.drawPath = true;
 
                 audioSource.Stop();
                 audioSource.PlayOneShot(mapSFX);
 
-                StartCoroutine(RenderMap());
+                StartCoroutine(RenderMap(0.3f));
 
                 isMapEnabled = true;
                 elasped = 0;
@@ -57,9 +59,9 @@ public class PlayerMapController : MonoBehaviour
         }
     }
 
-    IEnumerator RenderMap()
+    IEnumerator RenderMap(float duration)
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(duration);
         // capture bird's eye view
         mapCamera.Render();
 

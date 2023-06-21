@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-
+using UnityEngine.UI;
 public class RainEffect : MonoBehaviour
 {
     [SerializeField] private ParticleSystem rainParticleSystem;
@@ -18,7 +18,6 @@ public class RainEffect : MonoBehaviour
     [SerializeField] private Light directionalLight;
     [SerializeField] private float initialLightIntensity;
     [SerializeField] private float rainLightIntensity;
-
     [SerializeField] private float duration;
     private float elapsed1 = 0f;
     private float elapsed2 = 0f;
@@ -32,6 +31,9 @@ public class RainEffect : MonoBehaviour
 
     [SerializeField] private AudioSource rainAudioSource;
 
+    [SerializeField] private RawImage mapTextureOverlay;
+    [SerializeField] private Color mapTextureOverlaySnow;
+    [SerializeField] private Color mapTextureOverlayRain;
 
 
     void Start()
@@ -94,6 +96,10 @@ public class RainEffect : MonoBehaviour
 
             rainAudioSource.volume = Mathf.Lerp(0, 0.08f, elapsed1 / duration);
 
+            // lerp map overlay color
+            Color color = Color.Lerp(mapTextureOverlaySnow, mapTextureOverlayRain, elapsed1 / duration);
+            mapTextureOverlay.color = color;
+
             elapsed2 = 0f;
 
         }
@@ -114,13 +120,17 @@ public class RainEffect : MonoBehaviour
             var emission = rainParticleSystem.emission;
             emission.rateOverTime = Mathf.Lerp(rainParticleSystemEmmisionRate, 0, elapsed2 / duration);
 
+            // lerp map overlay color
+            Color color = Color.Lerp(mapTextureOverlayRain, mapTextureOverlaySnow, elapsed1 / duration);
+            mapTextureOverlay.color = color;
+
             rainAudioSource.volume = Mathf.Lerp(0.08f, 0, elapsed2 / duration);
             if (rainAudioSource.volume == 0f)
             {
                 rainAudioSource.Stop();
                 snowParticleSystem.Play();
             }
-            
+
             elapsed1 = 0f;
         }
     }

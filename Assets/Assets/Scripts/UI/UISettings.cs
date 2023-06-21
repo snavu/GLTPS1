@@ -14,6 +14,11 @@ public class UISettings : MonoBehaviour
     public float ADSSensitivtyYAxisSpeed = 0.00105f;
     [SerializeField] private Slider globalAudioVolumeSlider;
 
+    void Awake()
+    {
+        // Sync the frame rate to the screen's refresh rate
+        QualitySettings.vSyncCount = 1;
+    }
     void OnEnable()
     {
         //set initial slider values

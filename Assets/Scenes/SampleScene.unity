@@ -2225,7 +2225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 394.6, y: -238.00037}
+  m_AnchoredPosition: {x: 394.6, y: -287.0005}
   m_SizeDelta: {x: 512.5, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &205964283
@@ -5866,18 +5866,22 @@ MonoBehaviour:
 
     fire / take photo: left mouse
 
+    camera
+    zoom: mouse scroll
 
-    map:
-    left ctrl
+
+    map: left ctrl
 
 
     interact / enter kettengrad: F
 
-    turn kettengrad light on
-    / off: R
+    turn
+    kettengrad light on / off: R
 
     exit kettengrad: hold F
 
+
+    menu: esc
 
 
 
@@ -7385,7 +7389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 394.6, y: -155}
+  m_AnchoredPosition: {x: 394.6, y: -204}
   m_SizeDelta: {x: 512.5, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &677936676
@@ -8111,7 +8115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 394.6, y: -424.9997}
+  m_AnchoredPosition: {x: 394.6, y: -473.99982}
   m_SizeDelta: {x: 512.5, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &730961921
@@ -20277,7 +20281,7 @@ MonoBehaviour:
   panelAssignmentIndex: 0
   imageAssignmentIndex: 0
   photoMenuSelectedImage: {fileID: 1706691920}
-  dialogueBoxAnim: {fileID: 2140067633}
+  dialogueBoxFlag: {fileID: 1561731435}
 --- !u!1 &1345677517
 GameObject:
   m_ObjectHideFlags: 0
@@ -28083,6 +28087,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556766291}
   m_CullTransparentMesh: 1
+--- !u!1 &1561731435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1561731436}
+  m_Layer: 5
+  m_Name: flag
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1561731436
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561731435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2140067630}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1566770041
 GameObject:
   m_ObjectHideFlags: 0
@@ -37183,10 +37223,13 @@ MonoBehaviour:
   duration: 5
   startRain: 0
   stopRain: 1
-  rainChance: 5a0000000a000000
+  rainChance: 000000000a000000
   repeatInvokeDuration: 60
   rainDuration: 120
   rainAudioSource: {fileID: 1289490705}
+  mapTextureOverlay: {fileID: 1798665401}
+  mapTextureOverlaySnow: {r: 1, g: 1, b: 1, a: 0}
+  mapTextureOverlayRain: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0}
 --- !u!167 &2032314251
 AudioReverbZone:
   m_ObjectHideFlags: 0
@@ -39215,6 +39258,7 @@ RectTransform:
   m_Children:
   - {fileID: 894116684}
   - {fileID: 2048129006}
+  - {fileID: 1561731436}
   m_Father: {fileID: 826864470}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

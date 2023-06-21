@@ -12,16 +12,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject photoMenu;
     [SerializeField] private GameObject HUD;
     [SerializeField] SetCameraSpeed setCameraSpeedScript;
-
-    [SerializeField] private PlayerInputInitialize chitoPlayerInputScript;
-    [SerializeField] private PlayerInputInitialize yuuriPlayerInputScript;
     [SerializeField] private UISettings UISettingsScript;
     [SerializeField] private GameObject[] photoPanel;
     private int panelUIIndex;
     public int panelAssignmentIndex;
     public int imageAssignmentIndex;
     [SerializeField] private GameObject photoMenuSelectedImage;
-    [SerializeField] private GameObject dialogueBox;
+    [SerializeField] private GameObject dialogueBoxFlag;
 
     void OnEnable()
     {
@@ -41,7 +38,7 @@ public class UIManager : MonoBehaviour
 
     public void Menu(InputAction.CallbackContext context)
     {
-        if (context.performed && !dialogueBox.activeInHierarchy)
+        if (context.performed && !dialogueBoxFlag.activeInHierarchy)
         {
             if (photoMenuSelectedImage.activeInHierarchy)
             {

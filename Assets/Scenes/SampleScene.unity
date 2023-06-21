@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
   m_FogMode: 2
   m_FogDensity: 0.005
@@ -2225,7 +2225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 394.6, y: -181}
+  m_AnchoredPosition: {x: 394.6, y: -238.00037}
   m_SizeDelta: {x: 512.5, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &205964283
@@ -5867,15 +5867,16 @@ MonoBehaviour:
     fire / take photo: left mouse
 
 
+    map:
+    left ctrl
 
 
-    interact
-    / enter kettengrad: F
+    interact / enter kettengrad: F
 
-    turn kettengrad light on / off: R
+    turn kettengrad light on
+    / off: R
 
-    exit kettengrad:
-    hold F
+    exit kettengrad: hold F
 
 
 
@@ -7384,7 +7385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 394.6, y: -97.999596}
+  m_AnchoredPosition: {x: 394.6, y: -155}
   m_SizeDelta: {x: 512.5, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &677936676
@@ -8110,7 +8111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 394.6, y: -367.99933}
+  m_AnchoredPosition: {x: 394.6, y: -424.9997}
   m_SizeDelta: {x: 512.5, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &730961921
@@ -20267,8 +20268,6 @@ MonoBehaviour:
   photoMenu: {fileID: 1177606835}
   HUD: {fileID: 826864466}
   setCameraSpeedScript: {fileID: 626363635}
-  chitoPlayerInputScript: {fileID: 9146561997578268269}
-  yuuriPlayerInputScript: {fileID: 2072579809}
   UISettingsScript: {fileID: 716500107}
   photoPanel:
   - {fileID: 1263948108}
@@ -20278,7 +20277,7 @@ MonoBehaviour:
   panelAssignmentIndex: 0
   imageAssignmentIndex: 0
   photoMenuSelectedImage: {fileID: 1706691920}
-  dialogueBox: {fileID: 894116683}
+  dialogueBoxAnim: {fileID: 2140067633}
 --- !u!1 &1345677517
 GameObject:
   m_ObjectHideFlags: 0
@@ -38344,6 +38343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputScript: {fileID: 2072579809}
+  chito: {fileID: 1179579383}
   node: {fileID: 1206921449107246174}
   triggerDialogue: 0
   dialogueBoxAnim: {fileID: 2140067633}
@@ -43362,6 +43362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputScript: {fileID: 9146561997578268269}
+  chito: {fileID: 1179579383}
   node: {fileID: 1206921449107246174}
   triggerDialogue: 0
   dialogueBoxAnim: {fileID: 2140067633}

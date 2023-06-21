@@ -54,7 +54,7 @@ public class NPCInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Kanazawa") && gameObject.activeInHierarchy)
+        if (other.gameObject.CompareTag("Kanazawa") && this.enabled)
         {
             kanazawa = other.gameObject;
             kanazawa.GetComponent<DialogueManager>().NPCInteractionScript = this;
@@ -75,7 +75,7 @@ public class NPCInteraction : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Kanazawa") && gameObject.activeInHierarchy)
+        if (other.gameObject.CompareTag("Kanazawa") && this.enabled)
         {
             isInteractable = false;
 
@@ -88,9 +88,6 @@ public class NPCInteraction : MonoBehaviour
             if (!dialogueBoxAnim.GetCurrentAnimatorStateInfo(0).IsTag("Close"))
             {
                 other.gameObject.GetComponent<DialogueManager>().HideDialogueBox();
-                triggerDialogue = false;
-
-                characterPossessionScript.enabled = true;
             }
         }
     }

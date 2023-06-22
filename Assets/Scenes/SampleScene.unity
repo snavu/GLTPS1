@@ -3638,7 +3638,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4055
+    m_Bits: 20439
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 96b36e2444b00b448a4b018878a14801, type: 2}
   m_TargetDisplay: 0
@@ -37223,7 +37223,7 @@ MonoBehaviour:
   duration: 5
   startRain: 0
   stopRain: 1
-  rainChance: 000000000a000000
+  rainChance: 640000000a000000
   repeatInvokeDuration: 60
   rainDuration: 120
   rainAudioSource: {fileID: 1289490705}

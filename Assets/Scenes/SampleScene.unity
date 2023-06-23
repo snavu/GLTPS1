@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
   m_FogMode: 2
   m_FogDensity: 0.005
@@ -2380,7 +2380,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 394.6, y: -287.0005}
+  m_AnchoredPosition: {x: 915.00006, y: 360.9995}
   m_SizeDelta: {x: 512.5, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &205964283
@@ -6036,6 +6036,10 @@ MonoBehaviour:
     exit kettengrad: hold F
 
 
+    wait command:
+    X
+
+
     menu: esc
 
 
@@ -7545,7 +7549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 394.6, y: -204}
+  m_AnchoredPosition: {x: 915, y: 444}
   m_SizeDelta: {x: 512.5, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &677936676
@@ -8271,7 +8275,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 394.6, y: -473.99982}
+  m_AnchoredPosition: {x: 915.00006, y: 174.0002}
   m_SizeDelta: {x: 512.5, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &730961921

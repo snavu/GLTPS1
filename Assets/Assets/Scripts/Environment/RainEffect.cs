@@ -94,7 +94,7 @@ public class RainEffect : MonoBehaviour
             var emission = rainParticleSystem.emission;
             emission.rateOverTime = Mathf.Lerp(0, rainParticleSystemEmmisionRate, elapsed1 / duration);
 
-            rainAudioSource.volume = Mathf.Lerp(0, 0.08f, elapsed1 / duration);
+            rainAudioSource.volume = Mathf.Lerp(0, 0.06f, elapsed1 / duration);
 
             // lerp map overlay color
             Color color = Color.Lerp(mapTextureOverlaySnow, mapTextureOverlayRain, elapsed1 / duration);

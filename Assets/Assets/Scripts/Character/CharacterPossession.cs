@@ -26,6 +26,9 @@ public class CharacterPossession : MonoBehaviour
 
     private ConstraintSource source;
 
+
+
+
     void OnEnable()
     {
         playerInputScript.actions.Player.Possess.performed += Possess;
@@ -93,7 +96,6 @@ public class CharacterPossession : MonoBehaviour
         else
         {
             GetComponentInChildren<CharacterController>().enabled = false;
-            //GetComponentInChildren<CapsuleCollider>().enabled = true;
             GetComponentInChildren<PlayerMovement>().enabled = false;
             GetComponentInChildren<CharacterPossession>().enabled = false;
             GetComponentInChildren<CharacterItemInteraction>().enabled = false;
@@ -108,12 +110,12 @@ public class CharacterPossession : MonoBehaviour
             GetComponentInChildren<NPCInteraction>().enabled = false;
             footstepVolume = GetComponentInChildren<AudioSource>().volume;
             GetComponentInChildren<AudioSource>().volume = playerToPossess.GetComponentInChildren<AudioSource>().volume;
+            GetComponentInChildren<NavMeshAgentCommand>().enabled = false;
 
         }
 
         //switch player-to-possess player scripts
         playerToPossess.GetComponentInChildren<CharacterController>().enabled = true;
-        //playerToPossess.GetComponentInChildren<CapsuleCollider>().enabled = false;
         playerToPossess.GetComponentInChildren<PlayerMovement>().enabled = true;
         playerToPossess.GetComponentInChildren<CharacterPossession>().enabled = true;
         playerToPossess.GetComponentInChildren<CharacterItemInteraction>().enabled = true;
@@ -127,6 +129,6 @@ public class CharacterPossession : MonoBehaviour
         playerToPossess.GetComponentInChildren<CharacterStatusScreenEffect>().enabled = true;
         playerToPossess.GetComponentInChildren<NPCInteraction>().enabled = true;
         playerToPossess.GetComponentInChildren<AudioSource>().volume = footstepVolume;
-
+        playerToPossess.GetComponentInChildren<NavMeshAgentCommand>().enabled = true;
     }
 }

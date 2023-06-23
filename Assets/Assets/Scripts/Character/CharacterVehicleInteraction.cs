@@ -50,7 +50,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
     [SerializeField] AudioClip voiceline;
     [SerializeField] AudioClip toggleLightOn;
     [SerializeField] AudioClip toggleLightOff;
-    [SerializeField] ChangeCameraRadius changeCameraRadiusScript;
+    [SerializeField] SetCameraRadius changeCameraRadiusScript;
     public bool changeCameraRadiusFlag1;
     public bool changeCameraRadiusFlag2;
 

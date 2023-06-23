@@ -37,10 +37,40 @@ public class PlayerMapController : MonoBehaviour
         {
             if (!isMapEnabled)
             {
+                playerInputScript.actions.Player.Possess.Disable();
+
                 //Time.timeScale = 0;
                 StartCoroutine(RenderMap(0f));
 
                 nodeDataScript.drawPath = true;
+
+                // reset flags
+                nodeDataScript.isFirstIntersectionNode = false;
+
+                if (nodeDataScript.edgesFromPlayer.Count > 0)
+                {
+                    foreach (GenerateNode edge in nodeDataScript.edgesFromPlayer)
+                    {
+                        edge.newNode.GetComponent<Node>().tracePathFromPlayerNode = false;
+                        edge.newNode.GetComponent<Node>().isIntersectionNodeSet = false;
+
+                    }
+                }
+                nodeDataScript.edgesFromPlayer = new List<GenerateNode>();
+                nodeDataScript.points = new List<Transform>();
+
+                // if player is not on pillar path node, trigger trace path from player node
+                if (!node.tracePathFromPillarNode)
+                {
+                    startEnvironmentTraceScript.triggerTraceFromPlayerNode = true;
+                }
+                // if player is on pillar path node, set current node player is on as intersect node for recalculating sub branches
+                else
+                {
+                    node.tracePathFromPlayerNode = true;
+                    node.isIntersectionNodeSet = false;
+                    nodeDataScript.istracePathFromPlayerNodeComplete = true;
+                }
 
                 audioSource.Stop();
                 audioSource.PlayOneShot(mapSFX);
@@ -52,6 +82,8 @@ public class PlayerMapController : MonoBehaviour
             }
             else
             {
+                playerInputScript.actions.Player.Possess.Enable();
+
                 Time.timeScale = 1;
                 isMapEnabled = false;
                 elasped = 0;

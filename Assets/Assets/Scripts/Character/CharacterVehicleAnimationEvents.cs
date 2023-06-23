@@ -20,7 +20,6 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     public void EnableVehicle()
     {
         vehicleMovementScript.playerInputScript = playerInputScript;
-        vehicleMovementScript.playerInputScript = playerInputScript;
         playerInputScript.actions.Vehicle.Enable();
         vehicleAudioSource.Play();
     }

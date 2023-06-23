@@ -12,6 +12,7 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private float angularSpeed = 120f;
     [SerializeField] private Transform child;
+    public bool follow = true;
 
     void Update()
     {
@@ -19,28 +20,32 @@ public class NavMeshAgentFollowPlayer : MonoBehaviour
 
         if (agent.isActiveAndEnabled && agent.isOnNavMesh)
         {
-            agent.angularSpeed = angularSpeed;
-            //set destination position 
-            if (distance > radius)
+            if (follow)
             {
-                destination.transform.position = followPosition.position;
+                agent.angularSpeed = angularSpeed;
+                //set destination position 
+                if (distance > radius)
+                {
+                    destination.transform.position = followPosition.position;
+                }
+
+                //set agent speed to player walk speed
+                if (Mathf.Approximately(playerMovementScript.currentSpeed, playerMovementScript.walkSpeed) && distance < radius)
+                {
+                    agent.speed = playerMovementScript.walkSpeed;
+                }
+                //set agent speed to player run speed
+                if (Mathf.Approximately(playerMovementScript.currentSpeed, playerMovementScript.runSpeed) || distance > radius + 0.5f)
+                {
+                    agent.speed = playerMovementScript.runSpeed;
+                }
+
+                //set agent destination
+                agent.destination = destination.transform.position;
+
+                child.rotation = Quaternion.RotateTowards(child.rotation, transform.rotation, angularSpeed * Time.deltaTime);
             }
 
-            //set agent speed to player walk speed
-            if (Mathf.Approximately(playerMovementScript.currentSpeed, playerMovementScript.walkSpeed) && distance < radius)
-            {
-                agent.speed = playerMovementScript.walkSpeed;
-            }
-            //set agent speed to player run speed
-            if (Mathf.Approximately(playerMovementScript.currentSpeed, playerMovementScript.runSpeed) || distance > radius + 0.5f)
-            {
-                agent.speed = playerMovementScript.runSpeed;
-            }
-
-            //set agent destination
-            agent.destination = destination.transform.position;
-
-            child.rotation = Quaternion.RotateTowards(child.rotation, transform.rotation, angularSpeed * Time.deltaTime);
             //set movement animation
             CharacterMovementAnimation.Movement(agentAnim, agent.velocity, playerMovementScript.runSpeed);
         }

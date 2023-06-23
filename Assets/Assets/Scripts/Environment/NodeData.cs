@@ -27,9 +27,12 @@ public class NodeData : MonoBehaviour
     public bool drawPath;
 
     [SerializeField] private LineRenderer lr;
-    [SerializeField] private List<Transform> points;
+    public List<Transform> points;
     [SerializeField] private Vector3 offsetPosition;
     private bool isPastIntersectionNode;
+    public bool isFirstIntersectionNode;
+    [SerializeField] private Node intersectionNode;
+    public bool istracePathFromPlayerNodeComplete;
 
 
     void Start()
@@ -37,45 +40,27 @@ public class NodeData : MonoBehaviour
         branch = new List<EdgeCollection>();
     }
 
-    void Update()
+    public void SetIntersectionNode(Node intersectionNode)
     {
-        if (drawPath)
+        if (!isFirstIntersectionNode)
         {
-            StartCoroutine(SetPaths());
-            drawPath = false;
+            this.intersectionNode = intersectionNode;
+            isFirstIntersectionNode = true;
         }
     }
 
-    IEnumerator SetPaths()
+    void Update()
     {
-        // reset flags
-        if (edgesFromPlayer.Count > 0)
+        if (drawPath && branch.Count > 0 && istracePathFromPlayerNodeComplete)
         {
-            foreach (GenerateNode edge in edgesFromPlayer)
-            {
-                edge.newNode.GetComponent<Node>().tracePathFromPlayerNode = false;
-                edge.newNode.GetComponent<Node>().isIntersectionNodeSet = false;
-
-            }
+            SetPaths();
+            drawPath = false;
+            istracePathFromPlayerNodeComplete = false;
         }
-        edgesFromPlayer = new List<GenerateNode>();
-        points = new List<Transform>();
+    }
 
-        // if player is not on pillar path node, trigger trace path from player node
-        if (!player.GetComponent<PlayerMapController>().node.tracePathFromPillarNode)
-        {
-            player.GetComponent<PlayerMapController>().startEnvironmentTraceScript.triggerTraceFromPlayerNode = true;
-        }
-        // if player is on pillar path node, set current node player is on as intersect node for recalculating sub branches
-        else 
-        {
-            player.GetComponent<PlayerMapController>().node.isIntersectionNodeSet = true;
-        }
-
-
-
-        yield return new WaitForSeconds(0.2f);
-
+    private void SetPaths()
+    {
         // assign points from player to the intersecting node
         for (int i = 0; i < edgesFromPlayer.Count; i++)
         {
@@ -129,7 +114,7 @@ public class NodeData : MonoBehaviour
                 subBranch[i].edges.Add(branch[i].edges[j]);
 
                 // check if at interstection node
-                if (branch[i].edges[j].port.GetComponentInParent<Node>().isIntersectionNodeSet)
+                if (branch[i].edges[j].port.GetComponentInParent<Node>() == intersectionNode)
                 {
                     break;
                 }

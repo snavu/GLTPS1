@@ -115,6 +115,7 @@ public class Node : MonoBehaviour
         //check if this node is an intersection between player and pillar nodes
         if (tracePathFromPlayerNode && tracePathFromPillarNode && !isIntersectionNodeSet)
         {
+            nodeDataScript.SetIntersectionNode(this);
             isIntersectionNodeSet = true;
         }
 
@@ -134,18 +135,26 @@ public class Node : MonoBehaviour
     }
 
     // pathfinding algorithm for map markers 
-    public void TracePathFromPlayerNode()
+    public IEnumerator TracePathFromPlayerNode()
     {
+        yield return new WaitForEndOfFrame();
+
         tracePathFromPlayerNode = true;
 
         if (edge != null)
         {
             edge.tracePathFromPlayerNode = true;
 
+            // add the edge that generated this node to the list
             nodeDataScript.edgesFromPlayer.Add(edge);
 
             // call same method for previous node
-            edge.port.GetComponentInParent<Node>().TracePathFromPlayerNode();
+            StartCoroutine(edge.port.GetComponentInParent<Node>().TracePathFromPlayerNode());
+        }
+        // trace has reached origin node, set flag to true
+        else
+        {
+            nodeDataScript.istracePathFromPlayerNodeComplete = true;
         }
     }
     public void TracePathFromPillarNode(int pillarIndex)
@@ -156,11 +165,13 @@ public class Node : MonoBehaviour
         {
             edge.tracePathFromPillarNode = true;
 
+            // initialize edge list if null
             if (nodeDataScript.branch[pillarIndex].edges == null)
             {
                 nodeDataScript.branch[pillarIndex].edges = new List<GenerateNode>();
             }
-
+            
+            // add the edge that generated this node to the list
             nodeDataScript.branch[pillarIndex].edges.Add(edge);
 
             // call same method for previous node

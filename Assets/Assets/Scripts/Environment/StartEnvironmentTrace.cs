@@ -24,7 +24,7 @@ public class StartEnvironmentTrace : MonoBehaviour
 
         if (triggerTraceFromPlayerNode)
         {
-            node.TracePathFromPlayerNode();
+            StartCoroutine(node.TracePathFromPlayerNode());
             triggerTraceFromPlayerNode = false;
         }
     }

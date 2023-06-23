@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-public class ChangeCameraRadius : MonoBehaviour
+public class SetCameraRadius : MonoBehaviour
 {
     [SerializeField] private CinemachineFreeLook freelookCamera;
     public float top;

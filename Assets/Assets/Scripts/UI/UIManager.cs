@@ -26,8 +26,7 @@ public class UIManager : MonoBehaviour
         actions.UI.Enable();
         actions.UI.Menu.performed += Menu;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        LockAndHideCursor();
     }
 
     void OnDisable()
@@ -48,21 +47,25 @@ public class UIManager : MonoBehaviour
             else if (photoMenu.activeInHierarchy)
             {
                 ClosePhotoMenu();
+                OpenMainMenu();
+                return;
             }
 
             if (settingsMenu.activeInHierarchy)
             {
                 UISettingsScript.SaveSettings();
                 CloseSettingsMenu();
+                OpenMainMenu();
+                return;
             }
 
-            if (!mainMenu.activeInHierarchy)
+            if (mainMenu.activeInHierarchy)
             {
-                OpenMainMenu();
+                CloseMainMenu();
             }
             else
             {
-                CloseMainMenu();
+                OpenMainMenu();
             }
         }
     }
@@ -89,17 +92,17 @@ public class UIManager : MonoBehaviour
 
     public void OpenMainMenu()
     {
+        UnlockAndUnhideCursor();
         Time.timeScale = 0;
         HideHUD();
-        UnlockAndUnhideCursor();
         mainMenu.SetActive(true);
         setCameraSpeedScript.Pause();
     }
     public void CloseMainMenu()
     {
+        LockAndHideCursor();
         Time.timeScale = 1;
         ShowHUD();
-        LockAndHideCursor();
         mainMenu.SetActive(false);
         setCameraSpeedScript.SetDefaultSpeed();
     }

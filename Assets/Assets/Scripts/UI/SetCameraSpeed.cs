@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class SetCameraSpeed : MonoBehaviour
 {
+    [SerializeField] private CinemachineBrain brain;
     [SerializeField] private CinemachineFreeLook freeLookCamera;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private UISettings UISettingsScript;
@@ -19,9 +20,6 @@ public class SetCameraSpeed : MonoBehaviour
         freeLookCamera.m_XAxis.m_MaxSpeed = UISettingsScript.mouseSensitivtyXAxisSpeed;
         freeLookCamera.m_YAxis.m_MaxSpeed = UISettingsScript.mouseSensitivtyYAxisSpeed;
 
-        freeLookCamera.m_XAxis.m_DecelTime = 0.4f;
-        freeLookCamera.m_YAxis.m_DecelTime = 0.4f;
-
         virtualCamera.enabled = true;
     }
 
@@ -29,15 +27,12 @@ public class SetCameraSpeed : MonoBehaviour
     {
         freeLookCamera.m_XAxis.m_MaxSpeed = UISettingsScript.ADSSensitivtyXAxisSpeed;
         freeLookCamera.m_YAxis.m_MaxSpeed = UISettingsScript.ADSSensitivtyYAxisSpeed;
-
-        freeLookCamera.m_XAxis.m_DecelTime = 0.4f;
-        freeLookCamera.m_YAxis.m_DecelTime = 0.4f;
     }
 
     public void Pause()
     {
-        freeLookCamera.m_XAxis.m_MaxSpeed = 0f;
-        freeLookCamera.m_YAxis.m_MaxSpeed = 0f;
+        freeLookCamera.m_XAxis.m_MaxSpeed = 0.01f;
+        freeLookCamera.m_YAxis.m_MaxSpeed = 0.0001f;
 
         virtualCamera.enabled = false;
     }

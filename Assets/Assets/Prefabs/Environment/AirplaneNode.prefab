@@ -183,7 +183,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6901310590812574722}
-  m_LocalRotation: {x: 0, y: 0.7071065, z: 0, w: -0.707107}
+  m_LocalRotation: {x: 0, y: -0.0000004907462, z: 0, w: -1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -289,7 +289,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 388.50986, y: 388.21365, z: 562.94916}
   m_Center: {x: -2.834671, y: -71.23302, z: 108.841484}
---- !u!1001 &6340103622820956628
+--- !u!1001 &6824592377888506908
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -300,7 +300,7 @@ PrefabInstance:
     - target: {fileID: 2172856785242253366, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
       propertyPath: m_Name
-      value: ItemSpawnerCluster
+      value: ItemSpawnerCluster (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
@@ -310,7 +310,7 @@ PrefabInstance:
     - target: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.837
+      value: 1.92
       objectReference: {fileID: 0}
     - target: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
@@ -320,7 +320,7 @@ PrefabInstance:
     - target: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 133.11
+      value: 132.05
       objectReference: {fileID: 0}
     - target: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
@@ -422,11 +422,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbfac4427696fa040ab37b5c51ea940a, type: 3}
---- !u!4 &2270648911083191096 stripped
+--- !u!4 &6824592377888506909 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
     type: 3}
-  m_PrefabInstance: {fileID: 6340103622820956628}
+  m_PrefabInstance: {fileID: 6824592377888506908}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7939447595282416149
 PrefabInstance:
@@ -439,7 +439,7 @@ PrefabInstance:
     - target: {fileID: 2172856785242253366, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
       propertyPath: m_Name
-      value: ItemSpawnerCluster (1)
+      value: ItemSpawnerCluster
       objectReference: {fileID: 0}
     - target: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
@@ -449,7 +449,7 @@ PrefabInstance:
     - target: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.92
+      value: 0.837
       objectReference: {fileID: 0}
     - target: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
@@ -459,7 +459,7 @@ PrefabInstance:
     - target: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 132.05
+      value: 133.11
       objectReference: {fileID: 0}
     - target: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
         type: 3}
@@ -866,11 +866,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: f9c91ae519c53c5489ea41b496746aaf,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2270648911083191096}
+      addedObject: {fileID: 2760970479911563513}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: f9c91ae519c53c5489ea41b496746aaf,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2760970479911563513}
+      addedObject: {fileID: 6824592377888506909}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -7862391691550088030, guid: f9c91ae519c53c5489ea41b496746aaf,
         type: 3}

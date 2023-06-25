@@ -26,6 +26,9 @@ TagManager:
   - Kanazawa
   - Text
   - DialogueBox
+  - CampfireWarmthArea
+  - CampfireInteractArea
+  - Weather
   layers:
   - Default
   - TransparentFX

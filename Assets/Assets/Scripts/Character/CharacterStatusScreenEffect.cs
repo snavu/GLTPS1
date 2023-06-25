@@ -20,6 +20,8 @@ public class CharacterStatusScreenEffect : MonoBehaviour
 
     public float hungerThreshold = 30f;
     public float thirstThreshold = 30f;
+    public float temperatureThreshold = 30f;
+    public bool isLowStatus;
 
     private float elapsed = 0f;
     [SerializeField] private float duration = 2f;
@@ -34,20 +36,26 @@ public class CharacterStatusScreenEffect : MonoBehaviour
     {
         //fade screen to black and increase audio reverb
         if (characterItemInteractionScript.hungerLevel < hungerThreshold ||
-            characterItemInteractionScript.thirstLevel < thirstThreshold)
+            characterItemInteractionScript.thirstLevel < thirstThreshold ||
+             characterItemInteractionScript.temperatureLevel < temperatureThreshold)
         {
             //normalize player hunger/thirst 
             float normalizedStatus;
             float normalizedHunger = characterItemInteractionScript.hungerLevel / hungerThreshold;
             float normalizedThirst = characterItemInteractionScript.thirstLevel / thirstThreshold;
+            float normalizedTemperature = characterItemInteractionScript.temperatureLevel / temperatureThreshold;
 
-            if (normalizedHunger < normalizedThirst)
+            if (normalizedHunger < normalizedThirst && normalizedHunger < normalizedTemperature)
             {
                 normalizedStatus = normalizedHunger;
             }
-            else
+            else if (normalizedThirst < normalizedHunger && normalizedThirst < normalizedTemperature)
             {
                 normalizedStatus = normalizedThirst;
+            }
+            else
+            {
+                normalizedStatus = normalizedTemperature;
             }
 
             if (volume.profile.TryGet<Vignette>(out vignette))

@@ -95,7 +95,9 @@ public class PlayerMovement : MonoBehaviour
             }
 
             //slow movement when hungry/thirsty
-            if (characterItemInteractionScript.hungerLevel < characterStatusScreenEffectScript.hungerThreshold || characterItemInteractionScript.thirstLevel < characterStatusScreenEffectScript.thirstThreshold)
+            if (characterItemInteractionScript.hungerLevel < characterStatusScreenEffectScript.hungerThreshold || 
+                characterItemInteractionScript.thirstLevel < characterStatusScreenEffectScript.thirstThreshold ||
+                characterItemInteractionScript.temperatureLevel < characterStatusScreenEffectScript.temperatureThreshold)
             {
                 velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed * slowMovementRate;
             }

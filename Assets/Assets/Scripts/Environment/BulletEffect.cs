@@ -12,7 +12,7 @@ public class BulletEffect : MonoBehaviour
     private float elasped = 0f;
     [SerializeField]
     private float duration = 2f;
-    private float decreaseRate = 1f;
+    private float waterLossRate = 1f;
     public AudioSource _audioSource;
     [SerializeField] private AudioClip[] _audioClip;
     void Start()
@@ -26,7 +26,7 @@ public class BulletEffect : MonoBehaviour
         if (pipeWaterLevelScript != null)
         {
             //decrease water level
-            pipeWaterLevelScript.waterlevel -= decreaseRate * Time.deltaTime;
+            pipeWaterLevelScript.waterlevel -= waterLossRate * Time.deltaTime;
 
             //lerp particle rate to 0
             if (pipeWaterLevelScript.waterlevel <= 0)

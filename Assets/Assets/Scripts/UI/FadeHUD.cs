@@ -17,11 +17,13 @@ public class FadeHUD : MonoBehaviour
     [SerializeField] private Image[] compassUIImage;
 
 
-    [SerializeField] private CharacterItemData characterItemDataScript;
+    [SerializeField] private CharacterStatus characterStatusScript;
     public VehicleBarrel vehicleBarrelScript;
     [SerializeField] private NPCInteraction chitoNPCInteractionScript;
     [SerializeField] private NPCInteraction yuuriNPCInteractionScript;
     [SerializeField] private PlayerCameraController playerCameraControllerScript;
+    [SerializeField] private CharacterItemInteraction chitoCharacterItemInteractionScript;
+    [SerializeField] private CharacterItemInteraction yuuriCharacterItemInteractionScript;
 
     [SerializeField] private float duration = 1f;
     private float elapsed1 = 0f;
@@ -81,6 +83,11 @@ public class FadeHUD : MonoBehaviour
                 elapsed2 = 0f;
             }
         }
+        else if (chitoCharacterItemInteractionScript.isInCampfireArea || yuuriCharacterItemInteractionScript.isInCampfireArea)
+        {
+            LerpAlpha(0, 0.4f, 0.4f, 0.4f, ref elapsed2);
+            elapsed3 = 0f;
+        }
         //lerp HUD for food/water
         else
         {
@@ -121,7 +128,7 @@ public class FadeHUD : MonoBehaviour
         }
 
         // Lerp foodbar UI
-        foreach (GameObject foodbar in characterItemDataScript.newFoodbar)
+        foreach (GameObject foodbar in characterStatusScript.newFoodbar)
         {
             color = foodbar.GetComponent<RawImage>().color;
             color.a = Mathf.Lerp(foodUIalpha, alphaC, elapsed / duration);

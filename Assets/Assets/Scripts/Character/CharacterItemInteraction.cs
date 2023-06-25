@@ -10,25 +10,38 @@ public class CharacterItemInteraction : MonoBehaviour
     private bool isFood;
     private bool isAmmo;
     private bool isWater;
+    private bool isCampfire;
+    public bool isInCampfireArea;
+
 
     [SerializeField] private Collider other;
     [SerializeField] private RawImage foodbarPrefab;
-
     [SerializeField] private GameObject panel;
 
-    [SerializeField] private float eatValue = 20f;
-    [SerializeField] private float drinkValue = 20f;
-
     public float hungerLevel = 100f;
+    [SerializeField] private float eatValue = 20f;
+    [SerializeField] private int maxRandomFoodCount = 5;
+
     public float thirstLevel = 100f;
-    [SerializeField] private CharacterItemData characterItemDataScript;
+    [SerializeField] private float drinkValue = 20f;
+    [SerializeField] private float waterRefillRate = 1f;
+
+    public float temperatureLevel = 100f;
+    [SerializeField] private float temperatureRefillValue = 1f;
+    [SerializeField] private float fuelValue = 20f;
+    public bool isUnderCeiling;
+    [SerializeField] float isUnderCeilingHeight = 20f;
+    [SerializeField] private GameObject campfirePrefab;
+    [SerializeField] private Vector3 campfireOffsetPosition;
+    [SerializeField] private VehicleFuelManager vehicleFuelManagerScript;
+
+
+    [SerializeField] private CharacterStatus characterStatusScript;
     public Animator anim;
     [SerializeField] private PlayerGunController playerGunControllerScript;
     [SerializeField] private int maxRandomAmmoCount = 5;
     [SerializeField] private TextMeshProUGUI ammoCountText;
 
-    [SerializeField] private float waterRefillRate = 1f;
-    [SerializeField] private int maxRandomFoodCount = 5;
 
     public AudioSource _audioSource;
     [SerializeField] private AudioClip[] _audioClip;
@@ -38,6 +51,7 @@ public class CharacterItemInteraction : MonoBehaviour
         playerInputScript.actions.Player.Interact.performed += Interact;
         playerInputScript.actions.Player.Eat.performed += Eat;
         playerInputScript.actions.Player.Drink.performed += Drink;
+        playerInputScript.actions.Player.PlaceCampfire.performed += PlaceCampfire;
     }
 
     void OnDisable()
@@ -45,15 +59,14 @@ public class CharacterItemInteraction : MonoBehaviour
         playerInputScript.actions.Player.Interact.performed -= Interact;
         playerInputScript.actions.Player.Eat.performed -= Eat;
         playerInputScript.actions.Player.Drink.performed -= Drink;
+        playerInputScript.actions.Player.PlaceCampfire.performed -= PlaceCampfire;
     }
-
-
 
     private void Interact(InputAction.CallbackContext context)
     {
         if (context.performed && Time.timeScale == 1)
         {
-            if (isFood && characterItemDataScript.index < 18 && other != null)
+            if (isFood && characterStatusScript.index < 18 && other.gameObject.CompareTag("Food"))
             {
                 //destroy scene food gameobject
                 Destroy(other.gameObject);
@@ -62,21 +75,20 @@ public class CharacterItemInteraction : MonoBehaviour
                 for (int i = 0; i < Random.Range(1, maxRandomFoodCount + 1); i++)
                 {
                     //add food ui object and set rotation and position on canvas
-                    characterItemDataScript.newFoodbar.Add(Instantiate(foodbarPrefab.gameObject, panel.transform));
-                    characterItemDataScript.newFoodbar[characterItemDataScript.index].GetComponent<RectTransform>().localRotation = Quaternion.identity;
-                    characterItemDataScript.newFoodbar[characterItemDataScript.index].GetComponent<RectTransform>().anchoredPosition3D = new Vector3(foodbarPrefab.rectTransform.anchoredPosition3D.x + characterItemDataScript.offsetXPos
+                    characterStatusScript.newFoodbar.Add(Instantiate(foodbarPrefab.gameObject, panel.transform));
+                    characterStatusScript.newFoodbar[characterStatusScript.index].GetComponent<RectTransform>().localRotation = Quaternion.identity;
+                    characterStatusScript.newFoodbar[characterStatusScript.index].GetComponent<RectTransform>().anchoredPosition3D = new Vector3(foodbarPrefab.rectTransform.anchoredPosition3D.x + characterStatusScript.offsetXPos
                                                                                                     , foodbarPrefab.rectTransform.anchoredPosition3D.y
                                                                                                     , foodbarPrefab.rectTransform.anchoredPosition3D.z);
                     //offset position for adding ui objects
-                    characterItemDataScript.offsetXPos += -30;
-                    characterItemDataScript.index++;
+                    characterStatusScript.offsetXPos += -30;
+                    characterStatusScript.index++;
                 }
-
+                _audioSource.PlayOneShot(_audioClip[0]);
                 isFood = false;
 
-                _audioSource.PlayOneShot(_audioClip[0]);
             }
-            if (isAmmo && other != null)
+            else if (isAmmo && other.gameObject.CompareTag("Ammo"))
             {
                 //destroy scene ammo gameobject
                 Destroy(other.gameObject);
@@ -88,20 +100,39 @@ public class CharacterItemInteraction : MonoBehaviour
                 ammoCountText.text = playerGunControllerScript.ammoCount.ToString();
 
                 _audioSource.PlayOneShot(_audioClip[0]);
+                isAmmo = false;
             }
+            else if (isCampfire && other.gameObject.CompareTag("CampfireInteractArea"))
+            {
+                other.gameObject.GetComponentInParent<CampfireFuelLevel>().currentFuelLevel = 0;
+                isCampfire = false;
+            }
+        }
+    }
+
+    void Update()
+    {
+        //check if character is under ceiling
+        if (Physics.Raycast(transform.position + new Vector3(0, 2f, 0), Vector2.up, isUnderCeilingHeight))
+        {
+            isUnderCeiling = true;
+        }
+        else
+        {
+            isUnderCeiling = false;
         }
     }
 
     private void Eat(InputAction.CallbackContext context)
     {
-        if (context.performed && characterItemDataScript.index > 0 && !anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") && Time.timeScale == 1)
+        if (context.performed && characterStatusScript.index > 0 && !anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") && Time.timeScale == 1)
         {
             hungerLevel += eatValue;
 
-            Destroy(characterItemDataScript.newFoodbar[characterItemDataScript.index - 1]);
-            characterItemDataScript.newFoodbar.RemoveAt(characterItemDataScript.index - 1);
-            characterItemDataScript.offsetXPos += 30;
-            characterItemDataScript.index--;
+            Destroy(characterStatusScript.newFoodbar[characterStatusScript.index - 1]);
+            characterStatusScript.newFoodbar.RemoveAt(characterStatusScript.index - 1);
+            characterStatusScript.offsetXPos += 30;
+            characterStatusScript.index--;
 
             //trigger eating animation
             anim.SetTrigger("eat");
@@ -112,14 +143,34 @@ public class CharacterItemInteraction : MonoBehaviour
 
     private void Drink(InputAction.CallbackContext context)
     {
-        if (context.performed && characterItemDataScript.waterLevel > 0 && !anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") && Time.timeScale == 1)
+        if (context.performed && characterStatusScript.waterLevel > 0 && !anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") && Time.timeScale == 1)
         {
             thirstLevel += drinkValue;
-            characterItemDataScript.waterLevel -= drinkValue;
+            characterStatusScript.waterLevel -= drinkValue;
 
             anim.SetTrigger("drink");
 
             _audioSource.PlayOneShot(_audioClip[1]);
+        }
+    }
+
+    private void PlaceCampfire(InputAction.CallbackContext context)
+    {
+        if (context.performed && vehicleFuelManagerScript.currentFuel > 0)
+        {
+            //spawn at raycast hit point
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position + new Vector3(0, 0.4f, 0), transform.forward, out hit, campfireOffsetPosition.magnitude))
+            {
+                Instantiate(campfirePrefab, hit.point, transform.rotation);
+            }
+            //spawn at default offset position
+            else
+            {
+                Instantiate(campfirePrefab, transform.position + transform.forward, transform.rotation);
+            }
+            vehicleFuelManagerScript.currentFuel -= fuelValue;
+            //_audioSource.PlayOneShot(_audioClip[2]);
         }
     }
 
@@ -130,15 +181,22 @@ public class CharacterItemInteraction : MonoBehaviour
             isFood = true;
             this.other = other;
         }
-        if (other.gameObject.CompareTag("Ammo"))
+        else if (other.gameObject.CompareTag("Ammo"))
         {
             isAmmo = true;
             this.other = other;
         }
-        if (other.gameObject.CompareTag("Water"))
+        else if (other.gameObject.CompareTag("CampfireInteractArea"))
         {
-            characterItemDataScript.waterLevel += waterRefillRate;
+            isCampfire = true;
+            this.other = other;
         }
+        else if (other.gameObject.CompareTag("CampfireWarmthArea"))
+        {
+            isInCampfireArea = true;
+            temperatureLevel += temperatureRefillValue;
+        }
+
     }
 
     void OnTriggerExit(Collider other)
@@ -151,13 +209,28 @@ public class CharacterItemInteraction : MonoBehaviour
         {
             isAmmo = false;
         }
+        if (other.gameObject.CompareTag("CampfireWarmthArea"))
+        {
+            isInCampfireArea = false;
+        }
+        if (other.gameObject.CompareTag("CampfireInteractArea"))
+        {
+            isCampfire = false;
+        }
     }
 
     void OnParticleCollision(GameObject other)
     {
         if (other.gameObject.CompareTag("Water"))
         {
-            characterItemDataScript.waterLevel += waterRefillRate;
+            characterStatusScript.waterLevel += waterRefillRate;
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(transform.position + new Vector3(0, .1f, 0), transform.forward);
+        Gizmos.DrawRay(transform.position + new Vector3(0, 2, 0), Vector2.up * isUnderCeilingHeight);
     }
 }

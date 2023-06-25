@@ -161,6 +161,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlaceCampfire"",
+                    ""type"": ""Button"",
+                    ""id"": ""bcfffabd-645d-4670-86ea-14be1d56c4ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -559,6 +568,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""AgentWait"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8cfda94-8792-4247-8c04-319a7be22342"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""PlaceCampfire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -872,6 +892,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_CameraZoom = m_Player.FindAction("CameraZoom", throwIfNotFound: true);
         m_Player_Map = m_Player.FindAction("Map", throwIfNotFound: true);
         m_Player_AgentWait = m_Player.FindAction("AgentWait", throwIfNotFound: true);
+        m_Player_PlaceCampfire = m_Player.FindAction("PlaceCampfire", throwIfNotFound: true);
         // Vehicle
         m_Vehicle = asset.FindActionMap("Vehicle", throwIfNotFound: true);
         m_Vehicle_Drive = m_Vehicle.FindAction("Drive", throwIfNotFound: true);
@@ -955,6 +976,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_CameraZoom;
     private readonly InputAction m_Player_Map;
     private readonly InputAction m_Player_AgentWait;
+    private readonly InputAction m_Player_PlaceCampfire;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -974,6 +996,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @CameraZoom => m_Wrapper.m_Player_CameraZoom;
         public InputAction @Map => m_Wrapper.m_Player_Map;
         public InputAction @AgentWait => m_Wrapper.m_Player_AgentWait;
+        public InputAction @PlaceCampfire => m_Wrapper.m_Player_PlaceCampfire;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1028,6 +1051,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @AgentWait.started += instance.OnAgentWait;
             @AgentWait.performed += instance.OnAgentWait;
             @AgentWait.canceled += instance.OnAgentWait;
+            @PlaceCampfire.started += instance.OnPlaceCampfire;
+            @PlaceCampfire.performed += instance.OnPlaceCampfire;
+            @PlaceCampfire.canceled += instance.OnPlaceCampfire;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1077,6 +1103,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @AgentWait.started -= instance.OnAgentWait;
             @AgentWait.performed -= instance.OnAgentWait;
             @AgentWait.canceled -= instance.OnAgentWait;
+            @PlaceCampfire.started -= instance.OnPlaceCampfire;
+            @PlaceCampfire.performed -= instance.OnPlaceCampfire;
+            @PlaceCampfire.canceled -= instance.OnPlaceCampfire;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1234,6 +1263,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnCameraZoom(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
         void OnAgentWait(InputAction.CallbackContext context);
+        void OnPlaceCampfire(InputAction.CallbackContext context);
     }
     public interface IVehicleActions
     {

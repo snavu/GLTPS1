@@ -139,6 +139,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PlaceCampfire",
+                    "type": "Button",
+                    "id": "bcfffabd-645d-4670-86ea-14be1d56c4ba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -535,6 +544,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "AgentWait",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8cfda94-8792-4247-8c04-319a7be22342",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PlaceCampfire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -5,9 +5,18 @@ using UnityEngine;
 public class ItemSpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] item;
-    [SerializeField] private int[] spawnChance;
+    public int[] spawnChance;
+    private Save save = new Save();
     void Start()
     {
+        save = save.LoadData("difficultySetting");
+        if (save != null)
+        {
+            for (int i = 0; i < spawnChance.Length; i++)
+            {
+                spawnChance[i] = save.itemSpawnChance[i];
+            }
+        }
         RandomWeightedSpawnItem();
     }
 

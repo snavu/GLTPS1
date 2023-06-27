@@ -29,10 +29,11 @@ public class WeatherManager : MonoBehaviour
     public int index;
     public bool start;
     public bool stop;
+    public bool isWeatherTransitioned;
     public int[] weatherChance;
     [SerializeField] private float transitionDuration;
     [SerializeField] private float repeatInvokeDuration = 60f;
-    [SerializeField] private float weatherDuration = 120f;
+    [SerializeField] private float weatherDuration = 60f;
 
     private WeatherData weatherData;
 
@@ -65,7 +66,6 @@ public class WeatherManager : MonoBehaviour
 
     IEnumerator StartWeather()
     {
-
 
         index = RandomWeightedGenerator.GenerateRandomIndex(weatherChance);
 
@@ -154,6 +154,10 @@ public class WeatherManager : MonoBehaviour
             Color color = Color.Lerp(mapTextureOverlayColor[0], weatherData.mapTextureOverlayColor, elapsed1 / transitionDuration);
             mapTextureOverlay.color = color;
         }
+        else
+        {
+            isWeatherTransitioned = true;
+        }
     }
     private void StopWeather(WeatherData weatherData)
     {
@@ -185,6 +189,10 @@ public class WeatherManager : MonoBehaviour
                 weatherData.audioSource.Stop();
                 snowParticleSystem.Play();
             }
+        }
+        else
+        {
+            isWeatherTransitioned = false;
         }
     }
 }

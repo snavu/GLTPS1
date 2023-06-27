@@ -29,6 +29,7 @@ TagManager:
   - CampfireWarmthArea
   - CampfireInteractArea
   - Weather
+  - Save
   layers:
   - Default
   - TransparentFX

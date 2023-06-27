@@ -183,7 +183,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6901310590812574722}
-  m_LocalRotation: {x: 0, y: -0.0000004907462, z: 0, w: -1}
+  m_LocalRotation: {x: 0, y: -0.70710653, z: 0, w: 0.7071071}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -422,7 +422,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbfac4427696fa040ab37b5c51ea940a, type: 3}
---- !u!4 &6824592377888506909 stripped
+--- !u!4 &1642607820718651120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5223724219029041900, guid: cbfac4427696fa040ab37b5c51ea940a,
     type: 3}
@@ -870,7 +870,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: f9c91ae519c53c5489ea41b496746aaf,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6824592377888506909}
+      addedObject: {fileID: 1642607820718651120}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -7862391691550088030, guid: f9c91ae519c53c5489ea41b496746aaf,
         type: 3}

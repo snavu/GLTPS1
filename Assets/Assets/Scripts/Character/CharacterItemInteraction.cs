@@ -84,7 +84,7 @@ public class CharacterItemInteraction : MonoBehaviour
                     characterStatusScript.offsetXPos += -30;
                     characterStatusScript.index++;
                 }
-                _audioSource.PlayOneShot(_audioClip[0]);
+                _audioSource.PlayOneShot(_audioClip[2]);
                 isFood = false;
 
             }
@@ -99,13 +99,17 @@ public class CharacterItemInteraction : MonoBehaviour
                 //change ammo ui
                 ammoCountText.text = playerGunControllerScript.ammoCount.ToString();
 
-                _audioSource.PlayOneShot(_audioClip[0]);
+                _audioSource.PlayOneShot(_audioClip[2]);
                 isAmmo = false;
             }
             else if (isCampfire && other.gameObject.CompareTag("CampfireInteractArea"))
             {
-                other.gameObject.GetComponentInParent<CampfireFuelLevel>().currentFuelLevel = 0;
-                isCampfire = false;
+                if (other.gameObject.GetComponentInParent<CampfireFuelLevel>().currentFuelLevel > 0)
+                {
+                    other.gameObject.GetComponentInParent<CampfireFuelLevel>().currentFuelLevel = 0;
+                    _audioSource.PlayOneShot(_audioClip[1]);
+                    isCampfire = false;
+                }
             }
         }
     }
@@ -137,7 +141,7 @@ public class CharacterItemInteraction : MonoBehaviour
             //trigger eating animation
             anim.SetTrigger("eat");
 
-            _audioSource.PlayOneShot(_audioClip[Random.Range(2, _audioClip.Length)]);
+            _audioSource.PlayOneShot(_audioClip[Random.Range(4, _audioClip.Length)]);
         }
     }
 
@@ -150,7 +154,7 @@ public class CharacterItemInteraction : MonoBehaviour
 
             anim.SetTrigger("drink");
 
-            _audioSource.PlayOneShot(_audioClip[1]);
+            _audioSource.PlayOneShot(_audioClip[3]);
         }
     }
 
@@ -158,19 +162,28 @@ public class CharacterItemInteraction : MonoBehaviour
     {
         if (context.performed && vehicleFuelManagerScript.currentFuel > 0)
         {
+            // check if previous campfire is extinguised before allowing for placing new one 
+            if (characterStatusScript.newCampfire != null)
+            {
+                if (characterStatusScript.newCampfire.GetComponent<CampfireFuelLevel>().currentFuelLevel > 0)
+                {
+                    return;
+                }
+            }
+
             //spawn at raycast hit point
             RaycastHit hit;
             if (Physics.Raycast(transform.position + new Vector3(0, 0.4f, 0), transform.forward, out hit, campfireOffsetPosition.magnitude))
             {
-                Instantiate(campfirePrefab, hit.point, transform.rotation);
+                characterStatusScript.newCampfire = Instantiate(campfirePrefab, hit.point, transform.rotation);
             }
             //spawn at default offset position
             else
             {
-                Instantiate(campfirePrefab, transform.position + transform.forward, transform.rotation);
+                characterStatusScript.newCampfire = Instantiate(campfirePrefab, transform.position + transform.forward, transform.rotation);
             }
             vehicleFuelManagerScript.currentFuel -= fuelValue;
-            //_audioSource.PlayOneShot(_audioClip[2]);
+            _audioSource.PlayOneShot(_audioClip[0]);
         }
     }
 
@@ -194,9 +207,11 @@ public class CharacterItemInteraction : MonoBehaviour
         else if (other.gameObject.CompareTag("CampfireWarmthArea"))
         {
             isInCampfireArea = true;
-            temperatureLevel += temperatureRefillValue;
+            if (other.gameObject.GetComponent<CampfireFuelLevel>().currentFuelLevel > 0)
+            {
+                temperatureLevel += temperatureRefillValue;
+            }
         }
-
     }
 
     void OnTriggerExit(Collider other)

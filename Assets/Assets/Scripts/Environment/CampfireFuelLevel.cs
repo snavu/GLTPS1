@@ -33,13 +33,13 @@ public class CampfireFuelLevel : MonoBehaviour
         if (currentFuelLevel <= 0)
         {
             elasped += Time.deltaTime;
-            var emission = campfireParticleSystem.emission;
+            ParticleSystem.EmissionModule emission = campfireParticleSystem.emission;
             emission.rateOverTime = Mathf.Lerp(particleSystemEmissionRate, 0, elasped / smokeDurationAfterExtinguished);
         }
 
 
         //check if campfire is under ceiling
-        if (!Physics.Raycast(transform.position, Vector2.up, isUnderCeilingHeight) && weatherManagerScript.start)
+        if (!Physics.Raycast(transform.position, Vector2.up, isUnderCeilingHeight) && weatherManagerScript.isWeatherTransitioned)
         {
             currentFuelLevel = 0;
         }

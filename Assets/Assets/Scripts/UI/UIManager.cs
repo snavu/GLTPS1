@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+
 public class UIManager : MonoBehaviour
 {
     private UIInputActions actions;
@@ -11,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject photoMenu;
     [SerializeField] private GameObject HUD;
+    [SerializeField] private GameObject DifficultyMenu;
     [SerializeField] SetCameraSpeed setCameraSpeedScript;
     [SerializeField] private UISettings UISettingsScript;
     [SerializeField] private GameObject[] photoPanel;
@@ -19,14 +23,15 @@ public class UIManager : MonoBehaviour
     public int imageAssignmentIndex;
     [SerializeField] private GameObject photoMenuSelectedImage;
     [SerializeField] private GameObject dialogueBoxFlag;
+    [SerializeField] private bool isTitleMenu;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] audioClip;
 
     void OnEnable()
     {
         actions = new UIInputActions();
         actions.UI.Enable();
         actions.UI.Menu.performed += Menu;
-
-        LockAndHideCursor();
     }
 
     void OnDisable()
@@ -35,20 +40,33 @@ public class UIManager : MonoBehaviour
         actions.UI.Disable();
     }
 
+    public void PlayButtonHoverSFX()
+    {
+        audioSource.PlayOneShot(audioClip[0]);
+    }
+    public void PlayButtonDownSFX()
+    {
+        audioSource.PlayOneShot(audioClip[1]);
+    }
+
     public void Menu(InputAction.CallbackContext context)
     {
-        if (context.performed && !dialogueBoxFlag.activeInHierarchy)
+        if (context.performed)
         {
-            if (photoMenuSelectedImage.activeInHierarchy)
+            if (photoMenu != null)
             {
-                HideImage();
-                return;
-            }
-            else if (photoMenu.activeInHierarchy)
-            {
-                ClosePhotoMenu();
-                OpenMainMenu();
-                return;
+                if (photoMenuSelectedImage.activeInHierarchy)
+                {
+                    HideImage();
+                    return;
+                }
+                else if (photoMenu.activeInHierarchy)
+                {
+                    ClosePhotoMenu();
+                    OpenMainMenu();
+                    PlayButtonDownSFX();
+                    return;
+                }
             }
 
             if (settingsMenu.activeInHierarchy)
@@ -56,16 +74,22 @@ public class UIManager : MonoBehaviour
                 UISettingsScript.SaveSettings();
                 CloseSettingsMenu();
                 OpenMainMenu();
+                PlayButtonDownSFX();
                 return;
             }
 
             if (mainMenu.activeInHierarchy)
             {
-                CloseMainMenu();
+                if (!isTitleMenu)
+                {
+                    CloseMainMenu();
+                    PlayButtonDownSFX();
+                }
             }
-            else
+            else if (!dialogueBoxFlag.activeInHierarchy)
             {
                 OpenMainMenu();
+                PlayButtonDownSFX();
             }
         }
     }
@@ -81,30 +105,35 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void ShowHUD()
-    {
-        HUD.SetActive(true);
-    }
-    public void HideHUD()
-    {
-        HUD.SetActive(false);
-    }
-
     public void OpenMainMenu()
     {
-        UnlockAndUnhideCursor();
         Time.timeScale = 0;
-        HideHUD();
+        UnlockAndUnhideCursor();
         mainMenu.SetActive(true);
-        setCameraSpeedScript.Pause();
+
+        if (HUD != null)
+        {
+            HUD.SetActive(false);
+        }
+        if (setCameraSpeedScript != null)
+        {
+            setCameraSpeedScript.Pause();
+        }
     }
     public void CloseMainMenu()
     {
-        LockAndHideCursor();
         Time.timeScale = 1;
-        ShowHUD();
+        LockAndHideCursor();
         mainMenu.SetActive(false);
-        setCameraSpeedScript.SetDefaultSpeed();
+
+        if (HUD != null)
+        {
+            HUD.SetActive(true);
+        }
+        if (setCameraSpeedScript != null)
+        {
+            setCameraSpeedScript.SetDefaultSpeed();
+        }
     }
 
     public void HideMainMenu()
@@ -161,6 +190,16 @@ public class UIManager : MonoBehaviour
     public void HideImage()
     {
         photoMenuSelectedImage.SetActive(false);
+    }
+
+    public void OpenDifficultyMenu()
+    {
+        DifficultyMenu.SetActive(true);
+    }
+
+    public void QuitToTitleMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void QuitApplication()

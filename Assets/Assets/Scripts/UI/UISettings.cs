@@ -46,5 +46,6 @@ public class UISettings : MonoBehaviour
         PlayerPrefs.SetFloat("mouseSensitivitySliderValue", mouseSensitivitySlider.value);
         PlayerPrefs.SetFloat("ADSSensitivitySliderValue", ADSSensitivitySlider.value);
         PlayerPrefs.SetFloat("globalAudioVolumeSlider", globalAudioVolumeSlider.value);
+        PlayerPrefs.Save();
     }
 }

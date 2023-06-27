@@ -46,20 +46,17 @@ public class AudioAnimationEvents : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (cc.enabled)
+        if (other.gameObject.CompareTag("Untagged"))
         {
-            if (other.gameObject.CompareTag("Untagged"))
-            {
-                isGroundedConcrete = true;
-                _audioSource.PlayOneShot(_audioClip[0]);
-            }
-            else if (other.gameObject.CompareTag("Metal") ||
-                     other.gameObject.CompareTag("Pipe") ||
-                     other.gameObject.CompareTag("Vehicle"))
-            {
-                isGroundedMetal = true;
-                _audioSource.PlayOneShot(_audioClip[3]);
-            }
+            isGroundedConcrete = true;
+            _audioSource.PlayOneShot(_audioClip[0]);
+        }
+        else if (other.gameObject.CompareTag("Metal") ||
+                 other.gameObject.CompareTag("Pipe") ||
+                 other.gameObject.CompareTag("Vehicle"))
+        {
+            isGroundedMetal = true;
+            _audioSource.PlayOneShot(_audioClip[3]);
         }
     }
     private void OnTriggerExit(Collider other)

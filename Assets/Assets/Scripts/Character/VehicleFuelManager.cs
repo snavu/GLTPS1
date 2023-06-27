@@ -26,7 +26,6 @@ public class VehicleFuelManager : MonoBehaviour
     {
         movement = playerInputScript.actions.Vehicle.Drive.ReadValue<Vector2>();
 
-
         //clamp fuel
         currentFuel = Mathf.Clamp(currentFuel, 0, maxFuel);
 

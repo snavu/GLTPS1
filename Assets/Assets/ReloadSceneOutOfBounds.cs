@@ -8,7 +8,7 @@ public class ReloadSceneOutOfBounds : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Out Of Bounds"))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 }

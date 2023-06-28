@@ -13290,7 +13290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1179579383}
-  spawnThreshold: 1200
+  spawnThreshold: 1400
   count: 0
   countThreshold: 20
   pillarEdge: {fileID: 9186179694044918228, guid: 036eebdf2dc9b6e40b0c4aecf577f68f,
@@ -15217,6 +15217,7 @@ MonoBehaviour:
   nodeDataScript: {fileID: 0}
   mapCamera: {fileID: 460466893}
   renderTexture: {fileID: 8400000, guid: 0c4f63cfa094791489d69c5b4b829e3a, type: 2}
+  mapOverlayTexture: {fileID: 0}
   mapImage:
   - {fileID: 1592479606}
   - {fileID: 1798665401}
@@ -18967,6 +18968,21 @@ PrefabInstance:
       propertyPath: mapTextureOverlay
       value: 
       objectReference: {fileID: 1798665401}
+    - target: {fileID: 6338403580176573325, guid: ba20f835d557176478fbf3c94f55002b,
+        type: 3}
+      propertyPath: mapTextureOverlayColor.Array.data[2].b
+      value: 0.764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 6338403580176573325, guid: ba20f835d557176478fbf3c94f55002b,
+        type: 3}
+      propertyPath: mapTextureOverlayColor.Array.data[2].g
+      value: 0.764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 6338403580176573325, guid: ba20f835d557176478fbf3c94f55002b,
+        type: 3}
+      propertyPath: mapTextureOverlayColor.Array.data[2].r
+      value: 0.764151
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20745,7 +20761,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179579383}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f39b44e419fb5bc469b1c69af78a7bce, type: 3}
   m_Name: 
@@ -20755,6 +20771,7 @@ MonoBehaviour:
   nodeDataScript: {fileID: 1732239728}
   mapCamera: {fileID: 460466893}
   renderTexture: {fileID: 8400000, guid: 0c4f63cfa094791489d69c5b4b829e3a, type: 2}
+  mapOverlayTexture: {fileID: 2800000, guid: d270ce331acab0940a136f114a394fd5, type: 3}
   mapImage:
   - {fileID: 1592479606}
   - {fileID: 1798665401}

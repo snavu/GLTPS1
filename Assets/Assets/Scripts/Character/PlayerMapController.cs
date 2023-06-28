@@ -10,6 +10,7 @@ public class PlayerMapController : MonoBehaviour
     [SerializeField] private NodeData nodeDataScript;
     [SerializeField] private Camera mapCamera;
     [SerializeField] private RenderTexture renderTexture;
+    [SerializeField] private Texture2D mapOverlayTexture;
     [SerializeField] private RawImage[] mapImage;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip mapSFX;
@@ -33,7 +34,7 @@ public class PlayerMapController : MonoBehaviour
 
     private void Map(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed  && Time.timeScale == 1)
         {
             if (!isMapEnabled)
             {
@@ -98,7 +99,7 @@ public class PlayerMapController : MonoBehaviour
         mapCamera.Render();
 
         RenderTexture.active = renderTexture;
-        Texture2D screenshotTexture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
+        Texture2D screenshotTexture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGBA32, false);
         screenshotTexture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
         screenshotTexture.Apply();
         RenderTexture.active = null;

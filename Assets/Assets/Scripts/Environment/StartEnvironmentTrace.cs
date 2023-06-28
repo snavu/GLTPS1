@@ -30,7 +30,7 @@ public class StartEnvironmentTrace : MonoBehaviour
     }
     IEnumerator TriggerTraceFromPillarNode()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if (node.isActive)
         {

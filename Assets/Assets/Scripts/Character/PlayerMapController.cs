@@ -10,7 +10,6 @@ public class PlayerMapController : MonoBehaviour
     [SerializeField] private NodeData nodeDataScript;
     [SerializeField] private Camera mapCamera;
     [SerializeField] private RenderTexture renderTexture;
-    [SerializeField] private Texture2D mapOverlayTexture;
     [SerializeField] private RawImage[] mapImage;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip mapSFX;
@@ -34,7 +33,7 @@ public class PlayerMapController : MonoBehaviour
 
     private void Map(InputAction.CallbackContext context)
     {
-        if (context.performed  && Time.timeScale == 1)
+        if (context.performed && Time.timeScale == 1)
         {
             if (!isMapEnabled)
             {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioTriggerEvents : MonoBehaviour
 {
+    [SerializeField] private PlayerInputInitialize playerInputInitializeScript;
     public AudioSource _audioSource;
     [SerializeField] private AudioClip[] voicelines;
     [SerializeField] private AudioClip soundEffect;
@@ -34,16 +35,22 @@ public class AudioTriggerEvents : MonoBehaviour
                 flag2 = true;
             }
         }
-        if (other.gameObject.CompareTag("Untagged") ||
-            other.gameObject.CompareTag("Metal") ||
-            other.gameObject.CompareTag("Pipe") ||
-            other.gameObject.CompareTag("Vehicle"))
+
+        if (playerInputInitializeScript != null)
         {
-            if (soundEffect != null)
+            if (playerInputInitializeScript.actions.Player.enabled)
             {
-                _audioSource.PlayOneShot(soundEffect);
+                if (other.gameObject.CompareTag("Untagged") ||
+                    other.gameObject.CompareTag("Metal") ||
+                    other.gameObject.CompareTag("Pipe") ||
+                    other.gameObject.CompareTag("Vehicle"))
+                {
+                    if (soundEffect != null)
+                    {
+                        _audioSource.PlayOneShot(soundEffect);
+                    }
+                }
             }
         }
-
     }
 }

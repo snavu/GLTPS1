@@ -7,8 +7,8 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     public Animator agentAnim;
     [SerializeField] private Collider collider;
-
     [SerializeField] private NavMeshAgentFollowPlayer navMeshAgentFollowPlayerScript;
+    [SerializeField] private Transform child;
     [SerializeField] private Transform enterPosition;
     [SerializeField] private Transform constraintPosition;
     [SerializeField] private PlayerMovement playerMovementScript;
@@ -16,7 +16,6 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
     public bool exit;
     private bool positionConstraint;
     public bool rotationConstraint;
-
     private bool preOrientEnter;
     public bool preOrientExit;
     [SerializeField] private float rotationSpeed = 600.0f;
@@ -42,8 +41,9 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
             {
                 //orient rotation to enter ket
                 agent.enabled = false;
+                child.rotation = Quaternion.RotateTowards(child.rotation, enterPosition.rotation, rotationSpeed * Time.deltaTime);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, enterPosition.rotation, rotationSpeed * Time.deltaTime);
-                if (AngleUtils.RotationsApproximatelyEqual(transform, enterPosition))
+                if (AngleUtils.RotationsApproximatelyEqual(transform, enterPosition) && AngleUtils.RotationsApproximatelyEqual(child, enterPosition))
                 {
                     agentAnim.SetTrigger("ket back");
                     preOrientEnter = true;
@@ -78,7 +78,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
             //lerp agent position to exit
             if (preOrientExit)
             {
-                if (Vector3.Distance(transform.position, enterPosition.position) > 0.01f &&  !agent.enabled)
+                if (Vector3.Distance(transform.position, enterPosition.position) > 0.01f && !agent.enabled)
                 {
                     elapsed += Time.deltaTime;
                     transform.position = Vector3.Lerp(transform.position, enterPosition.position, elapsed / duration);

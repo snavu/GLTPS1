@@ -14894,6 +14894,7 @@ MonoBehaviour:
   agentAnim: {fileID: 1690254641}
   collider: {fileID: 2072579814}
   navMeshAgentFollowPlayerScript: {fileID: 2072579812}
+  child: {fileID: 543450653265870907}
   enterPosition: {fileID: 1870898228}
   constraintPosition: {fileID: 1419417138}
   playerMovementScript: {fileID: 1179579384}
@@ -20531,6 +20532,7 @@ MonoBehaviour:
   agentAnim: {fileID: 9146561999101011854}
   collider: {fileID: 9146561997578268257}
   navMeshAgentFollowPlayerScript: {fileID: 9146561997578268271}
+  child: {fileID: 868928912622174518}
   enterPosition: {fileID: 1870898228}
   constraintPosition: {fileID: 1419417138}
   playerMovementScript: {fileID: 2072579803}

@@ -44,7 +44,7 @@ public class CharacterBarrelInteraction : MonoBehaviour
                 playerInputScript.actions.Player.Jump.Disable();
                 playerInputScript.actions.Player.Sprint.Disable();
 
-                SetCarryParameters(true, 0.4f, 0f, true, true);
+                SetCarryParameters(true, 0.6f, 0f, true, true);
 
                 newBarrel = Instantiate(barrelPrefab, transform.position, transform.rotation);
                 newBarrel.GetComponent<VehicleBarrel>().characterBarrelInteractionScript = this;
@@ -58,7 +58,7 @@ public class CharacterBarrelInteraction : MonoBehaviour
                 //disable player jump and sprint
                 playerInputScript.actions.Player.Jump.Disable();
                 playerInputScript.actions.Player.Sprint.Disable();
-                SetCarryParameters(true, 0.4f, 0f, true, true);
+                SetCarryParameters(true, 0.6f, 0f, true, true);
                 newBarrel.GetComponent<VehicleBarrel>().characterBarrelInteractionScript = this;
                 SetParentConstraint();
 

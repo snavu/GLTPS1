@@ -12,7 +12,6 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     [SerializeField] private NavMeshAgentVehicleInteraction navMeshAgentSelfVehicleInteractionScript;
     [SerializeField] private VehicleMovement vehicleMovementScript;
     [SerializeField] private VehicleFuelManager vehicleFuelManagerScript;
-
     [SerializeField] private AudioSource vehicleAudioSource;
 
 

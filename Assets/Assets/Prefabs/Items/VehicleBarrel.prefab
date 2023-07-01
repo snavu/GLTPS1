@@ -77,12 +77,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe93f845afc7b93419b85e6c92ef7f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInputInitializeScript: {fileID: 0}
   _audioSource: {fileID: 2758582321345731402}
   voicelines: []
   soundEffect: {fileID: 8300000, guid: f3ccebeec915dbf44a174911070eec58, type: 3}
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 2039
+  isVehicleBarrel: 1
   flag1: 0
   flag2: 0
 --- !u!82 &2758582321345731402

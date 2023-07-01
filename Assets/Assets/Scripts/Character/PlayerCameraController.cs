@@ -110,27 +110,27 @@ public class PlayerCameraController : MonoBehaviour
                 }
             }
 
-            // enable camera
-            // if (playerInputScript.actions.Player.Sprint.ReadValue<float>() > 0)
-            // {
-                if (playerInputScript.actions.Player.ADS.WasPressedThisFrame())
+            if (playerInputScript.actions.Player.ADS.WasPressedThisFrame())
+            {
+                thirdPersonCamera.enabled = false;
+                firstPersonCamera.enabled = true;
+                CinemachinePOV pov = firstPersonCamera.GetCinemachineComponent<CinemachinePOV>();
+                pov.m_VerticalAxis.Value = 0;
+                pov.m_HorizontalAxis.Value = transform.eulerAngles.y;
+
+                equipCamera = true;
+                cameraHUD.SetActive(true);
+
+                if (volume.profile.TryGet<FilmGrain>(out FilmGrain filmGrain))
                 {
-                    thirdPersonCamera.enabled = false;
-                    firstPersonCamera.enabled = true;
-                    equipCamera = true;
-                    cameraHUD.SetActive(true);
-
-                    if (volume.profile.TryGet<FilmGrain>(out FilmGrain filmGrain))
-                    {
-                        filmGrain.active = true;
-                    }
-
-                    foreach (GameObject body in characterBody)
-                    {
-                        body.SetActive(false);
-                    }
+                    filmGrain.active = true;
                 }
-            // }
+
+                foreach (GameObject body in characterBody)
+                {
+                    body.SetActive(false);
+                }
+            }
         }
 
         // camera zoom

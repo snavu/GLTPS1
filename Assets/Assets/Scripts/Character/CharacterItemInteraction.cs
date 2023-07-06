@@ -9,7 +9,6 @@ public class CharacterItemInteraction : MonoBehaviour
     public PlayerInputInitialize playerInputScript;
     private bool isFood;
     private bool isAmmo;
-    private bool isWater;
     private bool isCampfire;
     public bool isInCampfireArea;
 
@@ -198,6 +197,10 @@ public class CharacterItemInteraction : MonoBehaviour
         {
             isAmmo = true;
             this.other = other;
+        }
+        else if (other.gameObject.CompareTag("Water"))
+        {
+            characterStatusScript.waterLevel += waterRefillRate * Time.fixedDeltaTime;
         }
         else if (other.gameObject.CompareTag("CampfireInteractArea"))
         {

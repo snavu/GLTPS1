@@ -151,6 +151,31 @@ PositionConstraint:
   m_Sources:
   - sourceTransform: {fileID: 1179579385}
     weight: 1
+--- !u!4 &19045608 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2fabad3b56929374d8ca6089a8a6e2d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1142131531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &19045609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19045597}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef6d35e9dd993234b831a3c13e87e0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReferenceObject: {fileID: 19045608}
+  Threshold: 200
+  Use2DDistance: 0
+  UpdateAllScenes: 1
+  UpdateParticles: 1
+  UpdateTrailRenderers: 1
+  UpdateLineRenderers: 1
 --- !u!1 &20772707
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,6 +250,94 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20772707}
   m_CullTransparentMesh: 1
+--- !u!1001 &27433263
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2526881187956309122, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073532689801873791, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: resetPorts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569746511471671568, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569746511471671568, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -31.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569746511471671568, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569746511471671568, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -339.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569746511471671568, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569746511471671568, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569746511471671568, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569746511471671568, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569746511471671568, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569746511471671568, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569746511471671568, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355166913744518856, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_Name
+      value: NavMeshNodeWD3_030623
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782322979042001972, guid: 6e0fd24880310c94c8575c7a29fee0ca,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e0fd24880310c94c8575c7a29fee0ca, type: 3}
 --- !u!1 &51606138
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +758,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135867288}
-  m_LocalRotation: {x: 0.020925958, y: -0.000006538065, z: 0.00000013684523, w: 0.9997811}
+  m_LocalRotation: {x: 0.02092596, y: -0.000006538065, z: 0.00000013684524, w: 0.9997811}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1628,7 +1741,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.020925958, y: -0.000006538065, z: 0.00000013684523, w: 0.9997811}
+  m_LocalRotation: {x: 0.020925961, y: -0.000006538065, z: 0.00000013684524, w: 0.9997811}
   m_LocalPosition: {x: -5.846929, y: 2.09, z: -117.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4951,6 +5064,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 19045605}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2fabad3b56929374d8ca6089a8a6e2d5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 19045609}
   m_SourcePrefab: {fileID: 100100000, guid: 2fabad3b56929374d8ca6089a8a6e2d5, type: 3}
 --- !u!1 &1147475856
 GameObject:
@@ -14950,7 +15067,7 @@ MonoBehaviour:
   maxRandomFoodCount: 5
   thirstLevel: 100
   drinkValue: 20
-  waterRefillRate: 1
+  waterRefillRate: 10
   temperatureLevel: 100
   temperatureRefillValue: 0.1
   fuelValue: 20
@@ -20589,7 +20706,7 @@ MonoBehaviour:
   maxRandomFoodCount: 5
   thirstLevel: 100
   drinkValue: 20
-  waterRefillRate: 1
+  waterRefillRate: 10
   temperatureLevel: 100
   temperatureRefillValue: 0.1
   fuelValue: 20
@@ -20919,7 +21036,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179579383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c3548398071fa744a4487645fe34a3a, type: 3}
   m_Name: 

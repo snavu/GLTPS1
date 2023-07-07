@@ -36,11 +36,13 @@ public class PlayerCameraController : MonoBehaviour
     void OnEnable()
     {
         playerInputScript.actions.Player.Fire.performed += TakePicture;
+        playerInputScript.actions.Vehicle.Fire.performed += TakePicture;
     }
 
     void OnDisable()
     {
         playerInputScript.actions.Player.Fire.performed -= TakePicture;
+        playerInputScript.actions.Vehicle.Fire.performed -= TakePicture;
     }
 
     private void TakePicture(InputAction.CallbackContext context)
@@ -92,7 +94,8 @@ public class PlayerCameraController : MonoBehaviour
         //diable camera
         if (!playerMovementScript.ADS && Time.timeScale == 1)
         {
-            if (playerInputScript.actions.Player.ADS.WasReleasedThisFrame())
+            if (playerInputScript.actions.Player.ADS.WasReleasedThisFrame() ||
+                playerInputScript.actions.Vehicle.ADS.WasReleasedThisFrame())
             {
                 firstPersonCamera.enabled = false;
                 thirdPersonCamera.enabled = true;
@@ -110,7 +113,8 @@ public class PlayerCameraController : MonoBehaviour
                 }
             }
 
-            if (playerInputScript.actions.Player.ADS.WasPressedThisFrame())
+            if (playerInputScript.actions.Player.ADS.WasPressedThisFrame() ||
+                playerInputScript.actions.Vehicle.ADS.WasPressedThisFrame())
             {
                 thirdPersonCamera.enabled = false;
                 firstPersonCamera.enabled = true;
@@ -134,17 +138,25 @@ public class PlayerCameraController : MonoBehaviour
         }
 
         // camera zoom
-        if (playerInputScript.actions.Player.CameraZoom.ReadValue<Vector2>().y > 0 && !flag && equipCamera)
+        if ((playerInputScript.actions.Player.CameraZoom.ReadValue<Vector2>().y > 0 ||
+            playerInputScript.actions.Vehicle.CameraZoom.ReadValue<Vector2>().y > 0)
+             && !flag && equipCamera)
         {
             firstPersonCamera.m_Lens.FieldOfView = firstPersonCameraFOVZoomIn;
             audioSource.PlayOneShot(cameraZoomSFX);
             flag = true;
+            Debug.Log("zoom in");
+            Debug.Log(flag);
         }
-        else if (playerInputScript.actions.Player.CameraZoom.ReadValue<Vector2>().y < 0 && flag && equipCamera)
+        else if ((playerInputScript.actions.Player.CameraZoom.ReadValue<Vector2>().y < 0 ||
+                 playerInputScript.actions.Vehicle.CameraZoom.ReadValue<Vector2>().y < 0)
+                 && flag && equipCamera)
         {
             firstPersonCamera.m_Lens.FieldOfView = firstPersonCameraFOVZoomDefault;
             audioSource.PlayOneShot(cameraZoomSFX);
             flag = false;
+            Debug.Log("zoom out");
+            Debug.Log(flag);
         }
     }
 }

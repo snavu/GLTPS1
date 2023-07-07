@@ -91,7 +91,8 @@ public class CharacterPossession : MonoBehaviour
             GetComponentInChildren<NavMeshObstacle>().enabled = false;
             GetComponentInChildren<CharacterStatusScreenEffect>().enabled = false;
             GetComponentInChildren<NPCInteraction>().enabled = false;
-
+            GetComponentInChildren<NavMeshAgentCommand>().enabled = false;
+            GetComponentInChildren<CharacterElevatorInteraction>().enabled = false;
         }
         else
         {
@@ -111,7 +112,11 @@ public class CharacterPossession : MonoBehaviour
             footstepVolume = GetComponentInChildren<AudioSource>().volume;
             GetComponentInChildren<AudioSource>().volume = playerToPossess.GetComponentInChildren<AudioSource>().volume;
             GetComponentInChildren<NavMeshAgentCommand>().enabled = false;
-
+            GetComponentInChildren<CharacterElevatorInteraction>().enabled = false;
+            // enable position constraint to elevator
+            GetComponentInChildren<PositionConstraint>().enabled = true;
+            // set parent to null to prevent conflict with position constraint
+            transform.parent = null;
         }
 
         //switch player-to-possess player scripts
@@ -130,5 +135,7 @@ public class CharacterPossession : MonoBehaviour
         playerToPossess.GetComponentInChildren<NPCInteraction>().enabled = true;
         playerToPossess.GetComponentInChildren<AudioSource>().volume = footstepVolume;
         playerToPossess.GetComponentInChildren<NavMeshAgentCommand>().enabled = true;
+        playerToPossess.GetComponentInChildren<CharacterElevatorInteraction>().enabled = true;
+        playerToPossess.GetComponentInChildren<PositionConstraint>().enabled = false;
     }
 }

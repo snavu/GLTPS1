@@ -30,6 +30,10 @@ TagManager:
   - CampfireInteractArea
   - Weather
   - Save
+  - ElevatorTrigger
+  - PillarVoicelineTrigger
+  - ElevatorGate
+  - Elevator
   layers:
   - Default
   - TransparentFX
@@ -47,7 +51,7 @@ TagManager:
   - FuelTrigger
   - ParticleSystem
   - LineRenderer
-  - 
+  - Elevator
   - 
   - 
   - 

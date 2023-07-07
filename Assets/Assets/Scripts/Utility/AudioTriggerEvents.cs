@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class AudioTriggerEvents : MonoBehaviour
 {
-    [SerializeField] private PlayerInputInitialize playerInputInitializeScript;
     public AudioSource _audioSource;
     [SerializeField] private AudioClip[] voicelines;
     [SerializeField] private AudioClip soundEffect;
     public bool flag1;
     public bool flag2;
+    public bool flag3;
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -23,13 +24,24 @@ public class AudioTriggerEvents : MonoBehaviour
                 flag1 = true;
             }
         }
-        if (other.gameObject.CompareTag("FuelingStation") && !flag2)
+
+        if (other.gameObject.CompareTag("PillarVoicelineTrigger") && !flag2)
         {
             if (_audioSource != null && voicelines.Length != 0)
             {
                 _audioSource.Stop();
                 _audioSource.PlayOneShot(voicelines[1]);
                 flag2 = true;
+            }
+        }
+
+        if (other.gameObject.CompareTag("FuelingStation") && !flag3)
+        {
+            if (_audioSource != null && voicelines.Length != 0)
+            {
+                _audioSource.Stop();
+                _audioSource.PlayOneShot(voicelines[2]);
+                flag3 = true;
             }
         }
 

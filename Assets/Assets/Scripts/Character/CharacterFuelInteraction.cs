@@ -8,7 +8,6 @@ public class CharacterFuelInteraction : MonoBehaviour
 {
     [SerializeField] private PlayerInputInitialize playerInputScript;
     [SerializeField] private CharacterBarrelInteraction characterBarrelInteractionScript;
-    [SerializeField] private Animator fuelAnim;
     [SerializeField] private bool inFuelingStationInteractArea;
     public bool isFueling = true;
 

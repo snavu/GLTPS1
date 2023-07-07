@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         playerInputScript.actions.Player.Jump.performed += Jump;
 
         //set layermask interact with vehicle and default
-        layerMask = LayerMask.GetMask("Default", "Vehicle");
+        layerMask = LayerMask.GetMask("Default", "Vehicle", "Elevator");
     }
 
     void OnDisable()

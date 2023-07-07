@@ -7,10 +7,9 @@ public class AudioAnimationEvents : MonoBehaviour
     [SerializeField] PlayerInputInitialize playerInputInitializeScript;
     public AudioSource _audioSource;
     [SerializeField] private AudioClip[] _audioClip;
-    private bool isGroundedConcrete;
-    private bool isGroundedMetal;
-    private bool isWalking;
-    private bool isRunning;
+    [SerializeField] private bool isGroundedConcrete;
+    [SerializeField] private bool isGroundedMetal;
+
     [SerializeField] private CharacterController cc;
     public void PlayAudioClipOneShot(AudioClip _audioClip)
     {
@@ -47,6 +46,7 @@ public class AudioAnimationEvents : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // check if player input is enabled to prevent footstep sfx when travelling with kettengrad between nodes
         if (playerInputInitializeScript != null)
         {
             if (!playerInputInitializeScript.actions.Vehicle.enabled)
@@ -58,7 +58,8 @@ public class AudioAnimationEvents : MonoBehaviour
                 }
                 else if (other.gameObject.CompareTag("Metal") ||
                          other.gameObject.CompareTag("Pipe") ||
-                         other.gameObject.CompareTag("Vehicle"))
+                         other.gameObject.CompareTag("Vehicle") ||
+                         other.gameObject.CompareTag("Elevator"))
                 {
                     isGroundedMetal = true;
                     _audioSource.PlayOneShot(_audioClip[3]);
@@ -74,7 +75,8 @@ public class AudioAnimationEvents : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Metal") ||
                  other.gameObject.CompareTag("Pipe") ||
-                 other.gameObject.CompareTag("Vehicle"))
+                 other.gameObject.CompareTag("Vehicle") ||
+                 other.gameObject.CompareTag("Elevator"))
         {
             isGroundedMetal = false;
         }

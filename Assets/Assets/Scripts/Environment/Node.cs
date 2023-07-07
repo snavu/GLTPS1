@@ -22,7 +22,7 @@ public class Node : MonoBehaviour
     public bool isIntersectionNodeSet;
 
     //cache yield instructions
-    WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
+    WaitForSeconds waitForSeconds = new WaitForSeconds(0.2f);
     WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
 
     void Start()

@@ -630,6 +630,33 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraZoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""165bea9b-7b42-47d5-9a45-b6e65390e6ee"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ADS"",
+                    ""type"": ""Value"",
+                    ""id"": ""8bef3386-08cb-41d0-81f6-e5f23e80ef37"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Value"",
+                    ""id"": ""d43878fa-1dd1-48f8-a720-2da7da42f361"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -808,6 +835,61 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8834577f-1ae3-4e2b-bbc7-8abbc964b484"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraZoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""edff965d-11e7-4335-88d6-823149abc5ab"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ADS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9cd82e90-64be-4c96-976c-2bbbadc49b20"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ADS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a5a8e19-52f1-4b7f-b9b4-696e054fb7b9"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c44ea9f3-bf71-476a-af38-e3a44dadcf77"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -900,6 +982,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Vehicle_Accelerate = m_Vehicle.FindAction("Accelerate", throwIfNotFound: true);
         m_Vehicle_Light = m_Vehicle.FindAction("Light", throwIfNotFound: true);
         m_Vehicle_Map = m_Vehicle.FindAction("Map", throwIfNotFound: true);
+        m_Vehicle_CameraZoom = m_Vehicle.FindAction("CameraZoom", throwIfNotFound: true);
+        m_Vehicle_ADS = m_Vehicle.FindAction("ADS", throwIfNotFound: true);
+        m_Vehicle_Fire = m_Vehicle.FindAction("Fire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1132,6 +1217,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Vehicle_Accelerate;
     private readonly InputAction m_Vehicle_Light;
     private readonly InputAction m_Vehicle_Map;
+    private readonly InputAction m_Vehicle_CameraZoom;
+    private readonly InputAction m_Vehicle_ADS;
+    private readonly InputAction m_Vehicle_Fire;
     public struct VehicleActions
     {
         private @InputActions m_Wrapper;
@@ -1141,6 +1229,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Accelerate => m_Wrapper.m_Vehicle_Accelerate;
         public InputAction @Light => m_Wrapper.m_Vehicle_Light;
         public InputAction @Map => m_Wrapper.m_Vehicle_Map;
+        public InputAction @CameraZoom => m_Wrapper.m_Vehicle_CameraZoom;
+        public InputAction @ADS => m_Wrapper.m_Vehicle_ADS;
+        public InputAction @Fire => m_Wrapper.m_Vehicle_Fire;
         public InputActionMap Get() { return m_Wrapper.m_Vehicle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1165,6 +1256,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Map.started += instance.OnMap;
             @Map.performed += instance.OnMap;
             @Map.canceled += instance.OnMap;
+            @CameraZoom.started += instance.OnCameraZoom;
+            @CameraZoom.performed += instance.OnCameraZoom;
+            @CameraZoom.canceled += instance.OnCameraZoom;
+            @ADS.started += instance.OnADS;
+            @ADS.performed += instance.OnADS;
+            @ADS.canceled += instance.OnADS;
+            @Fire.started += instance.OnFire;
+            @Fire.performed += instance.OnFire;
+            @Fire.canceled += instance.OnFire;
         }
 
         private void UnregisterCallbacks(IVehicleActions instance)
@@ -1184,6 +1284,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Map.started -= instance.OnMap;
             @Map.performed -= instance.OnMap;
             @Map.canceled -= instance.OnMap;
+            @CameraZoom.started -= instance.OnCameraZoom;
+            @CameraZoom.performed -= instance.OnCameraZoom;
+            @CameraZoom.canceled -= instance.OnCameraZoom;
+            @ADS.started -= instance.OnADS;
+            @ADS.performed -= instance.OnADS;
+            @ADS.canceled -= instance.OnADS;
+            @Fire.started -= instance.OnFire;
+            @Fire.performed -= instance.OnFire;
+            @Fire.canceled -= instance.OnFire;
         }
 
         public void RemoveCallbacks(IVehicleActions instance)
@@ -1272,5 +1381,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnAccelerate(InputAction.CallbackContext context);
         void OnLight(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
+        void OnCameraZoom(InputAction.CallbackContext context);
+        void OnADS(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
     }
 }

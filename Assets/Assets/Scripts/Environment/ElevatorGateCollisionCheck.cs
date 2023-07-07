@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ElevatorGateCollisionCheck : MonoBehaviour
 {
+    [SerializeField] private PillarNodeAnimationEvents pillarNodeAnimationEventsScript;
     [SerializeField] private Animator elevatorAnim;
     [SerializeField] private Transform raycastOrigin;
     [SerializeField] private bool triggerOpenGate;
@@ -26,6 +27,7 @@ public class ElevatorGateCollisionCheck : MonoBehaviour
                 currentPosition = transform.position;
                 elevatorAnim.SetBool("CloseGate", false);
                 elevatorAnim.enabled = false;
+                pillarNodeAnimationEventsScript.index = 0;
                 triggerOpenGate = true;
             }
         }

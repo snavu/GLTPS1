@@ -65,7 +65,7 @@ uniform float		_VertexOffsetY;
 uniform float		_MaskID;
 uniform sampler2D	_MaskTex;
 uniform float4		_MaskCoord;
-uniform float4		_ClipRect;	// bottom left(x,y) : top right(z,w)
+uniform float4		_ClipRect;	// bottomRadius left(x,y) : topRadius right(z,w)
 //uniform float		_MaskWipeControl;
 //uniform float		_MaskEdgeSoftness;
 //uniform fixed4		_MaskEdgeColor;

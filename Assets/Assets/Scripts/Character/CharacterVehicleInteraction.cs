@@ -176,17 +176,13 @@ public class CharacterVehicleInteraction : MonoBehaviour
         //increase camera radius for vehicle movement
         if (changeCameraRadiusFlag1)
         {
-            changeCameraRadiusScript.top = freelookRadius[0];
-            changeCameraRadiusScript.middle = freelookRadius[1];
-            changeCameraRadiusScript.bottom = freelookRadius[2];
+            changeCameraRadiusScript.SetRadius(freelookRadius[0], freelookRadius[1], freelookRadius[2]);
             changeCameraRadiusFlag1 = false;
         }
         //decrease camera radius back normal radius for player movement
         if (changeCameraRadiusFlag2)
         {
-            changeCameraRadiusScript.top = freelookRadius[3];
-            changeCameraRadiusScript.middle = freelookRadius[4];
-            changeCameraRadiusScript.bottom = freelookRadius[5];
+            changeCameraRadiusScript.SetDefaultRadius();
             changeCameraRadiusFlag2 = false;
         }
     }
@@ -228,7 +224,7 @@ public class CharacterVehicleInteraction : MonoBehaviour
             playerInputScript.actions.Player.Disable();
             //disable character controller
             controller.enabled = false;
-            
+
             //disable navmesh obstacle, and wait a short time before enabling the agent
             GetComponent<NavMeshObstacle>().enabled = false;
             StartCoroutine(DelayEnter());

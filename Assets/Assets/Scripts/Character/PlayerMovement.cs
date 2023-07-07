@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             horizontalInput = playerInputScript.actions.Player.Move.ReadValue<Vector2>();
             horizontalMovement = Vector2.SmoothDamp(horizontalMovement, horizontalInput, ref smoothMovement, smoothInputSpeed);
 
-            //align spherecast at bottom of collide, scale position inversely proportional to controller skin width, and minus small constant to extrude vertically down
+            //align spherecast at bottomRadius of collide, scale position inversely proportional to controller skin width, and minus small constant to extrude vertically down
             sphereCastPosition = new Vector3(0, controller.radius - controller.skinWidth - 0.01f, 0);
 
             //check ground collision

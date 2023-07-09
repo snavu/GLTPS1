@@ -8,12 +8,12 @@ public class PillarNodeAnimationEvents : MonoBehaviour
     [SerializeField] private AudioClip[] _audioClip;
     public int index = 0;
     private bool closeGate;
+    [SerializeField] private GameObject dummyKettengrad;
 
     [SerializeField] SetCameraRadius changeCameraRadiusScript;
     [SerializeField] private float[] freelookRadius;
     [SerializeField] private float[] freelookHeight;
     [SerializeField] private float smoothRadiusSpeed = 0.2f;
-
     [SerializeField] private GameObject endScreen;
 
     void Start()
@@ -28,6 +28,20 @@ public class PillarNodeAnimationEvents : MonoBehaviour
         index++;
     }
 
+    public void ReplaceKettengradWithDummy()
+    {
+        if (GameObject.FindWithTag("Vehicle") != null)
+        {
+            GameObject kettengrad = GameObject.FindWithTag("Vehicle");
+            if (kettengrad.GetComponent<VehicleElevatorCheckCollision>().isInElevator)
+            {
+                GameObject newDummyKettengrad = Instantiate(dummyKettengrad, kettengrad.transform.position, kettengrad.transform.rotation);
+                newDummyKettengrad.transform.parent = transform;
+                Destroy(kettengrad);
+            }
+        }
+    }
+
     public void ChangeCameraRadius()
     {
         changeCameraRadiusScript.SetRadius(freelookRadius[0], freelookRadius[1], freelookRadius[2], smoothRadiusSpeed);
@@ -36,7 +50,6 @@ public class PillarNodeAnimationEvents : MonoBehaviour
 
     public void PauseGameState()
     {
-        //GameObject.FindWithTag("Player").GetComponent<PlayerInputInitialize>().actions.Disable();
         GameObject.FindWithTag("CharacterManager").SetActive(false);
     }
 
@@ -53,8 +66,4 @@ public class PillarNodeAnimationEvents : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-
-
-
-
 }

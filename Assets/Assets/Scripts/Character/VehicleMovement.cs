@@ -59,7 +59,10 @@ public class VehicleMovement : MonoBehaviour
         scaledMaxVelocity = maxVelocity * currentMovementRate;
 
         //set movement animation
-        MovementAnim();
+        if (rb != null)
+        {
+            MovementAnim();
+        }
     }
     void FixedUpdate()
     {
@@ -98,8 +101,12 @@ public class VehicleMovement : MonoBehaviour
         }
 
         //clamp velocity and angular velocity
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, scaledMaxVelocity);
-        rb.angularVelocity = Vector3.ClampMagnitude(rb.angularVelocity, maxAngularVelocity);
+        if (rb != null)
+        {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, scaledMaxVelocity);
+            rb.angularVelocity = Vector3.ClampMagnitude(rb.angularVelocity, maxAngularVelocity);
+        }
+
     }
 
     /*

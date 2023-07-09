@@ -5,25 +5,31 @@ using UnityEngine.Animations;
 
 public class SetPositionConstraintElevator : MonoBehaviour
 {
-    private ConstraintSource source;
-
+    public Transform target;
+    public float offsetY = 0.15f;
+    private void Update()
+    {
+        if (target != null)
+        {
+            Vector3 constrainedPosition = transform.position;
+            constrainedPosition.y = target.position.y + offsetY;
+            transform.position = constrainedPosition;
+        }
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Elevator"))
         {
-            // set position constraint for chito and yuuri to move up with the elevator
-            source.sourceTransform = other.gameObject.transform;
-            source.weight = 1;
-
-            GetComponent<PositionConstraint>().SetSource(0, source);
-            GetComponent<PositionConstraint>().constraintActive = true;
+            target = other.gameObject.transform;
+            transform.SetParent(other.gameObject.transform);
         }
     }
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Elevator"))
         {
-            GetComponent<PositionConstraint>().constraintActive = false;
+            target = null;
+            transform.parent = null;
         }
     }
 }

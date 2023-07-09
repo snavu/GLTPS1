@@ -54,8 +54,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
     public bool changeCameraRadiusFlag1;
     public bool changeCameraRadiusFlag2;
 
-
-
     void OnEnable()
     {
         Physics.IgnoreLayerCollision(6, 7, false);
@@ -64,9 +62,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
         playerInputScript.actions.Player.Interact.performed += Interact;
         playerInputScript.actions.Vehicle.Exit.performed += Exit;
         playerInputScript.actions.Vehicle.Light.performed += Light;
-
-        GetComponent<CharacterBarrelInteraction>().vehicleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
-
     }
 
     void OnDisable()
@@ -191,7 +186,6 @@ public class CharacterVehicleInteraction : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         Physics.IgnoreLayerCollision(6, 7, false);
-        playerInputScript.actions.Player.Enable();
         controller.enabled = true;
         preOrientExit = false;
         exitLeft = false;

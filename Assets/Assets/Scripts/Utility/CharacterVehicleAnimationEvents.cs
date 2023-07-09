@@ -13,7 +13,8 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     [SerializeField] private VehicleMovement vehicleMovementScript;
     [SerializeField] private VehicleFuelManager vehicleFuelManagerScript;
     [SerializeField] private AudioSource vehicleAudioSource;
-
+    [SerializeField] private Collider characterCollider;
+    [SerializeField] private AudioAnimationEvents audioAnimationEventsScript;
 
     //animation events
     public void EnableVehicle()
@@ -21,6 +22,11 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
         vehicleMovementScript.playerInputScript = playerInputScript;
         playerInputScript.actions.Vehicle.Enable();
         vehicleAudioSource.Play();
+
+        // reset flags for footstep sound when exiting vehicle
+        characterCollider.enabled = false;
+        audioAnimationEventsScript.isGroundedConcrete = false;
+        audioAnimationEventsScript.isGroundedMetal = false;
     }
     public void DisableVehicle()
     {
@@ -31,6 +37,7 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     public void ExitVehicle()
     {
         characterVehicleInteractionScript.preOrientExit = true;
+        playerInputScript.actions.Player.Enable();
     }
     public void SetConstraintTrue()
     {
@@ -41,6 +48,10 @@ public class CharacterVehicleAnimationEvents : MonoBehaviour
     {
         characterVehicleInteractionScript.constraint = false;
         characterVehicleInteractionScript.changeCameraRadiusFlag2 = true;
+    }
+    public void EnableCharacterCollider()
+    {
+        characterCollider.enabled = true;
     }
 
     public void ExitRight()

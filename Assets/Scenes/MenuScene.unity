@@ -1463,19 +1463,19 @@ MonoBehaviour:
     itemSpawnChance: 
   hungerRate:
   - 2
-  - 4
-  - 8
+  - 6
+  - 18
   thirstRate:
   - 4
-  - 8
-  - 16
+  - 12
+  - 36
   temperatureLossRate:
   - value: 010000000100000001000000
-  - value: 03000000060000000c000000
-  - value: 060000000c00000018000000
+  - value: 03000000090000001b000000
+  - value: 060000001200000036000000
   weatherChance:
   - value: 010000000000000000000000
-  - value: 0a0000000200000000000000
+  - value: 0a0000000300000000000000
   - value: 000000000000000001000000
   itemSpawnChance:
   - value: 000000000100000001000000

@@ -28,7 +28,7 @@ public class PlayerMapController : MonoBehaviour
     void OnDisable()
     {
         playerInputScript.actions.Player.Map.performed -= Map;
-        playerInputScript.actions.Vehicle.Map.performed += Map;
+        playerInputScript.actions.Vehicle.Map.performed -= Map;
     }
 
     private void Map(InputAction.CallbackContext context)

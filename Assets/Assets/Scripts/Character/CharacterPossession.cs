@@ -80,7 +80,6 @@ public class CharacterPossession : MonoBehaviour
         //switch player scripts
         if (isDead)
         {
-            GetComponentInChildren<CharacterController>().enabled = false;
             GetComponentInChildren<CapsuleCollider>().enabled = false;
             GetComponentInChildren<PlayerMovement>().enabled = false;
             GetComponentInChildren<CharacterPossession>().enabled = false;
@@ -96,7 +95,6 @@ public class CharacterPossession : MonoBehaviour
         }
         else
         {
-            GetComponentInChildren<CharacterController>().enabled = false;
             GetComponentInChildren<PlayerMovement>().enabled = false;
             GetComponentInChildren<CharacterPossession>().enabled = false;
             GetComponentInChildren<CharacterItemInteraction>().enabled = false;
@@ -114,13 +112,10 @@ public class CharacterPossession : MonoBehaviour
             GetComponentInChildren<NavMeshAgentCommand>().enabled = false;
             GetComponentInChildren<CharacterElevatorInteraction>().enabled = false;
             // enable position constraint to elevator
-            GetComponentInChildren<PositionConstraint>().enabled = true;
-            // set parent to null to prevent conflict with position constraint
-            transform.parent = null;
+            GetComponentInChildren<SetPositionConstraintElevator>().enabled = true;
         }
 
         //switch player-to-possess player scripts
-        playerToPossess.GetComponentInChildren<CharacterController>().enabled = true;
         playerToPossess.GetComponentInChildren<PlayerMovement>().enabled = true;
         playerToPossess.GetComponentInChildren<CharacterPossession>().enabled = true;
         playerToPossess.GetComponentInChildren<CharacterItemInteraction>().enabled = true;
@@ -136,6 +131,6 @@ public class CharacterPossession : MonoBehaviour
         playerToPossess.GetComponentInChildren<AudioSource>().volume = footstepVolume;
         playerToPossess.GetComponentInChildren<NavMeshAgentCommand>().enabled = true;
         playerToPossess.GetComponentInChildren<CharacterElevatorInteraction>().enabled = true;
-        playerToPossess.GetComponentInChildren<PositionConstraint>().enabled = false;
+        playerToPossess.GetComponentInChildren<SetPositionConstraintElevator>().enabled = false;
     }
 }

@@ -7,22 +7,38 @@ using UnityEngine.Animations;
 
 public class CharacterElevatorInteraction : MonoBehaviour
 {
-    [SerializeField] private PlayerInputInitialize playerInputScript;
+    [SerializeField] private PlayerInputInitialize selfPlayerInputScript;
+    [SerializeField] private PlayerInputInitialize otherPlayerInputScript;
+
     [SerializeField] private bool inElevatorInteractArea;
-    [SerializeField] private Vector3 elevatorPosition;
     [SerializeField] private Animator elevatorAnim;
     [SerializeField] private GameObject chito;
     [SerializeField] private GameObject yuuri;
-    private bool isInElevator;
+    private bool flag;
     void OnEnable()
     {
-        playerInputScript.actions.Player.Interact.performed += Interact;
+        selfPlayerInputScript.actions.Player.Interact.performed += Interact;
     }
     void OnDisable()
     {
-        playerInputScript.actions.Player.Interact.performed -= Interact;
+        selfPlayerInputScript.actions.Player.Interact.performed -= Interact;
     }
 
+    void Update()
+    {
+        // re-enable interaction input when gate failed to close
+        if (elevatorAnim != null)
+        {
+            if (elevatorAnim.enabled)
+            {
+                if (elevatorAnim.GetBool("isGateOpen"))
+                {
+                    selfPlayerInputScript.actions.Player.Interact.Enable();
+                    otherPlayerInputScript.actions.Player.Interact.Enable();
+                }
+            }
+        }
+    }
     private void Interact(InputAction.CallbackContext context)
     {
         if (context.performed && inElevatorInteractArea && elevatorAnim.GetBool("isGateOpen"))
@@ -33,12 +49,17 @@ public class CharacterElevatorInteraction : MonoBehaviour
             //disable navmesh agent follow
             chito.GetComponent<NavMeshAgentFollowPlayer>().follow = false;
             yuuri.GetComponent<NavMeshAgentFollowPlayer>().follow = false;
+
+            //disable interaction input when closing gate
+            selfPlayerInputScript.actions.Player.Interact.Disable();
+            otherPlayerInputScript.actions.Player.Interact.Disable();
+
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (playerInputScript.actions.Player.enabled)
+        if (selfPlayerInputScript.actions.Player.enabled)
         {
             if (other.gameObject.CompareTag("ElevatorTrigger"))
             {
@@ -46,10 +67,12 @@ public class CharacterElevatorInteraction : MonoBehaviour
             }
             if (other.gameObject.CompareTag("Elevator"))
             {
-                elevatorAnim = other.gameObject.GetComponent<Animator>();
-
                 transform.SetParent(other.gameObject.transform);
             }
+        }
+        if (other.gameObject.CompareTag("Elevator"))
+        {
+            elevatorAnim = other.gameObject.GetComponent<Animator>();
         }
     }
 

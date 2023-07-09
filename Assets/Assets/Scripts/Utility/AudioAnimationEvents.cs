@@ -7,10 +7,9 @@ public class AudioAnimationEvents : MonoBehaviour
     [SerializeField] PlayerInputInitialize playerInputInitializeScript;
     public AudioSource _audioSource;
     [SerializeField] private AudioClip[] _audioClip;
-    [SerializeField] private bool isGroundedConcrete;
-    [SerializeField] private bool isGroundedMetal;
+    public bool isGroundedConcrete;
+    public bool isGroundedMetal;
 
-    [SerializeField] private CharacterController cc;
     public void PlayAudioClipOneShot(AudioClip _audioClip)
     {
         _audioSource.PlayOneShot(_audioClip);
@@ -46,39 +45,33 @@ public class AudioAnimationEvents : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // check if player input is enabled to prevent footstep sfx when travelling with kettengrad between nodes
-        if (playerInputInitializeScript != null)
+        if (other.gameObject.CompareTag("Metal") ||
+         other.gameObject.CompareTag("Pipe") ||
+         other.gameObject.CompareTag("Vehicle") ||
+         other.gameObject.CompareTag("Elevator"))
         {
-            if (!playerInputInitializeScript.actions.Vehicle.enabled)
-            {
-                if (other.gameObject.CompareTag("Untagged"))
-                {
-                    isGroundedConcrete = true;
-                    _audioSource.PlayOneShot(_audioClip[0]);
-                }
-                else if (other.gameObject.CompareTag("Metal") ||
-                         other.gameObject.CompareTag("Pipe") ||
-                         other.gameObject.CompareTag("Vehicle") ||
-                         other.gameObject.CompareTag("Elevator"))
-                {
-                    isGroundedMetal = true;
-                    _audioSource.PlayOneShot(_audioClip[3]);
-                }
-            }
+            isGroundedMetal = true;
+            _audioSource.PlayOneShot(_audioClip[3]);
         }
+        else if (other.gameObject.CompareTag("Untagged"))
+        {
+            isGroundedConcrete = true;
+            _audioSource.PlayOneShot(_audioClip[0]);
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Untagged") && cc.velocity.y > 1f)
-        {
-            isGroundedConcrete = false;
-        }
-        else if (other.gameObject.CompareTag("Metal") ||
+        if (other.gameObject.CompareTag("Metal") ||
                  other.gameObject.CompareTag("Pipe") ||
                  other.gameObject.CompareTag("Vehicle") ||
                  other.gameObject.CompareTag("Elevator"))
         {
             isGroundedMetal = false;
+        }
+        else if (other.gameObject.CompareTag("Untagged"))
+        {
+            isGroundedConcrete = false;
         }
     }
 }

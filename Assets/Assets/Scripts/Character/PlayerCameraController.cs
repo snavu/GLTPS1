@@ -145,8 +145,6 @@ public class PlayerCameraController : MonoBehaviour
             firstPersonCamera.m_Lens.FieldOfView = firstPersonCameraFOVZoomIn;
             audioSource.PlayOneShot(cameraZoomSFX);
             flag = true;
-            Debug.Log("zoom in");
-            Debug.Log(flag);
         }
         else if ((playerInputScript.actions.Player.CameraZoom.ReadValue<Vector2>().y < 0 ||
                  playerInputScript.actions.Vehicle.CameraZoom.ReadValue<Vector2>().y < 0)
@@ -155,8 +153,6 @@ public class PlayerCameraController : MonoBehaviour
             firstPersonCamera.m_Lens.FieldOfView = firstPersonCameraFOVZoomDefault;
             audioSource.PlayOneShot(cameraZoomSFX);
             flag = false;
-            Debug.Log("zoom out");
-            Debug.Log(flag);
         }
     }
 }

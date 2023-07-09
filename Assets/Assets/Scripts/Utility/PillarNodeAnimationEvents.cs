@@ -30,16 +30,16 @@ public class PillarNodeAnimationEvents : MonoBehaviour
 
     public void ReplaceKettengradWithDummy()
     {
-        if (GameObject.FindWithTag("Vehicle") != null)
-        {
-            GameObject kettengrad = GameObject.FindWithTag("Vehicle");
-            if (kettengrad.GetComponent<VehicleElevatorCheckCollision>().isInElevator)
-            {
-                GameObject newDummyKettengrad = Instantiate(dummyKettengrad, kettengrad.transform.position, kettengrad.transform.rotation);
-                newDummyKettengrad.transform.parent = transform;
-                Destroy(kettengrad);
-            }
-        }
+        // if (GameObject.FindWithTag("Vehicle") != null)
+        // {
+        //     GameObject kettengrad = GameObject.FindWithTag("Vehicle");
+        //     if (kettengrad.GetComponent<VehicleElevatorCheckCollision>().isInElevator)
+        //     {
+        //         GameObject newDummyKettengrad = Instantiate(dummyKettengrad, kettengrad.transform.position, kettengrad.transform.rotation);
+        //         newDummyKettengrad.transform.parent = transform;
+        //         Destroy(kettengrad);
+        //     }
+        // }
     }
 
     public void ChangeCameraRadius()

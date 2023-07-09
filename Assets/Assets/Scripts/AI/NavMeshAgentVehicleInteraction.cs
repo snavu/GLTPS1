@@ -37,7 +37,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
                 {
                     agent.destination = enterPosition.position;
                 }
-                if (Vector3.Distance(transform.position, enterPosition.position) < 0.1f)
+                if (Vector3.Distance(transform.position, enterPosition.position) < 0.2f)
                 {
                     //orient rotation to enter ket
                     agent.enabled = false;
@@ -79,7 +79,7 @@ public class NavMeshAgentVehicleInteraction : MonoBehaviour
                 //lerp agent position to exit
                 if (preOrientExit)
                 {
-                    if (Vector3.Distance(transform.position, enterPosition.position) > 0.01f && !agent.enabled)
+                    if (Vector3.Distance(transform.position, enterPosition.position) > 0.1f && !agent.enabled)
                     {
                         elapsed += Time.deltaTime;
                         transform.position = Vector3.Lerp(transform.position, enterPosition.position, elapsed / duration);

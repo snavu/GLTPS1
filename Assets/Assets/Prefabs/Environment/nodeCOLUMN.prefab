@@ -889,7 +889,7 @@ Transform:
   - {fileID: 2459156758398017903}
   - {fileID: 4559829159167778826}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &4673004573891437490
 MonoBehaviour:
@@ -1597,7 +1597,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d60c21baa4810bf4da2640032e107e2f, type: 3}
   - {fileID: 8300000, guid: 377f432b84e39c04394a0c189533ce6c, type: 3}
   index: 0
-  dummyKettengrad: {fileID: 7470096622838395062, guid: 97fdee438d3ac4944a715cb47458a18d,
+  dummyKettengrad: {fileID: 1102122750161698194, guid: 97fdee438d3ac4944a715cb47458a18d,
     type: 3}
   changeCameraRadiusScript: {fileID: 0}
   freelookRadius:

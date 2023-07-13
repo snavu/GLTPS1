@@ -91,11 +91,35 @@ public class PlayerCameraController : MonoBehaviour
 
     void Update()
     {
-        //diable camera
-        if (!playerMovementScript.ADS && Time.timeScale == 1)
+        //disable camera
+        if (Time.timeScale == 1)
         {
-            if (playerInputScript.actions.Player.ADS.WasReleasedThisFrame() ||
-                playerInputScript.actions.Vehicle.ADS.WasReleasedThisFrame())
+            if (playerInputScript.actions.Player.ADS.ReadValue<float>() > 0 ||
+                playerInputScript.actions.Vehicle.ADS.ReadValue<float>() > 0)
+            {
+                if (!equipCamera)
+                {
+                    thirdPersonCamera.enabled = false;
+                    firstPersonCamera.enabled = true;
+                    CinemachinePOV pov = firstPersonCamera.GetCinemachineComponent<CinemachinePOV>();
+                    pov.m_VerticalAxis.Value = 0;
+                    pov.m_HorizontalAxis.Value = transform.eulerAngles.y;
+
+                    equipCamera = true;
+                    cameraHUD.SetActive(true);
+
+                    if (volume.profile.TryGet<FilmGrain>(out FilmGrain filmGrain))
+                    {
+                        filmGrain.active = true;
+                    }
+
+                    foreach (GameObject body in characterBody)
+                    {
+                        body.SetActive(false);
+                    }
+                }
+            }
+            else if (equipCamera)
             {
                 firstPersonCamera.enabled = false;
                 thirdPersonCamera.enabled = true;
@@ -113,28 +137,7 @@ public class PlayerCameraController : MonoBehaviour
                 }
             }
 
-            if (playerInputScript.actions.Player.ADS.WasPressedThisFrame() ||
-                playerInputScript.actions.Vehicle.ADS.WasPressedThisFrame())
-            {
-                thirdPersonCamera.enabled = false;
-                firstPersonCamera.enabled = true;
-                CinemachinePOV pov = firstPersonCamera.GetCinemachineComponent<CinemachinePOV>();
-                pov.m_VerticalAxis.Value = 0;
-                pov.m_HorizontalAxis.Value = transform.eulerAngles.y;
 
-                equipCamera = true;
-                cameraHUD.SetActive(true);
-
-                if (volume.profile.TryGet<FilmGrain>(out FilmGrain filmGrain))
-                {
-                    filmGrain.active = true;
-                }
-
-                foreach (GameObject body in characterBody)
-                {
-                    body.SetActive(false);
-                }
-            }
         }
 
         // camera zoom

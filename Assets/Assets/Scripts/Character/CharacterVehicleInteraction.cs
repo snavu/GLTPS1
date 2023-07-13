@@ -201,6 +201,20 @@ public class CharacterVehicleInteraction : MonoBehaviour
         agent.enabled = true;
     }
 
+    IEnumerator CancelEnter()
+    {
+        yield return new WaitForSeconds(5f);
+
+        if (!anim.GetCurrentAnimatorStateInfo(1).IsTag("Ket"))
+        {
+            Physics.IgnoreLayerCollision(6, 7, false);
+            playerInputScript.actions.Player.Enable();
+            controller.enabled = true;
+            GetComponent<NavMeshObstacle>().enabled = true;
+            agent.enabled = false;
+            enterable = true;
+        }
+    }
 
     public void Interact(InputAction.CallbackContext context)
     {
@@ -222,8 +236,8 @@ public class CharacterVehicleInteraction : MonoBehaviour
             //disable navmesh obstacle, and wait a short time before enabling the agent
             GetComponent<NavMeshObstacle>().enabled = false;
             StartCoroutine(DelayEnter());
+            StartCoroutine(CancelEnter());
 
-            preOrientEnter = false;
             enterable = false;
 
             if (audioSourceVocal != null)

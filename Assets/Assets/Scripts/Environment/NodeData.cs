@@ -112,7 +112,7 @@ public class NodeData : MonoBehaviour
             {
                 // add edges to sublist
                 subBranch[i].edges.Add(branch[i].edges[j]);
-
+                                
                 // check if at interstection node
                 if (branch[i].edges[j].port.GetComponentInParent<Node>() == intersectionNode)
                 {

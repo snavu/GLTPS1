@@ -12,8 +12,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 horizontalInput;
 
     private Vector2 horizontalMovement;
-    private Vector3 velocityXZ;
+    private Vector3 wishDir;
     private Vector3 velocityY;
+    private Vector3 vel;
     private float verticalMovement;
     public bool isGrounded;
     public float currentSpeed;
@@ -99,34 +100,35 @@ public class PlayerMovement : MonoBehaviour
                 characterItemInteractionScript.thirstLevel < characterStatusScreenEffectScript.thirstThreshold ||
                 characterItemInteractionScript.temperatureLevel < characterStatusScreenEffectScript.temperatureThreshold)
             {
-                velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed * slowMovementRate;
+                wishDir = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed * slowMovementRate;
             }
             else
             {
-                velocityXZ = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed;
+                wishDir = Vector3.ClampMagnitude(new Vector3(horizontalMovement.x, 0, horizontalMovement.y), 1.0f) * currentSpeed;
             }
-
-            velocityXZ = transform.TransformDirection(velocityXZ);
+            wishDir = transform.TransformDirection(wishDir);
             velocityY = new Vector3(0, verticalMovement, 0);
 
+            float addSpeed = (runSpeed - currentSpeed) * Time.deltaTime;
+            vel += vel +  addSpeed * wishDir;
+
             //move character based on input
-            controller.Move((velocityXZ + velocityY) * Time.deltaTime);
+            controller.Move((wishDir + velocityY) * Time.deltaTime);
 
-            //pass velocityXZ to drive movement animation
-            CharacterMovementAnimation.Movement(anim, velocityXZ, runSpeed);
-            float scaledVelocityXZ = Vector3.Magnitude(velocityXZ) / runSpeed;
-
+            //pass wishDir to drive movement animation
+            CharacterMovementAnimation.Movement(anim, wishDir, runSpeed);
+                
             if (!ADS)
             {
                 //rotate child in direction of movement      
-                if (Vector3.Magnitude(velocityXZ) > 0.5f)
+                if (Vector3.Magnitude(wishDir) > 0.5f)
                 {
-                    Quaternion rotationDir = Quaternion.LookRotation(velocityXZ);
+                    Quaternion rotationDir = Quaternion.LookRotation(wishDir);
                     child.rotation = Quaternion.RotateTowards(child.rotation, rotationDir, rotationSpeed * Time.deltaTime);
                 }
 
                 //rotate parent to camera
-                if (Vector3.Magnitude(velocityXZ) > 0.5f)
+                if (Vector3.Magnitude(wishDir) > 0.5f)
                 {
                     Vector3 cam = new Vector3(camera.TransformDirection(Vector3.forward).x, 0, camera.TransformDirection(Vector3.forward).z);
                     Quaternion rotationDir = Quaternion.LookRotation(cam);

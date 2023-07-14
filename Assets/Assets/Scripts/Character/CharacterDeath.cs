@@ -102,7 +102,6 @@ public class CharacterDeath : MonoBehaviour
                 deadCharacterBarrelInteractionScript.DropBarrel();
             }
             characterInputScript.actions.Player.Disable();
-            characterInputScript.GetComponent<CapsuleCollider>().enabled = false;
             characterAnim.SetTrigger("die");
             isDead = true;
         }

@@ -87,6 +87,7 @@ public class NPCInteraction : MonoBehaviour
             //reset dialogue
             if (!dialogueBoxAnim.GetCurrentAnimatorStateInfo(0).IsTag("Close"))
             {
+                other.gameObject.GetComponent<DialogueManager>().audioSource.Stop();
                 other.gameObject.GetComponent<DialogueManager>().HideDialogueBox();
             }
         }

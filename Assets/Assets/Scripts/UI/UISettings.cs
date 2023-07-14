@@ -18,16 +18,21 @@ public class UISettings : MonoBehaviour
     {
         // Sync the frame rate to the screen's refresh rate
         QualitySettings.vSyncCount = 1;
-    }
-    void OnEnable()
-    {
+
         //set initial slider values
         mouseSensitivitySlider.value = PlayerPrefs.GetFloat("mouseSensitivitySliderValue", mouseSensitivitySlider.value);
         ADSSensitivitySlider.value = PlayerPrefs.GetFloat("ADSSensitivitySliderValue", ADSSensitivitySlider.value);
         globalAudioVolumeSlider.value = PlayerPrefs.GetFloat("globalAudioVolumeSlider", globalAudioVolumeSlider.value);
+
+        SetSettings();
     }
 
     void Update()
+    {
+        SetSettings();
+    }
+
+    public void SetSettings()
     {
         //set mouse sensitivity
         mouseSensitivtyXAxisSpeed = mouseSensitivitySlider.value * defaultXAxisMaxSpeed;
@@ -40,7 +45,6 @@ public class UISettings : MonoBehaviour
         //set master volume
         AudioListener.volume = globalAudioVolumeSlider.value;
     }
-
     public void SaveSettings()
     {
         PlayerPrefs.SetFloat("mouseSensitivitySliderValue", mouseSensitivitySlider.value);

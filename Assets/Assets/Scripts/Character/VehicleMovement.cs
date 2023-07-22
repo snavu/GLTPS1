@@ -58,6 +58,14 @@ public class VehicleMovement : MonoBehaviour
         }
         scaledMaxVelocity = maxVelocity * currentMovementRate;
 
+        if (vehicleFuelManagerScript.currentFuel <= 0)
+        {
+            vehicleAudioSource.volume = 0;
+        }
+        else
+        {
+            vehicleAudioSource.volume = 0.06f;
+        }
         //set movement animation
         if (rb != null)
         {

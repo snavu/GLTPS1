@@ -396,7 +396,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
@@ -2418,7 +2418,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
@@ -3122,7 +3122,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
@@ -4808,7 +4808,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
@@ -5443,7 +5443,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
@@ -11556,7 +11556,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
@@ -12292,7 +12292,7 @@ MonoBehaviour:
   currentFuel: 500
   defaultFuelConsumptionRate: 1
   increasedFuelConsumptionRate: 2
-  refuelingRate: 1
+  refuelingRate: 100
   fuelBar: {fileID: 1123492378}
   ketBarrelMesh: {fileID: 187306787}
 --- !u!114 &1419417156
@@ -12410,7 +12410,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
@@ -13679,7 +13679,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
@@ -14102,7 +14102,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 50
   Pan2D: 0
@@ -15414,7 +15414,7 @@ MonoBehaviour:
   maxRandomFoodCount: 5
   thirstLevel: 100
   drinkValue: 20
-  waterRefillRate: 10
+  waterRefillRate: 40
   temperatureLevel: 100
   temperatureRefillValue: 0.1
   fuelValue: 20
@@ -21390,7 +21390,7 @@ MonoBehaviour:
   maxRandomFoodCount: 5
   thirstLevel: 100
   drinkValue: 20
-  waterRefillRate: 10
+  waterRefillRate: 40
   temperatureLevel: 100
   temperatureRefillValue: 0.1
   fuelValue: 20

@@ -62,7 +62,7 @@ public class VehicleBarrel : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fuel"))
         {
-            vehicleFuelManagerScript.currentFuel += vehicleFuelManagerScript.refuelingRate;
+            vehicleFuelManagerScript.currentFuel += vehicleFuelManagerScript.refuelingRate * Time.fixedDeltaTime;
             isFueling = true;
             elapsed = 0f;
         }

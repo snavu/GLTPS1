@@ -241,7 +241,7 @@ public class CharacterItemInteraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Water"))
         {
-            characterStatusScript.waterLevel += waterRefillRate;
+            characterStatusScript.waterLevel += waterRefillRate * Time.fixedDeltaTime;
         }
     }
 

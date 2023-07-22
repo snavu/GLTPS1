@@ -26,7 +26,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private bool isTitleMenu;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip[] audioClip;
-
     void OnEnable()
     {
         actions = new UIInputActions();
@@ -107,7 +106,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenMainMenu()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 0.001f;
         UnlockAndUnhideCursor();
         mainMenu.SetActive(true);
 
@@ -120,6 +119,7 @@ public class UIManager : MonoBehaviour
             setCameraSpeedScript.Pause();
         }
     }
+
     public void CloseMainMenu()
     {
         Time.timeScale = 1;

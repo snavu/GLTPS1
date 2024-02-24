@@ -3,7 +3,26 @@ guid: cd672caad3b4b50479d6ac873ac847fa
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerInputScript: {instanceID: 0}
+  - muzzle: {instanceID: 0}
+  - camera: {instanceID: 0}
+  - bulletHoleDecal: {instanceID: 0}
+  - freeLookCamera: {instanceID: 0}
+  - barrelSmoke: {instanceID: 0}
+  - anim: {instanceID: 0}
+  - ammoCountText: {instanceID: 0}
+  - ammoRoundsCount: {fileID: 3241024820751440040, guid: 24106713907c65949a35fd10288c3b4e,
+      type: 3}
+  - audioSourceGunFire: {instanceID: 0}
+  - audioSourceGunBolt: {instanceID: 0}
+  - audioSourceGunEmpty: {instanceID: 0}
+  - ammo1: {fileID: 2800000, guid: f8658c46c9c66ea4fa89bb3ec81544ff, type: 3}
+  - ammo2: {fileID: 2800000, guid: b8a950539275c1c4d900d649c75a3335, type: 3}
+  - ammo3: {fileID: 2800000, guid: 5ceb67ef95ab19e4498f7914062818c8, type: 3}
+  - ammo4: {fileID: 2800000, guid: 81c4298f8b632214e98a5958aeaaed8b, type: 3}
+  - ammo: {fileID: 2800000, guid: 6ea7986137bef8644a5a8759f9f90b84, type: 3}
+  - blank: {fileID: 2800000, guid: 3ce1921ec48476f449c5d1a21ae44192, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

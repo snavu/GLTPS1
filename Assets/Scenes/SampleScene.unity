@@ -15521,7 +15521,7 @@ MonoBehaviour:
   bulletHoleDecal: {fileID: 6128565600640196593, guid: ffbfaba06f9a35140a8a386fa346ed6f,
     type: 3}
   ammoCount: 10
-  reloadCount: 0
+  ammoInternalMagazine: 5
   freeLookCamera: {fileID: 626363630}
   recoilValue: -0.01
   barrelSmoke: {fileID: 2899123893391825264, guid: 1c061b2fb6020c740b709200afab0c39,
@@ -15537,12 +15537,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5f1ef739f666f2047ae03aee32dccb5a, type: 3}
   - {fileID: 8300000, guid: b6e6e8562af82674a8bcce6585655c72, type: 3}
   - {fileID: 8300000, guid: c21f27e8849bf1b429822a393440e5fd, type: 3}
-  ammo1: {fileID: 2800000, guid: f8658c46c9c66ea4fa89bb3ec81544ff, type: 3}
-  ammo2: {fileID: 2800000, guid: b8a950539275c1c4d900d649c75a3335, type: 3}
-  ammo3: {fileID: 2800000, guid: 5ceb67ef95ab19e4498f7914062818c8, type: 3}
-  ammo4: {fileID: 2800000, guid: 81c4298f8b632214e98a5958aeaaed8b, type: 3}
-  ammo: {fileID: 2800000, guid: 6ea7986137bef8644a5a8759f9f90b84, type: 3}
-  blank: {fileID: 2800000, guid: 3ce1921ec48476f449c5d1a21ae44192, type: 3}
+  ammoTextures:
+  - {fileID: 2800000, guid: 3ce1921ec48476f449c5d1a21ae44192, type: 3}
+  - {fileID: 2800000, guid: f8658c46c9c66ea4fa89bb3ec81544ff, type: 3}
+  - {fileID: 2800000, guid: b8a950539275c1c4d900d649c75a3335, type: 3}
+  - {fileID: 2800000, guid: 5ceb67ef95ab19e4498f7914062818c8, type: 3}
+  - {fileID: 2800000, guid: 81c4298f8b632214e98a5958aeaaed8b, type: 3}
+  - {fileID: 2800000, guid: 6ea7986137bef8644a5a8759f9f90b84, type: 3}
 --- !u!114 &2072579817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15856,7 +15857,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082827650}
-  m_LocalRotation: {x: 0.057217225, y: -0.0003525173, z: 0.000020203157, w: 0.9983617}
+  m_LocalRotation: {x: 0.057217225, y: -0.00035252157, z: 0.000020203404, w: 0.9983617}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

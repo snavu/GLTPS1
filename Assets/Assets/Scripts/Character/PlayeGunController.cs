@@ -57,6 +57,19 @@ public class PlayerGunController : MonoBehaviour
             {
                 return;
             }
+            if (ammoCount < 5)
+            {
+                if (ammoInternalMagazine + ammoCount <= 5)
+                {
+                    ammoInternalMagazine += ammoCount;
+                    ammoCount = 0;
+                }
+                else
+                {
+                    ammoInternalMagazine = ammoCount;
+                    ammoCount = 0;
+                }            
+            }
             else
             {
                 ammoCount += -(5 - ammoInternalMagazine);

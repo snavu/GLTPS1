@@ -14,7 +14,7 @@ public class PlayerGunController : MonoBehaviour
     [SerializeField] private Camera camera;
     [SerializeField] private GameObject bulletHoleDecal;
     public int ammoCount = 10;
-    public int reloadCount = 0;
+    public int ammoInternalMagazine = 5;
     [SerializeField] private CinemachineFreeLook freeLookCamera;
     [SerializeField] private float recoilValue;
     [SerializeField] private GameObject barrelSmoke;
@@ -28,13 +28,7 @@ public class PlayerGunController : MonoBehaviour
     public AudioSource audioSourceGunBolt;
     public AudioSource audioSourceGunEmpty;
     [SerializeField] private AudioClip[] _audioClip;
-    
-    [SerializeField] public Texture ammo1;
-    [SerializeField] public Texture ammo2;
-    [SerializeField] public Texture ammo3;
-    [SerializeField] public Texture ammo4;
-    [SerializeField] public Texture ammo;
-    [SerializeField] public Texture blank;
+    [SerializeField] private Texture[] ammoTextures = new Texture[5];
     private bool reload = true;
 
     void OnEnable()
@@ -63,15 +57,10 @@ public class PlayerGunController : MonoBehaviour
             {
                 return;
             }
-            if (ammoCount < 5)
-            {
-                reloadCount = 5 - ammoCount;
-                ammoCount = 0;
-            }
             else
             {
-                ammoCount += -reloadCount;
-                reloadCount = 0;
+                ammoCount += -(5 - ammoInternalMagazine);
+                ammoInternalMagazine = 5;
             }
             ammoCountText.text = ammoCount.ToString();
             StartCoroutine(ReloadWait(3.5f));          
@@ -89,41 +78,21 @@ public class PlayerGunController : MonoBehaviour
         {  
 
             // If ammo has been exhausted
-            if (reloadCount == 5)
+            if (ammoInternalMagazine == 0)
             {
                 audioSourceGunEmpty.PlayOneShot(_audioClip[2]);
                 return;
             }
 
-            if (reloadCount == 4)
+            if (ammoInternalMagazine == 1)
             {
-                ammoClip.texture = blank;
+                ammoClip.texture = ammoTextures[4];
             }
             
-            // Increment Reload
-            reloadCount += 1;
+            // Decrement Ammunition
+            ammoInternalMagazine += -1;
 
-            // not pretty but at least it works
-            if (reloadCount == 0)
-            {
-                ammoClip.texture = ammo;
-            }
-            if (reloadCount == 1)
-            {
-                ammoClip.texture = ammo4;
-            }
-            if (reloadCount == 2)
-            {
-                ammoClip.texture = ammo3;
-            }
-            if (reloadCount == 3)
-            {
-                ammoClip.texture = ammo2;
-            }
-            if (reloadCount == 4)
-            {
-                ammoClip.texture = ammo1;
-            }
+            ammoClip.texture = ammoTextures[ammoInternalMagazine];
 
             // Set ray from the viewport to world space
             Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -183,26 +152,7 @@ public class PlayerGunController : MonoBehaviour
     {
         audioSourceGunEmpty.PlayOneShot(_audioClip[3]);
         yield return new WaitForSeconds(duration);     
-        if (reloadCount == 0)
-        {
-            ammoClip.texture = ammo;
-        }
-        if (reloadCount == 1)
-        {
-            ammoClip.texture = ammo4;
-        }
-        if (reloadCount == 2)
-        {
-            ammoClip.texture = ammo3;
-        }
-        if (reloadCount == 3)
-        {
-            ammoClip.texture = ammo2;
-        }
-        if (reloadCount == 4)
-        {
-            ammoClip.texture = ammo1;
-        }
+        ammoClip.texture = ammoTextures[ammoInternalMagazine];   
         reload = true;
     }
     void OnDrawGizmos()

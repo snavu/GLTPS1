@@ -79,7 +79,7 @@ public class CharacterItemInteraction : MonoBehaviour
                     characterStatusScript.newFoodbar[characterStatusScript.index].GetComponent<RectTransform>().anchoredPosition3D = new Vector3(foodbarPrefab.rectTransform.anchoredPosition3D.x + characterStatusScript.offsetXPos
                                                                                                     , foodbarPrefab.rectTransform.anchoredPosition3D.y
                                                                                                     , foodbarPrefab.rectTransform.anchoredPosition3D.z);
-                    //offset position for adding ui objects
+                    //offset position for adding ui objectsF
                     characterStatusScript.offsetXPos += -30;
                     characterStatusScript.index++;
                 }
@@ -93,10 +93,10 @@ public class CharacterItemInteraction : MonoBehaviour
                 Destroy(other.gameObject);
 
                 //increase ammo count by random amount
-                playerGunControllerScript.ammoCount += Random.Range(1, maxRandomAmmoCount + 1);
+                playerGunControllerScript.maxAmmoCount += Random.Range(1, maxRandomAmmoCount + 1);
 
                 //change ammo ui
-                ammoCountText.text = playerGunControllerScript.ammoCount.ToString();
+                ammoCountText.text = playerGunControllerScript.maxAmmoCount.ToString();
 
                 _audioSource.PlayOneShot(_audioClip[2]);
                 isAmmo = false;

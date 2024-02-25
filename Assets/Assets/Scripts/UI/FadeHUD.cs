@@ -9,7 +9,7 @@ public class FadeHUD : MonoBehaviour
     [SerializeField] private PlayerInputInitialize chitoPlayerInput;
     [SerializeField] private PlayerInputInitialize yuuriPlayerInput;
     [SerializeField] private PlayerMovement yuuriPlayerMovementScript;
-    [SerializeField] private RawImage ammoCountUIRawImage;
+    [SerializeField] private PlayerGunController playerGunControllerScript;
     [SerializeField] private TextMeshProUGUI ammoCountText;
     [SerializeField] private RawImage[] fuelUIRawImage;
     [SerializeField] private RawImage[] waterUIRawImage;
@@ -110,9 +110,12 @@ public class FadeHUD : MonoBehaviour
         Color color;
 
         // Lerp ammo count UI
-        color = ammoCountUIRawImage.color;
-        color.a = Mathf.Lerp(ammoUIAlpha, alphaA, elapsed / duration);
-        ammoCountUIRawImage.color = color;
+        foreach (GameObject ammoCount in playerGunControllerScript.ammoCountUI)
+        {
+            color = ammoCount.GetComponent<RawImage>().color;
+            color.a = Mathf.Lerp(ammoUIAlpha, alphaA, elapsed / duration);
+            ammoCount.GetComponent<RawImage>().color = color;
+        }
 
         // Lerp ammo count text
         color = ammoCountText.color;

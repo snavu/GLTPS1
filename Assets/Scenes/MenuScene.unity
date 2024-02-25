@@ -5207,26 +5207,28 @@ MonoBehaviour:
 
     fire / take photo: left mouse
 
-    camera
-    zoom: mouse scroll
+    reload:
+    R
+
+    camera zoom: mouse scroll
 
 
     map: left ctrl
 
 
-    interact / enter kettengrad: F
+    interact / enter
+    kettengrad: F
 
-    campfire
-    / kettengrad headlight: R
+    campfire / kettengrad headlight: G
 
-    exit kettengrad: hold F
+    exit kettengrad: hold
+    F
 
 
     wait command: X
 
 
-    menu:
-    esc
+    menu: esc
 
 
 

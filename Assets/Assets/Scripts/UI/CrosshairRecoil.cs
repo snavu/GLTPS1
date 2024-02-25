@@ -17,28 +17,9 @@ public class CrosshairRecoil : MonoBehaviour
     [SerializeField] private float recoilY;
 
     [SerializeField] private PlayerInputInitialize playerInputScript;
-    private bool fire;
+    public bool fire;
     [SerializeField] private bool recoil;
 
-
-    void OnEnable()
-    {
-        playerInputScript.actions.Player.Fire.performed += Recoil;
-    }
-
-    void OnDisable()
-    {
-        playerInputScript.actions.Player.Fire.performed -= Recoil;
-    }
-
-    private void Recoil(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            fire = true;
-        }
-    }
-    // Update is called once per frame
     void Update()
     {
         if (fire)

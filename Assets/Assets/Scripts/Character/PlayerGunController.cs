@@ -13,23 +13,27 @@ public class PlayerGunController : MonoBehaviour
     [SerializeField] private Transform muzzle;
     [SerializeField] private Camera camera;
     [SerializeField] private GameObject bulletHoleDecal;
-    public int ammoCount = 10;
-    public int ammoInternalMagazine = 5;
+    public int maxAmmoCount = 10;
+    [SerializeField] private int maxClipCapacity = 5;
+    public int ammoCount = 0;
     [SerializeField] private CinemachineFreeLook freeLookCamera;
     [SerializeField] private float recoilValue;
     [SerializeField] private GameObject barrelSmoke;
     private ConstraintSource source;
-    [SerializeField] private Animator anim;
+    public Animator anim;
     [SerializeField] private TextMeshProUGUI ammoCountText;
-    [SerializeField] private RawImage ammoClip;
     private LayerMask layerMask;
 
     public AudioSource audioSourceGunFire;
     public AudioSource audioSourceGunBolt;
     public AudioSource audioSourceGunEmpty;
     [SerializeField] private AudioClip[] _audioClip;
-    [SerializeField] private Texture[] ammoTextures = new Texture[5];
-    private bool reload = true;
+    public List<GameObject> ammoCountUI;
+    [SerializeField] private RawImage ammoPrefab;
+    [SerializeField] private GameObject panel;
+    [SerializeField] private int offsetXPos;
+    public bool isReloading = false;
+    [SerializeField] private CrosshairRecoil crosshairRecoilScript;
 
     void OnEnable()
     {
@@ -37,8 +41,9 @@ public class PlayerGunController : MonoBehaviour
         playerInputScript.actions.Player.Reload.performed += Reload;
         layerMask = LayerMask.GetMask("Default", "Vehicle");
 
-        ammoCountText.text = ammoCount.ToString();
-
+        //initailize ammo count ui
+        Reload(maxClipCapacity);
+        ammoCountText.text = maxAmmoCount.ToString();
     }
 
     void OnDisable()
@@ -48,69 +53,38 @@ public class PlayerGunController : MonoBehaviour
     }
 
     private void Reload(InputAction.CallbackContext context)
-    {   
-        if (context.performed)
+    {
+        if (context.performed && !isReloading && maxAmmoCount > 0)
         {
-            // Basic reload
-            reload = false;
-            if (ammoCount == 0)
-            {
-                return;
-            }
-            if (ammoCount < 5)
-            {
-                if (ammoInternalMagazine + ammoCount <= 5)
-                {
-                    ammoInternalMagazine += ammoCount;
-                    ammoCount = 0;
-                }
-                if (ammoInternalMagazine + ammoCount > 5)
-                {
-                    ammoCount += -(5 - ammoInternalMagazine);
-                    ammoInternalMagazine = 5;
-                }
-                else
-                {
-                    ammoInternalMagazine = ammoCount;
-                    ammoCount = 0;
-                }            
-            }
-            else
-            {
-                ammoCount += -(5 - ammoInternalMagazine);
-                ammoInternalMagazine = 5;
-            }
-            ammoCountText.text = ammoCount.ToString();
-            StartCoroutine(ReloadWait(3.5f));          
+            StartCoroutine(ReloadWait(3.5f));
         }
-    
     }
-    
+
     private void Fire(InputAction.CallbackContext context)
     {
         if (context.performed &&
             !anim.GetCurrentAnimatorStateInfo(5).IsTag("Reload") &&
             anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") &&
-            reload &&
+            !isReloading &&
             Time.timeScale == 1)
-        {  
+        {
 
             // If ammo has been exhausted
-            if (ammoInternalMagazine == 0)
+            if (ammoCount == 0)
             {
                 audioSourceGunEmpty.PlayOneShot(_audioClip[2]);
                 return;
             }
 
-            if (ammoInternalMagazine == 1)
+            // Decrement ammo count
+            if (ammoCountUI[ammoCount - 1] != null)
             {
-                ammoClip.texture = ammoTextures[4];
+                Destroy(ammoCountUI[ammoCount - 1]);
+                ammoCountUI.RemoveAt(ammoCount - 1);
             }
-            
-            // Decrement Ammunition
-            ammoInternalMagazine += -1;
 
-            ammoClip.texture = ammoTextures[ammoInternalMagazine];
+            offsetXPos += 18;
+            ammoCount--;
 
             // Set ray from the viewport to world space
             Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -136,12 +110,12 @@ public class PlayerGunController : MonoBehaviour
 
             //camera recoil effect
             freeLookCamera.m_YAxis.Value += recoilValue;
+            crosshairRecoilScript.fire = true;
 
             StartCoroutine(SmokeEffect(1f));
 
             audioSourceGunFire.PlayOneShot(_audioClip[0]);
             StartCoroutine(BoltAction(0.25f));
-            reload = false;
         }
     }
 
@@ -158,21 +132,50 @@ public class PlayerGunController : MonoBehaviour
 
     IEnumerator BoltAction(float duration)
     {
+        isReloading = true;
+        anim.SetTrigger("reload");
         yield return new WaitForSeconds(duration);
         audioSourceGunBolt.PlayOneShot(_audioClip[1]);
-        anim.SetTrigger("reload");
-        reload = true;
+        isReloading = false;
     }
 
-    // easiest way to just have the program wait
-    // also not pretty
     IEnumerator ReloadWait(float duration)
     {
+        isReloading = true;
         audioSourceGunEmpty.PlayOneShot(_audioClip[3]);
-        yield return new WaitForSeconds(duration);     
-        ammoClip.texture = ammoTextures[ammoInternalMagazine];   
-        reload = true;
+        yield return new WaitForSeconds(duration);
+
+        int reloadCount = maxClipCapacity - ammoCount;
+        if (maxAmmoCount < reloadCount)
+        {
+            reloadCount = maxAmmoCount;
+        }
+        Reload(reloadCount);
+
     }
+
+    private void Reload(int reloadCount)
+    {
+        for (int i = 0; i < reloadCount; i++)
+        {
+            //add ammo count ui object and set rotation and position on canvas
+            ammoCountUI.Add(Instantiate(ammoPrefab.gameObject, panel.transform));
+            ammoCountUI[ammoCount].GetComponent<RectTransform>().localRotation = Quaternion.identity;
+            ammoCountUI[ammoCount].GetComponent<RectTransform>().anchoredPosition3D = new Vector3(ammoPrefab.rectTransform.anchoredPosition3D.x + offsetXPos
+                                                                                            , ammoPrefab.rectTransform.anchoredPosition3D.y
+                                                                                            , ammoPrefab.rectTransform.anchoredPosition3D.z);
+            //offset position for adding ui objects
+            offsetXPos += -18;
+
+            ammoCount++;
+            maxAmmoCount--;
+        }
+
+        ammoCountText.text = maxAmmoCount.ToString();
+
+        isReloading = false;
+    }
+
     void OnDrawGizmos()
     {
         // Cast a ray from the viewport to world space

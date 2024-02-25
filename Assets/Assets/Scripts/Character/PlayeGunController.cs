@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.Animations;
 using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 public class PlayerGunController : MonoBehaviour
 {
     [SerializeField] private PlayerInputInitialize playerInputScript;
@@ -12,24 +14,27 @@ public class PlayerGunController : MonoBehaviour
     [SerializeField] private Camera camera;
     [SerializeField] private GameObject bulletHoleDecal;
     public int ammoCount = 10;
-
+    public int ammoInternalMagazine = 5;
     [SerializeField] private CinemachineFreeLook freeLookCamera;
     [SerializeField] private float recoilValue;
     [SerializeField] private GameObject barrelSmoke;
     private ConstraintSource source;
     [SerializeField] private Animator anim;
     [SerializeField] private TextMeshProUGUI ammoCountText;
+    [SerializeField] private RawImage ammoClip;
     private LayerMask layerMask;
 
     public AudioSource audioSourceGunFire;
     public AudioSource audioSourceGunBolt;
-
+    public AudioSource audioSourceGunEmpty;
     [SerializeField] private AudioClip[] _audioClip;
+    [SerializeField] private Texture[] ammoTextures = new Texture[5];
     private bool reload = true;
 
     void OnEnable()
     {
         playerInputScript.actions.Player.Fire.performed += Fire;
+        playerInputScript.actions.Player.Reload.performed += Reload;
         layerMask = LayerMask.GetMask("Default", "Vehicle");
 
         ammoCountText.text = ammoCount.ToString();
@@ -39,16 +44,74 @@ public class PlayerGunController : MonoBehaviour
     void OnDisable()
     {
         playerInputScript.actions.Player.Fire.performed -= Fire;
+        playerInputScript.actions.Player.Reload.performed -= Reload;
     }
 
+    private void Reload(InputAction.CallbackContext context)
+    {   
+        if (context.performed)
+        {
+            // Basic reload
+            reload = false;
+            if (ammoCount == 0)
+            {
+                return;
+            }
+            if (ammoCount < 5)
+            {
+                if (ammoInternalMagazine + ammoCount <= 5)
+                {
+                    ammoInternalMagazine += ammoCount;
+                    ammoCount = 0;
+                }
+                if (ammoInternalMagazine + ammoCount > 5)
+                {
+                    ammoCount += -(5 - ammoInternalMagazine);
+                    ammoInternalMagazine = 5;
+                }
+                else
+                {
+                    ammoInternalMagazine = ammoCount;
+                    ammoCount = 0;
+                }            
+            }
+            else
+            {
+                ammoCount += -(5 - ammoInternalMagazine);
+                ammoInternalMagazine = 5;
+            }
+            ammoCountText.text = ammoCount.ToString();
+            StartCoroutine(ReloadWait(3.5f));          
+        }
+    
+    }
+    
     private void Fire(InputAction.CallbackContext context)
     {
-        if (context.performed && ammoCount != 0 &&
+        if (context.performed &&
             !anim.GetCurrentAnimatorStateInfo(5).IsTag("Reload") &&
             anim.GetCurrentAnimatorStateInfo(3).IsTag("ADS") &&
             reload &&
             Time.timeScale == 1)
-        {
+        {  
+
+            // If ammo has been exhausted
+            if (ammoInternalMagazine == 0)
+            {
+                audioSourceGunEmpty.PlayOneShot(_audioClip[2]);
+                return;
+            }
+
+            if (ammoInternalMagazine == 1)
+            {
+                ammoClip.texture = ammoTextures[4];
+            }
+            
+            // Decrement Ammunition
+            ammoInternalMagazine += -1;
+
+            ammoClip.texture = ammoTextures[ammoInternalMagazine];
+
             // Set ray from the viewport to world space
             Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
@@ -70,10 +133,6 @@ public class PlayerGunController : MonoBehaviour
 
                 newBulletHoleDecal.transform.parent = bulletRayCastHit.collider.gameObject.transform;
             }
-
-            //decrease ammo count per shot
-            ammoCount--;
-            ammoCountText.text = ammoCount.ToString();
 
             //camera recoil effect
             freeLookCamera.m_YAxis.Value += recoilValue;
@@ -105,7 +164,15 @@ public class PlayerGunController : MonoBehaviour
         reload = true;
     }
 
-
+    // easiest way to just have the program wait
+    // also not pretty
+    IEnumerator ReloadWait(float duration)
+    {
+        audioSourceGunEmpty.PlayOneShot(_audioClip[3]);
+        yield return new WaitForSeconds(duration);     
+        ammoClip.texture = ammoTextures[ammoInternalMagazine];   
+        reload = true;
+    }
     void OnDrawGizmos()
     {
         // Cast a ray from the viewport to world space

@@ -170,6 +170,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Value"",
+                    ""id"": ""6f7ead98-f9db-49c6-8a17-d2612c4e043d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -572,11 +581,22 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b8cfda94-8792-4247-8c04-319a7be22342"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""PlaceCampfire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ee200fe-3ea4-496f-9b48-293e88902ea1"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -975,6 +995,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Map = m_Player.FindAction("Map", throwIfNotFound: true);
         m_Player_AgentWait = m_Player.FindAction("AgentWait", throwIfNotFound: true);
         m_Player_PlaceCampfire = m_Player.FindAction("PlaceCampfire", throwIfNotFound: true);
+        m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         // Vehicle
         m_Vehicle = asset.FindActionMap("Vehicle", throwIfNotFound: true);
         m_Vehicle_Drive = m_Vehicle.FindAction("Drive", throwIfNotFound: true);
@@ -1062,6 +1083,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Map;
     private readonly InputAction m_Player_AgentWait;
     private readonly InputAction m_Player_PlaceCampfire;
+    private readonly InputAction m_Player_Reload;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -1082,6 +1104,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Map => m_Wrapper.m_Player_Map;
         public InputAction @AgentWait => m_Wrapper.m_Player_AgentWait;
         public InputAction @PlaceCampfire => m_Wrapper.m_Player_PlaceCampfire;
+        public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1139,6 +1162,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @PlaceCampfire.started += instance.OnPlaceCampfire;
             @PlaceCampfire.performed += instance.OnPlaceCampfire;
             @PlaceCampfire.canceled += instance.OnPlaceCampfire;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1191,6 +1217,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @PlaceCampfire.started -= instance.OnPlaceCampfire;
             @PlaceCampfire.performed -= instance.OnPlaceCampfire;
             @PlaceCampfire.canceled -= instance.OnPlaceCampfire;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1373,6 +1402,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnMap(InputAction.CallbackContext context);
         void OnAgentWait(InputAction.CallbackContext context);
         void OnPlaceCampfire(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
     public interface IVehicleActions
     {
